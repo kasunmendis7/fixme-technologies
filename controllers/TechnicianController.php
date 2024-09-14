@@ -12,5 +12,10 @@ class TechnicianController extends Controller
         $this->setLayout('auth');
         return $this->render('/technician-sign-up');
     }
+    public function technicianLanding()
+    {
+        $this->setLayout('auth');
+        return $this->render('/technician-landing');
+    }
 }
 
