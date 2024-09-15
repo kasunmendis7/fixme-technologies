@@ -14,7 +14,7 @@ $app->router->get('/customer-sign-up', [CustomerController::class, 'customerSign
 $app->router->get('/technician-sign-up', [TechnicianController::class, 'technicianSignUp']);
 $app->router->get('/technician-landing', [TechnicianController::class, 'technicianLanding']);
 $app->router->get('/technician-add-new-post', [TechnicianController::class, 'technicianAddNewPost']);
-
+$app->router->get('/technician-home', [TechnicianController::class, 'technicianHome']);
 $app->run();
 
 function show($data)
