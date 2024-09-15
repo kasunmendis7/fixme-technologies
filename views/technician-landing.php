@@ -49,7 +49,7 @@
                     <p class="tagline">Become a leading automobile repair technician. Sign up now to gain access to
                         exclusive benefits and opportunities!</p>
                     <div>
-                        <button type="submit" id="submitButton" class="sign-up-btn" >Sign Up</button>
+                        <button type="submit" id="submitButton" class="sign-up-btn" onclick="redirectToSignUp()">Sign Up</button>
                     </div>
                 </div>
             </div>

@@ -24,7 +24,7 @@
                 <p class="box-1-desc">
                     Provide service to customers who are in need of your service
                 </p>
-                <button class="box-1-btn" type="button">Find Customers</button>
+                <button class="box-1-btn" type="button" onclick="redirectTechnicianLanding()">Find Customers</button>
             </div>
         </div>
     </div>
