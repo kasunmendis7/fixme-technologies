@@ -13,6 +13,7 @@ $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/customer-sign-up', [CustomerController::class, 'customerSignUp']);
 $app->router->get('/technician-sign-up', [TechnicianController::class, 'technicianSignUp']);
 $app->router->get('/technician-landing', [TechnicianController::class, 'technicianLanding']);
+$app->router->get('/technician-add-new-post', [TechnicianController::class, 'technicianAddNewPost']);
 
 $app->run();
 

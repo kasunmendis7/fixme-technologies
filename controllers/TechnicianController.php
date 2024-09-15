@@ -17,5 +17,10 @@ class TechnicianController extends Controller
         $this->setLayout('auth');
         return $this->render('/technician-landing');
     }
+    public function technicianAddNewPost()
+    {
+        $this->setLayout('auth');
+        return $this->render('/technician-add-new-post');
+    }
 }
 
