@@ -10,22 +10,22 @@ class TechnicianController extends Controller
     public function technicianSignUp()
     {
         $this->setLayout('auth');
-        return $this->render('/technician-sign-up');
+        return $this->render('/technician/technician-sign-up');
     }
     public function technicianLanding()
     {
         $this->setLayout('auth');
-        return $this->render('/technician-landing');
+        return $this->render('/technician/technician-landing');
     }
     public function technicianHome()
     {
         $this->setLayout('auth');
-        return $this->render('/technician-home');
+        return $this->render('/technician/technician-home');
     }
     public function technicianAddNewPost()
     {
         $this->setLayout('auth');
-        return $this->render('/technician-add-new-post');
+        return $this->render('/technician/technician-add-new-post');
     }
 }
 
