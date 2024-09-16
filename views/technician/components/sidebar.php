@@ -1,17 +1,3 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Technician Home</title>
-    <script src="/js/technician/technician-home.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <link rel="stylesheet" href="/css/technician/technician-home.css">
-</head>
-<body>
 <!-- Sidebar Technician Home -->
 <div class="container">
     <div class="navigation">
@@ -34,7 +20,15 @@
                 </a>
             </li>
             <li>
-                <a href="/technician-community">
+                <a href="#">
+                        <span class="icon">
+                            <ion-icon name="location-outline"></ion-icon>
+                        </span>
+                    <span class="title">Map</span>
+                </a>
+            </li>
+            <li>
+                <a href="/technician-home/technician-community">
                         <span class="icon">
                            <ion-icon name="images-outline"></ion-icon>
                         </span>
@@ -81,15 +75,6 @@
             <li>
                 <a href="#">
                         <span class="icon">
-                            <ion-icon name="lock-closed-outline"></ion-icon>
-                        </span>
-                    <span class="title">Password</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="#">
-                        <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>
                     <span class="title">Sign Out</span>
@@ -97,23 +82,3 @@
             </li>
         </ul>
     </div>
-<!-- Menu and search -->
-    <div class="main">
-        <div class="topbar">
-            <div class="toggle">
-                <ion-icon name="menu-outline"></ion-icon>
-            </div>
-
-            <div class="search">
-                <label>
-                    <input type="text" placeholder="Search here">
-                    <ion-icon name="search-outline"></ion-icon>
-                </label>
-            </div>
-
-            <div class="user">
-                <img src="/assets/imgs/customer01.jpg" alt="">
-            </div>
-        </div>
-</body>
-</html>

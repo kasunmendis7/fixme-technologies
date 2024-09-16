@@ -24,7 +24,7 @@
                 <p class="box-1-desc">
                     Provide service to customers who are in need of your service
                 </p>
-                // Add the code to navigate to the /technician-landing page upon clicking this button
+
                 <button class="box-1-btn" type="button" id="findCustomersBtn">Find Customers</button>
             </div>
         </div>

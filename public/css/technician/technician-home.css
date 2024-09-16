@@ -150,6 +150,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 0 10px;
+    background-color: rgba(245, 246, 245, 0.64);
 }
 
 .toggle {
