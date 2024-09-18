@@ -16,6 +16,9 @@ $app->router->get('/technician-sign-up', [TechnicianController::class, 'technici
 $app->router->get('/technician-landing', [TechnicianController::class, 'technicianLanding']);
 $app->router->get('/service-centre-landing', [ServiceCentreController::class, 'serviceCentreLanding']);
 $app->router->get('/service-centre-dashboard', [ServiceCentreController::class, 'serviceCentreDashboard']);
+$app->router->get('/service-centre-sign-up', [ServiceCentreController::class, 'serviceCentreSignup']);
+$app->router->get('/service-centre-login', [ServiceCentreController::class, 'serviceCentreLogin']);
+
 
 $app->run();
 
