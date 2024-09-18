@@ -15,6 +15,7 @@ $app->router->get('/customer-sign-up', [CustomerController::class, 'customerSign
 $app->router->get('/technician-sign-up', [TechnicianController::class, 'technicianSignUp']);
 $app->router->get('/technician-landing', [TechnicianController::class, 'technicianLanding']);
 $app->router->get('/service-centre-landing', [ServiceCentreController::class, 'serviceCentreLanding']);
+$app->router->get('/service-centre-dashboard', [ServiceCentreController::class, 'serviceCentreDashboard']);
 
 $app->run();
 
