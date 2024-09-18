@@ -10,4 +10,10 @@ class ServiceCentreController extends Controller
         $this->setLayout('auth');
         return $this->render('/service-centre-landing');
     }
+
+    public function serviceCentreDashboard()
+    {
+        $this->setLayout('auth');
+        return $this->render('/service-centre-dashboard');
+    }
 }
