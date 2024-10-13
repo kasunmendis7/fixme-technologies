@@ -12,6 +12,7 @@ $app = new Application(dirname(__DIR__));
 $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/customer-sign-up', [CustomerController::class, 'customerSignUp']);
 $app->router->get('/technician-sign-up', [TechnicianController::class, 'technicianSignUp']);
+$app->router->post('/technician-sign-up', [TechnicianController::class, 'technicianSignUp']);
 $app->router->get('/technician-landing', [TechnicianController::class, 'technicianLanding']);
 $app->router->get('/technician-add-new-post', [TechnicianController::class, 'technicianAddNewPost']);
 $app->router->get('/technician-home', [TechnicianController::class, 'technicianHome']);
