@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="/css/service-center/service-centre-login.css">
     <link rel="stylesheet" href="/css/base/_reset.css">
     <link rel="stylesheet" href="/css/base/_global.css">
+    <script src="/js/service-center/ss-login-redirect.js"></script>
+
 </head>
 
 <body>
@@ -45,7 +47,7 @@
                     <label for="remember-me">Remember me</label>
                 </div>
                 <div>
-                    <button type="submit" class="btn">Log in</button>
+                    <button type="submit" class="btn" onclick={ssLoginRedirect}>Log in</button>
                 </div>
                 <div class="forgot-password">
                     <a href="#">Forgot password?</a>
