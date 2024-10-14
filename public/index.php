@@ -1,13 +1,23 @@
 <?php
 
-require_once __DIR__ . '/../vendor/autoload.php';
-
 use app\core\Application;
 use app\controllers\SiteController;
 use app\controllers\CustomerController;
 use app\controllers\TechnicianController;
 
-$app = new Application(dirname(__DIR__));
+
+require_once __DIR__ . '/../vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+
+$config =  [
+    'dsn' => 'mysql:host=localhost;dbname=your_database_name;charset=utf8',
+    'user' => 'your_database_user',
+    'password' => 'your_database_password'
+];
+
+$app = new Application(dirname(__DIR__), $config);
 
 $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/customer-sign-up', [CustomerController::class, 'customerSignUp']);
