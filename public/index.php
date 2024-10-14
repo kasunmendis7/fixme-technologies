@@ -7,14 +7,14 @@ use app\controllers\TechnicianController;
 
 
 require_once __DIR__ . '/../vendor/autoload.php';
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
 
 
 $config =  [
-    'dsn' => 'mysql:host=localhost;dbname=your_database_name;charset=utf8',
-    'user' => 'your_database_user',
-    'password' => 'your_database_password'
+    'dsn' => 'mysql:host=localhost;dbname=fixmedb;charset=utf8',
+    'user' => 'root',
+    'password' => ''
 ];
 
 $app = new Application(dirname(__DIR__), $config);
