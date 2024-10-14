@@ -5,8 +5,7 @@
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Technician Home</title>
-
+        <title>Technician Dashboard</title>
         <link rel="stylesheet" href="/css/technician/technician-dashboard.css">
     </head>
     <body>
@@ -20,40 +19,41 @@
         <div class="cardBox">
             <div class="card">
                 <div>
-                    <div class="numbers">1,504</div>
-                    <div class="cardName">Daily Views</div>
+                    <div class="numbers">65</div>
+                    <div class="cardName">Total Repairs</div>
                 </div>
 
                 <div class="iconBx">
-                    <ion-icon name="eye-outline"></ion-icon>
+                    <ion-icon name="cog-outline"></ion-icon>
                 </div>
             </div>
 
             <div class="card">
                 <div>
-                    <div class="numbers">80</div>
-                    <div class="cardName">Sales</div>
+                    <div class="numbers">2</div>
+                    <div class="cardName">Level</div>
                 </div>
 
                 <div class="iconBx">
-                    <ion-icon name="cart-outline"></ion-icon>
+                    <ion-icon name="trophy-outline"></ion-icon>
+
                 </div>
             </div>
 
             <div class="card">
                 <div>
-                    <div class="numbers">284</div>
-                    <div class="cardName">Comments</div>
+                    <div class="numbers">20</div>
+                    <div class="cardName">Total Reviews</div>
                 </div>
 
                 <div class="iconBx">
-                    <ion-icon name="chatbubbles-outline"></ion-icon>
+                    <ion-icon name="star-outline"></ion-icon>
                 </div>
             </div>
 
             <div class="card">
                 <div>
-                    <div class="numbers">$7,842</div>
+                    <div class="numbers">Rs. 7,842</div>
                     <div class="cardName">Earning</div>
                 </div>
 
@@ -83,59 +83,58 @@
 
                     <tbody>
                     <tr>
-                        <td>Star Refrigerator</td>
-                        <td>$1200</td>
+                        <td>Kasun Mendis</td>
+                        <td>Rs. 620</td>
+                        <td>Due</td>
+                        <td><span class="status inProgress">In Progress</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sheane Mario</td>
+                        <td>Rs. 1200</td>
                         <td>Paid</td>
-                        <td><span class="status delivered">Delivered</span></td>
+                        <td><span class="status delivered">Completed</span></td>
                     </tr>
 
                     <tr>
-                        <td>Dell Laptop</td>
-                        <td>$110</td>
+                        <td>Pulasthi Abhisheke</td>
+                        <td>Rs. 110</td>
                         <td>Due</td>
                         <td><span class="status pending">Pending</span></td>
                     </tr>
 
                     <tr>
-                        <td>Apple Watch</td>
-                        <td>$1200</td>
-                        <td>Paid</td>
-                        <td><span class="status return">Return</span></td>
+                        <td>Nimal Rathinarasa</td>
+                        <td>Rs. 1200</td>
+                        <td>-</td>
+                        <td><span class="status return">Cancelled</span></td>
                     </tr>
 
                     <tr>
-                        <td>Addidas Shoes</td>
-                        <td>$620</td>
+                        <td>Jimmy Donaldson</td>
+                        <td>Rs. 620</td>
                         <td>Due</td>
                         <td><span class="status inProgress">In Progress</span></td>
                     </tr>
 
                     <tr>
-                        <td>Star Refrigerator</td>
-                        <td>$1200</td>
+                        <td>Erick Dodger</td>
+                        <td>Rs. 1200</td>
                         <td>Paid</td>
-                        <td><span class="status delivered">Delivered</span></td>
+                        <td><span class="status delivered">Completed</span></td>
                     </tr>
 
                     <tr>
-                        <td>Dell Laptop</td>
-                        <td>$110</td>
+                        <td>Steven Schaphiro Laptop</td>
+                        <td>Rs. 110</td>
                         <td>Due</td>
-                        <td><span class="status pending">Pending</span></td>
+                        <td><span class="status delivered">Completed</span></td>
                     </tr>
 
                     <tr>
-                        <td>Apple Watch</td>
-                        <td>$1200</td>
-                        <td>Paid</td>
-                        <td><span class="status return">Return</span></td>
-                    </tr>
-
-                    <tr>
-                        <td>Addidas Shoes</td>
-                        <td>$620</td>
-                        <td>Due</td>
-                        <td><span class="status inProgress">In Progress</span></td>
+                        <td>Dawson Smith</td>
+                        <td>Rs. 1200</td>
+                        <td>-</td>
+                        <td><span class="status return">Cancelled</span></td>
                     </tr>
                     </tbody>
                 </table>
@@ -150,70 +149,70 @@
                 <table>
                     <tr>
                         <td width="60px">
-                            <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
+                            <div class="imgBx"><img src="assets/technician-dashboard/customer02.jpg" alt=""></div>
                         </td>
                         <td>
-                            <h4>David <br> <span>Italy</span></h4>
+                            <h4>Kasun<br> <span>Panadura</span></h4>
                         </td>
                     </tr>
 
                     <tr>
                         <td width="60px">
-                            <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
+                            <div class="imgBx"><img src="assets/technician-dashboard/customer04.jpg" alt=""></div>
                         </td>
                         <td>
-                            <h4>Amit <br> <span>India</span></h4>
+                            <h4>Mario<br> <span>Negombo</span></h4>
                         </td>
                     </tr>
 
                     <tr>
                         <td width="60px">
-                            <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
+                            <div class="imgBx"><img src="assets/technician-dashboard/customer01.jpg" alt=""></div>
                         </td>
                         <td>
-                            <h4>David <br> <span>Italy</span></h4>
+                            <h4>Abisheke <br> <span>Hambanthota</span></h4>
                         </td>
                     </tr>
 
                     <tr>
                         <td width="60px">
-                            <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
+                            <div class="imgBx"><img src="assets/technician-dashboard/customer03.jpg" alt=""></div>
                         </td>
                         <td>
-                            <h4>Amit <br> <span>India</span></h4>
+                            <h4>Nimal<br> <span>Jaffna</span></h4>
                         </td>
                     </tr>
 
                     <tr>
                         <td width="60px">
-                            <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
+                            <div class="imgBx"><img src="assets/technician-dashboard/customer02.jpg" alt=""></div>
                         </td>
                         <td>
-                            <h4>David <br> <span>Italy</span></h4>
+                            <h4>Tithira <br> <span>Havelock</span></h4>
                         </td>
                     </tr>
 
                     <tr>
                         <td width="60px">
-                            <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
+                            <div class="imgBx"><img src="assets/technician-dashboard/customer01.jpg" alt=""></div>
                         </td>
                         <td>
-                            <h4>Amit <br> <span>India</span></h4>
+                            <h4>Pasan <br> <span>Kaluthara</span></h4>
                         </td>
                     </tr>
 
                     <tr>
                         <td width="60px">
-                            <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
+                            <div class="imgBx"><img src="assets/technician-dashboard/customer01.jpg" alt=""></div>
                         </td>
                         <td>
-                            <h4>David <br> <span>Italy</span></h4>
+                            <h4>Sahan <br> <span>Galle</span></h4>
                         </td>
                     </tr>
 
                     <tr>
                         <td width="60px">
-                            <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
+                            <div class="imgBx"><img src="assets/technician-dashboard/customer02.jpg" alt=""></div>
                         </td>
                         <td>
                             <h4>Amit <br> <span>India</span></h4>

@@ -20,6 +20,7 @@ $app->router->get('/service-centre-sign-up', [ServiceCentreController::class, 's
 $app->router->get('/service-centre-login', [ServiceCentreController::class, 'serviceCentreLogin']);
 $app->router->get('/technician-home', [TechnicianController::class, 'technicianHome']);
 $app->router->get('/technician-dashboard', [TechnicianController::class, 'technicianDashboard']);
+$app->router->get('/technician-map', [TechnicianController::class, 'technicianMap']);
 
 $app->run();
 
