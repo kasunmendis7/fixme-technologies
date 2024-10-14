@@ -14,6 +14,6 @@
             </div>
 
             <div class="user">
-                <img src="/assets/imgs/customer01.jpg" alt="">
+                <img src="/assets/technician-dashboard/customer02.jpg" alt="">
             </div>
         </div>
