@@ -46,7 +46,7 @@
             </li>
 
             <li>
-                <a href="#">
+                <a href="/technician-messages">
                         <span class="icon">
                             <ion-icon name="chatbubble-outline"></ion-icon>
                         </span>
