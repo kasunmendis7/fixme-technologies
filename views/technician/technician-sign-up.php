@@ -34,10 +34,9 @@
                 <?php echo $form->field($model, 'nic') ?>
                 <?php echo $form->field($model, 'email') ?>
                 <?php echo $form->field($model, 'password')->passwordField() ?>
-                <?php echo $form->field($model, 'confirm Password')->passwordField() ?>
+                <?php echo $form->field($model, 'confirmPassword')->passwordField() ?>
                 <button type="submit" class="btn">Create an account</button>
                 <?php echo \app\core\form\Form::end();?>
-
 <!--                <div class="input-element">-->
 <!--                    <label for="username">Username: </label>-->
 <!--                    <input type="text" name="username" value="--><?php //echo $model->username ?? '' ?><!--"-->
