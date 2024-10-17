@@ -1,0 +1,109 @@
+/* ROBOTO FONT */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+/* VRIABLED */
+:root {
+    --primary-color: #6369f5;
+    --secondary-color: #f5f4fa;
+    --text-color: #444444;
+    --white-color: #ffff;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.contact-us-container {
+    position: absolute;
+    width: 100%;
+    max-width: 900px;
+    padding: 40px;
+    display: flex;
+    gap: 80px;
+    border-radius: 10px;
+    background-color: var(--white-color);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.contact-us-left{
+    width:55%;
+}
+
+.heading{
+    font-size: 38px;
+    font-weight: 600;
+    line-height:1;
+    color: #000000;
+}
+
+.contact-us-text {
+    font-size: 14px;
+    color: var(--text-color);
+    margin-top: 10px;
+}
+
+form{
+    margin-top:20px;
+}
+
+.contact-us-input-box{
+    position: relative;
+    margin-bottom: 20px;
+}
+.contact-us-input-box input,
+.contact-us-input-box textarea{
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    color: var(--text-color);
+    border: none;
+    outline: none;
+    background-color: var(--secondary-color);
+}
+
+
+.contact-us-input-box input::placeholder,
+.contact-us-input-box textarea::placeholder{
+    color: var(--text-color);
+    opacity: 0.5;
+    font-size:12px;
+}
+.contact-us-input-box textarea{
+    resize: none;
+    height: 150px;
+}
+
+.contact-us-btn{
+    width: 100%;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    color: var(--white-color);
+    background-color: var(--primary-color);
+    cursor: pointer;
+    transition: 0.5s;
+    border-radius: 5px;
+}
+
+.contact-us-btn:hover{
+    background-color: #4b52d8;
+}
+
+.contact-us-right{
+    width:45%;
+}
+
+.contact-us-illustration{
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+}
+
+
