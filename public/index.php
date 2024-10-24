@@ -21,6 +21,8 @@ $app->router->get('/service-centre-login', [ServiceCentreController::class, 'ser
 $app->router->get('/technician-home', [TechnicianController::class, 'technicianHome']);
 $app->router->get('/technician-dashboard', [TechnicianController::class, 'technicianDashboard']);
 $app->router->get('/technician-map', [TechnicianController::class, 'technicianMap']);
+$app->router->get('/service-centre-map', [ServiceCentreController::class, 'serviceCentreMap']);
+$app->router->get('/service-centre-home', [ServiceCentreController::class, 'serviceCentreHome']);
 
 $app->run();
 
