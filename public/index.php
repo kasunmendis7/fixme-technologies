@@ -18,7 +18,9 @@ $app->router->get('/service-centre-landing', [ServiceCentreController::class, 's
 $app->router->get('/service-centre-dashboard', [ServiceCentreController::class, 'serviceCentreDashboard']);
 $app->router->get('/service-centre-sign-up', [ServiceCentreController::class, 'serviceCentreSignup']);
 $app->router->get('/service-centre-login', [ServiceCentreController::class, 'serviceCentreLogin']);
-
+$app->router->get('/technician-home', [TechnicianController::class, 'technicianHome']);
+$app->router->get('/technician-dashboard', [TechnicianController::class, 'technicianDashboard']);
+$app->router->get('/technician-map', [TechnicianController::class, 'technicianMap']);
 
 $app->run();
 
