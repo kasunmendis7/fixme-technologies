@@ -33,33 +33,37 @@
                 <form action="" method="post" class="cust-signup-form">
                     <div class="input-element">
                         <label for="user-name">Service centre name:</label>
-                        <input type="text" name="user-name" placeholder="Service centre name..." id="user-name" required>
+                        <input type="text" name="centreName" placeholder="Service centre name..." id="user-name">
                     </div>
                     <div class="input-element">
                         <label for="nic">NIC No: </label>
-                        <input type="text" name="nic" placeholder="NIC No..." id="nic" required>
+                        <input type="text" name="nic" placeholder="NIC No..." id="nic">
                     </div>
                     <div class="input-element">
                         <label for="phoneNumber">Phone No: </label>
-                        <input type="text" name="phoneNumber" placeholder="Phone no..." id="phoneNumber" required>
+                        <input type="text" name="phoneNumber" placeholder="Phone no..." id="phoneNumber">
                     </div>
                     <div class="input-element">
                         <label for="user-name">Address: </label>
-                        <input type="text" name="address" placeholder="Address..." id="address" required>
+                        <input type="text" name="address" placeholder="Address..." id="address">
                     </div>
                     <div class="input-element">
                         <label for="services">Services: </label>
-                        <input type="text" name="services" placeholder="Services..." id="services" required>
+                        <input type="text" name="services" placeholder="Services..." id="services">
                     </div>
                     <div class="input-element">
                         <label for="email">Email address</label>
-                        <input type="email" name="email" id="email" placeholder="example@email.com..." required>
+                        <input type="email" name="email" id="email" placeholder="example@email.com...">
                     </div>
                     <div class="input-element">
                         <label for="password">Password</label>
-                        <input type="password" name="password" id="password" placeholder="Password..." required>
+                        <input type="password" name="password" id="password" placeholder="Password...">
                     </div>
                     <h6>Use 8 or more characters with a mix of letters, numbers & symbols</h6>
+                    <div class="input-element">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" name="confirmPassword" id="password">
+                    </div>
 
                     <div class="terms-cond">
                         <input type="checkbox" name="terms-cond" id="terms-cond" required>

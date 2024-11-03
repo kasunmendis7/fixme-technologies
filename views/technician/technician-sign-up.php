@@ -30,31 +30,31 @@
                 <form action="" method="post" class="technician-signup-form">
                     <div class="input-element">
                         <label for="fname">First name:</label>
-                        <input type="text" name="fname" placeholder="Firstname..." id="fname" >
+                        <input type="text" name="firstName" placeholder="Firstname..." id="fname">
                     </div>
                     <div class="input-element">
                         <label for="lname">Last name:</label>
-                        <input type="text" name="lname" placeholder="Lastname..." id="lname" >
+                        <input type="text" name="lastName" placeholder="Lastname..." id="lname">
                     </div>
                     <div class="input-element">
                         <label for="phone_no">Phone Number: </label>
-                        <input type="text" name="phone_no" placeholder="Phone Number..." id="phone_no" >
+                        <input type="tel" name="phoneNumber" placeholder="Phone Number..." id="phone_no">
                     </div>
                     <div class="input-element">
                         <label for="address">Address: </label>
-                        <input type="text" name="address" placeholder="Address..." id="address" >
+                        <input type="text" name="address" placeholder="Address..." id="address">
                     </div>
                     <div class="input-element">
                         <label for="email">Email address:</label>
-                        <input type="email" name="email" id="email" placeholder="example@email.com..." >
+                        <input type="email" name="email" id="email" placeholder="example@email.com...">
                     </div>
                     <div class="input-element">
                         <label for="password">Password:</label>
-                        <input type="password" name="password" id="password" placeholder="Password..." >
+                        <input type="password" name="password" id="password" placeholder="Password...">
                     </div>
                     <div class="input-element">
                         <label for="confirmPassword">Confirm Password:</label>
-                        <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Re-enter password..." >
+                        <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Re-enter password...">
                     </div>
                     <h6>Use 8 or more characters with a mix of letters, numbers & symbols</h6>
 
