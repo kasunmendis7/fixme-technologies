@@ -27,7 +27,7 @@
                 <div class="title-1">
                     <h2>Become a Registered Technician</h2>
                 </div>
-                <form action="technician-signup.php" method="post" class="cust-signup-form">
+                <form action="technician-signup.php" method="post" class="technician-signup-form">
                     <div class="input-element">
                         <label for="user-name">User name</label>
                         <input type="text" name="user-name" placeholder="Username..." id="user-name" required>

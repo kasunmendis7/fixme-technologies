@@ -101,7 +101,7 @@ form{
 .contact-us-right{
     width:45%;
     justify-content: center;
-
+    
 }
 
 .contact-us-illustration{
