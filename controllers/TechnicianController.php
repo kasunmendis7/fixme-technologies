@@ -32,5 +32,20 @@ class TechnicianController extends Controller
         $this->setLayout('auth');
         return $this->render('/technician/technician-map');
     }
+    public function technicianMessages()
+    {
+        $this->setLayout('auth');
+        return $this->render('/technician/technician-messages');
+    }
+    public function technicianSettings()
+    {
+        $this->setLayout('auth');
+        return $this->render('/technician/technician-settings');
+    }
+    public function technicianHelp()
+    {
+        $this->setLayout('auth');
+        return $this->render('/technician/technician-help');
+    }
 }
 

@@ -22,6 +22,9 @@ $app->router->get('/service-centre-dashboard', [ServiceCentreController::class, 
 $app->router->get('/technician-home', [TechnicianController::class, 'technicianHome']);
 $app->router->get('/technician-dashboard', [TechnicianController::class, 'technicianDashboard']);
 $app->router->get('/technician-map', [TechnicianController::class, 'technicianMap']);
+$app->router->get('/technician-messages', [TechnicianController::class, 'technicianMessages']);
+$app->router->get('/technician-settings', [TechnicianController::class, 'technicianSettings']);
+$app->router->get('/technician-help', [TechnicianController::class, 'technicianHelp']);
 
 // Auth routes handled by AuthController
 $app->router->get('/customer-sign-up', [AuthController::class, 'customerSignUp']);
