@@ -22,7 +22,12 @@ class AuthController extends Controller
             return 'Handle submitted data';
         }
         $this->setLayout('auth');
-        return $this->render('technician-sign-up');
+        return $this->render('/technician/technician-sign-up');
+    }
+    public function technicianLogin(Request $request)
+    {
+        $this->setLayout('auth');
+        return $this->render('/technician/technician-login');
     }
     public function serviceCentreSignup(Request $request)
     {
