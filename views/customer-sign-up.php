@@ -18,21 +18,60 @@
             <div class="wrapper">
                 <div class="title-1">
                     <h2>Create an account</h2>
-                    <h5>Already have an account? <a href="#">Login</a></h5>
+                    <h5>Already have an account? <a href="/customer-login">Login</a></h5>
                 </div>
+
                 <form action="" method="post" class="cust-signup-form">
                     <div class="input-element">
-                        <label for="user-name">User name</label>
-                        <input type="text" name="username" id="user-name">
+                        <label for="first-name">First Name</label>
+                        <input type="text" name="firstName" id="first-name" value="<?php echo $model->firstName ?>" class="<?php echo $model->hasError('firstName') ? 'invalid ' : '' ?>">
+                        <div class="invalid-feedback">
+                            <?php echo $model->getFirstError('firstName') ?>
+                        </div>
+                    </div>
+                    <div class="input-element">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" name="lastName" id="last-name" value="<?php echo $model->lastName ?>" class="<?php echo $model->hasError('lastName') ? 'invalid ' : '' ?>">
+                        <div class="invalid-feedback">
+                            <?php echo $model->getFirstError('lastName') ?>
+                        </div>
                     </div>
                     <div class="input-element">
                         <label for="email">Email address</label>
-                        <input type="email" name="email" id="email">
+                        <input type="email" name="email" id="email" value="<?php echo $model->email ?>" class="<?php echo $model->hasError('email') ? 'invalid ' : '' ?>">
+                        <div class="invalid-feedback">
+                            <?php echo $model->getFirstError('email') ?>
+                        </div>
+                    </div>
+                    <div class="input-element">
+                        <label for="phone-number">Phone Number</label>
+                        <input type="tel" name="phoneNumber" id="phone-number" value="<?php echo $model->phoneNumber ?>" class="<?php echo $model->hasError('phoneNumber') ? 'invalid ' : '' ?>">
+                        <div class="invalid-feedback">
+                            <?php echo $model->getFirstError('phoneNumber') ?>
+                        </div>
+                    </div>
+                    <div class="input-element">
+                        <label for="address">Address</label>
+                        <input type="text" name="address" id="address" value="<?php echo $model->address ?>" class="<?php echo $model->hasError('address') ? 'invalid ' : '' ?>">
+                        <div class="invalid-feedback">
+                            <?php echo $model->getFirstError('address') ?>
+                        </div>
                     </div>
                     <div class="input-element">
                         <label for="password">Password</label>
-                        <input type="password" name="password" id="password">
+                        <input type="password" name="password" id="password" value="<?php echo $model->password ?>" class="<?php echo $model->hasError('password') ? 'invalid ' : '' ?>">
                         <h6>Use 8 or more characters with a mix of letters, numbers & symbols</h6>
+                        <div class="invalid-feedback">
+                            <?php echo $model->getFirstError('password') ?>
+                        </div>
+                    </div>
+                    <div class="input-element">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="password" name="confirmPassword" id="confirm-password" value="<?php echo $model->confirmPassword ?>" class="<?php echo $model->hasError('confirmPassword') ? 'invalid ' : '' ?>">
+                        <h6>Type the same password as above</h6>
+                        <div class="invalid-feedback">
+                            <?php echo $model->getFirstError('confirmPassword') ?>
+                        </div>
                     </div>
                     <div class="terms-cond">
                         <input type="checkbox" name="terms-cond" id="terms-cond" required>
@@ -43,12 +82,13 @@
                         <label for="not-robot">I'm not a robot</label>
                     </div>
                     <div>
-                        <button type="submit" class="btn">Create an account</button>
+                        <button type="submit" class="btn">Create account</button>
                     </div>
                     <div class="log-in">
-                        <h6>Already have an account? <a href="#">Log in</a></h6>
+                        <h6>Already have an account? <a href="/customer-login">Log in</a></h6>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>
