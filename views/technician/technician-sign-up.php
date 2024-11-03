@@ -51,15 +51,15 @@
                         <input type="text" name="address" placeholder="Address..." id="address" >
                     </div>
                     <div class="input-element">
-                        <label for="email">Email address</label>
+                        <label for="email">Email address: </label>
                         <input type="email" name="email" id="email" placeholder="example@email.com..." >
                     </div>
                     <div class="input-element">
-                        <label for="password">Password</label>
+                        <label for="password">Password: </label>
                         <input type="password" name="password" id="password" placeholder="Password..." >
                     </div>
                     <div class="input-element">
-                        <label for="confirmPassword">Password</label>
+                        <label for="confirmPassword">Confirm Password: </label>
                         <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Re-enter Password..." >
                     </div>
                     <h6>Use 8 or more characters with a mix of letters, numbers & symbols</h6>
