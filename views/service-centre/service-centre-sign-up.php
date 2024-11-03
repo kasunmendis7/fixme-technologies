@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technician Sign Up</title>
+    <title>Service Centre Sign Up</title>
     <link rel="stylesheet" href="/css/technician/technician-sign-up.css">
     <link rel="stylesheet" href="/css/base/_reset.css">
     <link rel="stylesheet" href="/css/base/_global.css">
@@ -30,22 +30,34 @@
                 <div class="title-1">
                     <h2>Become a Registered Service Centre</h2>
                 </div>
-                <form action="" method="post" class="cust-signup-form">
+                <form action="" method="post" class="technician-signup-form">
                     <div class="input-element">
                         <label for="user-name">Service centre name:</label>
-                        <input type="text" name="centreName" placeholder="Service centre name..." id="user-name">
+                        <input type="text" name="centreName" placeholder="Service centre name..." id="user-name" value="<?php echo $model->centreName ?>" class="<?php echo $model->hasError('centreName') ? 'invalid ' : '' ?>">
+                        <div class="invalid-feedback">
+                            <?php echo $model->getFirstError('centreName') ?>
+                        </div>
                     </div>
                     <div class="input-element">
                         <label for="nic">NIC No: </label>
-                        <input type="text" name="nic" placeholder="NIC No..." id="nic">
+                        <input type="text" name="nic" placeholder="NIC No..." id="nic" value="<?php echo $model->nic ?>" class="<?php echo $model->hasError('nic') ? 'invalid ' : '' ?>">
+                        <div class="invalid-feedback">
+                            <?php echo $model->getFirstError('nic') ?>
+                        </div>
                     </div>
                     <div class="input-element">
                         <label for="phoneNumber">Phone No: </label>
-                        <input type="text" name="phoneNumber" placeholder="Phone no..." id="phoneNumber">
+                        <input type="text" name="phoneNumber" placeholder="Phone no..." id="phoneNumber" value="<?php echo $model->phoneNumber ?>" class="<?php echo $model->hasError('phoneNumber') ? 'invalid ' : '' ?>">
+                        <div class="invalid-feedback">
+                            <?php echo $model->getFirstError('phoneNumber') ?>
+                        </div>
                     </div>
                     <div class="input-element">
                         <label for="user-name">Address: </label>
-                        <input type="text" name="address" placeholder="Address..." id="address">
+                        <input type="text" name="address" placeholder="Address..." id="address" value="<?php echo $model->address ?>" class="<?php echo $model->hasError('address') ? 'invalid ' : '' ?>">
+                        <div class="invalid-feedback">
+                            <?php echo $model->getFirstError('address') ?>
+                        </div>
                     </div>
                     <div class="input-element">
                         <label for="services">Services: </label>
@@ -53,16 +65,25 @@
                     </div>
                     <div class="input-element">
                         <label for="email">Email address</label>
-                        <input type="email" name="email" id="email" placeholder="example@email.com...">
+                        <input type="email" name="email" id="email" placeholder="example@email.com..." value="<?php echo $model->email ?>" class="<?php echo $model->hasError('email') ? 'invalid ' : '' ?>">
+                        <div class="invalid-feedback">
+                            <?php echo $model->getFirstError('email') ?>
+                        </div>
                     </div>
                     <div class="input-element">
                         <label for="password">Password</label>
-                        <input type="password" name="password" id="password" placeholder="Password...">
+                        <input type="password" name="password" id="password" placeholder="Password..." value="<?php echo $model->password ?>" class="<?php echo $model->hasError('password') ? 'invalid ' : '' ?>">
+                        <div class="invalid-feedback">
+                            <?php echo $model->getFirstError('password') ?>
+                        </div>
                     </div>
                     <h6>Use 8 or more characters with a mix of letters, numbers & symbols</h6>
                     <div class="input-element">
                         <label for="confirmPassword">Confirm Password</label>
-                        <input type="password" name="confirmPassword" id="password">
+                        <input type="password" name="confirmPassword" id="confirmPassword" value="<?php echo $model->confirmPassword ?>" class="<?php echo $model->hasError('confirmPassword') ? 'invalid ' : '' ?>">
+                        <div class="invalid-feedback">
+                            <?php echo $model->getFirstError('confirmPassword') ?>
+                        </div>
                     </div>
 
                     <div class="terms-cond">

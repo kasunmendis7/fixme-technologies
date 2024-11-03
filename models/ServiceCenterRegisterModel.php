@@ -7,7 +7,7 @@ use app\core\Model;
 class ServiceCenterRegisterModel extends Model
 {
 
-    public string $centerName = '';
+    public string $centreName = '';
     public string $nic = '';
     public string $email = '';
     public string $phoneNumber = '';
@@ -23,7 +23,7 @@ class ServiceCenterRegisterModel extends Model
     public function rules(): array
     {
         return [
-            'centerName' => [self::RULE_REQUIRED],
+            'centreName' => [self::RULE_REQUIRED],
             'nic' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 10], [self::RULE_MAX, 'max' => 15]],
             'email' => [self::RULE_REQUIRED, self::RULE_EMAIL],
             'phoneNumber' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 10], [self::RULE_MAX, 'max' => 10]],
