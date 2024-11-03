@@ -37,15 +37,6 @@
             </li>
 
             <li>
-                <a href="#">
-                        <span class="icon">
-                            <ion-icon name="people-outline"></ion-icon>
-                        </span>
-                    <span class="title">Customers</span>
-                </a>
-            </li>
-
-            <li>
                 <a href="/technician-messages">
                         <span class="icon">
                             <ion-icon name="chatbubble-outline"></ion-icon>
@@ -55,7 +46,7 @@
             </li>
 
             <li>
-                <a href="#">
+                <a href="/technician-help">
                         <span class="icon">
                             <ion-icon name="help-outline"></ion-icon>
                         </span>
@@ -64,7 +55,7 @@
             </li>
 
             <li>
-                <a href="#">
+                <a href="/technician-settings">
                         <span class="icon">
                             <ion-icon name="settings-outline"></ion-icon>
                         </span>
@@ -73,7 +64,7 @@
             </li>
 
             <li>
-                <a href="#">
+                <a href="/">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>
