@@ -4,7 +4,7 @@ namespace app\models;
 
 use app\core\Model;
 
-class CustomerRegisterModel extends Model
+class TechnicianRegisterModel extends Model
 {
 
     public string $firstName = '';
@@ -17,7 +17,7 @@ class CustomerRegisterModel extends Model
 
     public function register()
     {
-        return 'Creating new Customer';
+        return 'Creating new technician';
     }
 
     public function rules(): array
