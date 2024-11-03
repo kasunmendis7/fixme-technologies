@@ -31,7 +31,7 @@
     </div>
     <div class="contact-us-right">
         <div class="contact-us-illustration">
-            <img src="/assets/contact-us-1.png" alt="Contact Us Illustration">
+            <img src="/assets/contact-us.ico" alt="Contact Us Illustration">
         </div>
 </div>
 </body>
