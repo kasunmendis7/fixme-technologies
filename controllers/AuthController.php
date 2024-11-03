@@ -4,21 +4,20 @@ namespace app\controllers;
 
 use app\core\Controller;
 use app\core\Request;
-use app\models\RegisterModel;
+use app\models\CustomerRegisterModel;
 
 class AuthController extends Controller
 {
-
+    // customer sign up method
     public function customerSignUp(Request $request)
     {
-        $registerModel = new RegisterModel();
+        $registerModel = new CustomerRegisterModel();
         if ($request->isPost()) {
 
             $registerModel->loadData($request->getBody());
             if ($registerModel->validate() && $registerModel->register()) {
                 return 'Success';
             }
-            show($registerModel->errors);
             $this->setLayout('auth');
             return $this->render('customer-sign-up', [
                 'model' => $registerModel
@@ -29,6 +28,16 @@ class AuthController extends Controller
             'model' => $registerModel
         ]);
     }
+    // customer login method
+    public function customerLogin(Request $request)
+    {
+        if ($request->isPost()) {
+            return 'Handle submitted data';
+        }
+        $this->setLayout('auth');
+        return $this->render('customer-login');
+    }
+    // technician sign up method
     public function technicianSignUp(Request $request)
     {
         if ($request->isPost()) {
