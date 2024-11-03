@@ -20,7 +20,7 @@
                     <h2>Create an account</h2>
                     <h5>Already have an account? <a href="#">Login</a></h5>
                 </div>
-                <form action="customer-signup.php" method="post" class="cust-signup-form">
+                <form action="" method="post" class="cust-signup-form">
                     <div class="input-element">
                         <label for="user-name">User name</label>
                         <input type="text" name="user-name" id="user-name" required>
