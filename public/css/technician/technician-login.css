@@ -6,13 +6,16 @@
     overflow: hidden;
     max-width: 100vw;
 }
+
 .container .box-1 {
     background-color: #010336;
 }
+
 .branding, .box-1 {
     flex: 1;
     padding: 2rem;
 }
+
 .container .box-2 {
     display: flex;
     flex-direction: column;
@@ -20,12 +23,17 @@
     align-items: center;
     background: #eef3f4;
 }
+
 .container .box-2 .wrapper {
     background: #f9f9f9;
     border: 1px solid #e0e0e0;
     border-radius: .6rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
 }
+
 .branding {
     display: flex;
     padding: 1rem;
@@ -33,15 +41,16 @@
     flex-direction: column;
     justify-content: center;
     margin-top: 200px;
-
 }
+
 .brand-name {
     font-weight: bold;
     font-size: 2rem;
     margin-bottom: 1rem;
     color: #333;
 }
-.brand-button{
+
+.brand-button {
     padding: 0.25rem 0.5rem;
     background: linear-gradient(to right, #183369, #1e8dc5);
     border-radius: 0.5rem;
@@ -50,82 +59,77 @@
     display: inline-block;
     float: right;
 }
+
 .tagline {
     margin-top: 10px;
     line-height: 1.5;
     color: white;
     text-align: right;
 }
+
 .container .box-2 .wrapper .title-1 {
     margin-bottom: 2rem;
 }
-.container .box-2  .wrapper .title-1 h2 {
+
+.container .box-2 .wrapper .title-1 h2 {
     font-size: 1.5rem;
     font-weight: 500;
     margin-bottom: 0.3rem;
 }
-.container .box-2 .wrapper .title-1 h5 {
-    font-size: 0.9rem;
-    font-weight: 300;
-    color: #666;
-}
-.container .box-2 .wrapper {
-    padding: 2rem;
-}
-.container .box-2 .wrapper .technician-signup-form {
+
+.login-form {
     display: flex;
     flex-direction: column;
 }
-.container .box-2 .wrapper .technician-signup-form > * {
+
+.login-form > * {
     margin-bottom: 1rem;
 }
 
-.container .box-2 .wrapper .technician-signup-form {
+.login-form {
     font-size: 0.9rem;
     font-weight: 400;
     color: #747373;
 }
 
-.container .box-2 .wrapper .technician-signup-form .input-element {
+.login-form .input-element {
     display: flex;
     flex-direction: column;
     margin-bottom: 1rem;
-} 
-.container .box-2 .wrapper .technician-signup-form .input-element label {
+}
+
+.login-form .input-element label {
     margin-bottom: .4rem;
 }
-.container .box-2 .wrapper .technician-signup-form .input-element input {
+
+.login-form .input-element input {
     padding: 0.8rem 0.6rem;
     border-radius: .6rem;
     border: 1px solid #e0e0e0;
     color: #747373;
 }
-.container .box-2 .wrapper .technician-signup-form .input-element input:focus {
+
+.login-form .input-element input:focus {
     border-color: #5db8f5ed;
     outline: none;
-} 
-.container .box-2 .wrapper .technician-signup-form .input-element:focus-within label {
-    color: #5db8f5f0;
-} 
-.container .box-2 .wrapper .technician-signup-form .input-element:nth-child(3) h6 {
-    margin-top: 0.2rem;
-    font-size: 0.7rem;
-    color: #949393;
-} 
-.container .box-2 .wrapper .technician-signup-form .terms-cond {
-    font-size: 0.8rem;
-} 
-.container .box-2 .wrapper .technician-signup-form .not-robot {
-    border: 1px solid #e0e0e0;
-    padding: 1rem 0.6rem;
-    border-radius: 0.6rem;
-    font-size: 0.8rem;
-    background-color: #eff3f4;
-} 
-.container .box-2 .wrapper .technician-signup-form input[type="checkbox"] {
-    accent-color: #5db8f5;    
 }
-.container .box-2 .wrapper .technician-signup-form .btn {
+
+.login-form .input-element:focus-within label {
+    color: #5db8f5f0;
+}
+
+.login-form .remember-me {
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+}
+
+.login-form .remember-me input[type="checkbox"] {
+    margin-right: 0.5rem;
+    accent-color: #5db8f5;
+}
+
+.login-form .btn {
     padding: 0.8rem 1.2rem;
     border-radius: 2rem;
     background: #5db8f5;
@@ -135,7 +139,27 @@
     cursor: pointer;
     border: none;
     transition: background 0.3s;
-} 
+}
+
+.login-form .forgot-password {
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.login-form .forgot-password a {
+    color: #5db8f5;
+    text-decoration: none;
+}
+
+.login-form .sign-up {
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.login-form .sign-up a {
+    color: #5db8f5;
+    text-decoration: none;
+}
 
 @media screen and (max-width: 768px) {
     .container {
@@ -150,26 +174,13 @@
     .container .box-2 .wrapper .title-1 h2 {
         font-size: 1.3rem;
     }
-    .container .box-2 .wrapper .title-1 h5 {
+    .login-form {
         font-size: 0.8rem;
     }
-    .container .box-2 .wrapper .technician-signup-form {
-        font-size: 0.8rem;
-    }
-    .container .box-2 .wrapper .technician-signup-form .input-element input {
+    .login-form .input-element input {
         padding: 0.7rem 0.5rem;
     }
-    .container .box-2 .wrapper .technician-signup-form .input-element:nth-child(3) h6 {
-        font-size: 0.6rem;
-    }
-    .container .box-2 .wrapper .technician-signup-form .terms-cond {
-        font-size: 0.7rem;
-    }
-    .container .box-2 .wrapper .technician-signup-form .not-robot {
-        padding: 0.8rem 0.5rem;
-        font-size: 0.7rem;
-    }
-    .container .box-2 .wrapper .technician-signup-form .btn {
+    .login-form .btn {
         padding: 0.7rem 1.1rem;
         font-size: 0.8rem;
     }
