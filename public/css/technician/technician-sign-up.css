@@ -174,3 +174,13 @@
         font-size: 0.8rem;
     }
 }
+
+.form-control.is-invalid {
+    border-color: red;
+    background-color: #f8d7da;
+}
+.invalid-feedback {
+    color: red;
+    font-size: 0.875em;
+    margin-top: 0.25em;
+}
