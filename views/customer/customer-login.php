@@ -13,6 +13,14 @@
 <body>
     <div class="container">
         <div class="box-1">
+            <div class="branding">
+                <div>
+                    <a href="/" class="brand-name">
+                        <span class="brand-button">FixMe</span>
+                    </a>
+                </div>
+                <p class="tagline">Expert Car Care, Anytime, Anywhere.</p>
+            </div>
         </div>
         <div class="box-2">
             <div class="wrapper">
