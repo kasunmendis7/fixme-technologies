@@ -2,57 +2,97 @@
 
 namespace app\controllers;
 
+use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
-use app\models\TechnicianModel;
+use app\models\CustomerRegisterModel;
+use app\models\Technician;
+use app\models\ServiceCenterRegisterModel;
 
 class AuthController extends Controller
 {
-
+    // customer sign up method
     public function customerSignUp(Request $request)
     {
+        $registerModel = new CustomerRegisterModel();
         if ($request->isPost()) {
-            return 'Handle submitted data';
-        }
-        $this->setLayout('auth');
-        return $this->render('customer-sign-up');
-    }
-    public function technicianSignUp(Request $request)
-    {
-        $errors=[];
-        $technicianModel = new TechnicianModel();
-        if ($request->isPost()) {
-            $technicianModel->loadData($request->getBody());
-            if ($technicianModel->validate() && $technicianModel->signUp()) {
-                // Redirect to the login page after successful sign-up
-                header('Location: /technician-login');
-                exit();
+
+            $registerModel->loadData($request->getBody());
+            if ($registerModel->validate() && $registerModel->register()) {
+                return 'Success';
             }
-            // Render the form again if validation fails, passing the model with errors
-            return $this->render('/technician/technician-sign-up', [
-                'model' => $technicianModel,
+            $this->setLayout('auth');
+            return $this->render('/customer/customer-sign-up', [
+                'model' => $registerModel
             ]);
         }
         $this->setLayout('auth');
-        return $this->render('/technician/technician-sign-up',[
-            'model' => $technicianModel,
-            'errors'=>$errors
+        return $this->render('/customer/customer-sign-up', [
+            'model' => $registerModel
         ]);
     }
-    public function serviceCentreSignup(Request $request)
+    // customer login method
+    public function customerLogin(Request $request)
     {
         if ($request->isPost()) {
             return 'Handle submitted data';
         }
         $this->setLayout('auth');
-        return $this->render('service-centre-sign-up');
+        return $this->render('/customer/customer-login');
     }
+    // technician sign up method
+    public function technicianSignUp(Request $request)
+    {
+        $technician = new Technician();
+        if ($request->isPost()) {
+            $technician->loadData($request->getBody());
+
+            if ($technician->validate() && $technician->save()) {
+                Application::$app->session->setFlash('success', 'You have been registered successfully!');
+                Application::$app->response->redirect('/');
+            }
+            $this->setLayout('auth');
+            return $this->render('/technician/technician-sign-up', [
+                'model' => $technician
+            ]);
+        }
+        $this->setLayout('auth');
+        return $this->render('/technician/technician-sign-up', [
+            'model' => $technician
+        ]);
+    }
+    // technician login method
+    public function technicianLogin(Request $request)
+    {
+        $this->setLayout('auth');
+        return $this->render('/technician/technician-login');
+    }
+    // service centre sign up method
+    public function serviceCentreSignup(Request $request)
+    {
+        $registerModel = new ServiceCenterRegisterModel();
+        if ($request->isPost()) {
+            $registerModel->loadData($request->getBody());
+            if ($registerModel->validate() && $registerModel->save()) {
+                return 'Success';
+            }
+            $this->setLayout('auth');
+            return $this->render('/service-centre/service-centre-sign-up', [
+                'model' => $registerModel
+            ]);
+        }
+        $this->setLayout('auth');
+        return $this->render('/service-centre/service-centre-sign-up', [
+            'model' => $registerModel
+        ]);
+    }
+    // service centre login method
     public function serviceCentreLogin(Request $request)
     {
         if ($request->isPost()) {
             return 'Handle submitted data';
         }
         $this->setLayout('auth');
-        return $this->render('service-centre-login');
+        return $this->render('/service-centre/service-centre-login');
     }
 }
