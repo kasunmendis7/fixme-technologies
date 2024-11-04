@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/home/footer.css">
     <link rel="stylesheet" href="/css/home/home.css">
     <script src="/js/home/main.js"></script>
+    <script src="/js/technician/main.js"></script>
     <title>Fixme Home</title>
 </head>
 
@@ -25,7 +26,7 @@
             </div>
 
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
+                <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
                 <li><a href="#" class="nav-link px-2">Features</a></li>
                 <li><a href="#" class="nav-link px-2">Map</a></li>
                 <li><a href="#" class="nav-link px-2">FAQs</a></li>

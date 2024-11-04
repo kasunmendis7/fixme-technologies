@@ -9,6 +9,40 @@
 .container .box-1 {
     background-color: #010336;
 }
+.branding, .box-1 {
+    flex: 1;
+    padding: 2rem;
+}
+.branding {
+    display: flex;
+    padding: 1rem;
+    background-color: transparent;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 200px;
+
+}
+.brand-name {
+    font-weight: bold;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+.brand-button{
+    padding: 0.25rem 0.5rem;
+    background: linear-gradient(to right, #183369, #1e8dc5);
+    border-radius: 0.5rem;
+    color: white;
+    font-size: 5rem;
+    display: inline-block;
+    float: right;
+}
+.tagline {
+    margin-top: 10px;
+    line-height: 1.5;
+    color: white;
+    text-align: right;
+}
 .container .box-2 {
     display: flex;
     flex-direction: column;
@@ -139,4 +173,26 @@
         padding: 0.7rem 1.1rem;
         font-size: 0.8rem;
     }
+}
+/* Highlight invalid input fields */
+.container .box-2 .wrapper .cust-signup-form .input-element .invalid {
+    border-color: #dc3545;  /* Red border for error */
+    background-color: #f8d7da;  /* Light red background for error */
+}
+
+.container .box-2 .wrapper .cust-signup-form .input-element .invalid {
+    color: #dc3545;  /* Red color for label to indicate error */
+}
+
+/* Error feedback message */
+.container .box-2 .wrapper .cust-signup-form .input-element .invalid-feedback {
+    color: #dc3545;
+    font-size: 0.8rem;
+    margin-top: 0.2rem;
+    /*display: none;  /* Hide by default, show only when invalid */
+}
+
+/* Display error feedback when invalid */
+.container .box-2 .wrapper .cust-signup-form .input-element.invalid .invalid-feedback {
+    display: block;
 }
