@@ -5,9 +5,11 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
+use app\core\Response;
 use app\models\CustomerRegisterModel;
 use app\models\Technician;
 use app\models\ServiceCenterRegisterModel;
+use app\models\TechnicianLogin;
 
 class AuthController extends Controller
 {
@@ -62,10 +64,18 @@ class AuthController extends Controller
         ]);
     }
     // technician login method
-    public function technicianLogin(Request $request)
+    public function technicianLogin(Request $request, Response $response)
     {
+        $technicianLogin = new TechnicianLogin();
+        if ($request->isPost()) {
+            $technicianLogin->loadData($request->getBody());
+            if ($technicianLogin->validate() && $technicianLogin->login()){
+                $response->redirect('/');
+                return;
+            }
+        }
         $this->setLayout('auth');
-        return $this->render('/technician/technician-login');
+        return $this->render('/technician/technician-login', ['model' => $technicianLogin] );
     }
     // service centre sign up method
     public function serviceCentreSignup(Request $request)
