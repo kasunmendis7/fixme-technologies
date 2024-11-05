@@ -19,7 +19,11 @@ use app\core\Application;
 
 <body>
     <nav class="container">
-
+        <?php if (Application::$app->session->getFlash('success')): ?>
+            <div class="alert alert-success">
+                <?php echo Application::$app->session->getFlash('success') ?>
+            </div>
+        <?php endif;?>
         <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3">
             <div class="col-md-3 mb-2 mb-md-0">
                 <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
@@ -44,11 +48,7 @@ use app\core\Application;
         </header>
     </nav>
     <div class="wrapper">
-        <?php if (Application::$app->session->getFlash('success')): ?>
-            <div class="alert alert-success">
-                <?php echo Application::$app->session->getFlash('success') ?>
-            </div>
-        <?php endif;?>
+
         {{content}}
     </div>
     <div class="container-f">
