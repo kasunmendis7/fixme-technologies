@@ -4,43 +4,27 @@ class m0001_initial
     public function up()
     {
         $db = \app\core\Application::$app->db;
-        $SQL1 = "CREATE TABLE `users` (
-                  `tech_id` int NOT NULL AUTO_INCREMENT,
-                  `fname` varchar(45) NOT NULL,
-                  `lname` varchar(45) NOT NULL,
+        $SQL1 = "CREATE TABLE `technician` (
+                  `tech_id` int(11) NOT NULL,
+                  `firstName` varchar(45) DEFAULT NULL,
+                  `lastName` varchar(45) DEFAULT NULL,
                   `email` varchar(100) NOT NULL,
                   `password` varchar(255) NOT NULL,
-                  `phone_no` varchar(15) NOT NULL,
+                  `phoneNumber` varchar(15) DEFAULT NULL,
                   `address` varchar(200) NOT NULL,
                   `profile_picture` varchar(255) DEFAULT NULL,
-                  `reg_date` date DEFAULT NULL,
+                  `reg_date` datetime DEFAULT current_timestamp(),
                   `longitude` decimal(10,8) DEFAULT NULL,
                   `latitude` decimal(11,8) DEFAULT NULL,
-                  PRIMARY KEY (`tech_id`),
-                  UNIQUE KEY `tech_id_UNIQUE` (`tech_id`)
+                  `status` int(11) DEFAULT NULL
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;";
         $db->pdo->exec($SQL1);
-        $SQL2 = "CREATE TABLE IF NOT EXISTS `technician` (
-                  `tech_id` int NOT NULL AUTO_INCREMENT,
-                  `fname` varchar(45) NOT NULL,
-                  `lname` varchar(45) NOT NULL,
-                  `email` varchar(100) NOT NULL,
-                  `password` varchar(255) NOT NULL,
-                  `phone_no` varchar(15) NOT NULL,
-                  `address` varchar(200) NOT NULL,
-                  `profile_picture` varchar(255) DEFAULT NULL,
-                  `reg_date` date DEFAULT NULL,
-                  `longitude` decimal(10,8) DEFAULT NULL,
-                  `latitude` decimal(11,8) DEFAULT NULL,
-                  PRIMARY KEY (`tech_id`),
-                  UNIQUE KEY `tech_id_UNIQUE` (`tech_id`)
-                ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;";
-        $db->pdo->exec($SQL2);
+
     }
     public function down()
     {
         $db = \app\core\Application::$app->db;
-        $SQL1 = "DROP TABLE users;";
+        $SQL1 = "DROP TABLE technician;";
         $db->pdo->exec($SQL1);
     }
 }
