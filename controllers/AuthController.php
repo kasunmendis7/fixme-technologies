@@ -77,6 +77,13 @@ class AuthController extends Controller
         $this->setLayout('auth');
         return $this->render('/technician/technician-login', ['model' => $technicianLogin] );
     }
+
+    public function technicianLogout(Request $request, Response $response)
+    {
+        Application::$app->logout();
+        $response->redirect('/');
+    }
+
     // service centre sign up method
     public function serviceCentreSignup(Request $request)
     {

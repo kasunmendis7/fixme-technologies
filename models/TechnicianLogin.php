@@ -21,7 +21,7 @@ class TechnicianLogin extends Model
 
     public function login()
     {
-        $technician = Technician::findOne(['email' => $this->email]);
+        $technician = (new Technician)->findOne(['email' => $this->email]);
         if (!$technician){
             $this->addError('email', 'Technician does not exist with this email');
             return false;
