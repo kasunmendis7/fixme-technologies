@@ -36,11 +36,17 @@ use app\core\Application;
                 <li><a href="#" class="nav-link px-2">FAQs</a></li>
                 <li><a href="#" class="nav-link px-2">About</a></li>
             </ul>
-
+            <?php if (Application::isGuest()): ?>
             <div class="col-md-3 text-center">
                 <button type="button" class="btn btn-outline-primary me-2"><a class="text-decoration-none" href="/customer-login">Login</a></button>
                 <button type="button" class="btn btn-primary"><a class="text-decoration-none" href="/customer-sign-up">Sign Up</a></button>
             </div>
+            <?php else:?>
+            <div class="col-md-3 text-center">
+                <a class="text-decoration-none" href="/logout">Welcome <?php echo Application::$app->user->getDisplayName() ?></a>
+                <button type="button" class="btn btn-primary"><a class="text-decoration-none" href="/customer-logout">Logout</a></button>
+            </div>
+            <?php endif;?>
         </header>
     </nav>
     <div class="wrapper">

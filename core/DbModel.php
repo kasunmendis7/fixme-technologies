@@ -8,6 +8,8 @@ abstract class DbModel extends Model
 
     abstract public function attributes(): array;
 
+    abstract public function primaryKey(): string;
+
     public function save(){
 
         $tableName = $this->tableName();
@@ -24,7 +26,7 @@ abstract class DbModel extends Model
         return true;
     }
 
-    public function findOne() // [email => technician@gmail.com, firstName => technicianFirstname]
+    public function findOne($where) // [email => technician@gmail.com, firstName => technicianFirstname]
     {
         $tableName = static::tableName();
         $attribute = array_keys($where);
@@ -35,7 +37,7 @@ abstract class DbModel extends Model
         }
 
         $statement->execute();
-        return $statement->fetchObject();
+        return $statement->fetchObject(static::class);
     }
 
     public static function prepare($sql)

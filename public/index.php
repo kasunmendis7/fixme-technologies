@@ -15,6 +15,7 @@ $dotenv->load();
 
 // database configuration
 $config = [
+    'technicianClass' => \app\models\Technician::class,
     'db' => [
         'dsn' => $_ENV['DB_DSN'],
         'user' => $_ENV['DB_USER'],
@@ -44,6 +45,7 @@ $app->router->get('/technician-sign-up', [AuthController::class, 'technicianSign
 $app->router->post('/technician-sign-up', [AuthController::class, 'technicianSignUp']);
 $app->router->get('/technician-login', [AuthController::class, 'technicianLogin']);
 $app->router->post('/technician-login', [AuthController::class, 'technicianLogin']);
+$app->router->get('/technician-login', [AuthController::class, 'technicianLogin']);
 $app->router->get('/service-centre-sign-up', [AuthController::class, 'serviceCentreSignup']);
 $app->router->post('/service-centre-sign-up', [AuthController::class, 'serviceCentreSignup']);
 $app->router->get('/service-centre-login', [AuthController::class, 'serviceCentreLogin']);
