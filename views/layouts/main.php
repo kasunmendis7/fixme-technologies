@@ -1,3 +1,6 @@
+<?php
+use app\core\Application;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +19,7 @@
 
 <body>
     <nav class="container">
+
         <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3">
             <div class="col-md-3 mb-2 mb-md-0">
                 <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
@@ -34,12 +38,17 @@
             </ul>
 
             <div class="col-md-3 text-center">
-                <button type="button" class="btn btn-outline-primary me-2"><a class="text-decoration-none" href="#">Login</a></button>
+                <button type="button" class="btn btn-outline-primary me-2"><a class="text-decoration-none" href="/customer-login">Login</a></button>
                 <button type="button" class="btn btn-primary"><a class="text-decoration-none" href="/customer-sign-up">Sign Up</a></button>
             </div>
         </header>
     </nav>
     <div class="wrapper">
+        <?php if (Application::$app->session->getFlash('success')): ?>
+            <div class="alert alert-success">
+                <?php echo Application::$app->session->getFlash('success') ?>
+            </div>
+        <?php endif;?>
         {{content}}
     </div>
     <div class="container-f">
