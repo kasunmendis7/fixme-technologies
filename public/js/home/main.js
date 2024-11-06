@@ -10,3 +10,8 @@ function toggleVisibility() {
     customerButton.classList.toggle('active');
     technicianButton.classList.toggle('active');
   }
+
+// Function to redirect to the customer sign up page
+function redirectCustomerSignUp() {
+    window.location.href = '/customer-sign-up';
+}
