@@ -3,20 +3,15 @@
 namespace app\models;
 
 use app\core\DbModel;
-use app\core\Model;
 
 class Technician extends DbModel
 {
-    const STATUS_INACTIVE = 0;
-    const STATUS_ACTIVE = 1;
-    const STATUS_DELETED = 2;
 
     public string $fname = '';
     public string $lname = '';
     public string $phone_no = '';
     public string $address = '';
     public string $email = '';
-    public int $status = self::STATUS_INACTIVE;
     public string $password = '';
     public string $confirmPassword = '';
 
@@ -27,7 +22,6 @@ class Technician extends DbModel
 
     public function save()
     {
-        //$this->status = self::STATUS_INACTIVE;
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         return parent::save();
     }
@@ -53,11 +47,10 @@ class Technician extends DbModel
         return [
             'fname',
             'lname',
-            'email',
-            'password',
             'phone_no',
             'address',
-            //'status',
+            'email',
+            'password',
         ];
     }
 }
