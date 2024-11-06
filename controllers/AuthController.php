@@ -73,7 +73,7 @@ class AuthController extends Controller
         $registerModel = new ServiceCenterRegisterModel();
         if ($request->isPost()) {
             $registerModel->loadData($request->getBody());
-            if ($registerModel->validate() && $registerModel->save()) {
+            if ($registerModel->validate() && $registerModel->register()) {
                 return 'Success';
             }
             $this->setLayout('auth');
