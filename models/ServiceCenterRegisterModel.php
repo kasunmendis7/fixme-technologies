@@ -2,34 +2,58 @@
 
 namespace app\models;
 
-use app\core\Model;
+use app\core\DbModel;
 
-class ServiceCenterRegisterModel extends Model
+class ServiceCenterRegisterModel extends DbModel
 {
 
-    public string $centreName = '';
-    public string $nic = '';
+    public string $name = '';
+//    public string $nic = '';
     public string $email = '';
-    public string $phoneNumber = '';
+    public string $phone_no = '';
     public string $address = '';
+    public string $service_category = '';
     public string $password = '';
     public string $confirmPassword = '';
 
-    public function register()
+//    public function register()
+//    {
+//        return 'Creating new Service Center';
+//    }
+
+    public function tableName(): string
     {
-        return 'Creating new Service Center';
+        return 'service_center';
+    }
+
+    public function save()
+    {
+        $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+        return parent::save();
     }
 
     public function rules(): array
     {
         return [
-            'centreName' => [self::RULE_REQUIRED],
-            'nic' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 10], [self::RULE_MAX, 'max' => 15]],
+            'name' => [self::RULE_REQUIRED],
+//            'nic' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 10], [self::RULE_MAX, 'max' => 15]],
             'email' => [self::RULE_REQUIRED, self::RULE_EMAIL],
-            'phoneNumber' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 10], [self::RULE_MAX, 'max' => 10]],
+            'phone_no' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 10], [self::RULE_MAX, 'max' => 10]],
             'address' => [self::RULE_REQUIRED],
             'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 8]],
             'confirmPassword' => [self::RULE_REQUIRED, [self::RULE_MATCH, 'match' => 'password']],
+        ];
+    }
+    public function attributes(): array
+    {
+        return [
+            'name',
+//            'nic',
+            'phone_no',
+            'address',
+            'email',
+            'password',
+            'service_category',
         ];
     }
 }
