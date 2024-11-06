@@ -23,6 +23,11 @@ class TechnicianController extends Controller
         $this->setLayout('auth');
         return $this->render('/technician/technician-dashboard');
     }
+    public function technicianCommunity()
+    {
+        $this->setLayout('auth');
+        return $this->render('/technician/technician-community');
+    }
     public function technicianMap()
     {
         $this->setLayout('auth');

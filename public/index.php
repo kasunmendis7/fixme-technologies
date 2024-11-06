@@ -30,6 +30,7 @@ $app->router->get('/service-centre-landing', [ServiceCentreController::class, 's
 $app->router->get('/service-centre-dashboard', [ServiceCentreController::class, 'serviceCentreDashboard']);
 $app->router->get('/technician-home', [TechnicianController::class, 'technicianHome']);
 $app->router->get('/technician-dashboard', [TechnicianController::class, 'technicianDashboard']);
+$app->router->get('/technician-community', [TechnicianController::class, 'technicianCommunity']);
 $app->router->get('/technician-map', [TechnicianController::class, 'technicianMap']);
 $app->router->get('/technician-messages', [TechnicianController::class, 'technicianMessages']);
 $app->router->get('/technician-settings', [TechnicianController::class, 'technicianSettings']);
