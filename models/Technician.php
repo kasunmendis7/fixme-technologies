@@ -11,9 +11,9 @@ class Technician extends DbModel
     const STATUS_ACTIVE = 1;
     const STATUS_DELETED = 2;
 
-    public string $firstName = '';
-    public string $lastName = '';
-    public string $phoneNumber = '';
+    public string $fname = '';
+    public string $lname = '';
+    public string $phone_no = '';
     public string $address = '';
     public string $email = '';
     public int $status = self::STATUS_INACTIVE;
@@ -27,7 +27,7 @@ class Technician extends DbModel
 
     public function save()
     {
-        $this->status = self::STATUS_INACTIVE;
+        //$this->status = self::STATUS_INACTIVE;
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         return parent::save();
     }
@@ -35,12 +35,13 @@ class Technician extends DbModel
     public function rules(): array
     {
         return [
-            'firstName' => [self::RULE_REQUIRED],
-            'lastName' => [self::RULE_REQUIRED],
+            'fname' => [self::RULE_REQUIRED],
+            'lname' => [self::RULE_REQUIRED],
             'email' => [self::RULE_REQUIRED, self::RULE_EMAIL, [
-                self::RULE_UNIQUE, 'class' => self::class
+                self::RULE_UNIQUE,
+                'class' => self::class
             ]],
-            'phoneNumber' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 10], [self::RULE_MAX, 'max' => 10]],
+            'phone_no' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 10], [self::RULE_MAX, 'max' => 10]],
             'address' => [self::RULE_REQUIRED],
             'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 8]],
             'confirmPassword' => [self::RULE_REQUIRED, [self::RULE_MATCH, 'match' => 'password']],
@@ -50,13 +51,13 @@ class Technician extends DbModel
     public function attributes(): array
     {
         return [
-            'firstName',
-            'lastName',
-            'phoneNumber',
-            'address',
+            'fname',
+            'lname',
             'email',
             'password',
-            'status',
+            'phone_no',
+            'address',
+            //'status',
         ];
     }
 }
