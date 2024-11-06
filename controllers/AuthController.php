@@ -2,10 +2,11 @@
 
 namespace app\controllers;
 
+use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
 use app\models\CustomerRegisterModel;
-use app\models\TechnicianRegisterModel;
+use app\models\Technician;
 use app\models\ServiceCenterRegisterModel;
 
 class AuthController extends Controller
@@ -42,20 +43,22 @@ class AuthController extends Controller
     // technician sign up method
     public function technicianSignUp(Request $request)
     {
-        $registerModel = new TechnicianRegisterModel();
+        $technician = new Technician();
         if ($request->isPost()) {
-            $registerModel->loadData($request->getBody());
-            if ($registerModel->validate() && $registerModel->register()) {
-                return 'Success';
+            $technician->loadData($request->getBody());
+
+            if ($technician->validate() && $technician->save()) {
+                Application::$app->session->setFlash('success', 'You have been registered successfully!');
+                Application::$app->response->redirect('/');
             }
             $this->setLayout('auth');
             return $this->render('/technician/technician-sign-up', [
-                'model' => $registerModel
+                'model' => $technician
             ]);
         }
         $this->setLayout('auth');
         return $this->render('/technician/technician-sign-up', [
-            'model' => $registerModel
+            'model' => $technician
         ]);
     }
     // technician login method
@@ -70,7 +73,7 @@ class AuthController extends Controller
         $registerModel = new ServiceCenterRegisterModel();
         if ($request->isPost()) {
             $registerModel->loadData($request->getBody());
-            if ($registerModel->validate() && $registerModel->register()) {
+            if ($registerModel->validate() && $registerModel->save()) {
                 return 'Success';
             }
             $this->setLayout('auth');
