@@ -470,3 +470,253 @@ body {
         left: initial;
     }
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;amp;display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.post {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.wrapper {
+    height: 30rem;
+    transition: height 0.2s ease;
+}
+
+.wrapper.wrapper-active {
+    height: 20rem;
+}
+
+.create-post {
+    border-radius: 5px;
+    -webkit-box-shadow: 0 0 5px 1px grey;
+    box-shadow: 0 0 5px 1px grey;
+
+}
+
+.header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 1.5rem;
+}
+
+.header::before,
+h1,
+.cross-icon {
+    content: '';
+    flex-basis: 100%;
+}
+
+.header::after {
+    content: &amp;quot;&amp;quot;;
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: -0.25rem;
+    left: 0;
+    background-color: rgb(193, 190, 190);
+}
+
+h1 {
+    text-align: center;
+}
+
+.cross-icon {
+    text-align: right;
+}
+
+.cross-icon-mark {
+    cursor: pointer;
+    padding: 0.35rem;
+    border-radius: 50%;
+    background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/fCbUcoRfiez.png);
+    background-position: 3.5px -483.5px;
+    background-size: 26px 1031px;
+    width: 15px;
+    height: 15px;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+
+.friends-icon {
+    background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yZ/r/4qsdCsLNqKi.png);
+    width: 14px;
+    height: 14px;
+    background-position: center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    object-position: 50% 50%;
+}
+
+.drop-down {
+    background-image: url(
+    https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/fCbUcoRfiez.png);
+    background-position: 0px -980px;
+    background-size: 26px 994px;
+    width: 12px;
+    height: 12px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    transform: scale(1.1);
+}
+
+.post-header {
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.profile-pic {
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: green;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto 80%;
+    border-radius: 50%;
+}
+
+.full-name {
+    margin-bottom: 0.3rem;
+}
+
+.post-audience {
+    cursor: pointer;
+    background-color: #e4e6eb;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    justify-content: space-around;
+    padding: 0.25rem;
+    border-radius: 5px;
+}
+
+.post-audience:hover {
+    background-color: #d9dce3;
+}
+
+.post-content {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
+textarea {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.25rem;
+    width: 100%;
+    border: none;
+    resize: none;
+    outline: none;
+    line-height: 1.25;
+}
+
+.emoji-picker {
+    text-align: right;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.emoji-picker {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: -26rem;
+    left: 65%;
+}
+
+.emoji {
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.add-to-your-post {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 7rem;
+    border: 1px solid rgb(193, 190, 190);
+    padding: 1.25rem 1rem;
+    border-radius: 5px;
+}
+
+.add-to-post-text {
+    font-weight: bold;
+}
+
+.add-to-post-icons {
+    display: flex;
+    gap: 1.25rem;
+}
+
+.add-to-post-icons div {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+}
+
+.photo-video {
+    background-image:
+            url(https://static.xx.fbcdn.net/rsrc.php/v3/yC/r/a6OjkIIE-R0.png);
+}
+
+.tag-people {
+    background-image:
+            url(https://static.xx.fbcdn.net/rsrc.php/v3/yC/r/MqTJr_DM3Jg.png);
+}
+
+.feeling-activity {
+    background-image:
+            url(https://static.xx.fbcdn.net/rsrc.php/v3/yk/r/yMDS19UDsWe.png);
+}
+
+.check-in {
+    background-image:
+            url(https://static.xx.fbcdn.net/rsrc.php/v3/yy/r/uywzfiZad5N.png);
+}
+
+.gif {
+    background-image:
+            url(https://static.xx.fbcdn.net/rsrc.php/v3/yX/r/j0Jp-GpONWx.png);
+}
+
+.live-video {
+    background-image:
+            url(https://static.xx.fbcdn.net/rsrc.php/v3/yF/r/v1iF2605Cb5.png);
+}
+
+.post-btn {
+    outline: none;
+    border: none;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 0.75rem 0;
+    margin-top: 1rem;
+    font-family: 'Inter', sans-serif;
+    background-color: #1b74e4;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+.post-btn:hover {
+    background-color: rgba(27, 116, 228, 0.85);
+}
+
+.post-btn:disabled,
+.post-btn[disabled] {
+    cursor: not-allowed;
+    background-color: #e4e6eb;
+    color: #bdc1c5;
+}
