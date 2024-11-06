@@ -20,9 +20,14 @@ class Technician extends DbModel
     public string $password = '';
     public string $confirmPassword = '';
 
-    public function tableName(): string
+    public static function tableName(): string
     {
         return 'technician';
+    }
+
+    public static function primaryKey(): string
+    {
+        return 'tech_id';
     }
 
     public function save()
@@ -59,4 +64,6 @@ class Technician extends DbModel
             'status',
         ];
     }
+
+
 }
