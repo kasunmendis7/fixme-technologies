@@ -9,65 +9,106 @@
     <link rel="stylesheet" href="/css/technician/technician-community.css">
 </head>
 <body>
-    <?php
-    include_once 'components/sidebar.php';
-    include_once 'components/header.php';
-    ?>
-    <main class="post">
-        <div class="wrapper">
-            <section class="create-post">
-                <header class="header">
-                    <h1>Create post</h1>
-                    <div class="cross-icon">
-                        <div class="cross-icon-mark"></div>
-                    </div>
-                </header>
-                <div class="post-header">
-                    <div class="profile-pic"></div>
-                    <div class="user-info">
-                        <div class="full-name">Fix Me</div>
-                        <div class="post-audience">
-                            <div class="friends-icon"></div>
-                            <span class="audience-text">Community</span>
-                            <div class="drop-down"></div>
-                        </div>
-                    </div>
+<?php
+include_once 'components/sidebar.php';
+include_once 'components/header.php';
+?>
+<!-- JavaScript Files -->
+<script src="/js/technician/technician-create-post.js"></script>
+<section class="create-post">
+    <div class="wrapper">
+        <header class="header">
+            <h1>Create post</h1>
+            <div class="cross-icon">
+                <div class="cross-icon-mark"></div>
+            </div>
+        </header>
+        <div class="create-post-header">
+            <div class="profile-pic"><img src="/assets/technician-dashboard/customer02.jpg" alt=""></div>
+            <div class="user-info">
+                <div class="full-name">Fix Me</div>
+                <div class="post-audience">
+                    <div class="friends-icon"></div>
+                    <span class="audience-text">Community</span>
+                    <div class="drop-down"></div>
                 </div>
-                <div class="post-content">
-                    <form action="" method="">
-
-						<textarea name="description" id="description"
-                                  cols="30" rows="5"
-                                  placeholder="What's on you mind?"></textarea>
-                        <div class="emoji-picker">
-                            <emoji-picker class="light"></emoji-picker>
-                            <i class="emoji" aria-label="Insert an emoji"
-                               role="img"></i>
-                        </div>
-                        <div class="add-to-your-post">
-                            <span class="add-to-post-text">Add to your post</span>
-                            <div class="add-to-post-icons">
-                                <div class="photo-video"></div>
-                                <div class="tag-people"></div>
-                                <div class="feeling-activity"></div>
-                                <div class="check-in"></div>
-                                <div class="gif"></div>
-                                <div class="live-video"></div>
-                            </div>
-                        </div>
-                        <!-- Post Button -->
-                        <button type="submit" value="Post" class="post-btn" disabled>Post</button>
-                    </form>
-                </div>
-            </section>
-
+            </div>
         </div>
-    </main>
-    <!-- JavaScript Files -->
-    <script src="/js/technician/technician-create-post.js"></script>
+        <div class="post-content">
+            <form action="" method="">
+                <textarea name="description" id="description" cols="50" rows="3"
+                          placeholder="What's on you mind?"></textarea>
+                <div class="add-to-your-post">
+                    <span class="add-to-post-text">Add to your post</span>
+                    <div class="add-to-post-icons">
+                        <div class="photo-video"></div>
 
-    <!--    Icons-->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+                    </div>
+                </div>
+                <!-- Post Button -->
+                <button type="submit" value="Post" class="post-btn" disabled>Post</button>
+            </form>
+        </div>
+    </div>
+</section>
+<section class="post-section">
+    <div class="post">
+        <div class="post-header">
+            <div class="profile-info">
+                <div class="profile-img">
+                    <img src="/assets/technician-dashboard/customer02.jpg" alt="">
+                </div>
+            <span>Kasun Mendis</span>
+            </div>
+            <div class="options">
+                <span><ion-icon name="settings-outline"></ion-icon></span>
+            </div>
+        </div>
+
+        <div class="post-img">
+            <img src="https://thumbs.dreamstime.com/b/car-fixing-driver-trying-to-repair-battery-road-39783905.jpg"
+                 alt="">
+        </div>
+        <div class="post-body">
+            <div class="post-actions">
+                <span class="like-icon"><ion-icon name="build-outline"></ion-icon></span>
+                <span class="comment-icon"><ion-icon name="chatbubble-ellipses-outline"></ion-icon></span>
+
+            </div>
+            <div class="post-info">
+                <div class="post-likes">500 likes</div>
+                <div class="post-title">
+                    <span class="username">Kasun Mendis</span>
+                    <span class="title">Today at Colombo 7</span>
+                    <br>
+                </div>
+            </div>
+            <div class="post-comments">
+                <span>View all 20 comments</span>
+                <div class="comment">
+                    <span class="comment-username">Pulasthi</span>
+                    <span class="comment-text">He helped me a lot</span>
+                    <span class="like-icon"><ion-icon name="build-outline"></ion-icon></span>
+                </div>
+            </div>
+            <div class="post-timestamp">
+                <span >1 hour ago</span>
+            </div>
+        </div>
+            <div class="input-box">
+            <div class="emoji"></div>
+                <input type="text" placeholder="Add a comment..." class="text">
+                <button>Post</button>
+        </div>
+    </div>
+
+</section>
+
+
+<!--    Icons-->
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
