@@ -14,7 +14,7 @@ class ServiceCentreController extends Controller
     public function serviceCentreDashboard()
     {
         $this->setLayout('auth');
-        return $this->render('/service-centre-dashboard');
+        return $this->render('/service-centre/service-centre-dashboard');
     }
 
     public function serviceCentreSignup()
@@ -27,5 +27,17 @@ class ServiceCentreController extends Controller
     {
         $this->setLayout('auth');
         return $this->render('/service-centre-login');
+    }
+
+    public function serviceCentreMap()
+    {
+        $this->setLayout('auth');
+        return $this->render('service-centre/service-centre-map');
+    }
+
+    public function serviceCentreHome()
+    {
+        $this->setLayout('auth');
+        return $this->render('service-centre/service-centre-home');
     }
 }
