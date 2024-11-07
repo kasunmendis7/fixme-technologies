@@ -28,6 +28,14 @@
                 </a>
             </li>
             <li>
+                <a href="/technician-create-post">
+                        <span class="icon">
+                            <ion-icon name="duplicate-outline"></ion-icon>
+                        </span>
+                    <span class="title">Create Post</span>
+                </a>
+            </li>
+            <li>
                 <a href="/technician-community">
                         <span class="icon">
                            <ion-icon name="images-outline"></ion-icon>

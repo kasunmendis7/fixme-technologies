@@ -4,52 +4,41 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Controller;
-use app\core\Request;
-use app\core\Response;
 use app\models\Post;
 use app\models\Media;
 
 class PostController extends Controller
 {
-    public function create(Request $request, Response $response)
+    public function create()
     {
-        if ($request->isPost()) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $post = new Post();
-            $post->description = $request->getBody()['description'] ?? '';
-            $post->tech_id = Application::$app->technician->tech_id; // assuming technician is logged in
+            $post->description = $_POST['description'];
+            $post->tech_id = Application::$app->technician->tech_id; // assuming the technician is logged in
 
             if ($post->save()) {
-                // Handle media upload if a file is uploaded
-                if (isset($_FILES['media']) && $_FILES['media']['error'] === UPLOAD_ERR_OK) {
+                // Handle media file upload
+                if (!empty($_FILES['media']['name'])) {
                     $media = new Media();
-                    $media->post_id = $post->post_id; // Saved post ID
+                    $media->post_id = $post->post_id;
                     $media->media_type = $_FILES['media']['type'];
 
-                    $targetDir = Application::$ROOT_DIR . '/public/uploads/';
-                    if (!is_dir($targetDir)) {
-                        mkdir($targetDir, 0777, true);
-                    }
-
+                    // Save the file to a directory
+                    $targetDir = __DIR__ . '/../public/uploads/';
                     $fileName = time() . '_' . basename($_FILES['media']['name']);
                     $filePath = $targetDir . $fileName;
 
                     if (move_uploaded_file($_FILES['media']['tmp_name'], $filePath)) {
                         $media->media_url = '/uploads/' . $fileName;
-                        $media->uploaded_at = date('Y-m-d H:i:s');
                         $media->save();
                     }
                 }
 
                 Application::$app->session->setFlash('success', 'Post created successfully.');
+                Application::$app->response->redirect('/');
             }
-
-            $response->redirect('/technician-community');
         }
 
-        // Load post to display on the same page
-        $post = Post::getAllWithMedia();
-        return $this->render('technician-community', [
-            'post' => $post
-        ]);
+        return $this->render('create-post');
     }
 }

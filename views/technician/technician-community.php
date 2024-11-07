@@ -1,6 +1,3 @@
-<?php
-use app\core\Application;
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,11 +17,6 @@ include_once 'components/header.php';
 <script src="/js/technician/technician-create-post.js"></script>
 <section class="create-post">
     <div class="wrapper">
-        <?php if (Application::$app->session->getFlash('success')): ?>
-            <div class="alert alert-success">
-                <?php echo Application::$app->session->getFlash('success') ?>
-            </div>
-        <?php endif;?>
         <header class="header">
             <h1>Create post</h1>
             <div class="cross-icon">
@@ -43,8 +35,9 @@ include_once 'components/header.php';
             </div>
         </div>
         <div class="post-content">
-            <form action="/technician-community" method="POST" enctype="multipart/form-data">
-                <textarea name="description" id="description" cols="50" rows="3" placeholder="What's on your mind?"></textarea>
+            <form action="" method="POST">
+                <textarea name="description" id="description" cols="50" rows="3"
+                          placeholder="What's on you mind?"></textarea>
                 <div class="add-to-your-post">
                     <span class="add-to-post-text">Add to your post</span>
                     <div class="add-to-post-icons">
@@ -52,39 +45,63 @@ include_once 'components/header.php';
                         <input type="file" name="media" accept="image/*,video/*">
                     </div>
                 </div>
+                <!-- Post Button -->
                 <button type="submit" value="Post" class="post-btn" disabled>Post</button>
             </form>
         </div>
     </div>
 </section>
 <section class="post-section">
-    <?php foreach ($posts as $post): ?>
-        <div class="post">
-            <div class="post-header">
-                <div class="profile-info">
-                    <div class="profile-img">
-                        <img src="/assets/technician-dashboard/customer02.jpg" alt="">
-                    </div>
-                    <span><?php echo htmlspecialchars($post['tech_id']); ?></span>
+    <div class="post">
+        <div class="post-header">
+            <div class="profile-info">
+                <div class="profile-img">
+                    <img src="/assets/technician-dashboard/customer02.jpg" alt="">
                 </div>
+                <span>Kasun Mendis</span>
             </div>
-
-            <?php if ($post['media_url']): ?>
-                <div class="post-img">
-                    <img src="<?php echo htmlspecialchars($post['media_url']); ?>" alt="">
-                </div>
-            <?php endif; ?>
-
-            <div class="post-body">
-                <div class="post-title">
-                    <span><?php echo htmlspecialchars($post['description']); ?></span>
-                </div>
-                <div class="post-timestamp">
-                    <span><?php echo htmlspecialchars($post['created_at']); ?></span>
-                </div>
+            <div class="options">
+                <span><ion-icon name="settings-outline"></ion-icon></span>
             </div>
         </div>
-    <?php endforeach; ?>
+
+        <div class="post-img">
+            <img src="https://thumbs.dreamstime.com/b/car-fixing-driver-trying-to-repair-battery-road-39783905.jpg"
+                 alt="">
+        </div>
+        <div class="post-body">
+            <div class="post-actions">
+                <span class="like-icon"><ion-icon name="build-outline"></ion-icon></span>
+                <span class="comment-icon"><ion-icon name="chatbubble-ellipses-outline"></ion-icon></span>
+
+            </div>
+            <div class="post-info">
+                <div class="post-likes">500 likes</div>
+                <div class="post-title">
+                    <span class="username">Kasun Mendis</span>
+                    <span class="title">Today at Colombo 7</span>
+                    <br>
+                </div>
+            </div>
+            <div class="post-comments">
+                <span>View all 20 comments</span>
+                <div class="comment">
+                    <span class="comment-username">Pulasthi</span>
+                    <span class="comment-text">He helped me a lot</span>
+                    <span class="like-icon"><ion-icon name="build-outline"></ion-icon></span>
+                </div>
+            </div>
+            <div class="post-timestamp">
+                <span >1 hour ago</span>
+            </div>
+        </div>
+        <div class="input-box">
+            <div class="emoji"></div>
+            <input type="text" placeholder="Add a comment..." class="text">
+            <button>Post</button>
+        </div>
+    </div>
+
 </section>
 
 

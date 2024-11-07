@@ -55,7 +55,7 @@ $app->router->get('/logout', [AuthController::class, 'logout']);
 
 // routes handled by PostController
 $app->router->post('/technician-community', [PostController::class, 'create']);
-$app->router->get('/technician-community', [PostController::class, 'create']);
+
 
 
 $app->run();

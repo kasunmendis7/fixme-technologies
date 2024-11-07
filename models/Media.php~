@@ -22,7 +22,7 @@ class Media extends DbModel
         return ['post_id', 'media_type', 'media_url', 'uploaded_at'];
     }
 
-    public function primaryKey(): string
+    public static function primaryKey(): string
     {
         return 'media_id';
     }
