@@ -33,21 +33,21 @@
                 <form action="" method="post" class="technician-signup-form">
                     <div class="input-element">
                         <label for="user-name">Service centre name:</label>
-                        <input type="text" name="centreName" placeholder="Service centre name..." id="user-name" value="<?php echo $model->centreName ?>" class="<?php echo $model->hasError('centreName') ? 'invalid ' : '' ?>">
+                        <input type="text" name="name" placeholder="Service centre name..." id="name" value="<?php echo $model->name ?>" class="<?php echo $model->hasError('centreName') ? 'invalid ' : '' ?>">
                         <div class="invalid-feedback">
                             <?php echo $model->getFirstError('centreName') ?>
                         </div>
                     </div>
-                    <div class="input-element">
-                        <label for="nic">NIC No: </label>
-                        <input type="text" name="nic" placeholder="NIC No..." id="nic" value="<?php echo $model->nic ?>" class="<?php echo $model->hasError('nic') ? 'invalid ' : '' ?>">
-                        <div class="invalid-feedback">
-                            <?php echo $model->getFirstError('nic') ?>
-                        </div>
-                    </div>
+<!--                    <div class="input-element">-->
+<!--                        <label for="nic">NIC No: </label>-->
+<!--                        <input type="text" name="nic" placeholder="NIC No..." id="nic" value="--><?php //echo $model->nic ?><!--" class="--><?php //echo $model->hasError('nic') ? 'invalid ' : '' ?><!--">-->
+<!--                        <div class="invalid-feedback">-->
+<!--                            --><?php //echo $model->getFirstError('nic') ?>
+<!--                        </div>-->
+<!--                    </div>-->
                     <div class="input-element">
                         <label for="phoneNumber">Phone No: </label>
-                        <input type="text" name="phoneNumber" placeholder="Phone no..." id="phoneNumber" value="<?php echo $model->phoneNumber ?>" class="<?php echo $model->hasError('phoneNumber') ? 'invalid ' : '' ?>">
+                        <input type="text" name="phone_no" placeholder="Phone no..." id="phone_no" value="<?php echo $model->phone_no ?>" class="<?php echo $model->hasError('phoneNumber') ? 'invalid ' : '' ?>">
                         <div class="invalid-feedback">
                             <?php echo $model->getFirstError('phoneNumber') ?>
                         </div>
@@ -61,7 +61,7 @@
                     </div>
                     <div class="input-element">
                         <label for="services">Services: </label>
-                        <input type="text" name="services" placeholder="Services..." id="services">
+                        <input type="text" name="service_category" placeholder="Services." id="service_category" value="<?php echo $model->service_category ?>">
                     </div>
                     <div class="input-element">
                         <label for="email">Email address</label>

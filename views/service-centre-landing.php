@@ -122,6 +122,32 @@
             align-self: flex-start;
         }
 
+        .btn_dec{
+            margin-left: 20px;
+            /*padding: 10px 20px;*/
+            /*background: linear-gradient(to right, #183369, #1e8dc5);*/
+            /*border: none;*/
+            /*border-radius: 5px;*/
+            /*cursor: pointer;*/
+            /*font-size: 1rem;*/
+            /*color: #fff;*/
+        }
+
+        .btn_dec button {
+            background: #0b5ed7;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .btn_dec a{
+            margin: 10px 10px 10px 10px;
+            text-align: center;
+        }
+
         /* Footer */
         /*footer {*/
         /*    background: #000033;*/
@@ -165,11 +191,20 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#home">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="#market">Market</a></li>
+
+                <div class="btn_dec" id="button">
+                    <button type="button" ><a href="/service-centre-login">Login</a></button>
+                    <button type="button" ><a href="/service-centre-sign-up" onclick="redirectToSignUp()">Sign Up</a></button>
+                </div>
+
             </ul>
+
+
+
         </nav>
     </div>
 </header>
