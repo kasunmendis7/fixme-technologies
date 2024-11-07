@@ -135,7 +135,15 @@
     cursor: pointer;
     border: none;
     transition: background 0.3s;
-} 
+}
+.technician-signup-form .log-in {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #5db8f5;
+    text-decoration: none;
+    margin-top: 1rem;
+}
+
 
 @media screen and (max-width: 768px) {
     .container {
