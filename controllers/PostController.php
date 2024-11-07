@@ -46,10 +46,10 @@ class PostController extends Controller
             $response->redirect('/technician-community');
         }
 
-        // Load posts to display on the same page
-        $posts = Post::getAllWithMedia();
+        // Load post to display on the same page
+        $post = Post::getAllWithMedia();
         return $this->render('technician-community', [
-            'posts' => $posts
+            'post' => $post
         ]);
     }
 }

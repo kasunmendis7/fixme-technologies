@@ -11,8 +11,8 @@ class Post extends DbModel
     public ?string $created_at = NULL;
     public ?string $updated_at = NULL;
 
-    public function tableName(): string{
-        return 'posts';
+    public static function tableName(): string{
+        return 'post';
     }
 
     public function attributes(): array
@@ -25,7 +25,7 @@ class Post extends DbModel
         ];
     }
 
-    public function primaryKey(): string
+    public static function primaryKey(): string
     {
         return 'post_id';
     }
@@ -49,8 +49,8 @@ class Post extends DbModel
     {
         $this->created_at = date('Y-m-d H:i:s');
         $this->updated_at = date('Y-m-d H:i:s');
-//        $this->tech_id = $_SESSION['tech_id'];
-//        return $this->save($mediaData);
+        $this->tech_id = $_SESSION['tech_id'];
+        return $this->save($mediaData);
         $db = self::getDb();
         $db->beginTransaction();
 
@@ -85,13 +85,4 @@ class Post extends DbModel
         }
     }
 
-    public static function getAllWithMedia()
-    {
-        $sql = "SELECT post.*, media.media_url, media.media_type 
-                FROM post 
-                LEFT JOIN media ON post.post_id = media.post_id 
-                ORDER BY post.created_at DESC";
-
-        return self::executeQuery($sql);
-    }
 }

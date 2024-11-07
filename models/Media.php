@@ -12,7 +12,7 @@ class Media extends DbModel
     public ?string $media_url;
     public ?string $uploaded_at;
 
-    public function tableName(): string
+    public static function tableName(): string
     {
         return 'media';
     }
@@ -22,7 +22,7 @@ class Media extends DbModel
         return ['post_id', 'media_type', 'media_url', 'uploaded_at'];
     }
 
-    public function primaryKey(): string
+    public static function primaryKey(): string
     {
         return 'media_id';
     }
