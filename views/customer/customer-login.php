@@ -1,3 +1,7 @@
+<?php
+
+/** @var $model \app\models\Customer */
+?>
 <!DOCTYPE html>
 <html lang="en">
 

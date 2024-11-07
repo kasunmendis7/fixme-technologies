@@ -5,7 +5,9 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
+use app\core\Response;
 use app\models\Customer;
+use app\models\CustomerLoginForm;
 use app\models\Technician;
 use app\models\ServiceCenterRegisterModel;
 
@@ -33,9 +35,15 @@ class AuthController extends Controller
         ]);
     }
     // customer login method
-    public function customerLogin(Request $request)
+    public function customerLogin(Request $request, Response $response)
     {
+        $loginForm = new CustomerLoginForm();
         if ($request->isPost()) {
+            $loginForm->loadData($request->getBody());
+            if ($loginForm->validate() && $loginForm->login()) {
+                $response->redirect('/');
+                return;
+            }
             return 'Handle submitted data';
         }
         $this->setLayout('auth');
