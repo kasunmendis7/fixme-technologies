@@ -17,7 +17,7 @@
                 <p class="box-1-desc">
                     Find trustworthy technician when your vehicle breaks down
                 </p>
-                <button class="box-1-btn" type="button">Find Technician</button>
+                <button class="box-1-btn" type="button" onclick="redirectCustomerSignUp()">Find Technician</button>
             </div>
             <div class="box-1-content hidden">
                 <h2 class="box-1-title">Provide services to customers</h2>

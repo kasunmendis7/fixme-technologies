@@ -5,7 +5,7 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
-use app\models\CustomerRegisterModel;
+use app\models\Customer;
 use app\models\Technician;
 use app\models\ServiceCenterRegisterModel;
 
@@ -14,21 +14,22 @@ class AuthController extends Controller
     // customer sign up method
     public function customerSignUp(Request $request)
     {
-        $registerModel = new CustomerRegisterModel();
+        $customer = new Customer();
         if ($request->isPost()) {
 
-            $registerModel->loadData($request->getBody());
-            if ($registerModel->validate() && $registerModel->register()) {
-                return 'Success';
+            $customer->loadData($request->getBody());
+            if ($customer->validate() && $customer->save()) {
+                Application::$app->session->setFlash('success', 'You have been registered successfully!');
+                Application::$app->response->redirect('/');
             }
             $this->setLayout('auth');
             return $this->render('/customer/customer-sign-up', [
-                'model' => $registerModel
+                'model' => $customer
             ]);
         }
         $this->setLayout('auth');
         return $this->render('/customer/customer-sign-up', [
-            'model' => $registerModel
+            'model' => $customer
         ]);
     }
     // customer login method
@@ -73,6 +74,7 @@ class AuthController extends Controller
         $registerModel = new ServiceCenterRegisterModel();
         if ($request->isPost()) {
             $registerModel->loadData($request->getBody());
+          
             if ($registerModel->validate() && $registerModel->save()) {
                 Application::$app->session->setFlash('success', 'You have been registered successfully!');
                 Application::$app->response->redirect('/');

@@ -4,20 +4,20 @@ namespace app\models;
 
 use app\core\DbModel;
 
-class Technician extends DbModel
+class Customer extends DbModel
 {
 
     public string $fname = '';
     public string $lname = '';
+    public string $email = '';
     public string $phone_no = '';
     public string $address = '';
-    public string $email = '';
     public string $password = '';
     public string $confirmPassword = '';
 
     public function tableName(): string
     {
-        return 'technician';
+        return 'customer';
     }
 
     public function save()
@@ -47,9 +47,9 @@ class Technician extends DbModel
         return [
             'fname',
             'lname',
+            'email',
             'phone_no',
             'address',
-            'email',
             'password',
         ];
     }

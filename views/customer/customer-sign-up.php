@@ -32,16 +32,16 @@
                 <form action="" method="post" class="cust-signup-form">
                     <div class="input-element">
                         <label for="first-name">First Name</label>
-                        <input type="text" name="firstName" id="first-name" value="<?php echo $model->firstName ?>" class="<?php echo $model->hasError('firstName') ? 'invalid ' : '' ?>">
+                        <input type="text" name="fname" id="first-name" value="<?php echo $model->fname ?>" class="<?php echo $model->hasError('fname') ? 'invalid ' : '' ?>">
                         <div class="invalid-feedback">
-                            <?php echo $model->getFirstError('firstName') ?>
+                            <?php echo $model->getFirstError('fname') ?>
                         </div>
                     </div>
                     <div class="input-element">
                         <label for="last-name">Last Name</label>
-                        <input type="text" name="lastName" id="last-name" value="<?php echo $model->lastName ?>" class="<?php echo $model->hasError('lastName') ? 'invalid ' : '' ?>">
+                        <input type="text" name="lname" id="last-name" value="<?php echo $model->lname ?>" class="<?php echo $model->hasError('lname') ? 'invalid ' : '' ?>">
                         <div class="invalid-feedback">
-                            <?php echo $model->getFirstError('lastName') ?>
+                            <?php echo $model->getFirstError('lname') ?>
                         </div>
                     </div>
                     <div class="input-element">
@@ -53,9 +53,9 @@
                     </div>
                     <div class="input-element">
                         <label for="phone-number">Phone Number</label>
-                        <input type="tel" name="phoneNumber" id="phone-number" value="<?php echo $model->phoneNumber ?>" class="<?php echo $model->hasError('phoneNumber') ? 'invalid ' : '' ?>">
+                        <input type="tel" name="phone_no" id="phone-number" value="<?php echo $model->phone_no ?>" class="<?php echo $model->hasError('phone_no') ? 'invalid ' : '' ?>">
                         <div class="invalid-feedback">
-                            <?php echo $model->getFirstError('phoneNumber') ?>
+                            <?php echo $model->getFirstError('phone_no') ?>
                         </div>
                     </div>
                     <div class="input-element">
