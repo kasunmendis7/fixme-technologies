@@ -33,6 +33,7 @@ use app\core\Application;
                 <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
                 <li><a href="#" class="nav-link px-2">Features</a></li>
                 <li><a href="#" class="nav-link px-2">Map</a></li>
+                <li><a href="/service-centre-landing" class="nav-link px-2">Service Centre</a></li>
                 <li><a href="#" class="nav-link px-2">FAQs</a></li>
                 <li><a href="#" class="nav-link px-2">About</a></li>
             </ul>
