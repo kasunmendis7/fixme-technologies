@@ -11,11 +11,12 @@ use app\controllers\ServiceCentreController;
 use \app\controllers\PostController;
 
 // load environment variables
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
 // database configuration
 $config = [
+    'technicianClass' => \app\models\Technician::class,
     'db' => [
         'dsn' => $_ENV['DB_DSN'],
         'user' => $_ENV['DB_USER'],
@@ -50,6 +51,7 @@ $app->router->get('/service-centre-sign-up', [AuthController::class, 'serviceCen
 $app->router->post('/service-centre-sign-up', [AuthController::class, 'serviceCentreSignup']);
 $app->router->get('/service-centre-login', [AuthController::class, 'serviceCentreLogin']);
 $app->router->post('/service-centre-login', [AuthController::class, 'serviceCentreLogin']);
+$app->router->get('/logout', [AuthController::class, 'logout']);
 
 // routes handled by PostController
 $app->router->post('/technician-community', [PostController::class, 'create']);
