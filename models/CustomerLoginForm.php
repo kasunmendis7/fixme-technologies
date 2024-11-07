@@ -2,7 +2,9 @@
 
 namespace app\models;
 
+use app\core\Application;
 use app\core\Model;
+use app\models\Customer;
 
 class CustomerLoginForm extends Model
 {
@@ -20,6 +22,20 @@ class CustomerLoginForm extends Model
 
     public function login()
     {
-        return true;
+        $customerModel = new Customer();
+        $customer = $customerModel->findOne(['email' => $this->email]);
+        if (!$customer) {
+            $this->addErrorMessage('email', 'User does not exist with this email');
+            return false;
+        }
+
+        if (!password_verify($this->password, $customer->password)) {
+            $this->addErrorMessage('password', 'Password is incorrect');
+            return false;
+        }
+
+        show($customer);
+
+        return Application::$app->loginCustomer($customer);
     }
 }

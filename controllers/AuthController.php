@@ -41,13 +41,14 @@ class AuthController extends Controller
         if ($request->isPost()) {
             $loginForm->loadData($request->getBody());
             if ($loginForm->validate() && $loginForm->login()) {
-                $response->redirect('/');
+                $response->redirect('/technician-dashboard'); // later will change this to customer dashboard
                 return;
             }
-            return 'Handle submitted data';
         }
         $this->setLayout('auth');
-        return $this->render('/customer/customer-login');
+        return $this->render('/customer/customer-login', [
+            'model' => $loginForm
+        ]);
     }
     // technician sign up method
     public function technicianSignUp(Request $request)
