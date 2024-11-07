@@ -676,6 +676,7 @@ textarea {
 .add-to-post-icons {
     display: flex;
     gap: 1rem;
+    justify-content: space-between;
 }
 
 .add-to-post-icons div {

@@ -8,6 +8,7 @@ use app\controllers\SiteController;
 use app\controllers\CustomerController;
 use app\controllers\TechnicianController;
 use app\controllers\ServiceCentreController;
+use \app\controllers\PostController;
 
 // load environment variables
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
@@ -49,6 +50,11 @@ $app->router->get('/service-centre-sign-up', [AuthController::class, 'serviceCen
 $app->router->post('/service-centre-sign-up', [AuthController::class, 'serviceCentreSignup']);
 $app->router->get('/service-centre-login', [AuthController::class, 'serviceCentreLogin']);
 $app->router->post('/service-centre-login', [AuthController::class, 'serviceCentreLogin']);
+
+// routes handled by PostController
+$app->router->post('/technician-community', [PostController::class, 'create']);
+$app->router->get('/technician-community', [PostController::class, 'create']);
+
 
 $app->run();
 

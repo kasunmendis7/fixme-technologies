@@ -8,13 +8,19 @@ toggle.onclick = function () {
     main.classList.toggle("active");
 };
 
+document.addEventListener('DOMContentLoaded', (event) => {
+    const postButton = document.querySelector('.post-btn');
+    const textArea = document.getElementById('description');
 
-textarea.addEventListener("input", () => {
-    if (textarea.value != '')
-        postbtn.disabled = false;
-    else
-        postbtn.disabled = true;
-})
+    textArea.addEventListener('input', () => {
+        if (textArea.value.trim() !== '') {
+            postButton.disabled = false;
+        } else {
+            postButton.disabled = true;
+        }
+    });
+});
+
 
 // Select all like icons
 const likeIcons = document.querySelectorAll('.like-icon ion-icon');
