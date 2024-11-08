@@ -5,7 +5,9 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
+use app\core\Response;
 use app\models\CustomerRegisterModel;
+use app\models\ServiceCenterLogin;
 use app\models\Technician;
 use app\models\ServiceCenterRegisterModel;
 
@@ -88,12 +90,26 @@ class AuthController extends Controller
         ]);
     }
     // service centre login method
-    public function serviceCentreLogin(Request $request)
+    public function serviceCentreLogin(Request $request, Response $response)
     {
+        $serviceCenterLogin = new ServiceCenterLogin();
         if ($request->isPost()) {
-            return 'Handle submitted data';
+            $serviceCenterLogin->loadData($request->getBody());
+            if ($serviceCenterLogin->validate() && $serviceCenterLogin->loginServiceCenter()){
+                $response->redirect('/service-centre-dashboard');
+                return;
+            }
         }
         $this->setLayout('auth');
-        return $this->render('/service-centre/service-centre-login');
+        return $this->render('/service-centre/service-centre-login',[
+            'model' => $serviceCenterLogin
+        ]);
     }
+
+    public function serviceCenterLogout(Request $request, Response  $response)
+    {
+        Application::$app->logoutServiceCenter();
+        $response->redirect('/service-centre-landing');
+    }
+
 }
