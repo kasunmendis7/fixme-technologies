@@ -15,12 +15,12 @@ class Customer extends DbModel
     public string $password = '';
     public string $confirmPassword = '';
 
-    public function tableName(): string
+    public static function tableName(): string
     {
         return 'customer';
     }
 
-    public function primaryKey(): string
+    public static function primaryKey(): string
     {
         return 'cus_id';
     }
