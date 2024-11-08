@@ -22,6 +22,22 @@
             <li>
                 <a href="#">
                     <span class="icon">
+                        <ion-icon name="man-outline"></ion-icon>
+                    </span>
+                    <span class="title">Technicians</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="car-outline"></ion-icon>
+                    </span>
+                    <span class="title">Service Centers</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon">
                         <ion-icon name="location-outline"></ion-icon>
                     </span>
                     <span class="title">Map</span>
@@ -30,9 +46,9 @@
             <li>
                 <a href="#">
                     <span class="icon">
-                        <ion-icon name="images-outline"></ion-icon>
+                        <ion-icon name="document-text-outline"></ion-icon>
                     </span>
-                    <span class="title">Community</span>
+                    <span class="title">Vehicle Issue</span>
                 </a>
             </li>
 
@@ -46,7 +62,7 @@
             </li>
 
             <li>
-                <a href="#">
+                <a href="/customer-help">
                     <span class="icon">
                         <ion-icon name="help-outline"></ion-icon>
                     </span>
@@ -55,7 +71,7 @@
             </li>
 
             <li>
-                <a href="#">
+                <a href="/customer-settings">
                     <span class="icon">
                         <ion-icon name="settings-outline"></ion-icon>
                     </span>
