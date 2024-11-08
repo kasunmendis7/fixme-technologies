@@ -1,3 +1,7 @@
+<?php
+/** @var $model \app\models\Technician */
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

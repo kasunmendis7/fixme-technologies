@@ -107,3 +107,81 @@
     background-color: #d4edda;
     border-color: #c3e6cb;
 }
+/* Section 2 Styling */
+
+body {
+    overflow-x: hidden;
+}
+
+/* Set box-sizing for all elements to avoid width overflow */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.blog_section {
+    background-color: rgba(255, 255, 255, 0.61);
+    padding: 6rem;
+}
+.blog_section .heading_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.blog_section .heading_container h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    position: relative;
+}
+
+.blog_section .box {
+    margin-top: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.blog_section .box .img-box {
+    width: 100%;
+    height: auto;
+}
+
+.blog_section .box .img-box img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.blog_section .box .detail-box {
+    padding: 20px;
+}
+
+.blog_section .box .detail-box h5 {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.col-md-6 {
+    flex: 1 1 100%;
+    max-width: 100%;
+}
+
+@media (min-width: 768px) {
+    .col-md-6 {
+        flex: 0 0 48%;
+        max-width: 48%;
+    }
+}
