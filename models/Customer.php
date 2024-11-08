@@ -20,6 +20,11 @@ class Customer extends DbModel
         return 'customer';
     }
 
+    public function primaryKey(): string
+    {
+        return 'cus_id';
+    }
+
     public function save()
     {
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
