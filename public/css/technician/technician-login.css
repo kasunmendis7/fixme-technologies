@@ -200,3 +200,9 @@
     background-color: #d4edda;
     border-color: #c3e6cb;
 }
+
+.alert-danger{
+    color: #fa0000;
+    background-color: #f3a8a8;
+    border-color: #ff4747;
+}

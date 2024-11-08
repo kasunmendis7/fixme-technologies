@@ -29,7 +29,8 @@ class Post extends DbModel
 
     public function save()
     {
-        $this->media = 'Kasun Mendis';
+        $this->media = $_FILES['media']['name'];
+        move_uploaded_file($_FILES['media']['tmp_name'], 'assets/uploads/' . $this->media);
         return parent::save();
     }
 

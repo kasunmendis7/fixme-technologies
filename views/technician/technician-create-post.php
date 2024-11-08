@@ -35,7 +35,7 @@ include_once 'components/header.php';
             </div>
         </div>
         <div class="post-content">
-            <form action="" method="POST">
+            <form action="" method="POST" enctype="multipart/form-data">
                 <textarea name="description" id="description" cols="50" rows="3"
                           placeholder="What's on you mind?"></textarea>
                 <div class="add-to-your-post">
