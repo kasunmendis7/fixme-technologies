@@ -48,7 +48,7 @@ class Application
     {
         return !self::$app->technician;
     }
-    public function technicianLogin(DbModel $technician)
+    public function loginTechnician(DbModel $technician)
     {
         $this->technician = $technician;
         $primaryKey = $technician->primaryKey();
