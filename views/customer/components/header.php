@@ -1,4 +1,8 @@
 <!-- Menu and search -->
+<?php
+
+use app\core\Application;
+?>
 <div class="main">
     <div class="topbar">
         <div class="toggle">
@@ -12,7 +16,13 @@
             </label>
         </div>
 
+        <h6 class="user-name">
+            <?php
+            $username = strtoupper(Application::$app->customer->{'fname'}) . ' ' . strtoupper(Application::$app->customer->{'lname'});
+            echo $username;
+            ?>
+        </h6>
         <div class="user">
-            <img src="/assets/technician-dashboard/customer02.jpg" alt="">
+            <img src="/assets/technician-dashboard/customer04.jpg" alt="">
         </div>
     </div>
