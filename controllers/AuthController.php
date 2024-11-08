@@ -78,7 +78,7 @@ class AuthController extends Controller
         return $this->render('/technician/technician-login', ['model' => $technicianLogin] );
     }
 
-    public function logout(Request $request, Response $response)
+    public function technicianLogOut(Request $request, Response $response)
     {
         Application::$app->logoutTechnician();
         $response->redirect('/');
