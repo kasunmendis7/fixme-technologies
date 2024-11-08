@@ -70,7 +70,7 @@ class AuthController extends Controller
         if ($request->isPost()) {
             $technicianLogin->loadData($request->getBody());
             if ($technicianLogin->validate() && $technicianLogin->technicianLogin()){
-                $response->redirect('/');
+                $response->redirect('/technician-dashboard');
                 return;
             }
         }
@@ -80,7 +80,7 @@ class AuthController extends Controller
 
     public function logout(Request $request, Response $response)
     {
-        Application::$app->logout();
+        Application::$app->logoutTechnician();
         $response->redirect('/');
     }
 
