@@ -14,12 +14,12 @@ class TechnicianLogin extends Model
 
     public function rules():array{
         return[
-            'email' => [self::RULE_REQUIRED, self::RULE_EMAIL],
+            'email' => [self::RULE_REQUIRED],
             'password' => [self::RULE_REQUIRED],
         ];
     }
 
-    public function login()
+    public function technicianLogin()
     {
         $technician = (new Technician)->findOne(['email' => $this->email]);
         if (!$technician){
@@ -31,12 +31,8 @@ class TechnicianLogin extends Model
             $this->addError('password', 'Password is incorrect');
             return false;
         }
-        echo '<pre>';
-        var_dump($technician);
-        echo '</pre>';
-        exit;
 
-        return Application::$app->login($technician);
+        return Application::$app->technicianLogin($technician);
     }
 
 }

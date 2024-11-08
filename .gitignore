@@ -1,5 +1,4 @@
 vendor
 .idea
 .env
-/public/env
 composer.lock

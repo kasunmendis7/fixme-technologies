@@ -4,9 +4,8 @@ namespace app\models;
 
 use app\core\DbModel;
 use app\core\Model;
-use app\core\TechnicianModel;
 
-class Technician extends TechnicianModel
+class Technician extends DbModel
 {
     const STATUS_INACTIVE = 0;
     const STATUS_ACTIVE = 1;
@@ -21,16 +20,15 @@ class Technician extends TechnicianModel
     public string $password = '';
     public string $confirmPassword = '';
 
-    public function tableName(): string
+    public static function tableName(): string
     {
         return 'technician';
     }
 
-    public function primaryKey(): string
+    public static function primaryKey(): string
     {
-        return 'id';
+        return 'tech_id';
     }
-
 
     public function save()
     {
@@ -67,8 +65,5 @@ class Technician extends TechnicianModel
         ];
     }
 
-    public function getDisplayName(): string
-    {
-        return $this->firstName.'   '.$this->lastName;
-    }
+
 }

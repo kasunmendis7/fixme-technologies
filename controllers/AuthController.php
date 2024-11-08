@@ -69,7 +69,7 @@ class AuthController extends Controller
         $technicianLogin = new TechnicianLogin();
         if ($request->isPost()) {
             $technicianLogin->loadData($request->getBody());
-            if ($technicianLogin->validate() && $technicianLogin->login()){
+            if ($technicianLogin->validate() && $technicianLogin->technicianLogin()){
                 $response->redirect('/');
                 return;
             }
@@ -78,7 +78,7 @@ class AuthController extends Controller
         return $this->render('/technician/technician-login', ['model' => $technicianLogin] );
     }
 
-    public function technicianLogout(Request $request, Response $response)
+    public function logout(Request $request, Response $response)
     {
         Application::$app->logout();
         $response->redirect('/');
