@@ -9,6 +9,7 @@
     <title>Customer Help</title>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="/css/customer/customer-dashboard.css">
     <link rel="stylesheet" href="/css/customer/customer-help.css">
     <link rel="stylesheet" href="/css/customer/overlay.css">
 </head>

@@ -13,35 +13,44 @@
 
 <body>
     <?php
+
+    use app\core\Application;
+
     include_once 'components/sidebar.php';
     include_once 'components/header.php';
     ?>
 
     <div class="cardBox">
-        <div class="card">
-            <div>
-                <div class="cardName">My Profile</div>
+        <a href="/customer-profile">
+            <div class="card">
+                <div>
+                    <div class="cardName">My Profile</div>
+                </div>
+                <div class="iconBx">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                </div>
             </div>
-            <div class="iconBx">
-                <ion-icon name="person-circle-outline"></ion-icon>
+        </a>
+        <a href="#">
+            <div class="card">
+                <div>
+                    <div class="cardName">Payment Details</div>
+                </div>
+                <div class="iconBx">
+                    <ion-icon name="card-outline"></ion-icon>
+                </div>
             </div>
-        </div>
-        <div class="card">
-            <div>
-                <div class="cardName">Payment Details</div>
+        </a>
+        <a href="#">
+            <div class="card">
+                <div>
+                    <div class="cardName">Transactions</div>
+                </div>
+                <div class="iconBx">
+                    <ion-icon name="receipt-outline"></ion-icon>
+                </div>
             </div>
-            <div class="iconBx">
-                <ion-icon name="card-outline"></ion-icon>
-            </div>
-        </div>
-        <div class="card">
-            <div>
-                <div class="cardName">Transactions</div>
-            </div>
-            <div class="iconBx">
-                <ion-icon name="receipt-outline"></ion-icon>
-            </div>
-        </div>
+        </a>
     </div>
 
     <!-- Overlay for the confirmation message -->
