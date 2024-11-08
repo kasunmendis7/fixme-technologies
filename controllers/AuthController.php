@@ -69,7 +69,7 @@ class AuthController extends Controller
         $technicianLogin = new TechnicianLogin();
         if ($request->isPost()) {
             $technicianLogin->loadData($request->getBody());
-            if ($technicianLogin->validate() && $technicianLogin->technicianLogin()){
+            if ($technicianLogin->validate() && $technicianLogin->loginTechnician()){
                 $response->redirect('/technician-dashboard');
                 return;
             }
