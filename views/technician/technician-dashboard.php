@@ -7,6 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Technician Dashboard</title>
         <link rel="stylesheet" href="/css/technician/technician-dashboard.css">
+        <link rel="stylesheet" href="/css/technician/overlay.css">
     </head>
     <body>
     <?php
@@ -15,6 +16,7 @@
     ?>
     <!-- JavaScript Files -->
     <script src="/js/technician/technician-home.js"></script>
+    <script src="/js/customer/overlay.js"></script>
         <!-- ======================= Cards ================== -->
         <div class="cardBox">
             <div class="card">
@@ -148,7 +150,7 @@
 
                 <table>
                     <tr>
-                        <td width="60px">
+                        <td>
                             <div class="imgBx"><img src="assets/technician-dashboard/customer02.jpg" alt=""></div>
                         </td>
                         <td>
@@ -157,7 +159,7 @@
                     </tr>
 
                     <tr>
-                        <td width="60px">
+                        <td>
                             <div class="imgBx"><img src="assets/technician-dashboard/customer04.jpg" alt=""></div>
                         </td>
                         <td>
@@ -166,7 +168,7 @@
                     </tr>
 
                     <tr>
-                        <td width="60px">
+                        <td>
                             <div class="imgBx"><img src="assets/technician-dashboard/customer01.jpg" alt=""></div>
                         </td>
                         <td>
@@ -175,7 +177,7 @@
                     </tr>
 
                     <tr>
-                        <td width="60px">
+                        <td>
                             <div class="imgBx"><img src="assets/technician-dashboard/customer03.jpg" alt=""></div>
                         </td>
                         <td>
@@ -184,7 +186,7 @@
                     </tr>
 
                     <tr>
-                        <td width="60px">
+                        <td>
                             <div class="imgBx"><img src="assets/technician-dashboard/customer02.jpg" alt=""></div>
                         </td>
                         <td>
@@ -193,7 +195,7 @@
                     </tr>
 
                     <tr>
-                        <td width="60px">
+                        <td>
                             <div class="imgBx"><img src="assets/technician-dashboard/customer01.jpg" alt=""></div>
                         </td>
                         <td>
@@ -202,7 +204,7 @@
                     </tr>
 
                     <tr>
-                        <td width="60px">
+                        <td>
                             <div class="imgBx"><img src="assets/technician-dashboard/customer01.jpg" alt=""></div>
                         </td>
                         <td>
@@ -211,7 +213,7 @@
                     </tr>
 
                     <tr>
-                        <td width="60px">
+                        <td>
                             <div class="imgBx"><img src="assets/technician-dashboard/customer02.jpg" alt=""></div>
                         </td>
                         <td>
@@ -221,7 +223,13 @@
                 </table>
             </div>
         </div>
-    </div>
+    <!-- Overlay for the confirmation message -->
+    <div id="signOutOverlay" class="overlay">
+        <div class="overlay-content">
+            <p>Are you sure you want to sign out?</p>
+            <button id="confirmSignOut" class="btn"><a href="/technician-logout"></a> Yes</button>
+            <button id="cancelSignOut" class="btn">No</button>
+        </div>
     </div>
     <!--    Icons-->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
