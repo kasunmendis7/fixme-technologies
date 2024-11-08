@@ -50,6 +50,7 @@ $app->router->get('/service-centre-sign-up', [AuthController::class, 'serviceCen
 $app->router->post('/service-centre-sign-up', [AuthController::class, 'serviceCentreSignup']);
 $app->router->get('/service-centre-login', [AuthController::class, 'serviceCentreLogin']);
 $app->router->post('/service-centre-login', [AuthController::class, 'serviceCentreLogin']);
+$app->router->get('/logout', [AuthController::class, 'logout']);
 
 $app->run();
 
