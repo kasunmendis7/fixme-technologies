@@ -29,10 +29,11 @@ class Application
 
         $this->db = new Database($config['db']);
 
-        $primaryValue = $this->session->get('technician');
-        if ($primaryValue) {
+        $primaryValueTechnician = $this->session->get('technician');
+        if ($primaryValueTechnician) {
+            $technicianInstance = new $this->technicianClass;
             $primaryKey = $this->technicianClass::primaryKey();
-            $this->technician = $this->technicianClass::findOne([$primaryKey => $primaryValue]);
+            $this->technician = $technicianInstance->findOne([$primaryKey => $primaryValueTechnician]);
         } else {
             $this->technician = null;
         }
@@ -43,7 +44,7 @@ class Application
         echo $this->router->resolve();
     }
 
-    public static function isGuest()
+    public static function isGuestTechnician()
     {
         return !self::$app->technician;
     }

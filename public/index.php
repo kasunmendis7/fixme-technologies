@@ -37,6 +37,7 @@ $app->router->get('/technician-map', [TechnicianController::class, 'technicianMa
 $app->router->get('/technician-messages', [TechnicianController::class, 'technicianMessages']);
 $app->router->get('/technician-settings', [TechnicianController::class, 'technicianSettings']);
 $app->router->get('/technician-help', [TechnicianController::class, 'technicianHelp']);
+$app->router->get('/technician-create-post', [TechnicianController::class, 'technicianCreatePost']);
 
 // Auth routes handled by AuthController
 $app->router->get('/customer-sign-up', [AuthController::class, 'customerSignUp']);
@@ -54,7 +55,7 @@ $app->router->post('/service-centre-login', [AuthController::class, 'serviceCent
 $app->router->get('/logout', [AuthController::class, 'logout']);
 
 // routes handled by PostController
-$app->router->post('/technician-community', [PostController::class, 'create']);
+$app->router->post('/technician-create-post', [PostController::class, 'create']);
 
 
 

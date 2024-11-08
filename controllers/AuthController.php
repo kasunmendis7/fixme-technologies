@@ -51,7 +51,7 @@ class AuthController extends Controller
 
             if ($technician->validate() && $technician->save()) {
                 Application::$app->session->setFlash('success', 'You have been registered successfully!');
-                Application::$app->response->redirect('/');
+                Application::$app->response->redirect('/technician-login');
             }
             $this->setLayout('auth');
             return $this->render('/technician/technician-sign-up', [
@@ -70,7 +70,7 @@ class AuthController extends Controller
         if ($request->isPost()) {
             $technicianLogin->loadData($request->getBody());
             if ($technicianLogin->validate() && $technicianLogin->technicianLogin()){
-                $response->redirect('/');
+                $response->redirect('/technician-dashboard');
                 return;
             }
         }

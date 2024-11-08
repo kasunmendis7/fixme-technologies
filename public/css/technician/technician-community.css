@@ -71,6 +71,7 @@ body {
 }
 
 .navigation ul li:nth-child(1) {
+    margin-top: 10px;
     margin-bottom: 40px;
     pointer-events: none;
 }
@@ -495,7 +496,7 @@ body {
     margin-right: auto;
     border-radius: 5px;
     -webkit-box-shadow: 0 0 5px 1px lightgrey;
-    margin-top: 15px;
+    margin-top: 70px;
 }
 
 

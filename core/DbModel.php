@@ -26,7 +26,7 @@ abstract class DbModel extends Model
         return true;
     }
 
-    public static function findOne($where) // [email => technician@gmail.com, firstName => technicianFirstname]
+    public function findOne($where) // [email => technician@gmail.com, firstName => technicianFirstname]
     {
         $tableName = static::tableName();
         $attribute = array_keys($where);
@@ -37,7 +37,8 @@ abstract class DbModel extends Model
         }
 
         $statement->execute();
-        return $statement->fetchObject(static::class);
+
+        return $result = $statement->fetchObject(static::class);
     }
 
     public static function prepare($sql)

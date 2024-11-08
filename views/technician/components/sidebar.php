@@ -3,13 +3,14 @@
     <div class="navigation">
         <ul>
             <li>
-                <a href="#">
-                        <span class="icon">
-                            <ion-icon name="construct-outline"></ion-icon>
-                        </span>
+                <a href="/">
+                    <span class="icon">
+                        <ion-icon name="construct-outline"></ion-icon>
+                    </span>
                     <span class="title">FixMe</span>
                 </a>
             </li>
+
 
             <li>
                 <a href="/technician-dashboard">

@@ -5,40 +5,38 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\models\Post;
-use app\models\Media;
+use app\core\Request;
 
 class PostController extends Controller
 {
-    public function create()
+    public function create(Request $request)
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $post = new Post();
-            $post->description = $_POST['description'];
-            $post->tech_id = Application::$app->technician->tech_id; // assuming the technician is logged in
+        $post = new Post();
 
-            if ($post->save()) {
-                // Handle media file upload
-                if (!empty($_FILES['media']['name'])) {
-                    $media = new Media();
-                    $media->post_id = $post->post_id;
-                    $media->media_type = $_FILES['media']['type'];
+        // Fetch logged-in technician's ID from session
+        $techID = Application::$app->session->get('technician');
+        if ($techID) {
+            $post->tech_id = $techID;
+        } else {
+            // Set flash message and redirect if not logged in
+            Application::$app->session->setFlash('error', 'You must be logged in to create a post.');
+            Application::$app->response->redirect('/technician-login');
+            return;
+        }
 
-                    // Save the file to a directory
-                    $targetDir = __DIR__ . '/../public/uploads/';
-                    $fileName = time() . '_' . basename($_FILES['media']['name']);
-                    $filePath = $targetDir . $fileName;
+        if ($request->isPost()) {
+            $post->loadData($request->getBody());
 
-                    if (move_uploaded_file($_FILES['media']['tmp_name'], $filePath)) {
-                        $media->media_url = '/uploads/' . $fileName;
-                        $media->save();
-                    }
-                }
-
-                Application::$app->session->setFlash('success', 'Post created successfully.');
-                Application::$app->response->redirect('/');
+            if ($post->validate() && $post->save()) {
+                Application::$app->session->setFlash('success', 'Post uploaded successfully!');
+                Application::$app->response->redirect('/technician-community');
+                return;
             }
         }
 
-        return $this->render('create-post');
+        return $this->render('/technician/technician-create-post', [
+            'model' => $post
+        ]);
     }
 }
+

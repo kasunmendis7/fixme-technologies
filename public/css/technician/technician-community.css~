@@ -72,7 +72,7 @@ body {
 
 .navigation ul li:nth-child(1) {
     margin-bottom: 40px;
-    pointer-events: none;
+
 }
 
 .navigation ul li a {
@@ -495,7 +495,7 @@ body {
     margin-right: auto;
     border-radius: 5px;
     -webkit-box-shadow: 0 0 5px 1px lightgrey;
-    margin-top: 15px;
+    margin-top: 70px;
 }
 
 
@@ -676,7 +676,6 @@ textarea {
 .add-to-post-icons {
     display: flex;
     gap: 1rem;
-    justify-content: space-between;
 }
 
 .add-to-post-icons div {
