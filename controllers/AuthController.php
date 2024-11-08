@@ -5,7 +5,9 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
+use app\core\Response;
 use app\models\Customer;
+use app\models\CustomerLoginForm;
 use app\models\Technician;
 use app\models\ServiceCenterRegisterModel;
 
@@ -33,13 +35,20 @@ class AuthController extends Controller
         ]);
     }
     // customer login method
-    public function customerLogin(Request $request)
+    public function customerLogin(Request $request, Response $response)
     {
+        $loginForm = new CustomerLoginForm();
         if ($request->isPost()) {
-            return 'Handle submitted data';
+            $loginForm->loadData($request->getBody());
+            if ($loginForm->validate() && $loginForm->login()) {
+                $response->redirect('/technician-dashboard'); // later will change this to customer dashboard
+                return;
+            }
         }
         $this->setLayout('auth');
-        return $this->render('/customer/customer-login');
+        return $this->render('/customer/customer-login', [
+            'model' => $loginForm
+        ]);
     }
     // technician sign up method
     public function technicianSignUp(Request $request)
