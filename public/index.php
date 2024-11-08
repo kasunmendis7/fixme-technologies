@@ -15,6 +15,7 @@ $dotenv->load();
 
 // database configuration
 $config = [
+    'serviceCenterClass' => \app\models\ServiceCenterRegisterModel::class,
     'db' => [
         'dsn' => $_ENV['DB_DSN'],
         'user' => $_ENV['DB_USER'],
@@ -48,6 +49,8 @@ $app->router->get('/service-centre-sign-up', [AuthController::class, 'serviceCen
 $app->router->post('/service-centre-sign-up', [AuthController::class, 'serviceCentreSignup']);
 $app->router->get('/service-centre-login', [AuthController::class, 'serviceCentreLogin']);
 $app->router->post('/service-centre-login', [AuthController::class, 'serviceCentreLogin']);
+$app->router->get('/service-center-logout', [AuthController::class, 'serviceCenterLogout']);
+
 
 $app->run();
 
