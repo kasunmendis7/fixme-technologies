@@ -24,4 +24,10 @@ class CustomerController extends Controller
         $this->setLayout('auth');
         return $this->render('/customer/customer-help');
     }
+
+    public function customerProfile()
+    {
+        $this->setLayout('auth');
+        return $this->render('/customer/customer-profile');
+    }
 }
