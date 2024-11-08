@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="not-robot">
-                        <input type="checkbox" name="not-robot" id="not-robot" required>
+                        <input type="checkbox" name="not-robot" id="not-robot" >
                         <label for="not-robot">I'm not a robot</label>
                     </div>
                     <div>

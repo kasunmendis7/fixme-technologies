@@ -9,13 +9,14 @@ use app\controllers\CustomerController;
 use app\controllers\TechnicianController;
 use app\controllers\ServiceCentreController;
 
-/* load environment variables */
 
+/* load environment variables */
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
 /* database configuration */
 $config = [
+    'technicianClass' => \app\models\Technician::class,
     'customerClass' => \app\models\Customer::class,
     'db' => [
         'dsn' => $_ENV['DB_DSN'],
@@ -60,12 +61,15 @@ $app->router->get('/technician-sign-up', [AuthController::class, 'technicianSign
 $app->router->post('/technician-sign-up', [AuthController::class, 'technicianSignUp']);
 $app->router->get('/technician-login', [AuthController::class, 'technicianLogin']);
 $app->router->post('/technician-login', [AuthController::class, 'technicianLogin']);
+$app->router->get('/technician-login', [AuthController::class, 'technicianLogin']);
+
 
 /* Service Centre Auth routes */
 $app->router->get('/service-centre-sign-up', [AuthController::class, 'serviceCentreSignup']);
 $app->router->post('/service-centre-sign-up', [AuthController::class, 'serviceCentreSignup']);
 $app->router->get('/service-centre-login', [AuthController::class, 'serviceCentreLogin']);
 $app->router->post('/service-centre-login', [AuthController::class, 'serviceCentreLogin']);
+$app->router->get('/technician-logout', [AuthController::class, 'technicianLogOut']);
 
 /* Run the application */
 $app->run();

@@ -1,5 +1,6 @@
 <?php
 use app\core\Application;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,10 +39,16 @@ use app\core\Application;
                 <li><a href="#" class="nav-link px-2">About</a></li>
             </ul>
 
+            <?php if (Application::isGuestTechnician()): ?>
             <div class="col-md-3 text-center">
                 <button type="button" class="btn btn-outline-primary me-2"><a class="text-decoration-none" href="/customer-login">Login</a></button>
                 <button type="button" class="btn btn-primary"><a class="text-decoration-none" href="/customer-sign-up">Sign Up</a></button>
             </div>
+            <?php else:?>
+            <div class="col-md-3 text-center">
+                
+            </div>
+            <?php endif;?>
         </header>
     </nav>
     <div class="wrapper">
