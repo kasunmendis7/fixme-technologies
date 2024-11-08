@@ -42,7 +42,6 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::getAllPosts();  // Fetch all posts from the database
-        $this->setLayout('auth');
         return $this->render('/technician/technician-community', [
             'posts' => $posts
         ]);

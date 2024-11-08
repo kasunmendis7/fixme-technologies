@@ -148,7 +148,7 @@
 
                 <table>
                     <tr>
-                        <td width="60px">
+                        <td >
                             <div class="imgBx"><img src="assets/technician-dashboard/customer02.jpg" alt=""></div>
                         </td>
                         <td>
@@ -157,7 +157,7 @@
                     </tr>
 
                     <tr>
-                        <td width="60px">
+                        <td >
                             <div class="imgBx"><img src="assets/technician-dashboard/customer04.jpg" alt=""></div>
                         </td>
                         <td>
@@ -166,7 +166,7 @@
                     </tr>
 
                     <tr>
-                        <td width="60px">
+                        <td>
                             <div class="imgBx"><img src="assets/technician-dashboard/customer01.jpg" alt=""></div>
                         </td>
                         <td>
@@ -175,7 +175,7 @@
                     </tr>
 
                     <tr>
-                        <td width="60px">
+                        <td >
                             <div class="imgBx"><img src="assets/technician-dashboard/customer03.jpg" alt=""></div>
                         </td>
                         <td>
@@ -184,7 +184,7 @@
                     </tr>
 
                     <tr>
-                        <td width="60px">
+                        <td >
                             <div class="imgBx"><img src="assets/technician-dashboard/customer02.jpg" alt=""></div>
                         </td>
                         <td>
@@ -193,7 +193,7 @@
                     </tr>
 
                     <tr>
-                        <td width="60px">
+                        <td >
                             <div class="imgBx"><img src="assets/technician-dashboard/customer01.jpg" alt=""></div>
                         </td>
                         <td>
@@ -202,7 +202,7 @@
                     </tr>
 
                     <tr>
-                        <td width="60px">
+                        <td >
                             <div class="imgBx"><img src="assets/technician-dashboard/customer01.jpg" alt=""></div>
                         </td>
                         <td>
@@ -211,7 +211,7 @@
                     </tr>
 
                     <tr>
-                        <td width="60px">
+                        <td >
                             <div class="imgBx"><img src="assets/technician-dashboard/customer02.jpg" alt=""></div>
                         </td>
                         <td>
@@ -221,8 +221,8 @@
                 </table>
             </div>
         </div>
-    </div>
-    </div>
+
+
     <!--    Icons-->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

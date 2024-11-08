@@ -14,4 +14,15 @@ class SiteController extends Controller
         ];
         return $this->render('home', $params);
     }
+    public function selectUserLogin()
+    {
+        $this->setLayout('auth');
+        return $this->render('/select-user-login');
+    }
+
+    public function selectUserSignUp()
+    {
+        $this->setLayout('auth');
+        return $this->render('/select-user-sign-up');
+    }
 }

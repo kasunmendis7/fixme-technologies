@@ -27,12 +27,14 @@ $config = [
 $app = new Application(dirname(__DIR__), $config);
 
 $app->router->get('/', [SiteController::class, 'home']);
+$app->router->get('/select-user-login', [SiteController::class, 'selectUserLogin']);
+$app->router->get('/select-user-sign-up', [SiteController::class, 'selectUserSignUp']);
 $app->router->get('/technician-landing', [TechnicianController::class, 'technicianLanding']);
 $app->router->get('/service-centre-landing', [ServiceCentreController::class, 'serviceCentreLanding']);
 $app->router->get('/service-centre-dashboard', [ServiceCentreController::class, 'serviceCentreDashboard']);
 $app->router->get('/technician-home', [TechnicianController::class, 'technicianHome']);
 $app->router->get('/technician-dashboard', [TechnicianController::class, 'technicianDashboard']);
-$app->router->get('/technician-community', [TechnicianController::class, 'technicianCommunity']);
+//$app->router->get('/technician-community', [TechnicianController::class, 'technicianCommunity']);
 $app->router->get('/technician-map', [TechnicianController::class, 'technicianMap']);
 $app->router->get('/technician-messages', [TechnicianController::class, 'technicianMessages']);
 $app->router->get('/technician-settings', [TechnicianController::class, 'technicianSettings']);
@@ -56,6 +58,7 @@ $app->router->get('/logout', [AuthController::class, 'logout']);
 
 // routes handled by PostController
 $app->router->post('/technician-create-post', [PostController::class, 'create']);
+$app->router->get('/technician-community', [PostController::class, 'index']);
 
 
 
