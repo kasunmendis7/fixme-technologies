@@ -17,7 +17,7 @@
         <div class="contact-us-left">
             <h2 class="contact-us-heading">Contact Us</h2>
             <p class="contact-us-text">We are here for you! How can we help you?</p>
-            <form action="#">
+            <form action="">
                 <div class="contact-us-input-box">
                     <input type="text" name="contact-us-name" class="contact-us-name" placeholder="Enter your name">
                 </div>
