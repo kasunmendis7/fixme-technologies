@@ -1,3 +1,7 @@
+<?php
+
+/** @var $model \app\models\Customer */
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,11 +35,17 @@
                 <form action="" method="post" class="cust-signup-form">
                     <div class="input-element">
                         <label for="email">Email address</label>
-                        <input type="email" name="email" id="email">
+                        <input type="email" name="email" id="email" value="<?php echo $model->email ?>" class="<?php echo $model->hasError('email') ? 'invalid ' : '' ?>">
+                        <div class="invalid-feedback">
+                            <?php echo $model->getFirstError('email') ?>
+                        </div>
                     </div>
                     <div class="input-element">
                         <label for="password">Password</label>
-                        <input type="password" name="password" id="password">
+                        <input type="password" name="password" id="password" value="<?php echo $model->password ?>" class="<?php echo $model->hasError('password') ? 'invalid ' : '' ?>">
+                        <div class="invalid-feedback">
+                            <?php echo $model->getFirstError('password') ?>
+                        </div>
                     </div>
                     <div class="not-robot">
                         <input type="checkbox" name="not-robot" id="not-robot" >

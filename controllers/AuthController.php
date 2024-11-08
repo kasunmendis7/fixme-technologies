@@ -6,43 +6,61 @@ use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
-use app\models\CustomerRegisterModel;
+use app\models\Customer;
+use app\models\CustomerLoginForm;
 use app\models\Technician;
 use app\models\ServiceCenterRegisterModel;
 use app\models\TechnicianLogin;
 
 class AuthController extends Controller
 {
-    // customer sign up method
+    /* customer sign up method */
     public function customerSignUp(Request $request)
     {
-        $registerModel = new CustomerRegisterModel();
+        $customer = new Customer();
         if ($request->isPost()) {
 
-            $registerModel->loadData($request->getBody());
-            if ($registerModel->validate() && $registerModel->register()) {
-                return 'Success';
+            $customer->loadData($request->getBody());
+            if ($customer->validate() && $customer->save()) {
+                Application::$app->session->setFlash('success', 'You have been registered successfully!');
+                Application::$app->response->redirect('/');
             }
             $this->setLayout('auth');
             return $this->render('/customer/customer-sign-up', [
-                'model' => $registerModel
+                'model' => $customer
             ]);
         }
         $this->setLayout('auth');
         return $this->render('/customer/customer-sign-up', [
-            'model' => $registerModel
+            'model' => $customer
         ]);
     }
-    // customer login method
-    public function customerLogin(Request $request)
+
+    /* customer login method */
+    public function customerLogin(Request $request, Response $response)
     {
+        $loginForm = new CustomerLoginForm();
         if ($request->isPost()) {
-            return 'Handle submitted data';
+            $loginForm->loadData($request->getBody());
+            if ($loginForm->validate() && $loginForm->login()) {
+                $response->redirect('/customer-dashboard'); // later will change this to customer dashboard
+                return;
+            }
         }
         $this->setLayout('auth');
-        return $this->render('/customer/customer-login');
+        return $this->render('/customer/customer-login', [
+            'model' => $loginForm
+        ]);
     }
-    // technician sign up method
+
+    /* customer logout method */
+    public function customerLogout(Request $request, Response $response)
+    {
+        Application::$app->logoutCustomer();
+        $response->redirect('/');
+    }
+
+    /* technician sign up method */
     public function technicianSignUp(Request $request)
     {
         $technician = new Technician();
@@ -63,6 +81,7 @@ class AuthController extends Controller
             'model' => $technician
         ]);
     }
+
     // technician login method
     public function technicianLogin(Request $request, Response $response)
     {
@@ -84,14 +103,18 @@ class AuthController extends Controller
         $response->redirect('/');
     }
 
-    // service centre sign up method
+
+    /* service centre sign up method */
+
     public function serviceCentreSignup(Request $request)
     {
         $registerModel = new ServiceCenterRegisterModel();
         if ($request->isPost()) {
             $registerModel->loadData($request->getBody());
+
             if ($registerModel->validate() && $registerModel->save()) {
-                return 'Success';
+                Application::$app->session->setFlash('success', 'You have been registered successfully!');
+                Application::$app->response->redirect('/');
             }
             $this->setLayout('auth');
             return $this->render('/service-centre/service-centre-sign-up', [
@@ -103,7 +126,8 @@ class AuthController extends Controller
             'model' => $registerModel
         ]);
     }
-    // service centre login method
+
+    /* service centre login method */
     public function serviceCentreLogin(Request $request)
     {
         if ($request->isPost()) {

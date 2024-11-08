@@ -2,7 +2,7 @@
 
 namespace app\core;
 
-class Router
+class  Router
 {
     protected array $routes = [];
     public Request $request;
