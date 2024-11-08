@@ -6,9 +6,10 @@ use app\core\Controller;
 
 class CustomerController extends Controller
 {
-    public function customerSignUp()
+
+    public function customerDashboard()
     {
         $this->setLayout('auth');
-        return $this->render('customer-sign-up');
+        return $this->render('/customer/customer-dashboard');
     }
 }
