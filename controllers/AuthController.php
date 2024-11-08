@@ -13,7 +13,7 @@ use app\models\ServiceCenterRegisterModel;
 
 class AuthController extends Controller
 {
-    // customer sign up method
+    /* customer sign up method */
     public function customerSignUp(Request $request)
     {
         $customer = new Customer();
@@ -34,14 +34,15 @@ class AuthController extends Controller
             'model' => $customer
         ]);
     }
-    // customer login method
+
+    /* customer login method */
     public function customerLogin(Request $request, Response $response)
     {
         $loginForm = new CustomerLoginForm();
         if ($request->isPost()) {
             $loginForm->loadData($request->getBody());
             if ($loginForm->validate() && $loginForm->login()) {
-                $response->redirect('/technician-dashboard'); // later will change this to customer dashboard
+                $response->redirect('/customer-dashboard'); // later will change this to customer dashboard
                 return;
             }
         }
@@ -50,7 +51,15 @@ class AuthController extends Controller
             'model' => $loginForm
         ]);
     }
-    // technician sign up method
+
+    /* customer logout method */
+    public function customerLogout(Request $request, Response $response)
+    {
+        Application::$app->logoutCustomer();
+        $response->redirect('/');
+    }
+
+    /* technician sign up method */
     public function technicianSignUp(Request $request)
     {
         $technician = new Technician();
@@ -71,19 +80,21 @@ class AuthController extends Controller
             'model' => $technician
         ]);
     }
-    // technician login method
+
+    /* technician login method */
     public function technicianLogin(Request $request)
     {
         $this->setLayout('auth');
         return $this->render('/technician/technician-login');
     }
-    // service centre sign up method
+
+    /* service centre sign up method */
     public function serviceCentreSignup(Request $request)
     {
         $registerModel = new ServiceCenterRegisterModel();
         if ($request->isPost()) {
             $registerModel->loadData($request->getBody());
-          
+
             if ($registerModel->validate() && $registerModel->save()) {
                 Application::$app->session->setFlash('success', 'You have been registered successfully!');
                 Application::$app->response->redirect('/');
@@ -98,7 +109,8 @@ class AuthController extends Controller
             'model' => $registerModel
         ]);
     }
-    // service centre login method
+
+    /* service centre login method */
     public function serviceCentreLogin(Request $request)
     {
         if ($request->isPost()) {
