@@ -44,6 +44,8 @@ $app->router->get('/service-centre-dashboard', [ServiceCentreController::class, 
 
 /* Customer Routes */
 $app->router->get('/customer-dashboard', [CustomerController::class, 'customerDashboard']);
+$app->router->get('/customer-settings', [CustomerController::class, 'customerSettings']);
+$app->router->get('/customer-help', [CustomerController::class, 'customerHelp']);
 
 
 /* Auth routes handled by AuthController */
