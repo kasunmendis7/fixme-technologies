@@ -1,6 +1,5 @@
 <?php
 use app\core\Application;
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +45,7 @@ use app\core\Application;
             </div>
             <?php else:?>
             <div class="col-md-3 text-center">
-                
+
             </div>
             <?php endif;?>
         </header>
