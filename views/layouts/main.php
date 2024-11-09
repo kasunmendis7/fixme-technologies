@@ -41,8 +41,8 @@ use app\core\Application;
 
             <?php if (Application::isGuestTechnician()): ?>
             <div class="col-md-3 text-center">
-                <button type="button" class="btn btn-outline-primary me-2"><a class="text-decoration-none" href="/customer-login">Login</a></button>
-                <button type="button" class="btn btn-primary"><a class="text-decoration-none" href="/customer-sign-up">Sign Up</a></button>
+                <button type="button" class="btn btn-outline-primary me-2"><a class="text-decoration-none" href="/select-user-login">Login</a></button>
+                <button type="button" class="btn btn-primary"><a class="text-decoration-none" href="/select-user-sign-up">Sign Up</a></button>
             </div>
             <?php else:?>
             <div class="col-md-3 text-center">

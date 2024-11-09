@@ -21,10 +21,16 @@ class ServiceCenterRegisterModel extends DbModel
 //        return 'Creating new Service Center';
 //    }
 
-    public function tableName(): string
+    public static function tableName(): string
     {
         return 'service_center';
     }
+
+    public static function primaryKey(): string
+    {
+        return 'ser_cen_id';
+    }
+
 
     public function save()
     {
