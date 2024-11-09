@@ -9,6 +9,12 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="/css/technician/technician-home.css">
+    <link rel="stylesheet" href="/css/base/_global.css">
+    <style>
+        body{
+            font-family: 'Inter', Arial, sans-serif;
+        }
+    </style>
 </head>
 <body>
 <?php

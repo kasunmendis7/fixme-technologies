@@ -1,5 +1,8 @@
+
 <?php
-// Add any necessary PHP logic here
+
+/** @var $model \app\models\ServiceCenterRegisterModel  */
+
 ?>
 
 <!DOCTYPE html>
