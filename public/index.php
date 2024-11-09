@@ -30,6 +30,8 @@ $app = new Application(dirname(__DIR__), $config);
 
 /** Home Route */
 $app->router->get('/', [SiteController::class, 'home']);
+$app->router->get('/select-user-login', [SiteController::class, 'selectUserLogin']);
+$app->router->get('/select-user-sign-up', [SiteController::class, 'selectUserSignUp']);
 
 /** Technician Routes */
 $app->router->get('/technician-landing', [TechnicianController::class, 'technicianLanding']);
