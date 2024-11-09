@@ -1,3 +1,8 @@
+<?php
+
+use app\core\Application;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,7 +60,7 @@
         <div class="card">
             <div>
                 <div class="numbers">Rs. 7,842</div>
-                <div class="cardName">Earning</div>
+                <div class="cardName">Payments</div>
             </div>
 
             <div class="iconBx">
@@ -66,9 +71,9 @@
 
     <!-- ================ Order Details List ================= -->
     <div class="details">
-        <div class="recentOrders">
+        <div class="recentRequests">
             <div class="cardHeader">
-                <h2>Recent Orders</h2>
+                <h2>Recent Requests</h2>
                 <a href="#" class="btn">View All</a>
             </div>
 
@@ -142,9 +147,9 @@
         </div>
 
         <!-- ================= New Customers ================ -->
-        <div class="recentCustomers">
+        <div class="recentTechnicians">
             <div class="cardHeader">
-                <h2>Recent Customers</h2>
+                <h2>Recent Technicians</h2>
             </div>
 
             <table>
