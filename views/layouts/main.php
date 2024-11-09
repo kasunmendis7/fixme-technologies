@@ -14,6 +14,8 @@ use app\core\Application;
     <link rel="stylesheet" href="/css/home/home.css">
     <script src="/js/home/main.js"></script>
     <script src="/js/technician/main.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <title>Fixme Home</title>
 </head>
 

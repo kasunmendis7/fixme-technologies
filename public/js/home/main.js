@@ -15,3 +15,9 @@ function toggleVisibility() {
 function redirectCustomerSignUp() {
     window.location.href = '/customer-sign-up';
 }
+
+function redirectServiceCentreLanding() {
+    window.location.href = '/service-centre-landing';
+}
+
+
