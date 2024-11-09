@@ -7,6 +7,7 @@ class Application
 
     public static string $ROOT_DIR;
     public string $technicianClass;
+    public string $serviceCenterClass;
     public static Application $app;
     public string $customerClass;
     public Router $router;
@@ -18,10 +19,12 @@ class Application
 
     public Controller $controller;
     public ?DbModel $customer;
+    public ?DbModel $serviceCenter;
 
     public function __construct($rootPath, array $config)
     {
         $this->technicianClass = $config['technicianClass'];
+        $this->serviceCenterClass = $config['serviceCenterClass'];
         self::$ROOT_DIR = $rootPath;
         self::$app = $this;
         $this->customerClass = $config['customerClass'];
@@ -70,6 +73,18 @@ class Application
     public static function isGuestCustomer()
     {
         return !self::$app->customer;
+
+        $primaryValueServiceCenter = $this->session->get('service_center');
+        if ($primaryValueServiceCenter) {
+            $serviceCenterInstance = new $this->serviceCenterClass;
+            $primaryKey = $serviceCenterInstance->primaryKey();
+            $this->serviceCenter = $serviceCenterInstance->findOne([$primaryKey => $primaryValueServiceCenter]);
+        }
+        else {
+            $this->serviceCenter = null;
+        }
+
+
     }
 
     public function run()
@@ -81,7 +96,7 @@ class Application
     {
         return !self::$app->technician;
     }
-  
+
     public function loginTechnician(DbModel $technician)
     {
         $this->technician = $technician;
@@ -96,5 +111,25 @@ class Application
     {
         $this->technician = null;
         $this->session->remove('technician');
+    }
+
+    public static function isGuestServiceCenter()
+    {
+        return !self::$app->serviceCenter;
+    }
+
+    public function loginServiceCenter(DbModel $serviceCenter)
+    {
+        $this->serviceCenter = $serviceCenter;
+        $primaryKey = $serviceCenter->primaryKey();
+        $primaryValue = $serviceCenter->{$primaryKey};
+        $this->session->set('service_center', $primaryValue);
+        return true;
+    }
+
+    public function logoutServiceCenter()
+    {
+        $this->user = null;
+        $this->session->remove('service_center');
     }
 }
