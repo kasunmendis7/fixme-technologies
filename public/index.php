@@ -61,7 +61,7 @@ $app->router->get('/technician-edit-post', [TechnicianController::class, 'techni
 $app->router->post('/technician-create-post', [PostController::class, 'create']);
 $app->router->post('/technician-edit-post', [PostController::class, 'edit']);
 $app->router->get('/technician-community', [PostController::class, 'index']);
-
+$app->router->post('/technician-delete-post', [PostController::class, 'delete']);
 
 
 $app->run();

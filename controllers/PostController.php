@@ -94,6 +94,40 @@ class PostController extends Controller
     }
 
     /* Delete method of a post */
+    public function delete(Request $request)
+    {
+        // Fetch the post ID from the request
+        $postID = $request->getBody()['post_id'] ?? null;
+        $techID = Application::$app->session->get('technician');
+
+        if (!$postID || !$techID) {
+            Application::$app->session->setFlash('error', 'Invalid request.');
+            Application::$app->response->redirect('/technician-community');
+            return;
+        }
+
+        $post = Post::findOne(['post_id' => $postID]);
+
+        if (!$post) {
+            Application::$app->session->setFlash('error', 'Post not found.');
+            Application::$app->response->redirect('/technician-community');
+            return;
+        }
+
+        if ($post->tech_id !== $techID) {
+            Application::$app->session->setFlash('error', 'Unauthorized access.');
+            Application::$app->response->redirect('/technician-community');
+            return;
+        }
+
+        if (Post::deletePost($postID, $techID)) {
+            Application::$app->session->setFlash('success', 'Post deleted successfully!');
+        } else {
+            Application::$app->session->setFlash('error', 'Failed to delete the post.');
+        }
+
+        Application::$app->response->redirect('/technician-community');
+    }
 
 
 }

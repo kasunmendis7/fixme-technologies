@@ -37,13 +37,18 @@ include_once 'components/header.php';
                     <span class="username"><?php echo htmlspecialchars($post['fname'] ); ?></span>
                 </div>
 
-
+                <div class="settings-icon">
+                    <ion-icon name="settings-outline"></ion-icon>
+                </div>
                 <?php if (Application::$app->technician->tech_id == $post['tech_id']): ?>
                 <div class="options">
                     <a href="/technician-edit-post?post_id=<?php echo $post['post_id']; ?>">
                         <button class="post-edit-btn">Edit</button>
                     </a>
-                    // Add the delete button here along with the class="post-delete-btn"
+                    <form action="/technician-delete-post" method="POST" >
+                        <input type="hidden" name="post_id" value="<?php echo $post['post_id']; ?>">
+                        <button type="submit" class="post-delete-btn">Delete</button>
+                    </form>
 
                 </div>
                 <?php endif; ?>

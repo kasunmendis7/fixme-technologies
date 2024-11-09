@@ -63,6 +63,19 @@ class Post extends DbModel
         return $statement->execute();
     }
 
+    public static function deletePost(int $post_id, int $tech_id): bool
+    {
+        $tableName = self::tableName();
+        $statement = self::prepare("
+        DELETE FROM $tableName 
+        WHERE post_id = :post_id AND tech_id = :tech_id
+    ");
+        $statement->bindValue(':post_id', $post_id);
+        $statement->bindValue(':tech_id', $tech_id);
+        return $statement->execute();
+    }
+
+
 
     public function rules(): array
     {
