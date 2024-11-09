@@ -37,7 +37,7 @@ class Post extends DbModel
     public static function getAllPosts(): array
     {
         $tableName = self::tableName();
-        $statement = self::prepare("SELECT * FROM $tableName ORDER BY created_at DESC");
+//        $statement = self::prepare("SELECT * FROM $tableName ORDER BY created_at DESC");
         $statement = self::prepare("
             SELECT p.*, t.fname, t.lname
             FROM $tableName p
@@ -48,12 +48,31 @@ class Post extends DbModel
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function editPost(): bool
+    {
+        $tableName = self::tableName();
+        $statement = self::prepare("
+            UPDATE $tableName 
+            SET description = :description, media = :media, updated_at = NOW() 
+            WHERE post_id = :post_id AND tech_id = :tech_id
+        ");
+        $statement->bindValue(':description', $this->description);
+        $statement->bindValue(':media', $this->media);
+        $statement->bindValue(':post_id', $this->post_id);
+        $statement->bindValue(':tech_id', $this->tech_id);
+        return $statement->execute();
+    }
+
+
     public function rules(): array
     {
         return [
             'tech_id' => [self::RULE_REQUIRED],
-            'description' => [self::RULE_REQUIRED, [self::RULE_MAX, 'max' => 1000]]
+            'description' => [self::RULE_REQUIRED, [self::RULE_MAX, 'max' => 1000]],
+            'media' => [[self::RULE_MAX, 'max' => 255]],
         ];
     }
+
+
 }
 

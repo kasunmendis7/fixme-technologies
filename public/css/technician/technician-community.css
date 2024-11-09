@@ -804,7 +804,13 @@ textarea {
     font-weight: bold;
     cursor: pointer;
 }
-
+.options{
+    display: flex;
+    gap: 10px;
+    font-size: 18px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
 .options span {
     font-size: 24px;
     padding: 4px;
@@ -944,3 +950,40 @@ textarea {
     background-color: #d4edda;
     border-color: #c3e6cb;
 }
+
+.post-edit-btn{
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    background-color: #010336;
+    color: #fff;
+    margin: 10px 0 10px 0;
+}
+
+.post-edit-btn:hover{
+    background-color: #0b5ed7;
+    color: #fff;
+
+}
+
+.post-delete-btn{
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    background-color: #fd2a2a;
+    color: #fff;
+    margin: 10px 0 10px 0;
+}
+
+.post-delete-btn:hover{
+    background-color: rgba(253, 64, 64, 0.89);
+    color: #fff;
+
+}
+

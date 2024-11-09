@@ -33,12 +33,21 @@ include_once 'components/header.php';
                     <div class="profile-img">
                         <img src="/assets/technician-dashboard/customer02.jpg" alt="">
                     </div>
-<!--                    <span class="username">--><?php //echo htmlspecialchars($post['fname'] . ' ' . $post['lname']); ?><!--</span>-->
+<!--                    //echo htmlspecialchars($post['fname'] . ' ' . $post['lname']); ?-->
                     <span class="username"><?php echo htmlspecialchars($post['fname'] ); ?></span>
                 </div>
+
+
+                <?php if (Application::$app->technician->tech_id == $post['tech_id']): ?>
                 <div class="options">
-                    <span><ion-icon name="settings-outline"></ion-icon></span>
+                    <a href="/technician-edit-post?post_id=<?php echo $post['post_id']; ?>">
+                        <button class="post-edit-btn">Edit</button>
+                    </a>
+                    // Add the delete button here along with the class="post-delete-btn"
+
                 </div>
+                <?php endif; ?>
+
             </div>
 
             <div class="post-img">
@@ -52,7 +61,7 @@ include_once 'components/header.php';
                 <div class="post-info">
                     <div class="post-likes">500 likes</div>
                     <div class="post-title">
-<!--                        <span class="username">--><?php //echo htmlspecialchars($post['fname'] . ' ' . $post['lname']); ?><!--</span>-->
+<!--                        //echo htmlspecialchars($post['fname'] . ' ' . $post['lname']); ?-->
                         <span class="username"><?php echo htmlspecialchars($post['fname']); ?></span>
                         <span class="description"><?php echo htmlspecialchars($post['description']); ?></span>
                         <br>
