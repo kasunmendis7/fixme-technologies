@@ -18,6 +18,7 @@ $dotenv->load();
 $config = [
     'technicianClass' => \app\models\Technician::class,
     'customerClass' => \app\models\Customer::class,
+    'serviceCenterClass' => \app\models\ServiceCenterRegisterModel::class,
     'db' => [
         'dsn' => $_ENV['DB_DSN'],
         'user' => $_ENV['DB_USER'],
@@ -47,6 +48,9 @@ $app->router->get('/service-centre-dashboard', [ServiceCentreController::class, 
 
 /* Customer Routes */
 $app->router->get('/customer-dashboard', [CustomerController::class, 'customerDashboard']);
+$app->router->get('/customer-settings', [CustomerController::class, 'customerSettings']);
+$app->router->get('/customer-help', [CustomerController::class, 'customerHelp']);
+$app->router->get('/customer-profile', [CustomerController::class, 'customerProfile']);
 
 
 /* Auth routes handled by AuthController */
@@ -72,6 +76,8 @@ $app->router->post('/service-centre-sign-up', [AuthController::class, 'serviceCe
 $app->router->get('/service-centre-login', [AuthController::class, 'serviceCentreLogin']);
 $app->router->post('/service-centre-login', [AuthController::class, 'serviceCentreLogin']);
 $app->router->get('/technician-logout', [AuthController::class, 'technicianLogOut']);
+$app->router->get('/service-center-logout', [AuthController::class, 'serviceCenterLogout']);
+
 
 /* Run the application */
 $app->run();
