@@ -14,6 +14,8 @@ use app\core\Application;
     <link rel="stylesheet" href="/css/home/home.css">
     <script src="/js/home/main.js"></script>
     <script src="/js/technician/main.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <title>Fixme Home</title>
 </head>
 
@@ -40,8 +42,8 @@ use app\core\Application;
 
             <?php if (Application::isGuestTechnician()): ?>
             <div class="col-md-3 text-center">
-                <button type="button" class="btn btn-outline-primary me-2"><a class="text-decoration-none" href="/customer-login">Login</a></button>
-                <button type="button" class="btn btn-primary"><a class="text-decoration-none" href="/customer-sign-up">Sign Up</a></button>
+                <button type="button" class="btn btn-outline-primary me-2"><a class="text-decoration-none" href="/select-user-login">Login</a></button>
+                <button type="button" class="btn btn-primary"><a class="text-decoration-none" href="/select-user-sign-up">Sign Up</a></button>
             </div>
             <?php else:?>
             <div class="col-md-3 text-center">
