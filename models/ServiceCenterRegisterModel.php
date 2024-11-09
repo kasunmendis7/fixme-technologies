@@ -26,6 +26,13 @@ class ServiceCenterRegisterModel extends DbModel
         return 'service_center';
     }
 
+    public  function primaryKey(): string
+    {
+        return 'ser_cen_id';
+    }
+
+
+
     public function save()
     {
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);

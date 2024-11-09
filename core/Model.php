@@ -83,6 +83,11 @@ abstract class Model
         $this->errors[$attribute][] = $message;
     }
 
+    public function addError(string $attribute, string $message)
+    {
+        $this->errors[$attribute][] = $message;
+    }
+
     public function errorMessages()
     {
         return [
