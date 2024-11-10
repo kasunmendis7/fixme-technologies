@@ -26,7 +26,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile-img">
-                        <img src="/assets/technician-dashboard/customer04.jpg" alt="" />
+                        <img src="<?php echo Application::$app->customer->{'profile_picture'} ?>" alt="user profile picture" />
                         <button class="file btn btn-lg btn-primary">
                             Change Photo
                             <input type="file" name="file" />
@@ -36,6 +36,7 @@
                 <div class="col-md-6">
                     <div class="profile-head">
                         <h3>
+                            <ion-icon name="finger-print-outline"></ion-icon>
                             <?php $usename = strtoupper(Application::$app->customer->{'fname'}) . ' ' . strtoupper(Application::$app->customer->{'lname'});
                             echo $usename;
                             ?>
@@ -47,6 +48,7 @@
                                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                     <div class="row">
                                         <div class="col-md-6">
+                                            <ion-icon name="person-circle-outline"></ion-icon>
                                             <label>First Name</label>
                                         </div>
                                         <div class="col-md-6">
@@ -55,6 +57,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
+                                            <ion-icon name="person-circle-outline"></ion-icon>
                                             <label>Last Name</label>
                                         </div>
                                         <div class="col-md-6">
@@ -63,6 +66,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
+                                            <ion-icon name="mail-outline"></ion-icon>
                                             <label>Email</label>
                                         </div>
                                         <div class="col-md-6">
@@ -71,6 +75,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
+                                            <ion-icon name="call-outline"></ion-icon>
                                             <label>Phone</label>
                                         </div>
                                         <div class="col-md-6">
@@ -79,6 +84,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
+                                            <ion-icon name="location-outline"></ion-icon>
                                             <label>Address</label>
                                         </div>
                                         <div class="col-md-6">

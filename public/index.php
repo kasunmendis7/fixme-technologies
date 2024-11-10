@@ -11,6 +11,7 @@ use app\controllers\ServiceCentreController;
 
 
 /* load environment variables */
+
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
@@ -51,6 +52,7 @@ $app->router->get('/customer-dashboard', [CustomerController::class, 'customerDa
 $app->router->get('/customer-settings', [CustomerController::class, 'customerSettings']);
 $app->router->get('/customer-help', [CustomerController::class, 'customerHelp']);
 $app->router->get('/customer-profile', [CustomerController::class, 'customerProfile']);
+$app->router->get('/customer-technicians', [CustomerController::class, 'customerTechnicians']);
 
 
 /* Auth routes handled by AuthController */

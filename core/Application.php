@@ -23,11 +23,11 @@ class Application
 
     public function __construct($rootPath, array $config)
     {
+        $this->customerClass = $config['customerClass'];
         $this->technicianClass = $config['technicianClass'];
         $this->serviceCenterClass = $config['serviceCenterClass'];
         self::$ROOT_DIR = $rootPath;
         self::$app = $this;
-        $this->customerClass = $config['customerClass'];
         $this->request = new Request();
         $this->response = new Response();
         $this->session = new Session();
@@ -73,18 +73,6 @@ class Application
     public static function isGuestCustomer()
     {
         return !self::$app->customer;
-
-        $primaryValueServiceCenter = $this->session->get('service_center');
-        if ($primaryValueServiceCenter) {
-            $serviceCenterInstance = new $this->serviceCenterClass;
-            $primaryKey = $serviceCenterInstance->primaryKey();
-            $this->serviceCenter = $serviceCenterInstance->findOne([$primaryKey => $primaryValueServiceCenter]);
-        }
-        else {
-            $this->serviceCenter = null;
-        }
-
-
     }
 
     public function run()
@@ -129,7 +117,7 @@ class Application
 
     public function logoutServiceCenter()
     {
-        $this->user = null;
+        $this->serviceCenter = null;
         $this->session->remove('service_center');
     }
 }

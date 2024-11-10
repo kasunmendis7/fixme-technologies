@@ -15,12 +15,12 @@ class Technician extends DbModel
     public string $password = '';
     public string $confirmPassword = '';
 
-    public static function tableName(): string
+    public function tableName(): string
     {
         return 'technician';
     }
 
-    public static function primaryKey(): string
+    public function primaryKey(): string
     {
         return 'tech_id';
     }
@@ -58,6 +58,4 @@ class Technician extends DbModel
             'password',
         ];
     }
-
-
 }

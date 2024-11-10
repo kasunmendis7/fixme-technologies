@@ -15,12 +15,12 @@ class Customer extends DbModel
     public string $password = '';
     public string $confirmPassword = '';
 
-    public static function tableName(): string
+    public function tableName(): string
     {
         return 'customer';
     }
 
-    public static function primaryKey(): string
+    public function primaryKey(): string
     {
         return 'cus_id';
     }
@@ -29,6 +29,14 @@ class Customer extends DbModel
     {
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         return parent::save();
+    }
+
+    public function getAllTechnicians()
+    {
+        $sql = "SELECT fname, lname, profile_picture FROM technician";
+        $stmt = self::prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function rules(): array
