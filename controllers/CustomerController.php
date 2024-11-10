@@ -30,4 +30,10 @@ class CustomerController extends Controller
         $this->setLayout('auth');
         return $this->render('/customer/customer-profile');
     }
+
+    public function customerTechnicians()
+    {
+        $this->setLayout('auth');
+        return $this->render('/customer/customer-technicians');
+    }
 }
