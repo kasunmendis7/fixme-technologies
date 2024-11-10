@@ -47,6 +47,11 @@ class Technician extends DbModel
         ];
     }
 
+    public function updateRules(): array
+    {
+        return [];
+    }
+
     public function attributes(): array
     {
         return [

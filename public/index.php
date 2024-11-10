@@ -53,6 +53,7 @@ $app->router->get('/customer-settings', [CustomerController::class, 'customerSet
 $app->router->get('/customer-help', [CustomerController::class, 'customerHelp']);
 $app->router->get('/customer-profile', [CustomerController::class, 'customerProfile']);
 $app->router->get('/customer-technicians', [CustomerController::class, 'customerTechnicians']);
+$app->router->post('/update-customer-profile', [CustomerController::class, 'updateCustomerProfile']);
 
 
 /* Auth routes handled by AuthController */

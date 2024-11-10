@@ -17,6 +17,12 @@ class ServiceCenterLogin extends Model
             'password' => [self::RULE_REQUIRED],
         ];
     }
+
+    public function updateRules(): array
+    {
+        return [];
+    }
+
     public function loginServiceCenter()
     {
         $service_centerModel = new ServiceCenterRegisterModel;
@@ -26,7 +32,7 @@ class ServiceCenterLogin extends Model
             return false;
         }
 
-        if (!password_verify($this->password, $service_center->password)){
+        if (!password_verify($this->password, $service_center->password)) {
             return false;
         }
 

@@ -2,7 +2,11 @@
 
 namespace app\controllers;
 
+use app\core\Application;
 use app\core\Controller;
+use app\core\Request;
+use app\core\Response;
+use app\models\Customer;
 
 class CustomerController extends Controller
 {
@@ -35,5 +39,21 @@ class CustomerController extends Controller
     {
         $this->setLayout('auth');
         return $this->render('/customer/customer-technicians');
+    }
+
+    public function updateCustomerProfile(Request $request)
+    {
+        $customer = new Customer();
+
+        if ($request->isPost()) {
+            $customer->loadData($request->getBody());
+            if ($customer->updateValidate()) {
+                $customer->updateCustomer();
+                Application::$app->session->setFlash('update-success', 'You have been Updated your account info successfully!');
+                Application::$app->response->redirect('/customer-profile');
+            } else {
+                Application::$app->response->redirect('/customer-profile');
+            }
+        }
     }
 }
