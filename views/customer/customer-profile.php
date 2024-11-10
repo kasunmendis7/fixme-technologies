@@ -22,7 +22,7 @@
     ?>
 
     <div class="cust-profile ">
-        <form method="post">
+        <form method="post" id="profileForm" action="/update-customer-profile">
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile-img">
@@ -53,6 +53,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <p><?php echo strtoupper(Application::$app->customer->{'fname'}) ?></p>
+                                            <input type="text" name="fname" id="firstNameInput" value="<?php echo Application::$app->customer->{'fname'} ?>" class="edit-input" style="display:none;">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -62,6 +63,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <p><?php echo strtoupper(Application::$app->customer->{'lname'}) ?></p>
+                                            <input type="text" name="lname" id="lastNameInput" value="<?php echo Application::$app->customer->{'lname'} ?>" class="edit-input" style="display:none;">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -80,6 +82,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <p><?php echo Application::$app->customer->{'phone_no'} ?></p>
+                                            <input type="tel" name="phone_no" id="phoneNoInput" value="<?php echo Application::$app->customer->{'phone_no'} ?>" class="edit-input" style="display:none;">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -89,6 +92,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <p><?php echo Application::$app->customer->{'address'} ?></p>
+                                            <input type="text" name="address" id="addressInput" value="<?php echo Application::$app->customer->{'address'} ?>" class="edit-input" style="display:none;">
                                         </div>
                                     </div>
                                 </div>
@@ -97,7 +101,8 @@
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <button type="submit" class="profile-edit-btn" name="btnAddMore">Edit Profile</button>
+                    <button type="button" class="profile-edit-btn" id="editProfileBtn" name="btnAddMore">Edit Profile</button>
+                    <button type="submit" class="profile-save-btn" id="saveProfileBtn" style="display:none;">Save Changes</button>
                 </div>
             </div>
 
@@ -116,6 +121,7 @@
     <!--    Icons-->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="/js/customer/customer-profile.js"></script>
     <script src="/js/customer/customer-home.js"></script>
     <script src="/js/customer/overlay.js"></script>
 </body>
