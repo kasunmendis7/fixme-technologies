@@ -130,7 +130,7 @@ use app\core\Application;
         <div class="box-5-container">
             <div class="box-5">
                 <span class="box-5-logo">
-                <ion-icon name="people-outline"></ion-icon>
+                    <ion-icon name="people-outline"></ion-icon>
                 </span>
                 <div class="detail-box-5">
                     <h5>
@@ -146,7 +146,7 @@ use app\core\Application;
         <div class="box-5-container">
             <div class="box-5">
                 <span class="box-5-logo">
-                <ion-icon name="construct-outline"></ion-icon>
+                    <ion-icon name="construct-outline"></ion-icon>
                 </span>
                 <div class="detail-box-5">
                     <h5>
@@ -162,7 +162,7 @@ use app\core\Application;
         <div class="box-5-container">
             <div class="box-5">
                 <span class="box-5-logo">
-                <ion-icon name="storefront-outline"></ion-icon>
+                    <ion-icon name="storefront-outline"></ion-icon>
                 </span>
                 <div class="detail-box-5">
                     <h5>
@@ -171,7 +171,7 @@ use app\core\Application;
                     <p>Discover our certified service centers, offering expert care and quality vehicle repairs you can
                         trust</p>
                     <p>
-                    <a href="service-centre-map">Learn More...</a>
+                        <a href="service-centre-map">Learn More...</a>
                     </p>
 
                 </div>

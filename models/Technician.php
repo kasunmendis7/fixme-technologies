@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\core\Application;
 use app\core\DbModel;
 
 class Technician extends DbModel
@@ -47,6 +48,28 @@ class Technician extends DbModel
         ];
     }
 
+    public function updateRules(): array
+    {
+        return [
+            'fname' => [self::RULE_REQUIRED],
+            'lname' => [self::RULE_REQUIRED],
+            'phone_no' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 10], [self::RULE_MAX, 'max' => 10]],
+            'address' => [self::RULE_REQUIRED],
+        ];
+    }
+
+    public function updateTechnician()
+    {
+        $sql = "UPDATE technician SET fname = :fname, lname = :lname, phone_no = :phone_no, address = :address WHERE tech_id = :tech_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':fname', $this->fname);
+        $stmt->bindValue(':lname', $this->lname);
+        $stmt->bindValue(':phone_no', $this->phone_no);
+        $stmt->bindValue(':address', $this->address);
+        $stmt->bindValue(':tech_id', Application::$app->technician->{'tech_id'});
+        return $stmt->execute();
+    }
+
     public function attributes(): array
     {
         return [
@@ -58,6 +81,4 @@ class Technician extends DbModel
             'password',
         ];
     }
-
-
 }

@@ -1,3 +1,7 @@
+<?php
+
+use app\core\Application;
+?>
 <!-- Menu and search -->
 <div class="main">
     <div class="topbar">
@@ -10,7 +14,13 @@
                 <ion-icon name="search-outline"></ion-icon>
             </label>
         </div>
+        <h6 class="user-name">
+            <?php
+            $username = strtoupper(Application::$app->technician->{'fname'}) . ' ' . strtoupper(Application::$app->technician->{'lname'});
+            echo $username;
+            ?>
+        </h6>
         <div class="user">
-            <img src="/assets/technician-dashboard/customer02.jpg" alt="">
+            <img src="<?php echo Application::$app->technician->{'profile_picture'} ?>" alt="Profile Pic">
         </div>
     </div>

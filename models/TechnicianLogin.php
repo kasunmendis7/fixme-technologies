@@ -12,18 +12,23 @@ class TechnicianLogin extends Model
     public string $email = '';
     public string $password = '';
 
-    public function rules():array{
-        return[
+    public function rules(): array
+    {
+        return [
             'email' => [self::RULE_REQUIRED],
             'password' => [self::RULE_REQUIRED],
         ];
+    }
+    public function updateRules(): array
+    {
+        return [];
     }
 
     public function loginTechnician()
     {
         $technicianModel = new Technician;
         $technician = $technicianModel->findOne(['email' => $this->email]);
-        if (!$technician){
+        if (!$technician) {
             $this->addError('email', 'Technician does not exist with this email');
             return false;
         }
@@ -35,5 +40,4 @@ class TechnicianLogin extends Model
 
         return Application::$app->loginTechnician($technician);
     }
-
 }

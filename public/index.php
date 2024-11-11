@@ -11,6 +11,7 @@ use app\controllers\ServiceCentreController;
 
 
 /* load environment variables */
+
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
@@ -41,6 +42,8 @@ $app->router->get('/technician-map', [TechnicianController::class, 'technicianMa
 $app->router->get('/technician-messages', [TechnicianController::class, 'technicianMessages']);
 $app->router->get('/technician-settings', [TechnicianController::class, 'technicianSettings']);
 $app->router->get('/technician-help', [TechnicianController::class, 'technicianHelp']);
+$app->router->get('/technician-profile', [TechnicianController::class, 'technicianProfile']);
+$app->router->post('/update-technician-profile', [TechnicianController::class, 'updateTechnicianProfile']);
 
 /** Service Center Routes */
 $app->router->get('/service-centre-landing', [ServiceCentreController::class, 'serviceCentreLanding']);
@@ -51,6 +54,8 @@ $app->router->get('/customer-dashboard', [CustomerController::class, 'customerDa
 $app->router->get('/customer-settings', [CustomerController::class, 'customerSettings']);
 $app->router->get('/customer-help', [CustomerController::class, 'customerHelp']);
 $app->router->get('/customer-profile', [CustomerController::class, 'customerProfile']);
+$app->router->get('/customer-technicians', [CustomerController::class, 'customerTechnicians']);
+$app->router->post('/update-customer-profile', [CustomerController::class, 'updateCustomerProfile']);
 
 
 /* Auth routes handled by AuthController */
@@ -67,7 +72,7 @@ $app->router->get('/technician-sign-up', [AuthController::class, 'technicianSign
 $app->router->post('/technician-sign-up', [AuthController::class, 'technicianSignUp']);
 $app->router->get('/technician-login', [AuthController::class, 'technicianLogin']);
 $app->router->post('/technician-login', [AuthController::class, 'technicianLogin']);
-$app->router->get('/technician-login', [AuthController::class, 'technicianLogin']);
+$app->router->get('/technician-logout', [AuthController::class, 'technicianLogOut']);
 
 
 /* Service Centre Auth routes */

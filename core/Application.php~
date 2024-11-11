@@ -49,7 +49,7 @@ class Application
         if ($primaryValueCustomer) {
             $customerInstance = new $this->customerClass;
             $primaryKey = $customerInstance->primaryKey();
-            $this->customer = $customerInstance->findOne([$primaryKey => $primaryValueCustomer]);
+            $this->customer = $customerInstance->findOne([$primaryKey => $primaryValueCustomer]) ?: null;
         } else {
             $this->customer = null;
         }

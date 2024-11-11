@@ -23,6 +23,6 @@ use app\core\Application;
             ?>
         </h6>
         <div class="user">
-            <img src="/assets/technician-dashboard/customer04.jpg" alt="">
+            <img src="<?php echo Application::$app->customer->{'profile_picture'} ?>" alt="Profile Pic">
         </div>
     </div>

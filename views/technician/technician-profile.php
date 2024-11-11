@@ -22,11 +22,11 @@
     ?>
 
     <div class="cust-profile ">
-        <form method="post" id="profileForm" action="/update-customer-profile">
+        <form method="post" id="profileForm" action="/update-technician-profile">
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile-img">
-                        <img src="<?php echo Application::$app->customer->{'profile_picture'} ?>" alt="user profile picture" />
+                        <img src="<?php echo Application::$app->technician->{'profile_picture'} ?>" alt="user profile picture" />
                         <button class="file btn btn-lg btn-primary">
                             Change Photo
                             <input type="file" name="file" />
@@ -37,7 +37,7 @@
                     <div class="profile-head">
                         <h3>
                             <ion-icon name="finger-print-outline"></ion-icon>
-                            <?php $usename = strtoupper(Application::$app->customer->{'fname'}) . ' ' . strtoupper(Application::$app->customer->{'lname'});
+                            <?php $usename = strtoupper(Application::$app->technician->{'fname'}) . ' ' . strtoupper(Application::$app->technician->{'lname'});
                             echo $usename;
                             ?>
                         </h3>
@@ -52,8 +52,8 @@
                                             <label>First Name</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <p><?php echo strtoupper(Application::$app->customer->{'fname'}) ?></p>
-                                            <input type="text" name="fname" id="firstNameInput" value="<?php echo Application::$app->customer->{'fname'} ?>" class="edit-input" style="display:none;">
+                                            <p><?php echo strtoupper(Application::$app->technician->{'fname'}) ?></p>
+                                            <input type="text" name="fname" id="firstNameInput" value="<?php echo Application::$app->technician->{'fname'} ?>" class="edit-input" style="display:none;">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -62,8 +62,8 @@
                                             <label>Last Name</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <p><?php echo strtoupper(Application::$app->customer->{'lname'}) ?></p>
-                                            <input type="text" name="lname" id="lastNameInput" value="<?php echo Application::$app->customer->{'lname'} ?>" class="edit-input" style="display:none;">
+                                            <p><?php echo strtoupper(Application::$app->technician->{'lname'}) ?></p>
+                                            <input type="text" name="lname" id="lastNameInput" value="<?php echo Application::$app->technician->{'lname'} ?>" class="edit-input" style="display:none;">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -72,7 +72,7 @@
                                             <label>Email</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <p><?php echo Application::$app->customer->{'email'} ?></p>
+                                            <p><?php echo Application::$app->technician->{'email'} ?></p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -81,8 +81,8 @@
                                             <label>Phone</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <p><?php echo Application::$app->customer->{'phone_no'} ?></p>
-                                            <input type="tel" name="phone_no" id="phoneNoInput" value="<?php echo Application::$app->customer->{'phone_no'} ?>" class="edit-input" style="display:none;">
+                                            <p><?php echo Application::$app->technician->{'phone_no'} ?></p>
+                                            <input type="tel" name="phone_no" id="phoneNoInput" value="<?php echo Application::$app->technician->{'phone_no'} ?>" class="edit-input" style="display:none;">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -91,8 +91,8 @@
                                             <label>Address</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <p><?php echo Application::$app->customer->{'address'} ?></p>
-                                            <input type="text" name="address" id="addressInput" value="<?php echo Application::$app->customer->{'address'} ?>" class="edit-input" style="display:none;">
+                                            <p><?php echo Application::$app->technician->{'address'} ?></p>
+                                            <input type="text" name="address" id="addressInput" value="<?php echo Application::$app->technician->{'address'} ?>" class="edit-input" style="display:none;">
                                         </div>
                                     </div>
                                 </div>
@@ -114,7 +114,7 @@
     <div id="signOutOverlay" class="overlay">
         <div class="overlay-content">
             <p>Are you sure you want to sign out?</p>
-            <button id="confirmSignOut" class="btn"><a href="/customer-logout"></a> Yes</button>
+            <button id="confirmSignOut" class="btn"><a href="/technician-logout"></a> Yes</button>
             <button id="cancelSignOut" class="btn">No</button>
         </div>
     </div>

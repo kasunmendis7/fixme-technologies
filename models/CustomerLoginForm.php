@@ -20,6 +20,11 @@ class CustomerLoginForm extends Model
         ];
     }
 
+    public function updateRules(): array
+    {
+        return [];
+    }
+
     public function login()
     {
         $customerModel = new Customer();
