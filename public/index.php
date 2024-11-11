@@ -42,6 +42,8 @@ $app->router->get('/technician-map', [TechnicianController::class, 'technicianMa
 $app->router->get('/technician-messages', [TechnicianController::class, 'technicianMessages']);
 $app->router->get('/technician-settings', [TechnicianController::class, 'technicianSettings']);
 $app->router->get('/technician-help', [TechnicianController::class, 'technicianHelp']);
+$app->router->get('/technician-profile', [TechnicianController::class, 'technicianProfile']);
+$app->router->post('/update-technician-profile', [TechnicianController::class, 'updateTechnicianProfile']);
 
 /** Service Center Routes */
 $app->router->get('/service-centre-landing', [ServiceCentreController::class, 'serviceCentreLanding']);
@@ -70,7 +72,7 @@ $app->router->get('/technician-sign-up', [AuthController::class, 'technicianSign
 $app->router->post('/technician-sign-up', [AuthController::class, 'technicianSignUp']);
 $app->router->get('/technician-login', [AuthController::class, 'technicianLogin']);
 $app->router->post('/technician-login', [AuthController::class, 'technicianLogin']);
-$app->router->get('/technician-login', [AuthController::class, 'technicianLogin']);
+$app->router->get('/technician-logout', [AuthController::class, 'technicianLogOut']);
 
 
 /* Service Centre Auth routes */
