@@ -1013,6 +1013,6 @@ textarea {
 
 /* Like button */
 .like-icon.active ion-icon {
-    color: #ff0000;
+    color: #ff4500;
 }
 

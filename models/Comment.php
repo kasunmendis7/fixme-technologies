@@ -61,6 +61,23 @@ class Comment extends DbModel
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function update(): bool
+    {
+        $tableName = self::tableName();
+        $statement = self::prepare("
+        UPDATE $tableName 
+        SET comment_text = :comment_text
+        WHERE comment_id = :comment_id AND cus_id = :cus_id
+    ");
+
+        $statement->bindValue(':comment_text', $this->comment_text);
+        $statement->bindValue(':comment_id', $this->comment_id);
+        $statement->bindValue(':cus_id', $this->cus_id);
+
+        return $statement->execute();
+    }
+
+
     public static function deleteComment(int $comment_id, int $cus_id): bool
     {
         $tableName = self::tableName();
