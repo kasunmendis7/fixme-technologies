@@ -154,7 +154,7 @@ use app\core\Application;
 
             <table>
                 <tr>
-                    <td width="60px">
+                    <td >
                         <div class="imgBx"><img src="assets/technician-dashboard/customer02.jpg" alt=""></div>
                     </td>
                     <td>
@@ -163,7 +163,7 @@ use app\core\Application;
                 </tr>
 
                 <tr>
-                    <td width="60px">
+                    <td >
                         <div class="imgBx"><img src="assets/technician-dashboard/customer04.jpg" alt=""></div>
                     </td>
                     <td>
@@ -172,7 +172,7 @@ use app\core\Application;
                 </tr>
 
                 <tr>
-                    <td width="60px">
+                    <td >
                         <div class="imgBx"><img src="assets/technician-dashboard/customer01.jpg" alt=""></div>
                     </td>
                     <td>
@@ -181,7 +181,7 @@ use app\core\Application;
                 </tr>
 
                 <tr>
-                    <td width="60px">
+                    <td >
                         <div class="imgBx"><img src="assets/technician-dashboard/customer03.jpg" alt=""></div>
                     </td>
                     <td>
@@ -190,7 +190,7 @@ use app\core\Application;
                 </tr>
 
                 <tr>
-                    <td width="60px">
+                    <td >
                         <div class="imgBx"><img src="assets/technician-dashboard/customer02.jpg" alt=""></div>
                     </td>
                     <td>
@@ -199,7 +199,7 @@ use app\core\Application;
                 </tr>
 
                 <tr>
-                    <td width="60px">
+                    <td >
                         <div class="imgBx"><img src="assets/technician-dashboard/customer01.jpg" alt=""></div>
                     </td>
                     <td>
@@ -208,7 +208,7 @@ use app\core\Application;
                 </tr>
 
                 <tr>
-                    <td width="60px">
+                    <td >
                         <div class="imgBx"><img src="assets/technician-dashboard/customer01.jpg" alt=""></div>
                     </td>
                     <td>
@@ -217,7 +217,7 @@ use app\core\Application;
                 </tr>
 
                 <tr>
-                    <td width="60px">
+                    <td >
                         <div class="imgBx"><img src="assets/technician-dashboard/customer02.jpg" alt=""></div>
                     </td>
                     <td>

@@ -21,5 +21,13 @@
     </div>
     <!-- JavaScript Files -->
     <script src="/js/technician/technician-home.js"></script>
+    <!-- Overlay for the confirmation message -->
+    <div id="signOutOverlay" class="overlay">
+        <div class="overlay-content">
+            <p>Are you sure you want to sign out?</p>
+            <button id="confirmSignOut" class="btn"><a href="/technician-logout"></a> Yes</button>
+            <button id="cancelSignOut" class="btn">No</button>
+        </div>
+    </div>
 </body>
 </html>
