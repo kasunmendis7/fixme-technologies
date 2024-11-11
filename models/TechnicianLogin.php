@@ -19,7 +19,7 @@ class TechnicianLogin extends Model
         ];
     }
 
-    public function technicianLogin()
+    public function loginTechnician()
     {
         $technician = (new Technician)->findOne(['email' => $this->email]);
         if (!$technician){
@@ -32,7 +32,7 @@ class TechnicianLogin extends Model
             return false;
         }
 
-        return Application::$app->technicianLogin($technician);
+        return Application::$app->loginTechnician($technician);
     }
 
 }

@@ -72,22 +72,42 @@ include_once 'components/header.php';
                         <br>
                     </div>
                 </div>
-                <div class="post-comments">
-                    <span>View all 20 comments</span>
-                    <div class="comment">
-                        <span class="comment-username">Pulasthi</span>
-                        <span class="comment-text">He helped me a lot</span>
-                        <span class="like-icon"><ion-icon name="build-outline"></ion-icon></span>
+                <?php if (!empty($post['comments'])): ?>
+                    <div class="post-comments">
+                        <span>View all <?php echo count($post['comments']); ?> comments</span>
+                        <?php foreach ($post['comments'] as $comment): ?>
+                            <div class="comment">
+                                <span class="comment-username"><?php echo htmlspecialchars($comment['fname']); ?></span>
+                                <span class="comment-text"><?php echo htmlspecialchars($comment['comment_text']); ?></span>
+
+                                <!-- Display Edit and Delete buttons if the logged-in user is the comment owner -->
+                                <?php if ($comment['cus_id'] == Application::$app->customer->cus_id): ?>
+                                    <div class="comment-options">
+                                        <a href="/comment-edit?comment_id=<?php echo $comment['comment_id']; ?>" class="comment-edit-btn">Edit</a>
+                                        <form action="/comment-delete" method="POST" style="display:inline;">
+                                            <input type="hidden" name="comment_id" value="<?php echo $comment['comment_id']; ?>">
+                                            <button type="submit" class="comment-delete-btn">Delete</button>
+                                        </form>
+                                    </div>
+                                <?php endif; ?>
+
+                                <span class="like-icon"><ion-icon name="build-outline"></ion-icon></span>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
-                </div>
+                <?php endif; ?>
+
+
                 <div class="post-timestamp">
                     <span><?php echo htmlspecialchars($post['created_at']); ?></span>
                 </div>
             </div>
             <div class="input-box">
-                <div class="emoji"></div>
-                <input type="text" placeholder="Add a comment..." class="text">
-                <button>Post</button>
+                <form action="/comment-create" method="POST">
+                    <input type="hidden" name="post_id" value="<?php echo $post['post_id']; ?>">
+                    <input type="text" name="comment_text" placeholder="Add a comment..." class="text" required>
+                    <button type="submit">Post</button>
+                </form>
             </div>
         </div>
     <?php endforeach; ?>

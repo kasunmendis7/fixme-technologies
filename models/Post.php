@@ -37,7 +37,6 @@ class Post extends DbModel
     public static function getAllPosts(): array
     {
         $tableName = self::tableName();
-//        $statement = self::prepare("SELECT * FROM $tableName ORDER BY created_at DESC");
         $statement = self::prepare("
             SELECT p.*, t.fname, t.lname
             FROM $tableName p
@@ -82,7 +81,7 @@ class Post extends DbModel
         return [
             'tech_id' => [self::RULE_REQUIRED],
             'description' => [self::RULE_REQUIRED, [self::RULE_MAX, 'max' => 1000]],
-            'media' => [[self::RULE_MAX, 'max' => 255]],
+
         ];
     }
 

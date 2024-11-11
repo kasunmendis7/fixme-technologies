@@ -6,43 +6,64 @@ use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
+use app\models\Customer;
+use app\models\CustomerLogin;
+//use app\core\Response;
 use app\models\CustomerRegisterModel;
+use app\models\ServiceCenterLogin;
 use app\models\Technician;
 use app\models\ServiceCenterRegisterModel;
 use app\models\TechnicianLogin;
 
 class AuthController extends Controller
 {
-    // customer sign up method
+    /* customer sign up method */
     public function customerSignUp(Request $request)
     {
-        $registerModel = new CustomerRegisterModel();
+        $customer = new Customer();
         if ($request->isPost()) {
 
-            $registerModel->loadData($request->getBody());
-            if ($registerModel->validate() && $registerModel->register()) {
-                return 'Success';
+            $customer->loadData($request->getBody());
+            if ($customer->validate() && $customer->save()) {
+                Application::$app->session->setFlash('success', 'You have been registered successfully!');
+                Application::$app->response->redirect('/');
             }
             $this->setLayout('auth');
             return $this->render('/customer/customer-sign-up', [
-                'model' => $registerModel
+                'model' => $customer
             ]);
         }
         $this->setLayout('auth');
         return $this->render('/customer/customer-sign-up', [
-            'model' => $registerModel
+            'model' => $customer
         ]);
     }
-    // customer login method
-    public function customerLogin(Request $request)
+
+    /* customer login method */
+    public function customerLogin(Request $request, Response $response)
     {
+        $loginForm = new CustomerLogin();
         if ($request->isPost()) {
-            return 'Handle submitted data';
+            $loginForm->loadData($request->getBody());
+            if ($loginForm->validate() && $loginForm->login()) {
+                $response->redirect('/customer-dashboard'); // later will change this to customer dashboard
+                return;
+            }
         }
         $this->setLayout('auth');
-        return $this->render('/customer/customer-login');
+        return $this->render('/customer/customer-login', [
+            'model' => $loginForm
+        ]);
     }
-    // technician sign up method
+
+    /* customer logout method */
+    public function customerLogout(Request $request, Response $response)
+    {
+        Application::$app->logoutCustomer();
+        $response->redirect('/');
+    }
+
+    /* technician sign up method */
     public function technicianSignUp(Request $request)
     {
         $technician = new Technician();
@@ -51,7 +72,7 @@ class AuthController extends Controller
 
             if ($technician->validate() && $technician->save()) {
                 Application::$app->session->setFlash('success', 'You have been registered successfully!');
-                Application::$app->response->redirect('/technician-login');
+                Application::$app->response->redirect('/');
             }
             $this->setLayout('auth');
             return $this->render('/technician/technician-sign-up', [
@@ -63,13 +84,14 @@ class AuthController extends Controller
             'model' => $technician
         ]);
     }
+
     // technician login method
     public function technicianLogin(Request $request, Response $response)
     {
         $technicianLogin = new TechnicianLogin();
         if ($request->isPost()) {
             $technicianLogin->loadData($request->getBody());
-            if ($technicianLogin->validate() && $technicianLogin->technicianLogin()){
+            if ($technicianLogin->validate() && $technicianLogin->loginTechnician()){
                 $response->redirect('/technician-dashboard');
                 return;
             }
@@ -78,20 +100,24 @@ class AuthController extends Controller
         return $this->render('/technician/technician-login', ['model' => $technicianLogin] );
     }
 
-    public function logout(Request $request, Response $response)
+    public function technicianLogOut(Request $request, Response $response)
     {
-        Application::$app->logout();
+        Application::$app->logoutTechnician();
         $response->redirect('/');
     }
 
-    // service centre sign up method
+
+    /* service centre sign up method */
+
     public function serviceCentreSignup(Request $request)
     {
         $registerModel = new ServiceCenterRegisterModel();
         if ($request->isPost()) {
             $registerModel->loadData($request->getBody());
+
             if ($registerModel->validate() && $registerModel->save()) {
-                return 'Success';
+                Application::$app->session->setFlash('success', 'You have been registered successfully!');
+                Application::$app->response->redirect('/');
             }
             $this->setLayout('auth');
             return $this->render('/service-centre/service-centre-sign-up', [
@@ -103,13 +129,30 @@ class AuthController extends Controller
             'model' => $registerModel
         ]);
     }
+
+    /* service centre login method */
+//    public function serviceCentreLogin(Request $request)
     // service centre login method
-    public function serviceCentreLogin(Request $request)
+    public function serviceCentreLogin(Request $request, Response $response)
     {
+        $serviceCenterLogin = new ServiceCenterLogin();
         if ($request->isPost()) {
-            return 'Handle submitted data';
+            $serviceCenterLogin->loadData($request->getBody());
+            if ($serviceCenterLogin->validate() && $serviceCenterLogin->loginServiceCenter()){
+                $response->redirect('/service-centre-dashboard');
+                return;
+            }
         }
         $this->setLayout('auth');
-        return $this->render('/service-centre/service-centre-login');
+        return $this->render('/service-centre/service-centre-login',[
+            'model' => $serviceCenterLogin
+        ]);
     }
+
+    public function serviceCenterLogout(Request $request, Response  $response)
+    {
+        Application::$app->logoutServiceCenter();
+        $response->redirect('/service-centre-landing');
+    }
+
 }

@@ -6,6 +6,7 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\models\Post;
+use app\models\Comment;
 use app\core\Request;
 
 class PostController extends Controller
@@ -45,6 +46,9 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::getAllPosts();  // Fetch all posts from the database
+        foreach ($posts as &$post) {
+            $post['comments'] = Comment::getAllComments($post['post_id']);
+        }
         $this->setLayout('auth');
         return $this->render('/technician/technician-community', [
             'posts' => $posts
