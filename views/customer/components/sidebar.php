@@ -20,7 +20,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/customer-technicians">
                     <span class="icon">
                         <ion-icon name="man-outline"></ion-icon>
                     </span>

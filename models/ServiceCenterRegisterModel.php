@@ -8,7 +8,7 @@ class ServiceCenterRegisterModel extends DbModel
 {
 
     public string $name = '';
-//    public string $nic = '';
+    //    public string $nic = '';
     public string $email = '';
     public string $phone_no = '';
     public string $address = '';
@@ -16,10 +16,10 @@ class ServiceCenterRegisterModel extends DbModel
     public string $password = '';
     public string $confirmPassword = '';
 
-//    public function register()
-//    {
-//        return 'Creating new Service Center';
-//    }
+    //    public function register()
+    //    {
+    //        return 'Creating new Service Center';
+    //    }
 
     public function tableName(): string
     {
@@ -43,7 +43,7 @@ class ServiceCenterRegisterModel extends DbModel
     {
         return [
             'name' => [self::RULE_REQUIRED],
-//            'nic' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 10], [self::RULE_MAX, 'max' => 15]],
+            //            'nic' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 10], [self::RULE_MAX, 'max' => 15]],
             'email' => [self::RULE_REQUIRED, self::RULE_EMAIL],
             'phone_no' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 10], [self::RULE_MAX, 'max' => 10]],
             'address' => [self::RULE_REQUIRED],
@@ -51,11 +51,17 @@ class ServiceCenterRegisterModel extends DbModel
             'confirmPassword' => [self::RULE_REQUIRED, [self::RULE_MATCH, 'match' => 'password']],
         ];
     }
+
+    public function updateRules(): array
+    {
+        return [];
+    }
+
     public function attributes(): array
     {
         return [
             'name',
-//            'nic',
+            //            'nic',
             'phone_no',
             'address',
             'email',
