@@ -36,7 +36,7 @@
 }
 
 .box-1-content {
-    color: white;
+    color: white; 
 }
 
 .box-1-title {
@@ -65,17 +65,14 @@
     box-shadow: rgba(0, 0, 0, 0.5);
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-
 .item-btn:hover {
-    background-color: #010336;
+    background-color: #010336; 
     color: white;
     cursor: pointer;
 }
-
 .active {
     border-bottom: 2px solid #010336;
 }
-
 .hidden {
     display: none;
 }
@@ -93,7 +90,6 @@
     box-shadow: rgba(0, 0, 0, 0.5);
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-
 .box-1-btn:hover {
     background-color: #0d6efd;
     cursor: pointer;
@@ -172,7 +168,6 @@
     border: none;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-
 .box-2-btn:hover {
     background-color: #0d6efd;
     cursor: pointer;
@@ -222,7 +217,6 @@ body {
     background-color: rgba(255, 255, 255, 0.61);
     padding: 6rem;
 }
-
 .section-3 .heading-container {
     display: flex;
     justify-content: center;
@@ -300,7 +294,6 @@ body {
     background-color: #010336;
     padding: 150px;
 }
-
 .section-4 .heading-container {
     display: flex;
     text-align: center;
@@ -346,7 +339,7 @@ body {
     margin-bottom: auto;
 }
 
-.section-4 .box-4 .detail-box-4 h5 a {
+.section-4 .box-4 .detail-box-4 h5 a{
     font-size: 30px;
     font-weight: bolder;
     color: #010336;
@@ -380,79 +373,78 @@ body {
     padding: 6rem;
 }
 
-    .section-5 .heading-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        margin-bottom: 20px;
-        margin-top: 40px;
-    }
-
-    .section-5 .heading-container h2 {
-        font-size: 1.5rem;
-        font-weight: bold;
-        position: relative;
-        color: #000000;
-    }
-
-    .section-5 .row {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 20px;
-    }
-
-    .section-5 .box-5-container {
-        flex: 1 1 calc(33.33% - 20px);
-        max-width: calc(33.33% - 20px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .section-5 .box-5 {
-        margin-top: 50px;
-        margin-bottom: 50px;
-        background-color: #ffffff;
-        border-radius: 5px;
-        overflow: hidden;
-        padding-top: 100px;
-        padding-bottom: 100px;
-        padding-left: 10px;
-        width: auto;
-    }
-
-    .section-5 .box-5 .box-5-logo {
-        font-size: 30px;
-    }
-
-    .section-5 .box-5 .detail-box-5 {
-        padding-right: 5px;
-    }
-
-    .section-5 .box-5 .detail-box-5 h5 {
-        font-weight: bold;
-        margin: 0;
-        padding-top: 10px;
-    }
-
-    .section-5 .box-5 .detail-box-5 p {
-        padding-top: 15px;
-    }
-
-    .section-5 .box-5 .detail-box-5 p a {
-        color: #010336;
-        padding-top: 20px;
-    }
-
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-        .section-5 .box-5-container {
-            flex: 1 1 100%; /* Stacks boxes vertically on smaller screens */
-            max-width: 100%;
-        }
-    }
+.section-5 .heading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 40px;
 }
+
+.section-5 .heading-container h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    position: relative;
+    color: #000000;
+}
+
+.section-5 .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.section-5 .box-5-container {
+    flex: 1 1 calc(33.33% - 20px);
+    max-width: calc(33.33% - 20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-5 .box-5 {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    overflow: hidden;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding-left: 10px;
+    width: auto;
+}
+
+.section-5 .box-5 .box-5-logo{
+    font-size: 30px;
+}
+
+.section-5 .box-5 .detail-box-5 {
+    padding-right: 5px;
+}
+
+.section-5 .box-5 .detail-box-5 h5 {
+    font-weight: bold;
+    margin: 0;
+    padding-top: 10px;
+}
+
+.section-5 .box-5 .detail-box-5 p {
+    padding-top: 15px;
+}
+
+.section-5 .box-5 .detail-box-5 p a {
+    color: #010336;
+    padding-top: 20px;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .section-5 .box-5-container {
+        flex: 1 1 100%; /* Stacks boxes vertically on smaller screens */
+        max-width: 100%;
+    }
+}}
 
