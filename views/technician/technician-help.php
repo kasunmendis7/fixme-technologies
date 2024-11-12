@@ -15,7 +15,8 @@
     include_once 'components/sidebar.php';
     include_once 'components/header.php';
     ?>
-
+    <!-- JavaScript Files -->
+    <script src="/js/technician/technician-help.js"></script>
     <div class="help-container">
         <div class="help-header">
             <h2 class="help-title">Get in Touch with Us</h2>
@@ -48,7 +49,13 @@
         </div>
     </div>
 
-    <!-- JavaScript Files -->
-        <script src="/js/technician/technician-help.js"></script>
+    <!-- Overlay for the confirmation message -->
+    <div id="signOutOverlay" class="overlay">
+        <div class="overlay-content">
+            <p>Are you sure you want to sign out?</p>
+            <button id="confirmSignOut" class="btn"><a href="/technician-logout"></a> Yes</button>
+            <button id="cancelSignOut" class="btn">No</button>
+        </div>
+    </div>
 </body>
 </html>
