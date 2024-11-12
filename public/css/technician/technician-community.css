@@ -783,7 +783,7 @@ textarea {
 .post-header .profile-info .profile-img {
     width: 45px;
     height: 45px;
-    background: linear-gradient(to top right, orange, purple);
+    background: linear-gradient(to top right, #010336, #7bc5e1);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1013,6 +1013,6 @@ textarea {
 
 /* Like button */
 .like-icon.active ion-icon {
-    color: #ff0000;
+    color: #010336;
 }
 
