@@ -418,6 +418,21 @@ a {
 .recentTechnicians table tr:hover td h4 span {
     color: var(--white);
 }
+.alert {
+    position: relative;
+    padding: 1rem 1.25rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+.wrapper {
+    margin: 1rem;
+}
 
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {
