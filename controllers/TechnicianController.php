@@ -3,7 +3,11 @@
 
 namespace app\controllers;
 
+use app\core\Application;
 use app\core\Controller;
+use app\core\Request;
+use app\models\Customer;
+use app\models\Technician;
 
 class TechnicianController extends Controller
 {
@@ -42,6 +46,28 @@ class TechnicianController extends Controller
     {
         $this->setLayout('auth');
         return $this->render('/technician/technician-help');
+    }
+
+    public function technicianProfile()
+    {
+        $this->setLayout('auth');
+        return $this->render('/technician/technician-profile');
+    }
+
+    public function updateTechnicianProfile(Request $request)
+    {
+        $technician = new Technician();
+
+        if ($request->isPost()) {
+            $technician->loadData($request->getBody());
+            if ($technician->updateValidate()) {
+                $technician->updateTechnician();
+                Application::$app->session->setFlash('update-success', 'You have been Updated your account info successfully!');
+                Application::$app->response->redirect('/technician-profile');
+            } else {
+                Application::$app->response->redirect('/technician-profile');
+            }
+        }
     }
 }
 
