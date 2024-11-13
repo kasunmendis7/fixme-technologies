@@ -73,10 +73,10 @@
             </li>
 
             <li>
-                <a href="/">
-                        <span class="icon">
-                            <ion-icon name="log-out-outline"></ion-icon>
-                        </span>
+                <a href="#" id="signOutBtn">
+                    <span class="icon">
+                        <ion-icon name="log-out-outline"></ion-icon>
+                    </span>
                     <span class="title">Sign Out</span>
                 </a>
             </li>

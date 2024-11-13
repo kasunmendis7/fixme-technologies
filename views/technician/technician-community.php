@@ -10,6 +10,8 @@ use app\core\Application;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Technician Dashboard</title>
     <link rel="stylesheet" href="/css/technician/technician-community.css">
+    <link rel="stylesheet" href="/css/technician/overlay.css">
+
 </head>
 <body>
 <?php
@@ -134,6 +136,15 @@ as $post): ?>
     </div>
     <?php endforeach; ?>
 </section>
+
+<!-- Overlay for the confirmation message -->
+<div id="signOutOverlay" class="overlay">
+    <div class="overlay-content">
+        <p>Are you sure you want to sign out?</p>
+        <button id="confirmSignOut" class="btn"><a href="/technician-logout"></a> Yes</button>
+        <button id="cancelSignOut" class="btn">No</button>
+    </div>
+</div>
 
 <script src="/js/technician/technician-community.js"></script>
 <!-- Icons -->

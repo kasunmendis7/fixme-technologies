@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Technician Dashboard</title>
     <link rel="stylesheet" href="/css/technician/technician-community.css">
+    <link rel="stylesheet" href="/css/technician/overlay.css">
+
 </head>
 <body>
 <?php
@@ -51,5 +53,26 @@ include_once 'components/header.php';
         </div>
     </div>
 </section>
+
+<!-- Overlay for the confirmation message -->
+<div id="signOutOverlay" class="overlay">
+    <div class="overlay-content">
+        <p>Are you sure you want to sign out?</p>
+        <button id="confirmSignOut" class="btn"><a href="/technician-logout"></a> Yes</button>
+        <button id="cancelSignOut" class="btn">No</button>
+    </div>
+</div>
+
+<!-- Overlay for the confirmation message -->
+<div id="signOutOverlay" class="overlay">
+    <div class="overlay-content">
+        <p>Are you sure you want to sign out?</p>
+        <button id="confirmSignOut" class="btn"><a href="/technician-logout"></a> Yes</button>
+        <button id="cancelSignOut" class="btn">No</button>
+    </div>
+</div>
+
+<script src="/js/technician/overlay.js"></script>
+
 </body>
 </html>
