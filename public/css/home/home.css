@@ -456,3 +456,82 @@ body {
     }
 }
 
+/*section-6*/
+
+.section-6 {
+    background-color: white;
+    padding: 6rem;
+}
+
+/*.section-6 .box-3 {*/
+/*    margin-top: 20px;*/
+/*    background-color: #ffffff;*/
+/*    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);*/
+/*    border-radius: 5px;*/
+/*    overflow: hidden;*/
+/*    width: 100%;*/
+/*}*/
+
+.section-6-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 20%;
+}
+
+.section-6-header h1 {
+    font-size: 2.9rem;
+    font-weight: bold;
+}
+
+.img-box-6 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.img-box-6 img{
+    max-width: 40%;
+    height: auto;
+}
+
+.detail-box-6{
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.detail-box-6 p {
+    font-size: 1.2rem;
+    font-weight: bold;
+
+}
+
+.section-6-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.section-6-btn button {
+    background-color: #010336;
+    color: #f9f9f9;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    width: 200px;
+    height: 50px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.section-6-btn button:hover {
+    background-color: #0629a1; /* Change background color on hover */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
