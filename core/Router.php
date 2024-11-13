@@ -7,6 +7,7 @@ class  Router
     protected array $routes = [];
     public Request $request;
     public Response $response;
+    public ?Controller $controller = null;
 
     public function __construct(Request $request, Response $response)
     {

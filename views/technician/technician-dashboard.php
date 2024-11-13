@@ -8,6 +8,7 @@
         <title>Technician Dashboard</title>
         <link rel="stylesheet" href="/css/technician/technician-dashboard.css">
         <link rel="stylesheet" href="/css/technician/overlay.css">
+
     </head>
     <body>
     <?php
@@ -16,7 +17,6 @@
     ?>
     <!-- JavaScript Files -->
     <script src="/js/technician/technician-home.js"></script>
-    <script src="/js/customer/overlay.js"></script>
         <!-- ======================= Cards ================== -->
         <div class="cardBox">
             <div class="card">
@@ -234,5 +234,7 @@
     <!--    Icons-->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="/js/technician/overlay.js"></script>
+
     </body>
 </html>
