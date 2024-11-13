@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\controllers\GeocodingController;
 use app\core\DbModel;
 
 class ServiceCenterRegisterModel extends DbModel
@@ -26,17 +27,39 @@ class ServiceCenterRegisterModel extends DbModel
         return 'service_center';
     }
 
-    public  function primaryKey(): string
+    public function primaryKey(): string
     {
         return 'ser_cen_id';
     }
-
 
 
     public function save()
     {
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         return parent::save();
+    }
+
+    public function serviceCentreAddressGeocoding()
+    {
+        $sql = "SELECT ser_cen_id, address FROM service_center WHERE latitude IS NULL OR longitude IS NULL";
+        $stmt = self::prepare($sql);
+        $stmt->execute();
+
+        $service_centres = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        $geocoding = new GeocodingController();
+        foreach ($service_centres as $service_centre) {
+            $latLng = $geocoding->getLatLngFromAddress($service_centre['address']);
+
+            if ($latLng) {
+                $sql = "UPDATE service_center SET latitude = :lat, longitude = :lng WHERE ser_cen_id = :ser_cen_id";
+                $stmt = self::prepare($sql);
+                $stmt->bindValue(':lat', $latLng['lat']);
+                $stmt->bindValue(':lng', $latLng['lng']);
+                $stmt->bindValue('ser_cen_id', $service_centre['ser_cen_id']);
+                $stmt->execute();
+            }
+        }
     }
 
     public function rules(): array

@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\controllers\GeocodingController;
 use app\core\Application;
 use app\core\DbModel;
 
@@ -30,6 +31,29 @@ class Technician extends DbModel
     {
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         return parent::save();
+    }
+
+    public function TechnicianAddressGeocoding()
+    {
+        $sql = "SELECT tech_id, address FROM technician WHERE latitude IS NULL OR longitude IS NULL";
+        $stmt = self::prepare($sql);
+        $stmt->execute();
+
+        $technicians = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        $geocoding = new GeocodingController();
+        foreach ($technicians as $technician) {
+            $latLng = $geocoding->getLatLngFromAddress($technician['address']);
+
+            if ($latLng) {
+                $sql = "UPDATE technician SET latitude = :lat, longitude = :lng WHERE tech_id = :tech_id";
+                $stmt = self::prepare($sql);
+                $stmt->bindValue(':lat', $latLng['lat']);
+                $stmt->bindValue(':lng', $latLng['lng']);
+                $stmt->bindValue('tech_id', $technician['tech_id']);
+                $stmt->execute();
+            }
+        }
     }
 
     public function rules(): array
