@@ -5,6 +5,8 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Controller;
+use app\core\Response;
+use app\models\Like;
 use app\models\Post;
 use app\models\Comment;
 use app\core\Request;
@@ -30,7 +32,7 @@ class PostController extends Controller
         if ($request->isPost()) {
             $post->loadData($request->getBody());
 
-            if ($post->validate() && $post->save()) {
+            if ($post->PostValidate() && $post->save()) {
                 Application::$app->session->setFlash('success', 'Post uploaded successfully!');
                 Application::$app->response->redirect('/technician-community');
                 return;
@@ -45,7 +47,9 @@ class PostController extends Controller
     /* Retrieve method of a post */
     public function index()
     {
-        $posts = Post::getAllPosts();  // Fetch all posts from the database
+
+        $posts = Post::getAllPostsWithLikes(Application::$app->customer->cus_id);
+//        $posts = Post::getAllPosts();  // Fetch all posts from the database
         foreach ($posts as &$post) {
             $post['comments'] = Comment::getAllComments($post['post_id']);
         }
@@ -85,7 +89,7 @@ class PostController extends Controller
                 move_uploaded_file($_FILES['media']['tmp_name'], 'assets/uploads/' . $post->media);
             }
 
-            if ($post->validate() && $post->editPost()) {
+            if ($post->PostValidate() && $post->editPost()) {
                 Application::$app->session->setFlash('success', 'Post updated successfully!');
                 Application::$app->response->redirect('/technician-community');
                 return;
@@ -131,6 +135,31 @@ class PostController extends Controller
         }
 
         Application::$app->response->redirect('/technician-community');
+    }
+
+    public function like(Request $request, Response $response)
+    {
+        $postId = $request->getBody()['post_id'];
+        $customerId = Application::$app->customer->cus_id;
+
+        $likeModel = new Like();
+        $success = $likeModel->toggleLike($postId, $customerId);
+        $likeCount = Like::getLikeCountByPostId($postId);
+
+        return $response->json(['success' => $success, 'like_count' => $likeCount]);
+    }
+
+
+    public function unlike(Request $request, Response $response)
+    {
+        $postId = $request->getBody()['post_id'];
+        $customerId = Application::$app->customer->cus_id;
+
+        $likeModel = new Like();
+        $success = $likeModel->unlikePost($postId, $customerId);
+        $likeCount = Like::getLikeCountByPostId($postId);
+
+        return $response->json(['success' => $success, 'like_count' => $likeCount]);
     }
 
 

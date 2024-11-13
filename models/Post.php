@@ -19,7 +19,7 @@ class Post extends DbModel
 
     public function attributes(): array
     {
-        return ['tech_id', 'description', 'media', 'created_at', 'updated_at'];
+        return ['tech_id', 'description', 'media'];
     }
 
     public static function primaryKey(): string
@@ -46,6 +46,21 @@ class Post extends DbModel
         $statement->execute();
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    public static function getAllPostsWithLikes(int $userId)
+    {
+        $sql = "SELECT p.*, t.fname, t.lname,
+            (SELECT COUNT(*) FROM post_like WHERE post_id = p.post_id) AS like_count,
+            (SELECT COUNT(*) FROM post_like WHERE post_id = p.post_id AND cus_id = :user_id) AS user_liked
+        FROM post p
+        JOIN technician t ON p.tech_id = t.tech_id
+        ORDER BY p.created_at DESC";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':user_id', $userId);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
 
     public function editPost(): bool
     {
@@ -75,12 +90,18 @@ class Post extends DbModel
     }
 
 
-
-    public function rules(): array
+    public function postRules(): array
     {
         return [
             'tech_id' => [self::RULE_REQUIRED],
             'description' => [self::RULE_REQUIRED, [self::RULE_MAX, 'max' => 1000]],
+
+        ];
+    }
+
+    public function rules(): array
+    {
+        return [
 
         ];
     }

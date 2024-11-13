@@ -96,6 +96,10 @@ $app->router->post('/comment-edit', [CommentController::class, 'edit']);
 $app->router->get('/comment-delete', [CommentController::class, 'delete']);
 $app->router->post('/comment-delete', [CommentController::class, 'delete']);
 
+/* Routes related to the by Comment */
+$app->router->post('/post-like', [PostController::class, 'like']);
+$app->router->post('/post-unlike', [PostController::class, 'unlike']);
+
 /* Run the application */
 $app->run();
 

@@ -61,17 +61,20 @@ as $post): ?>
         </div>
         <div class="post-body">
             <div class="post-actions">
-                <span class="like-icon" id="likeIcon">
-                    <ion-icon name="build-outline"></ion-icon>
-                </span>
+                <button class="like-button" data-post-id="<?php echo $post['post_id']; ?>"
+                        data-liked="<?php echo $post['user_liked'] ? 'true' : 'false'; ?>">
+                    <ion-icon name="<?php echo $post['user_liked'] ? 'build' : 'build-outline'; ?>"></ion-icon>
+                </button>
+
                 <span class="comment-icon">
                     <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
                 </span>
             </div>
             <div class="post-info">
-                <div class="post-likes" id="likeCount">0 likes</div>
+                <span class="like-count" data-post-id="<?php echo $post['post_id']; ?>">
+                    <?php echo $post['like_count'] ? $post['like_count'] . ' ' . ($post['like_count'] == 1 ? 'like' : 'likes') : '0 likes'; ?>
+                </span>
                 <div class="post-title">
-                    <!--                        //echo htmlspecialchars($post['fname'] . ' ' . $post['lname']); ?-->
                     <span class="username"><?php echo htmlspecialchars($post['fname']); ?></span>
                     <span class="description"><?php echo htmlspecialchars($post['description']); ?></span>
                     <br>

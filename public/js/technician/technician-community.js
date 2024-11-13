@@ -1,46 +1,68 @@
 // Function to start editing a comment
 function editComment(commentID) {
-    // Hide the comment text and show the edit form
     document.getElementById(`comment-text-${commentID}`).style.display = 'none';
     document.getElementById(`edit-form-${commentID}`).style.display = 'block';
 }
 
 // Function to cancel editing a comment
 function cancelEdit(commentID) {
-    // Show the comment text and hide the edit form
     document.getElementById(`comment-text-${commentID}`).style.display = 'inline';
     document.getElementById(`edit-form-${commentID}`).style.display = 'none';
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Select all like icons
-    const likeIcons = document.querySelectorAll(".like-icon");
+    // Like button AJAX functionality
+    document.querySelectorAll('.like-button').forEach(button => {
+        button.addEventListener('click', function (event) {
+            event.preventDefault();
 
-    likeIcons.forEach((likeIcon) => {
-        const iconElement = likeIcon.querySelector("ion-icon");
+            const postId = this.getAttribute('data-post-id');
+            const isLiked = this.getAttribute('data-liked') === 'true';
+            const actionUrl = isLiked ? '/post-unlike' : '/post-like';
 
-        // Find the closest `.post-likes` element within the same post container
-        const postContainer = likeIcon.closest(".post-body"); // Adjust selector if necessary
-        const likeCountElement = postContainer.querySelector(".post-likes");
+            fetch(actionUrl, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                body: new URLSearchParams({post_id: postId})
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Update like state and count display
+                        this.setAttribute('data-liked', isLiked ? 'false' : 'true');
+                        this.querySelector('ion-icon').setAttribute('name', isLiked ? 'build-outline' : 'build');
 
-        // Ensure we have a likeCountElement to avoid errors
-        if (!likeCountElement) return;
-
-        let liked = false;
-        let likes = parseInt(likeCountElement.textContent) || 0; // Get initial likes, default to 0 if not a number
-
-        likeIcon.addEventListener("click", function () {
-            liked = !liked;
-            if (liked) {
-                iconElement.setAttribute("name", "build");
-                likeCountElement.textContent = `${++likes} likes`;
-                likeIcon.classList.add("active");
-            } else {
-                iconElement.setAttribute("name", "build-outline");
-                likeCountElement.textContent = `${--likes} likes`;
-                likeIcon.classList.remove("active");
-            }
+                        // Update the like count
+                        const likeCountElement = document.querySelector(`.like-count[data-post-id="${postId}"]`);
+                        likeCountElement.textContent = `${data.like_count} ${data.like_count === 1 ? 'like' : 'likes'}`;
+                    } else {
+                        console.error('Failed to update like status');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
         });
+    });
+});
+
+
+document.querySelectorAll('.like-button').forEach(button => {
+    button.addEventListener('click', function () {
+        const postId = this.dataset.postId;
+        fetch('/post/like', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({post_id: postId}),
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    this.textContent = `Liked (${data.like_count})`;
+                } else {
+                    alert('Could not like the post. Please try again.');
+                }
+            });
     });
 });
 
