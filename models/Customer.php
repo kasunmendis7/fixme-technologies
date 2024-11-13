@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\controllers\GeocodingController;
 use app\core\Application;
 use app\core\DbModel;
 
@@ -40,6 +41,29 @@ class Customer extends DbModel
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function customerAddressGeocoding()
+    {
+        $sql = "SELECT cus_id, address FROM customer WHERE latitude IS NULL OR longitude IS NULL";
+        $stmt = self::prepare($sql);
+        $stmt->execute();
+
+        $customers = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        $geocoding = new GeocodingController();
+        foreach ($customers as $customer) {
+            $latLng = $geocoding->getLatLngFromAddress($customer['address']);
+
+            if ($latLng) {
+                $sql = "UPDATE customer SET latitude = :lat, longitude = :lng WHERE cus_id = :cus_id";
+                $stmt = self::prepare($sql);
+                $stmt->bindValue(':lat', $latLng['lat']);
+                $stmt->bindValue(':lng', $latLng['lng']);
+                $stmt->bindValue(':cus_id', $customer['cus_id']);
+                $stmt->execute();
+            }
+        }
+    }
+
     public function updateCustomer()
     {
         $sql = "UPDATE customer SET fname = :fname, lname = :lname, phone_no = :phone_no, address = :address WHERE cus_id = :cus_id";
@@ -67,6 +91,7 @@ class Customer extends DbModel
             'confirmPassword' => [self::RULE_REQUIRED, [self::RULE_MATCH, 'match' => 'password']],
         ];
     }
+
     public function updateRules(): array
     {
         return [
