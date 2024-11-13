@@ -48,10 +48,10 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = Post::getAllPostsWithLikes(Application::$app->customer->cus_id);
+        $posts = (new Post)->getAllPostsWithLikes(Application::$app->customer->cus_id);
 //        $posts = Post::getAllPosts();  // Fetch all posts from the database
         foreach ($posts as &$post) {
-            $post['comments'] = (new \app\models\Comment)->getAllComments($post['post_id']);
+            $post['comments'] = (new Comment)->getAllComments($post['post_id']);
         }
         $this->setLayout('auth');
         return $this->render('/technician/technician-community', [

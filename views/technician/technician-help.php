@@ -9,6 +9,8 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="/css/technician/technician-help.css">
+    <link rel="stylesheet" href="/css/technician/overlay.css">
+
 </head>
 <body>
     <?php
@@ -57,5 +59,17 @@
             <button id="cancelSignOut" class="btn">No</button>
         </div>
     </div>
+
+    <!-- Overlay for the confirmation message -->
+    <div id="signOutOverlay" class="overlay">
+        <div class="overlay-content">
+            <p>Are you sure you want to sign out?</p>
+            <button id="confirmSignOut" class="btn"><a href="/technician-logout"></a> Yes</button>
+            <button id="cancelSignOut" class="btn">No</button>
+        </div>
+    </div>
+
+    <script src="/js/technician/overlay.js"></script>
+
 </body>
 </html>
