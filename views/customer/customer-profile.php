@@ -22,6 +22,14 @@
     ?>
 
     <div class="cust-profile ">
+        <div class="wrapper">
+            <?php if (Application::$app->session->getFlash('update-success')): ?>
+                <div class="alert alert-success">
+                    <?php echo Application::$app->session->getFlash('update-success') ?>
+                </div>
+            <?php endif;?>
+        </div>
+
         <form method="post" id="profileForm" action="/update-customer-profile">
             <div class="row">
                 <div class="col-md-4">
