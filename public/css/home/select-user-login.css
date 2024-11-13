@@ -15,9 +15,8 @@ body, html {
     align-items: center;
     gap: 50px;
     padding: 50px;
-    background-image: linear-gradient(#010336, #5db8f5, blue);
     background-size: cover;
-    background-position: center;
+    background: #eef3f4 center;
     min-height: 100vh;
 }
 

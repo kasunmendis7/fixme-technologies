@@ -8,6 +8,8 @@ use app\controllers\SiteController;
 use app\controllers\CustomerController;
 use app\controllers\TechnicianController;
 use app\controllers\ServiceCentreController;
+use app\controllers\PostController;
+use app\controllers\CommentController;
 
 
 /* load environment variables */
@@ -82,6 +84,25 @@ $app->router->get('/service-centre-login', [AuthController::class, 'serviceCentr
 $app->router->post('/service-centre-login', [AuthController::class, 'serviceCentreLogin']);
 $app->router->get('/technician-logout', [AuthController::class, 'technicianLogOut']);
 $app->router->get('/service-center-logout', [AuthController::class, 'serviceCenterLogout']);
+
+/* routes related to the by Post */
+$app->router->get('/technician-create-post', [TechnicianController::class, 'technicianCreatePost']);
+$app->router->get('/technician-edit-post', [TechnicianController::class, 'technicianEditPost']);
+$app->router->post('/technician-create-post', [PostController::class, 'create']);
+$app->router->post('/technician-edit-post', [PostController::class, 'edit']);
+$app->router->get('/technician-community', [PostController::class, 'index']);
+$app->router->post('/technician-delete-post', [PostController::class, 'delete']);
+
+/* Routes related to the by Comment */
+$app->router->post('/comment-create', [CommentController::class, 'create']);
+$app->router->get('/comment-edit', [CommentController::class, 'edit']);
+$app->router->post('/comment-edit', [CommentController::class, 'edit']);
+$app->router->get('/comment-delete', [CommentController::class, 'delete']);
+$app->router->post('/comment-delete', [CommentController::class, 'delete']);
+
+/* Routes related to the by Like */
+$app->router->post('/post-like', [PostController::class, 'like']);
+$app->router->post('/post-unlike', [PostController::class, 'unlike']);
 
 
 /* Run the application */
