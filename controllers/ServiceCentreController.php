@@ -86,4 +86,10 @@ class ServiceCentreController extends Controller
         return $this->render('service-centre/service-center-community');
     }
 
+    public function marketPlaceHome()
+    {
+        $this->setLayout('auth');
+        return $this->render('service-centre/market-place/market-place-home');
+    }
+
 }
