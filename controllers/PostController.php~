@@ -139,7 +139,7 @@ class PostController extends Controller
 
     public function like(Request $request, Response $response)
     {
-
+//        $response = new \app\core\Response();
         $postId = $request->getBody()['post_id'];
         $customerId = Application::$app->customer->cus_id;
 

@@ -61,7 +61,7 @@ as $post): ?>
         </div>
         <div class="post-body">
             <div class="post-actions">
-                <button class="like-button" data-post-id="<?php echo $post['post_id']; ?>"
+                <button id="likeIcons" class="like-button" data-post-id="<?php echo $post['post_id']; ?>"
                         data-liked="<?php echo $post['user_liked'] ? 'true' : 'false'; ?>">
                     <ion-icon name="<?php echo $post['user_liked'] ? 'build' : 'build-outline'; ?>"></ion-icon>
                 </button>
@@ -71,7 +71,7 @@ as $post): ?>
                 </span>
             </div>
             <div class="post-info">
-                <span class="like-count" data-post-id="<?php echo $post['post_id']; ?>">
+                <span id="likeCounts" class="like-count" data-post-id="<?php echo $post['post_id']; ?>">
                     <?php echo $post['like_count'] ? $post['like_count'] . ' ' . ($post['like_count'] == 1 ? 'like' : 'likes') : '0 likes'; ?>
                 </span>
                 <div class="post-title">
