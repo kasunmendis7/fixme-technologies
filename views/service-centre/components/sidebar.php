@@ -31,7 +31,7 @@
                 </a>
             </li>
             <li>
-                <a href="/technician-community">
+                <a href="/service-center-community">
                         <span class="icon">
                            <ion-icon name="images-outline"></ion-icon>
                         </span>
@@ -67,7 +67,7 @@
             </li>
 
             <li>
-                <a href="#">
+                <a href="/service-center-help">
                         <span class="icon">
                             <ion-icon name="help-outline"></ion-icon>
                         </span>
@@ -76,7 +76,7 @@
             </li>
 
             <li>
-                <a href="#">
+                <a href="/service-centre-settings">
                         <span class="icon">
                             <ion-icon name="settings-outline"></ion-icon>
                         </span>
@@ -85,7 +85,7 @@
             </li>
 
             <li>
-                <a href="/service-center-logout">
+                <a href="/service-center-logout" id="signOutBtn">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>

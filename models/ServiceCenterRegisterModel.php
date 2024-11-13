@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\core\Application;
 use app\core\DbModel;
 
 class ServiceCenterRegisterModel extends DbModel
@@ -37,6 +38,18 @@ class ServiceCenterRegisterModel extends DbModel
     {
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         return parent::save();
+    }
+
+    public function updateServiceCenter()
+    {
+        $sql = "UPDATE service_center SET name = :name, phone_no = :phone_no, address = :address, service_category = :service_category WHERE ser_cen_id = :ser_cen_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':name', $this->name);
+        $stmt->bindValue(':phone_no', $this->phone_no);
+        $stmt->bindValue(':address', $this->address);
+        $stmt->bindValue(':service_category', $this->service_category);
+        $stmt->bindValue(':ser_cen_id', Application::$app->serviceCenter->{'ser_cen_id'});
+        return $stmt->execute();
     }
 
     public function rules(): array
