@@ -36,14 +36,6 @@
                 </a>
             </li>
             <li>
-                <a href="/technician-community">
-                    <span class="icon">
-                        <ion-icon name="images-outline"></ion-icon>
-                    </span>
-                    <span class="title">Technician Community</span>
-                </a>
-            </li>
-            <li>
                 <a href="#">
                     <span class="icon">
                         <ion-icon name="location-outline"></ion-icon>
