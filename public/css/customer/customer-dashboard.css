@@ -41,6 +41,7 @@ a {
     transition: 0.5s;
     overflow: hidden;
 }
+
 .navigation.active {
     width: 80px;
 }
@@ -78,6 +79,7 @@ a {
     text-decoration: none;
     color: var(--white);
 }
+
 .navigation ul li:hover a,
 .navigation ul li.hovered a {
     color: var(--blue);
@@ -91,6 +93,7 @@ a {
     line-height: 75px;
     text-align: center;
 }
+
 .navigation ul li a .icon ion-icon {
     font-size: 1.75rem;
 }
@@ -119,6 +122,7 @@ a {
     box-shadow: 35px 35px 0 10px var(--white);
     pointer-events: none;
 }
+
 .navigation ul li:hover a::after,
 .navigation ul li.hovered a::after {
     content: "";
@@ -142,6 +146,7 @@ a {
     background: var(--white);
     transition: 0.5s;
 }
+
 .main.active {
     width: calc(100% - 80px);
     left: 80px;
@@ -266,6 +271,7 @@ a {
 .cardBox .card:hover {
     background: var(--blue);
 }
+
 .cardBox .card:hover .numbers,
 .cardBox .card:hover .cardName,
 .cardBox .card:hover .iconBx {
@@ -298,10 +304,12 @@ a {
     justify-content: space-between;
     align-items: flex-start;
 }
+
 .cardHeader h2 {
     font-weight: 600;
     color: var(--blue);
 }
+
 .cardHeader .btn {
     position: relative;
     padding: 5px 10px;
@@ -316,32 +324,41 @@ a {
     border-collapse: collapse;
     margin-top: 10px;
 }
+
 .details table thead td {
     font-weight: 600;
 }
+
 .details .recentRequests table tr {
     color: var(--black1);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
+
 .details .recentRequests table tr:last-child {
     border-bottom: none;
 }
+
 .details .recentRequests table tbody tr:hover {
     background: var(--blue);
     color: var(--white);
 }
+
 .details .recentRequests table tr td {
     padding: 10px;
 }
+
 .details .recentRequests table tr td:last-child {
     text-align: end;
 }
+
 .details .recentRequests table tr td:nth-child(2) {
     text-align: end;
 }
+
 .details .recentRequests table tr td:nth-child(3) {
     text-align: center;
 }
+
 .status.delivered {
     padding: 2px 4px;
     background: #8de02c;
@@ -350,6 +367,7 @@ a {
     font-size: 14px;
     font-weight: 500;
 }
+
 .status.pending {
     padding: 2px 4px;
     background: #e9b10a;
@@ -358,6 +376,7 @@ a {
     font-size: 14px;
     font-weight: 500;
 }
+
 .status.return {
     padding: 2px 4px;
     background: #f00;
@@ -366,6 +385,7 @@ a {
     font-size: 14px;
     font-weight: 500;
 }
+
 .status.inProgress {
     padding: 2px 4px;
     background: #1795ce;
@@ -384,6 +404,7 @@ a {
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
     border-radius: 20px;
 }
+
 .recentTechnicians .imgBx {
     position: relative;
     width: 40px;
@@ -391,6 +412,7 @@ a {
     border-radius: 50px;
     overflow: hidden;
 }
+
 .recentTechnicians .imgBx img {
     position: absolute;
     top: 0;
@@ -399,24 +421,46 @@ a {
     height: 100%;
     object-fit: cover;
 }
+
 .recentTechnicians table tr td {
     padding: 12px 10px;
 }
+
 .recentTechnicians table tr td h4 {
     font-size: 16px;
     font-weight: 500;
     line-height: 1.2rem;
 }
+
 .recentTechnicians table tr td h4 span {
     font-size: 14px;
     color: var(--black2);
 }
+
 .recentTechnicians table tr:hover {
     background: var(--blue);
     color: var(--white);
 }
+
 .recentTechnicians table tr:hover td h4 span {
     color: var(--white);
+}
+
+.alert {
+    position: relative;
+    padding: 1rem 1.25rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.wrapper {
+    margin: 1rem;
 }
 
 /* ====================== Responsive Design ========================== */
@@ -424,17 +468,21 @@ a {
     .navigation {
         left: -300px;
     }
+
     .navigation.active {
         width: 300px;
         left: 0;
     }
+
     .main {
         width: 100%;
         left: 0;
     }
+
     .main.active {
         left: 300px;
     }
+
     .cardBox {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -444,9 +492,11 @@ a {
     .details {
         grid-template-columns: 1fr;
     }
+
     .recentRequests {
         overflow-x: auto;
     }
+
     .status.inProgress {
         white-space: nowrap;
     }
@@ -456,24 +506,30 @@ a {
     .cardBox {
         grid-template-columns: repeat(1, 1fr);
     }
+
     .cardHeader h2 {
         font-size: 20px;
     }
+
     .user {
         min-width: 40px;
     }
+
     .navigation {
         width: 100%;
         left: -100%;
         z-index: 1000;
     }
+
     .navigation.active {
         width: 100%;
         left: 0;
     }
+
     .toggle {
         z-index: 10001;
     }
+
     .main.active .toggle {
         color: #fff;
         position: fixed;

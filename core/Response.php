@@ -12,6 +12,13 @@ class Response
 
     public function redirect(string $url)
     {
-        header('Location: '. $url);
+        header('Location: ' . $url);
+    }
+
+    public function json($data)
+    {
+        header('Content-Type: application/json');
+        echo json_encode($data);
+        exit;
     }
 }
