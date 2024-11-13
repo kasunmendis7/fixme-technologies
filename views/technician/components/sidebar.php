@@ -3,13 +3,14 @@
     <div class="navigation">
         <ul>
             <li>
-                <a href="#">
-                        <span class="icon">
-                            <ion-icon name="construct-outline"></ion-icon>
-                        </span>
+                <a href="/">
+                    <span class="icon">
+                        <ion-icon name="construct-outline"></ion-icon>
+                    </span>
                     <span class="title">FixMe</span>
                 </a>
             </li>
+
 
             <li>
                 <a href="/technician-dashboard">
@@ -25,6 +26,14 @@
                             <ion-icon name="location-outline"></ion-icon>
                         </span>
                     <span class="title">Map</span>
+                </a>
+            </li>
+            <li>
+                <a href="/technician-create-post">
+                        <span class="icon">
+                            <ion-icon name="duplicate-outline"></ion-icon>
+                        </span>
+                    <span class="title">Create Post</span>
                 </a>
             </li>
             <li>
@@ -64,7 +73,7 @@
             </li>
 
             <li>
-                <a href="/technician-logout" id="signOutBtn">
+                <a href="#" id="signOutBtn">
                     <span class="icon">
                         <ion-icon name="log-out-outline"></ion-icon>
                     </span>

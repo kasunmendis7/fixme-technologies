@@ -9,7 +9,7 @@
     <title>Customer Settings</title>
     <link rel="stylesheet" href="/css/customer/customer-profile.css">
     <link rel="stylesheet" href="/css/customer/customer-dashboard.css">
-    <link rel="stylesheet" href="/css/customer/overlay.css">
+    <link rel="stylesheet" href="/css/technician/overlay.css">
 </head>
 
 <body>
@@ -122,8 +122,7 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="/js/customer/customer-profile.js"></script>
-    <script src="/js/customer/customer-home.js"></script>
-    <script src="/js/customer/overlay.js"></script>
+    <script src="/js/technician/overlay.js"></script>
 </body>
 
 </html>
