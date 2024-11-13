@@ -48,6 +48,12 @@ $app->router->post('/update-technician-profile', [TechnicianController::class, '
 /** Service Center Routes */
 $app->router->get('/service-centre-landing', [ServiceCentreController::class, 'serviceCentreLanding']);
 $app->router->get('/service-centre-dashboard', [ServiceCentreController::class, 'serviceCentreDashboard']);
+$app->router->get('/service-centre-settings', [ServiceCentreController::class, 'serviceCentreSettings']);
+$app->router->get('/service-centre-profile', [ServiceCentreController::class, 'serviceCentreProfile']);
+$app->router->post('/update-service-centre-profile', [ServiceCentreController::class, 'updateServiceCenter']);
+$app->router->get('/service-center-help', [ServiceCentreController::class, 'serviceCenterHelp']);
+$app->router->get('/service-center-community', [ServiceCentreController::class, 'serviceCenterCommunity']);
+
 
 /* Customer Routes */
 $app->router->get('/customer-dashboard', [CustomerController::class, 'customerDashboard']);
