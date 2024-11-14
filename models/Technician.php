@@ -35,24 +35,24 @@ class Technician extends DbModel
 
     public function TechnicianAddressGeocoding()
     {
-        $sql = "SELECT tech_id, address FROM technician WHERE latitude IS NULL OR longitude IS NULL";
+        $sql = "SELECT address, tech_id FROM technician WHERE tech_id = :tech_id";
         $stmt = self::prepare($sql);
+        $primaryKey = Application::$app->session->get('technician');
+        $stmt->bindValue(':tech_id', $primaryKey);
         $stmt->execute();
 
-        $technicians = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $technician = $stmt->fetch(\PDO::FETCH_ASSOC);
 
         $geocoding = new GeocodingController();
-        foreach ($technicians as $technician) {
-            $latLng = $geocoding->getLatLngFromAddress($technician['address']);
+        $latLng = $geocoding->getLatLngFromAddress($technician['address']);
 
-            if ($latLng) {
-                $sql = "UPDATE technician SET latitude = :lat, longitude = :lng WHERE tech_id = :tech_id";
-                $stmt = self::prepare($sql);
-                $stmt->bindValue(':lat', $latLng['lat']);
-                $stmt->bindValue(':lng', $latLng['lng']);
-                $stmt->bindValue('tech_id', $technician['tech_id']);
-                $stmt->execute();
-            }
+        if ($latLng) {
+            $sql = "UPDATE technician SET latitude = :lat, longitude = :lng WHERE tech_id = :tech_id";
+            $stmt = self::prepare($sql);
+            $stmt->bindValue(':lat', $latLng['lat']);
+            $stmt->bindValue(':lng', $latLng['lng']);
+            $stmt->bindValue(':tech_id', $technician['tech_id']);
+            $stmt->execute();
         }
     }
 

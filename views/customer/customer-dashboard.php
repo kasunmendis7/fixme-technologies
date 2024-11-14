@@ -1,6 +1,7 @@
 <?php
 
 use app\core\Application;
+use app\models\Customer;
 
 ?>
 
