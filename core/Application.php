@@ -55,7 +55,14 @@ class Application
             $this->customer = null;
         }
 
-
+        $primaryValueSeviceCentre = $this->session->get('service_center');
+        if ($primaryValueSeviceCentre) {
+            $serviceCenterInstance = new $this->serviceCenterClass;
+            $primaryKey = $serviceCenterInstance->primaryKey();
+            $this->serviceCenter = $serviceCenterInstance->findOne([$primaryKey => $primaryValueSeviceCentre]);
+        } else {
+            $this->serviceCenter = null;
+        }
     }
 
     public function loginCustomer(DbModel $customer)
