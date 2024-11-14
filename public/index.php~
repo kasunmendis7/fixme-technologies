@@ -10,7 +10,7 @@ use app\controllers\TechnicianController;
 use app\controllers\ServiceCentreController;
 use app\controllers\PostController;
 use app\controllers\CommentController;
-use app\controllers\ProductController;
+
 
 /* load environment variables */
 
@@ -114,7 +114,7 @@ $app->router->post('/post-unlike', [PostController::class, 'unlike']);
 
 /* Routes related to the product */
 //$app->router->get('/marketplace', [ServiceCentreController::class, 'marketPlaceHome']);
-$app->router->get('/marketplace', [ProductController::class, 'index']);
+$app->router->get('/marketplace', [ProductCentreController::class, 'index']);
 //$app->router->get('/marketplace', [PostController::class, 'index']);
 
 /* Run the application */

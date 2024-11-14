@@ -30,14 +30,14 @@
                     <span class="title">Map</span>
                 </a>
             </li>
-            <li>
-                <a href="/service-center-community">
-                        <span class="icon">
-                           <ion-icon name="images-outline"></ion-icon>
-                        </span>
-                    <span class="title">Community</span>
-                </a>
-            </li>
+            <!--            <li>-->
+            <!--                <a href="/service-center-community">-->
+            <!--                        <span class="icon">-->
+            <!--                           <ion-icon name="images-outline"></ion-icon>-->
+            <!--                        </span>-->
+            <!--                    <span class="title">Community</span>-->
+            <!--                </a>-->
+            <!--            </li>-->
 
             <li>
                 <a href="#">
@@ -58,7 +58,7 @@
             </li>
 
             <li>
-                <a href="/technician-messages">
+                <a href="/marketplace">
                         <span class="icon">
                             <ion-icon name="bag-outline"></ion-icon>
                         </span>

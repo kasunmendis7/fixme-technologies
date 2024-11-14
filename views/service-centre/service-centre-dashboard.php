@@ -149,7 +149,7 @@ include_once 'components/header.php';
 
         <table>
             <tr>
-                <td width="60px">
+                <td>
                     <div class="imgBx"><img src="assets/technician-dashboard/customer02.jpg" alt=""></div>
                 </td>
                 <td>
@@ -158,7 +158,7 @@ include_once 'components/header.php';
             </tr>
 
             <tr>
-                <td width="60px">
+                <td>
                     <div class="imgBx"><img src="assets/technician-dashboard/customer04.jpg" alt=""></div>
                 </td>
                 <td>
@@ -167,7 +167,7 @@ include_once 'components/header.php';
             </tr>
 
             <tr>
-                <td width="60px">
+                <td>
                     <div class="imgBx"><img src="assets/technician-dashboard/customer01.jpg" alt=""></div>
                 </td>
                 <td>
@@ -176,7 +176,7 @@ include_once 'components/header.php';
             </tr>
 
             <tr>
-                <td width="60px">
+                <td>
                     <div class="imgBx"><img src="assets/technician-dashboard/customer03.jpg" alt=""></div>
                 </td>
                 <td>
@@ -185,7 +185,7 @@ include_once 'components/header.php';
             </tr>
 
             <tr>
-                <td width="60px">
+                <td>
                     <div class="imgBx"><img src="assets/technician-dashboard/customer02.jpg" alt=""></div>
                 </td>
                 <td>
@@ -194,7 +194,7 @@ include_once 'components/header.php';
             </tr>
 
             <tr>
-                <td width="60px">
+                <td>
                     <div class="imgBx"><img src="assets/technician-dashboard/customer01.jpg" alt=""></div>
                 </td>
                 <td>
@@ -203,7 +203,7 @@ include_once 'components/header.php';
             </tr>
 
             <tr>
-                <td width="60px">
+                <td>
                     <div class="imgBx"><img src="assets/technician-dashboard/customer01.jpg" alt=""></div>
                 </td>
                 <td>
@@ -212,7 +212,7 @@ include_once 'components/header.php';
             </tr>
 
             <tr>
-                <td width="60px">
+                <td>
                     <div class="imgBx"><img src="assets/technician-dashboard/customer02.jpg" alt=""></div>
                 </td>
                 <td>
@@ -221,8 +221,6 @@ include_once 'components/header.php';
             </tr>
         </table>
     </div>
-</div>
-</div>
 </div>
 
 <div id="signOutOverlay" class="overlay">
