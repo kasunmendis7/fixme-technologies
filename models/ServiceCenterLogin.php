@@ -9,6 +9,7 @@ class ServiceCenterLogin extends Model
 {
     public string $email = '';
     public string $password = '';
+
     public function rules(): array
     {
         // TODO: Implement rules() method.
@@ -25,7 +26,7 @@ class ServiceCenterLogin extends Model
 
     public function loginServiceCenter()
     {
-        $service_centerModel = new ServiceCenterRegisterModel;
+        $service_centerModel = new ServiceCentre;
         $service_center = $service_centerModel->findOne(['email' => $this->email]);
         if (!$service_center) {
             $this->addError('email', 'service center not exist with this email');

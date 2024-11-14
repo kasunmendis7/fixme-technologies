@@ -5,6 +5,7 @@ namespace app\core;
 class Application
 {
 
+    public string $layout = 'auth';
     public static string $ROOT_DIR;
     public string $technicianClass;
     public string $serviceCenterClass;
@@ -54,13 +55,12 @@ class Application
             $this->customer = null;
         }
 
-        $primaryValueServiceCenter = $this->session->get('service_center');
-        if ($primaryValueServiceCenter) {
+        $primaryValueSeviceCentre = $this->session->get('service_center');
+        if ($primaryValueSeviceCentre) {
             $serviceCenterInstance = new $this->serviceCenterClass;
             $primaryKey = $serviceCenterInstance->primaryKey();
-            $this->serviceCenter = $serviceCenterInstance->findOne([$primaryKey => $primaryValueServiceCenter]);
-        }
-        else {
+            $this->serviceCenter = $serviceCenterInstance->findOne([$primaryKey => $primaryValueSeviceCentre]);
+        } else {
             $this->serviceCenter = null;
         }
     }

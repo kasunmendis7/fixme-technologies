@@ -2,10 +2,11 @@
 
 namespace app\models;
 
+use app\controllers\GeocodingController;
 use app\core\Application;
 use app\core\DbModel;
 
-class ServiceCenterRegisterModel extends DbModel
+class ServiceCentre extends DbModel
 {
 
     public string $name = '';
@@ -27,17 +28,50 @@ class ServiceCenterRegisterModel extends DbModel
         return 'service_center';
     }
 
-    public  function primaryKey(): string
+    public function primaryKey(): string
     {
         return 'ser_cen_id';
     }
-
 
 
     public function save()
     {
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         return parent::save();
+    }
+
+    public function serviceCentreAddressGeocoding()
+    {
+        $sql = "SELECT address, ser_cen_id FROM service_center WHERE ser_cen_id = :ser_cen_id";
+        $stmt = self::prepare($sql);
+        $primaryKey = Application::$app->session->get('service_center');
+        $stmt->bindValue(':ser_cen_id', $primaryKey);
+        $stmt->execute();
+
+        $serviceCenter = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        $geocoding = new GeocodingController();
+        $latLng = $geocoding->getLatLngFromAddress($serviceCenter['address']);
+
+        if ($latLng) {
+            $sql = "UPDATE service_center SET latitude = :lat, longitude = :lng WHERE ser_cen_id = :ser_cen_id";
+            $stmt = self::prepare($sql);
+            $stmt->bindValue(':lat', $latLng['lat']);
+            $stmt->bindValue(':lng', $latLng['lng']);
+            $stmt->bindValue(':ser_cen_id', $serviceCenter['ser_cen_id']);
+            $stmt->execute();
+        }
+    }
+
+    public function serviceCentresGeocoding()
+    {
+        $sql = "SELECT ser_cen_id, name, latitude, longitude FROM service_center WHERE latitude IS NOT NULL AND longitude IS NOT NULL";
+        $stmt = self::prepare($sql);
+        $stmt->execute();
+        $service_centres = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        header('Content-type: application/json');
+        return json_encode($service_centres);
     }
 
     public function updateServiceCenter()
