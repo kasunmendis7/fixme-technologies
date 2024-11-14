@@ -1,8 +1,7 @@
+
 <?php
 
-/** @var $model \app\models\ServiceCenterRegisterModel */
-
-use app\core\Application;
+/** @var $model \app\models\ServiceCentre */
 
 ?>
 

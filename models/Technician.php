@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\controllers\GeocodingController;
 use app\core\Application;
 use app\core\DbModel;
 
@@ -31,6 +32,41 @@ class Technician extends DbModel
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         return parent::save();
     }
+
+    public function TechnicianAddressGeocoding()
+    {
+        $sql = "SELECT address, tech_id FROM technician WHERE tech_id = :tech_id";
+        $stmt = self::prepare($sql);
+        $primaryKey = Application::$app->session->get('technician');
+        $stmt->bindValue(':tech_id', $primaryKey);
+        $stmt->execute();
+
+        $technician = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        $geocoding = new GeocodingController();
+        $latLng = $geocoding->getLatLngFromAddress($technician['address']);
+
+        if ($latLng) {
+            $sql = "UPDATE technician SET latitude = :lat, longitude = :lng WHERE tech_id = :tech_id";
+            $stmt = self::prepare($sql);
+            $stmt->bindValue(':lat', $latLng['lat']);
+            $stmt->bindValue(':lng', $latLng['lng']);
+            $stmt->bindValue(':tech_id', $technician['tech_id']);
+            $stmt->execute();
+        }
+    }
+
+    public function techniciansGeocoding()
+    {
+        $sql = "SELECT tech_id, fname, lname, latitude, longitude FROM technician WHERE latitude IS NOT NULL AND longitude IS NOT NULL";
+        $stmt = self::prepare($sql);
+        $stmt->execute();
+        $technicians = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        header('Content-type: application/json');
+        return json_encode($technicians);
+    }
+
 
     public function rules(): array
     {
