@@ -6,7 +6,9 @@ use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
+use app\models\Comment;
 use app\models\Customer;
+use app\models\Post;
 
 class CustomerController extends Controller
 {
@@ -55,5 +57,18 @@ class CustomerController extends Controller
                 Application::$app->response->redirect('/customer-profile');
             }
         }
+    }
+
+    public function fixmeCommunity()
+    {
+
+        $posts = (new Post)->getAllPostsWithLikes(Application::$app->customer->cus_id);
+        foreach ($posts as &$post) {
+            $post['comments'] = (new Comment)->getAllComments($post['post_id']);
+        }
+        $this->setLayout('auth');
+        return $this->render('/customer/fixme-community', [
+            'posts' => $posts
+        ]);
     }
 }

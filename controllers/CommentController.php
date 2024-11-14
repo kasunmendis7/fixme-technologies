@@ -25,7 +25,7 @@ class CommentController extends Controller
                 Application::$app->session->setFlash('error', 'Failed to post comment');
             }
 
-            Application::$app->response->redirect('/technician-community');
+            Application::$app->response->redirect('/fixme-community');
 
         }
     }
@@ -41,7 +41,7 @@ class CommentController extends Controller
         // Ensure the user is the owner of the comment
         if ($comment->cus_id !== Application::$app->customer->cus_id) {
             Application::$app->session->setFlash('error', 'Unauthorized action');
-            $this->response->redirect("/technician-community");
+            $this->response->redirect("/fixme-community");
             return;
         }
 
@@ -54,11 +54,11 @@ class CommentController extends Controller
                 Application::$app->session->setFlash('error', 'Failed to update comment');
             }
 
-            Application::$app->response->redirect('/technician-community');
+            Application::$app->response->redirect('/fixme-community');
         }
 
         // Render the edit comment view
-        return $this->render('/technician/technician-community', [
+        return $this->render('/customer/fixme-community', [
             'comment' => $comment
         ]);
     }
@@ -72,7 +72,7 @@ class CommentController extends Controller
 
         if (!$commentID || !$cusID) {
             Application::$app->session->setFlash('error', 'Invalid request.');
-            Application::$app->response->redirect('/technician-community');
+            Application::$app->response->redirect('/fixme-community');
             return;
         }
 
@@ -81,14 +81,14 @@ class CommentController extends Controller
 
         if (!$comment) {
             Application::$app->session->setFlash('error', 'Comment not found.');
-            Application::$app->response->redirect('/technician-community');
+            Application::$app->response->redirect('/fixme-community');
             return;
         }
 
         // Check if the logged-in customer is the owner of the comment
         if ($comment->cus_id !== $cusID) {
             Application::$app->session->setFlash('error', 'Unauthorized access.');
-            Application::$app->response->redirect('/technician-community');
+            Application::$app->response->redirect('/fixme-community');
             return;
         }
 
@@ -99,7 +99,7 @@ class CommentController extends Controller
             Application::$app->session->setFlash('error', 'Failed to delete the comment.');
         }
 
-        Application::$app->response->redirect('/technician-community');
+        Application::$app->response->redirect('/fixme-community');
     }
 
 }

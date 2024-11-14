@@ -1,5 +1,5 @@
-
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -43,6 +43,7 @@ body {
     transition: 0.5s;
     overflow: hidden;
 }
+
 .navigation.active {
     width: 80px;
 }
@@ -80,6 +81,7 @@ body {
     text-decoration: none;
     color: var(--white);
 }
+
 .navigation ul li:hover a,
 .navigation ul li.hovered a {
     color: var(--blue);
@@ -93,6 +95,7 @@ body {
     line-height: 75px;
     text-align: center;
 }
+
 .navigation ul li a .icon ion-icon {
     font-size: 1.75rem;
 }
@@ -121,6 +124,7 @@ body {
     box-shadow: 35px 35px 0 10px var(--white);
     pointer-events: none;
 }
+
 .navigation ul li:hover a::after,
 .navigation ul li.hovered a::after {
     content: "";
@@ -144,6 +148,7 @@ body {
     background: var(--white);
     transition: 0.5s;
 }
+
 .main.active {
     width: calc(100% - 80px);
     left: 80px;
@@ -230,28 +235,35 @@ body {
     font-size: 24px;
     margin: 0;
 }
+
 .breadcrumb {
     list-style: none;
     padding: 0;
     margin: 10px 0;
     font-size: 14px;
 }
+
 .breadcrumb li {
     display: inline;
     margin-right: 5px;
 }
+
 .row {
     display: flex;
 }
+
 .col-md-3, .col-md-9 {
     padding: 10px;
 }
+
 .col-md-3 {
     width: 30%;
 }
+
 .col-md-9 {
     width: 70%;
 }
+
 .btn {
     display: inline-block;
     padding: 10px 20px;
@@ -261,41 +273,51 @@ body {
     border: none;
     border-radius: 4px;
 }
+
 .primary-btn {
     background-color: #007bff;
     color: white;
 }
+
 .default-btn {
     background-color: #f0f0f0;
     color: #333;
 }
+
 .box {
     border: 1px solid #ddd;
     padding: 15px;
     border-radius: 4px;
     margin-bottom: 10px;
 }
+
 .box.primary {
     border-color: #007bff;
 }
+
 .box-title {
     font-size: 18px;
     margin: 0 0 10px 0;
 }
+
 .nav {
     list-style: none;
     padding: 0;
 }
+
 .nav li {
     margin: 5px 0;
 }
+
 .nav li a {
     text-decoration: none;
     color: #007bff;
 }
+
 .nav li.active a {
     font-weight: bold;
 }
+
 .label {
     background: #007bff;
     color: white;
@@ -303,17 +325,21 @@ body {
     padding: 2px 5px;
     font-size: 12px;
 }
+
 .mailbox-controls {
     margin: 10px 0;
 }
+
 .mailbox-messages table {
     width: 100%;
     border-collapse: collapse;
 }
+
 .mailbox-messages td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
+
 .star {
     display: inline-block;
     width: 16px;
@@ -321,8 +347,16 @@ body {
     background: yellow;
     clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 }
+
 .search {
     width: 100%;
     padding: 5px;
 }
 
+/* User name */
+.user-name {
+    position: relative;
+    margin-left: 300px;
+    color: var(--white);
+    font-size: 0.9rem;
+}

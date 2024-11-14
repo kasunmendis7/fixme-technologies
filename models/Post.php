@@ -34,22 +34,22 @@ class Post extends DbModel
         return parent::save();
     }
 
-    public static function getAllPosts(): array
-    {
-        $tableName = self::tableName();
-        $statement = self::prepare("
-            SELECT p.*, t.fname, t.lname
-            FROM $tableName p
-            JOIN technician t ON p.tech_id = t.tech_id
-            ORDER BY p.created_at DESC
-        ");
-        $statement->execute();
-        return $statement->fetchAll(\PDO::FETCH_ASSOC);
-    }
+//    public static function getAllPosts(): array
+//    {
+//        $tableName = self::tableName();
+//        $statement = self::prepare("
+//            SELECT p.*, t.fname, t.lname
+//            FROM $tableName p
+//            JOIN technician t ON p.tech_id = t.tech_id
+//            ORDER BY p.created_at DESC
+//        ");
+//        $statement->execute();
+//        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+//    }
 
     public static function getAllPostsWithLikes(int $userId)
     {
-        $sql = "SELECT p.*, t.fname, t.lname,
+        $sql = "SELECT p.*, t.fname, t.lname, t.profile_picture,
             (SELECT COUNT(*) FROM post_like WHERE post_id = p.post_id) AS like_count,
             (SELECT COUNT(*) FROM post_like WHERE post_id = p.post_id AND cus_id = :user_id) AS user_liked
         FROM post p

@@ -36,7 +36,7 @@
                 </a>
             </li>
             <li>
-                <a href="/technician-community">
+                <a href="/fixme-community">
                     <span class="icon">
                         <ion-icon name="images-outline"></ion-icon>
                     </span>
