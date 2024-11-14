@@ -192,6 +192,28 @@
     }
 }
 
+/* Highlight invalid input fields */
+.container .box-2 .wrapper .login-form .input-element .invalid {
+    border-color: #dc3545; /* Red border for error */
+    background-color: #f8d7da; /* Light red background for error */
+}
+
+.container .box-2 .wrapper .login-form .input-element .invalid {
+    color: #dc3545; /* Red color for label to indicate error */
+}
+
+/* Error feedback message */
+.container .box-2 .wrapper .login-form .input-element .invalid-feedback {
+    color: #dc3545;
+    font-size: 0.8rem;
+    margin-top: 0.4rem;
+    /*display: none;  /* Hide by default, show only when invalid */
+}
+
+/* Display error feedback when invalid */
+.container .box-2 .wrapper .login-form .input-element.invalid .invalid-feedback {
+    display: block;
+}
 
 .alert {
     position: relative;

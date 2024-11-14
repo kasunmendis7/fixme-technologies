@@ -4,7 +4,7 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
-use app\models\ServiceCenterRegisterModel;
+use app\models\ServiceCenter;
 
 class ServiceCentreController extends Controller
 {
@@ -58,7 +58,7 @@ class ServiceCentreController extends Controller
 
     public function updateServiceCenter(Request $request)
     {
-        $serviceCenter = new ServiceCenterRegisterModel();
+        $serviceCenter = new ServiceCenter();
 
         if ($request->isPost()) {
             $serviceCenter->loadData($request->getBody());

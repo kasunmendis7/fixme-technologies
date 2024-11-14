@@ -5,7 +5,7 @@ namespace app\models;
 use app\core\Application;
 use app\core\DbModel;
 
-class ServiceCenterRegisterModel extends DbModel
+class ServiceCenter extends DbModel
 {
 
     public string $name = '';
@@ -57,7 +57,10 @@ class ServiceCenterRegisterModel extends DbModel
         return [
             'name' => [self::RULE_REQUIRED],
             //            'nic' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 10], [self::RULE_MAX, 'max' => 15]],
-            'email' => [self::RULE_REQUIRED, self::RULE_EMAIL],
+            'email' => [self::RULE_REQUIRED, self::RULE_EMAIL, [
+                self::RULE_UNIQUE,
+                'class' => self::class
+            ]],
             'phone_no' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 10], [self::RULE_MAX, 'max' => 10]],
             'address' => [self::RULE_REQUIRED],
             'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 8]],
@@ -67,7 +70,11 @@ class ServiceCenterRegisterModel extends DbModel
 
     public function updateRules(): array
     {
-        return [];
+        return [
+            'name' => [self::RULE_REQUIRED],
+            'phone_no' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 10], [self::RULE_MAX, 'max' => 10]],
+            'address' => [self::RULE_REQUIRED]
+        ];
     }
 
     public function attributes(): array
