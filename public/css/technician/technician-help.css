@@ -40,6 +40,7 @@ body {
     transition: 0.5s;
     overflow: hidden;
 }
+
 .navigation.active {
     width: 80px;
 }
@@ -77,6 +78,7 @@ body {
     text-decoration: none;
     color: var(--white);
 }
+
 .navigation ul li:hover a,
 .navigation ul li.hovered a {
     color: var(--blue);
@@ -90,6 +92,7 @@ body {
     line-height: 75px;
     text-align: center;
 }
+
 .navigation ul li a .icon ion-icon {
     font-size: 1.75rem;
 }
@@ -118,6 +121,7 @@ body {
     box-shadow: 35px 35px 0 10px var(--white);
     pointer-events: none;
 }
+
 .navigation ul li:hover a::after,
 .navigation ul li.hovered a::after {
     content: "";
@@ -141,6 +145,7 @@ body {
     background: var(--white);
     transition: 0.5s;
 }
+
 .main.active {
     width: calc(100% - 80px);
     left: 80px;
@@ -222,6 +227,7 @@ body {
     background-color: #f1f5f9;
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
 }
+
 .help-header {
     display: flex;
     flex-direction: column;
@@ -234,11 +240,13 @@ body {
 .help-header help-img {
     max-width: 100%;
 }
+
 .help-title {
     font-size: 2.5rem;
     font-weight: bold;
     color: #319795;
 }
+
 .help-subtitle {
     font-size: 1rem;
     color: #4a5568;
@@ -258,6 +266,7 @@ body {
     gap: 2.5rem;
     margin-top: -2rem;
 }
+
 .help-contact-card {
     width: 428px;
     height: 362px;
@@ -269,18 +278,22 @@ body {
     padding: 2.5rem;
     gap: 0.5rem;
 }
+
 .help-contact-card .help-icon {
     font-size: 2.5rem;
 }
+
 .help-contact-card .help-title {
     font-size: 1.25rem;
     font-weight: 600;
 }
+
 .help-contact-card .help-description {
     font-size: 1rem;
     color: #718096;
     margin-top: 1rem;
 }
+
 .help-contact-card .help-contact-info {
     font-size: 1.25rem;
     color: #00b5d8;
@@ -302,4 +315,12 @@ body {
     .text-wrapper, .image-wrapper {
         flex-basis: 100%;
     }
+}
+
+/* User name */
+.user-name {
+    position: relative;
+    margin-left: 300px;
+    color: var(--white);
+    font-size: 0.9rem;
 }

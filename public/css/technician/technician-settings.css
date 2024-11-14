@@ -37,6 +37,7 @@ body {
     transition: 0.5s;
     overflow: hidden;
 }
+
 .navigation.active {
     width: 80px;
 }
@@ -74,6 +75,7 @@ body {
     text-decoration: none;
     color: var(--white);
 }
+
 .navigation ul li:hover a,
 .navigation ul li.hovered a {
     color: var(--blue);
@@ -87,6 +89,7 @@ body {
     line-height: 75px;
     text-align: center;
 }
+
 .navigation ul li a .icon ion-icon {
     font-size: 1.75rem;
 }
@@ -115,6 +118,7 @@ body {
     box-shadow: 35px 35px 0 10px var(--white);
     pointer-events: none;
 }
+
 .navigation ul li:hover a::after,
 .navigation ul li.hovered a::after {
     content: "";
@@ -138,6 +142,7 @@ body {
     background: var(--white);
     transition: 0.5s;
 }
+
 .main.active {
     width: calc(100% - 80px);
     left: 80px;
@@ -382,4 +387,12 @@ body {
 .settings-input-field:focus {
     border-color: var(--blue);
     outline: none;
+}
+
+/* User name */
+.user-name {
+    position: relative;
+    margin-left: 300px;
+    color: var(--white);
+    font-size: 0.9rem;
 }

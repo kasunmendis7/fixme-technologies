@@ -49,7 +49,6 @@ class PostController extends Controller
     {
 
         $posts = (new Post)->getAllPostsWithLikes(Application::$app->customer->cus_id);
-//        $posts = Post::getAllPosts();  // Fetch all posts from the database
         foreach ($posts as &$post) {
             $post['comments'] = (new Comment)->getAllComments($post['post_id']);
         }
