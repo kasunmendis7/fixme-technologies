@@ -5,6 +5,7 @@ namespace app\core;
 class Application
 {
 
+    public string $layout = 'auth';
     public static string $ROOT_DIR;
     public string $technicianClass;
     public string $serviceCenterClass;
@@ -53,6 +54,8 @@ class Application
         } else {
             $this->customer = null;
         }
+
+
     }
 
     public function loginCustomer(DbModel $customer)

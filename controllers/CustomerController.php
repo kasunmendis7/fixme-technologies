@@ -7,6 +7,8 @@ use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
 use app\models\Customer;
+use app\models\ServiceCentre;
+use app\models\Technician;
 
 class CustomerController extends Controller
 {
@@ -39,6 +41,32 @@ class CustomerController extends Controller
     {
         $this->setLayout('auth');
         return $this->render('/customer/customer-technicians');
+    }
+
+    public function customerMap()
+    {
+        $this->setLayout('auth');
+        return $this->render('/customer/customer-map');
+    }
+
+    public function getTechnicianGeocoding()
+    {
+        header("Access-Control-Allow-Origin: http://localhost:8080");
+        header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type");
+
+        $technician = new Technician();
+        return $technician->techniciansGeocoding();
+    }
+
+    public function getServiceCentresGeocoding()
+    {
+        header("Access-Control-Allow-Origin: http://localhost:8080");
+        header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type");
+
+        $serviceCentre = new ServiceCentre();
+        return $serviceCentre->serviceCentresGeocoding();
     }
 
     public function updateCustomerProfile(Request $request)

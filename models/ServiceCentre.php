@@ -5,7 +5,7 @@ namespace app\models;
 use app\controllers\GeocodingController;
 use app\core\DbModel;
 
-class ServiceCenterRegisterModel extends DbModel
+class ServiceCentre extends DbModel
 {
 
     public string $name = '';
@@ -60,6 +60,17 @@ class ServiceCenterRegisterModel extends DbModel
                 $stmt->execute();
             }
         }
+    }
+
+    public function serviceCentresGeocoding()
+    {
+        $sql = "SELECT ser_cen_id, name, latitude, longitude FROM service_center WHERE latitude IS NOT NULL AND longitude IS NOT NULL";
+        $stmt = self::prepare($sql);
+        $stmt->execute();
+        $service_centres = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        header('Content-type: application/json');
+        return json_encode($service_centres);
     }
 
     public function rules(): array
