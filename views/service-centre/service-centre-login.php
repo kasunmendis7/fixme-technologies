@@ -1,7 +1,8 @@
-
 <?php
 
 /** @var $model \app\models\ServiceCentre */
+
+use app\core\Application;
 
 ?>
 
