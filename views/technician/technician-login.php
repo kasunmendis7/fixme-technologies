@@ -1,5 +1,8 @@
 <?php
 /** @var $model \app\models\Technician */
+
+use app\core\Application;
+
 ?>
 
 <!DOCTYPE html>
@@ -15,6 +18,11 @@
 </head>
 
 <body>
+<?php if (Application::$app->session->getFlash('success')): ?>
+    <div class="alert alert-success">
+        <?php echo Application::$app->session->getFlash('success') ?>
+    </div>
+<?php endif; ?>
 <div class="container">
     <div class="box-1">
         <div class="branding">
@@ -34,14 +42,18 @@
             <form action="" method="post" class="login-form">
                 <div class="input-element">
                     <label for="email">Email address:</label>
-                    <input type="email" name="email" id="email" placeholder="example@email.com..." value="<?php echo $model->email ?>" class="<?php echo $model->hasError('email') ? 'invalid ' : '' ?>">
+                    <input type="email" name="email" id="email" placeholder="example@email.com..."
+                           value="<?php echo $model->email ?>"
+                           class="<?php echo $model->hasError('email') ? 'invalid ' : '' ?>">
                     <div class="invalid-feedback">
                         <?php echo $model->getFirstError('email') ?>
                     </div>
                 </div>
                 <div class="input-element">
                     <label for="password">Password:</label>
-                    <input type="password" name="password" id="password" placeholder="Password..." value="<?php echo $model->password ?>" class="<?php echo $model->hasError('password') ? 'invalid ' : '' ?>">
+                    <input type="password" name="password" id="password" placeholder="Password..."
+                           value="<?php echo $model->password ?>"
+                           class="<?php echo $model->hasError('password') ? 'invalid ' : '' ?>">
                     <div class="invalid-feedback">
                         <?php echo $model->getFirstError('password') ?>
                     </div>

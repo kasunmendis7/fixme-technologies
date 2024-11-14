@@ -10,8 +10,8 @@ use app\core\Application;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Technician Dashboard</title>
     <link rel="stylesheet" href="/css/technician/technician-community.css">
-    <link rel="stylesheet" href="/css/technician/overlay.css">
-
+    <link rel="stylesheet" href="/css/customer/customer-dashboard.css">
+    <link rel="stylesheet" href="/css/customer/overlay.css">
 </head>
 <body>
 <?php
@@ -38,8 +38,8 @@ as $post): ?>
             <div class="profile-info">
                 <div class="profile-img">
                     <img src="<?php echo htmlspecialchars($post['profile_picture']) ?>" alt="Profile Pic">
-
                 </div>
+                <!--                    //echo htmlspecialchars($post['fname'] . ' ' . $post['lname']); ?-->
                 <span class="username"><?php echo htmlspecialchars($post['fname']); ?></span>
             </div>
 
@@ -147,7 +147,7 @@ as $post): ?>
 </div>
 
 <script src="/js/technician/technician-community.js"></script>
-<script src="/js/technician/overlay.js"></script>
+<script src="/js/customer/overlay.js"></script>
 <!-- Icons -->
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
