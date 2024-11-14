@@ -230,3 +230,16 @@
 .container .box-2 .wrapper .cust-signup-form .input-element.invalid .invalid-feedback {
     display: block;
 }
+
+.alert {
+    position: relative;
+    padding: 1rem 1.25rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}

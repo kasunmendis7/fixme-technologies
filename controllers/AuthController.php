@@ -8,6 +8,7 @@ use app\core\Request;
 use app\core\Response;
 use app\models\Customer;
 use app\models\CustomerLoginForm;
+
 //use app\core\Response;
 use app\models\CustomerRegisterModel;
 use app\models\ServiceCenterLogin;
@@ -26,7 +27,7 @@ class AuthController extends Controller
             $customer->loadData($request->getBody());
             if ($customer->validate() && $customer->save()) {
                 Application::$app->session->setFlash('success', 'You have been registered successfully!');
-                Application::$app->response->redirect('/');
+                Application::$app->response->redirect('/customer-login');
             }
             $this->setLayout('auth');
             return $this->render('/customer/customer-sign-up', [
@@ -72,7 +73,7 @@ class AuthController extends Controller
 
             if ($technician->validate() && $technician->save()) {
                 Application::$app->session->setFlash('success', 'You have been registered successfully!');
-                Application::$app->response->redirect('/');
+                Application::$app->response->redirect('/technician-login');
             }
             $this->setLayout('auth');
             return $this->render('/technician/technician-sign-up', [
@@ -91,13 +92,13 @@ class AuthController extends Controller
         $technicianLogin = new TechnicianLogin();
         if ($request->isPost()) {
             $technicianLogin->loadData($request->getBody());
-            if ($technicianLogin->validate() && $technicianLogin->loginTechnician()){
+            if ($technicianLogin->validate() && $technicianLogin->loginTechnician()) {
                 $response->redirect('/technician-dashboard');
                 return;
             }
         }
         $this->setLayout('auth');
-        return $this->render('/technician/technician-login', ['model' => $technicianLogin] );
+        return $this->render('/technician/technician-login', ['model' => $technicianLogin]);
     }
 
     public function technicianLogOut(Request $request, Response $response)
@@ -117,7 +118,7 @@ class AuthController extends Controller
 
             if ($registerModel->validate() && $registerModel->save()) {
                 Application::$app->session->setFlash('success', 'You have been registered successfully!');
-                Application::$app->response->redirect('/');
+                Application::$app->response->redirect('/service-centre-login');
             }
             $this->setLayout('auth');
             return $this->render('/service-centre/service-centre-sign-up', [
@@ -138,18 +139,18 @@ class AuthController extends Controller
         $serviceCenterLogin = new ServiceCenterLogin();
         if ($request->isPost()) {
             $serviceCenterLogin->loadData($request->getBody());
-            if ($serviceCenterLogin->validate() && $serviceCenterLogin->loginServiceCenter()){
+            if ($serviceCenterLogin->validate() && $serviceCenterLogin->loginServiceCenter()) {
                 $response->redirect('/service-centre-dashboard');
                 return;
             }
         }
         $this->setLayout('auth');
-        return $this->render('/service-centre/service-centre-login',[
+        return $this->render('/service-centre/service-centre-login', [
             'model' => $serviceCenterLogin
         ]);
     }
 
-    public function serviceCenterLogout(Request $request, Response  $response)
+    public function serviceCenterLogout(Request $request, Response $response)
     {
         Application::$app->logoutServiceCenter();
         $response->redirect('/service-centre-landing');

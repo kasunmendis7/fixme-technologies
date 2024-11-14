@@ -50,6 +50,13 @@ $app->router->post('/update-technician-profile', [TechnicianController::class, '
 /** Service Center Routes */
 $app->router->get('/service-centre-landing', [ServiceCentreController::class, 'serviceCentreLanding']);
 $app->router->get('/service-centre-dashboard', [ServiceCentreController::class, 'serviceCentreDashboard']);
+$app->router->get('/service-centre-settings', [ServiceCentreController::class, 'serviceCentreSettings']);
+$app->router->get('/service-centre-profile', [ServiceCentreController::class, 'serviceCentreProfile']);
+$app->router->post('/update-service-centre-profile', [ServiceCentreController::class, 'updateServiceCenter']);
+$app->router->get('/service-center-help', [ServiceCentreController::class, 'serviceCenterHelp']);
+$app->router->get('/service-center-community', [ServiceCentreController::class, 'serviceCenterCommunity']);
+$app->router->get('/market-place-home', [ServiceCentreController::class, 'marketPlaceHome']);
+
 
 /* Customer Routes */
 $app->router->get('/customer-dashboard', [CustomerController::class, 'customerDashboard']);
@@ -92,6 +99,7 @@ $app->router->post('/technician-create-post', [PostController::class, 'create'])
 $app->router->post('/technician-edit-post', [PostController::class, 'edit']);
 $app->router->get('/technician-community', [PostController::class, 'index']);
 $app->router->post('/technician-delete-post', [PostController::class, 'delete']);
+$app->router->get('/fixme-community', [CustomerController::class, 'fixmeCommunity']);
 
 /* Routes related to the by Comment */
 $app->router->post('/comment-create', [CommentController::class, 'create']);

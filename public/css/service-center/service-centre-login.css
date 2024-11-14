@@ -165,23 +165,43 @@
     .container {
         grid-template-columns: 1fr;
     }
+
     .container .box-2 {
         padding: 2rem;
     }
+
     .container .box-2 .wrapper {
         padding: 1.5rem;
     }
+
     .container .box-2 .wrapper .title-1 h2 {
         font-size: 1.3rem;
     }
+
     .login-form {
         font-size: 0.8rem;
     }
+
     .login-form .input-element input {
         padding: 0.7rem 0.5rem;
     }
+
     .login-form .btn {
         padding: 0.7rem 1.1rem;
         font-size: 0.8rem;
     }
+}
+
+
+.alert {
+    position: relative;
+    padding: 1rem 1.25rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
 }
