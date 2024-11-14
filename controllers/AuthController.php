@@ -49,7 +49,7 @@ class AuthController extends Controller
             if ($loginForm->validate() && $loginForm->login()) {
                 $response->redirect('/customer-dashboard'); // later will change this to customer dashboard
                 $customer = new Customer();
-                $customer->customerAddressGeocoding();
+                echo $customer->customerAddressGeocoding();
                 return;
             }
         }
