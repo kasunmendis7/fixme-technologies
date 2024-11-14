@@ -92,6 +92,7 @@ $app->router->post('/technician-create-post', [PostController::class, 'create'])
 $app->router->post('/technician-edit-post', [PostController::class, 'edit']);
 $app->router->get('/technician-community', [PostController::class, 'index']);
 $app->router->post('/technician-delete-post', [PostController::class, 'delete']);
+$app->router->get('/fixme-community', [CustomerController::class, 'fixmeCommunity']);
 
 /* Routes related to the by Comment */
 $app->router->post('/comment-create', [CommentController::class, 'create']);

@@ -14,6 +14,9 @@
 <?php
 include_once 'components/sidebar.php';
 include_once 'components/header.php';
+
+use app\core\Application;
+
 ?>
 <!-- JavaScript Files -->
 <script src="/js/technician/technician-create-post.js"></script>
@@ -26,7 +29,10 @@ include_once 'components/header.php';
             </div>
         </header>
         <div class="create-post-header">
-            <div class="profile-pic"><img src="/assets/technician-dashboard/customer02.jpg" alt=""></div>
+            <div class="profile-pic">
+                <img src="<?php echo Application::$app->technician->{'profile_picture'} ?>" alt="Profile Pic">
+
+            </div>
             <div class="user-info">
                 <div class="full-name">Fix Me</div>
                 <div class="post-audience">
@@ -48,7 +54,7 @@ include_once 'components/header.php';
                     </div>
                 </div>
                 <!-- Post Button -->
-                    <button type="submit" value="Post" class="post-btn" disabled>Post</button>
+                <button type="submit" value="Post" class="post-btn" disabled>Post</button>
             </form>
         </div>
     </div>
@@ -73,6 +79,8 @@ include_once 'components/header.php';
 </div>
 
 <script src="/js/technician/overlay.js"></script>
-
+<!-- Icons -->
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
