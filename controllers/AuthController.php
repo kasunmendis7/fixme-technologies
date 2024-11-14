@@ -13,7 +13,7 @@ use app\models\CustomerLoginForm;
 use app\models\CustomerRegisterModel;
 use app\models\ServiceCenterLogin;
 use app\models\Technician;
-use app\models\ServiceCenterRegisterModel;
+use app\models\ServiceCenter;
 use app\models\TechnicianLogin;
 
 class AuthController extends Controller
@@ -112,7 +112,7 @@ class AuthController extends Controller
 
     public function serviceCentreSignup(Request $request)
     {
-        $registerModel = new ServiceCenterRegisterModel();
+        $registerModel = new ServiceCenter();
         if ($request->isPost()) {
             $registerModel->loadData($request->getBody());
 
