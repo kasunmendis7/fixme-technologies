@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\controllers\GeocodingController;
+use app\core\Application;
 use app\core\DbModel;
 
 class ServiceCentre extends DbModel
@@ -41,24 +42,24 @@ class ServiceCentre extends DbModel
 
     public function serviceCentreAddressGeocoding()
     {
-        $sql = "SELECT ser_cen_id, address FROM service_center WHERE latitude IS NULL OR longitude IS NULL";
+        $sql = "SELECT address, ser_cen_id FROM service_center WHERE ser_cen_id = :ser_cen_id";
         $stmt = self::prepare($sql);
+        $primaryKey = Application::$app->session->get('service_center');
+        $stmt->bindValue(':ser_cen_id', $primaryKey);
         $stmt->execute();
 
-        $service_centres = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $serviceCenter = $stmt->fetch(\PDO::FETCH_ASSOC);
 
         $geocoding = new GeocodingController();
-        foreach ($service_centres as $service_centre) {
-            $latLng = $geocoding->getLatLngFromAddress($service_centre['address']);
+        $latLng = $geocoding->getLatLngFromAddress($serviceCenter['address']);
 
-            if ($latLng) {
-                $sql = "UPDATE service_center SET latitude = :lat, longitude = :lng WHERE ser_cen_id = :ser_cen_id";
-                $stmt = self::prepare($sql);
-                $stmt->bindValue(':lat', $latLng['lat']);
-                $stmt->bindValue(':lng', $latLng['lng']);
-                $stmt->bindValue('ser_cen_id', $service_centre['ser_cen_id']);
-                $stmt->execute();
-            }
+        if ($latLng) {
+            $sql = "UPDATE service_center SET latitude = :lat, longitude = :lng WHERE ser_cen_id = :ser_cen_id";
+            $stmt = self::prepare($sql);
+            $stmt->bindValue(':lat', $latLng['lat']);
+            $stmt->bindValue(':lng', $latLng['lng']);
+            $stmt->bindValue(':ser_cen_id', $serviceCenter['ser_cen_id']);
+            $stmt->execute();
         }
     }
 
