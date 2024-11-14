@@ -49,7 +49,7 @@
             </li>
 
             <li>
-                <a href="/technician-messages">
+                <a href="#">
                         <span class="icon">
                             <ion-icon name="chatbubble-outline"></ion-icon>
                         </span>
@@ -58,7 +58,7 @@
             </li>
 
             <li>
-                <a href="/technician-messages">
+                <a href="#">
                         <span class="icon">
                             <ion-icon name="bag-outline"></ion-icon>
                         </span>
