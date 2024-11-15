@@ -114,10 +114,13 @@ $app->router->post('/post-unlike', [PostController::class, 'unlike']);
 
 /* Routes related to the product */
 //$app->router->get('/marketplace', [ServiceCentreController::class, 'marketPlaceHome']);
-$app->router->get('/marketplace', [ProductController::class, 'index']);
 $app->router->get('/marketplace-add-product', [ServiceCentreController::class, 'serviceCentreAddProduct']);
+$app->router->get('/marketplace-edit-product', [ServiceCentreController::class, 'serviceCentreEditProduct']);
 $app->router->post('/marketplace-add-product', [ProductController::class, 'create']);
-//$app->router->get('/marketplace', [PostController::class, 'index']);
+$app->router->post('/marketplace-edit-product', [ProductController::class, 'edit']);
+$app->router->get('/marketplace', [ProductController::class, 'index']);
+$app->router->post('/marketplace-delete-product', [ProductController::class, 'delete']);
+
 
 /* Run the application */
 $app->run();

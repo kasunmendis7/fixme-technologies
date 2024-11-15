@@ -42,6 +42,23 @@ include_once 'components/header.php';
                             <div class="buy-now">
                                 <button><a href="#">Order</a></button>
                             </div>
+
+                            <?php if ($product['ser_cen_id'] === Application::$app->service_center->ser_cen_id): ?>
+                                <div class="product-actions">
+                                    <button>
+                                        <a href="/marketplace-edit-product?product_id=<?= htmlspecialchars($product['product_id']) ?>">Edit</a>
+                                    </button>
+                                    <form action="/marketplace-delete-product" method="post"
+                                          onsubmit="return confirm('Are you sure you want to delete this product?');"
+                                          style="display: inline;">
+                                        <input type="hidden" name="product_id"
+                                               value="<?= htmlspecialchars($product['product_id']) ?>">
+                                        <button type="submit">Delete</button>
+                                    </form>
+                                </div>
+                            <?php endif; ?>
+
+
                         </div>
                     </div>
                 </div>
@@ -66,8 +83,7 @@ include_once 'components/header.php';
                 <div class="form-txt">
                     <h4>INFORMATION</h4>
                     <h1>Contact Us</h1>
-                    <span>As you might expect of a company that began as a high-end interiors contractor, we pay strict
-                          attention.</span>
+                    <span>Experience top-notch service and support at our state-of-the-art service center, where customer satisfaction is our highest priority.</span>
                 </div>
                 <div class="form-details">
                     <input type="text" name="name" id="name" placeholder="Name" required>

@@ -50,6 +50,36 @@ class Product extends DbModel
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function editProduct(): bool
+    {
+        $tableName = (new Product)->tableName();
+        $statement = (new Product)->prepare("
+            UPDATE $tableName 
+            SET description = :description, media = :media, price = :price, updated_at = NOW() 
+            WHERE product_id = :product_id AND ser_cen_id = :ser_cen_id
+        ");
+        $statement->bindValue(':description', $this->description);
+        $statement->bindValue(':media', $this->media);
+        $statement->bindValue(':price', $this->price);
+        $statement->bindValue(':product_id', $this->product_id);
+        $statement->bindValue(':ser_cen_id', $this->ser_cen_id);
+
+        return $statement->execute();
+    }
+
+    public function deleteProduct(int $product_id, int $ser_cen_id): bool
+    {
+        $tableName = s(new Product)->tableName();
+        $statement = s(new Product)->prepare("
+            DELETE FROM $tableName 
+            WHERE product_id = :product_id AND ser_cen_id = :ser_cen_id
+        ");
+        $statement->bindValue(':product_id', $product_id);
+        $statement->bindValue(':ser_cen_id', $ser_cen_id);
+
+        return $statement->execute();
+    }
+
     public function productRules(): array
     {
         return [
