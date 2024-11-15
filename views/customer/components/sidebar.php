@@ -44,7 +44,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/customer-map">
                     <span class="icon">
                         <ion-icon name="location-outline"></ion-icon>
                     </span>
