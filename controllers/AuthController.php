@@ -11,9 +11,10 @@ use app\models\CustomerLoginForm;
 
 //use app\core\Response;
 use app\models\CustomerRegisterModel;
+use app\models\ServiceCenter;
 use app\models\ServiceCenterLogin;
 use app\models\Technician;
-use app\models\ServiceCenter;
+use app\models\ServiceCentre;
 use app\models\TechnicianLogin;
 
 class AuthController extends Controller
@@ -48,6 +49,8 @@ class AuthController extends Controller
             $loginForm->loadData($request->getBody());
             if ($loginForm->validate() && $loginForm->login()) {
                 $response->redirect('/customer-dashboard'); // later will change this to customer dashboard
+                $customer = new Customer();
+                $customer->customerAddressGeocoding();
                 return;
             }
         }
@@ -94,6 +97,8 @@ class AuthController extends Controller
             $technicianLogin->loadData($request->getBody());
             if ($technicianLogin->validate() && $technicianLogin->loginTechnician()) {
                 $response->redirect('/technician-dashboard');
+                $technician = new Technician();
+                $technician->technicianAddressGeocoding();
                 return;
             }
         }
@@ -141,6 +146,8 @@ class AuthController extends Controller
             $serviceCenterLogin->loadData($request->getBody());
             if ($serviceCenterLogin->validate() && $serviceCenterLogin->loginServiceCenter()) {
                 $response->redirect('/service-centre-dashboard');
+                $service_centre = new ServiceCenter();
+                $service_centre->serviceCentreAddressGeocoding();
                 return;
             }
         }

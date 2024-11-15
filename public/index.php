@@ -65,7 +65,9 @@ $app->router->get('/customer-help', [CustomerController::class, 'customerHelp'])
 $app->router->get('/customer-profile', [CustomerController::class, 'customerProfile']);
 $app->router->get('/customer-technicians', [CustomerController::class, 'customerTechnicians']);
 $app->router->post('/update-customer-profile', [CustomerController::class, 'updateCustomerProfile']);
-
+$app->router->get('/customer-map', [CustomerController::class, 'customerMap']);
+$app->router->get('/geolocation-technicians', [CustomerController::class, 'getTechnicianGeocoding']);
+$app->router->get('/geolocation-service-centres', [CustomerController::class, 'getServiceCentresGeocoding']);
 
 /* Auth routes handled by AuthController */
 

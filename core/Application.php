@@ -5,6 +5,7 @@ namespace app\core;
 class Application
 {
 
+    public string $layout = 'auth';
     public static string $ROOT_DIR;
     public string $technicianClass;
     public string $serviceCenterClass;
@@ -54,13 +55,12 @@ class Application
             $this->customer = null;
         }
 
-        $primaryValueServiceCenter = $this->session->get('service_center');
-        if ($primaryValueServiceCenter) {
+        $primaryValueServiceCentre = $this->session->get('serviceCenter');
+        if ($primaryValueServiceCentre) {
             $serviceCenterInstance = new $this->serviceCenterClass;
             $primaryKey = $serviceCenterInstance->primaryKey();
-            $this->serviceCenter = $serviceCenterInstance->findOne([$primaryKey => $primaryValueServiceCenter]);
-        }
-        else {
+            $this->serviceCenter = $serviceCenterInstance->findOne([$primaryKey => $primaryValueServiceCentre]);
+        } else {
             $this->serviceCenter = null;
         }
     }
@@ -121,13 +121,13 @@ class Application
         $this->serviceCenter = $serviceCenter;
         $primaryKey = $serviceCenter->primaryKey();
         $primaryValue = $serviceCenter->{$primaryKey};
-        $this->session->set('service_center', $primaryValue);
+        $this->session->set('serviceCenter', $primaryValue);
         return true;
     }
 
     public function logoutServiceCenter()
     {
         $this->serviceCenter = null;
-        $this->session->remove('service_center');
+        $this->session->remove('serviceCenter');
     }
 }
