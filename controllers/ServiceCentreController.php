@@ -1,6 +1,7 @@
 <?php
 
 namespace app\controllers;
+
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
@@ -66,8 +67,7 @@ class ServiceCentreController extends Controller
                 $serviceCenter->updateServiceCenter();
                 Application::$app->session->setFlash('update-success', 'Update is successful');
                 Application::$app->response->redirect('/service-centre-profile');
-            }
-            else {
+            } else {
                 Application::$app->session->setFlash('update-error', 'Update is failed');
                 Application::$app->response->redirect('/service-centre-profile');
             }
@@ -90,6 +90,12 @@ class ServiceCentreController extends Controller
     {
         $this->setLayout('auth');
         return $this->render('service-centre/market-place/market-place-home');
+    }
+
+    public function serviceCentreAddProduct()
+    {
+        $this->setLayout('auth');
+        return $this->render('/service-centre/marketplace-add-product');
     }
 
 }

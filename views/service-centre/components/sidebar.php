@@ -56,7 +56,14 @@
                     <span class="title">Messages</span>
                 </a>
             </li>
-
+            <li>
+                <a href="/marketplace-add-product">
+                        <span class="icon">
+                            <ion-icon name="bag-outline"></ion-icon>
+                        </span>
+                    <span class="title">Add Product</span>
+                </a>
+            </li>
             <li>
                 <a href="/marketplace">
                         <span class="icon">

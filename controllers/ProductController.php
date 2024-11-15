@@ -1,5 +1,5 @@
 <?php
-/* Post CRUD Operations */
+/* Product CRUD Operations */
 
 namespace app\controllers;
 
@@ -10,7 +10,7 @@ use app\models\Product;
 
 class ProductController extends Controller
 {
-    /* Create method of a product */
+    /* Create method for a product */
     public function create(Request $request)
     {
         $product = new Product();
@@ -31,7 +31,12 @@ class ProductController extends Controller
         if ($request->isPost()) {
             $product->loadData($request->getBody());
 
-            // Check if the product data is valid and save it to the database
+            // Check for file upload for media
+            if (!empty($_FILES['media']['name'])) {
+                $product->media = $_FILES['media']['name'];
+            }
+
+            // Validate and save product to the database
             if ($product->validate() && $product->save()) {
                 Application::$app->session->setFlash('success', 'Product added successfully!');
                 Application::$app->response->redirect('/marketplace');
@@ -39,7 +44,7 @@ class ProductController extends Controller
             }
         }
 
-        // Render the product creation view with model data (if any errors)
+        // Render the product creation view with model data (if validation fails)
         return $this->render('/service-centre/marketplace-home', [
             'model' => $product
         ]);
@@ -48,7 +53,7 @@ class ProductController extends Controller
     /* Retrieve and display all products */
     public function index()
     {
-//        $products = (new Product)->getAllProducts();
+        $products = Product::getAllProducts();
 
         $this->setLayout('auth');
         return $this->render('/service-centre/marketplace-home', [

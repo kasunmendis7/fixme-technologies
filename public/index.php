@@ -115,6 +115,8 @@ $app->router->post('/post-unlike', [PostController::class, 'unlike']);
 /* Routes related to the product */
 //$app->router->get('/marketplace', [ServiceCentreController::class, 'marketPlaceHome']);
 $app->router->get('/marketplace', [ProductController::class, 'index']);
+$app->router->get('/marketplace-add-product', [ServiceCentreController::class, 'serviceCentreAddProduct']);
+$app->router->post('/marketplace-add-product', [ProductController::class, 'create']);
 //$app->router->get('/marketplace', [PostController::class, 'index']);
 
 /* Run the application */

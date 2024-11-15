@@ -6,9 +6,9 @@ use app\core\DbModel;
 
 class Product extends DbModel
 {
-    public string $ser_cen_id = '';
+    public int $ser_cen_id = 0;
     public string $description = '';
-    public string $price = '';
+    public float $price = 0.00;
     public string $media = '';
 
     public function tableName(): string
@@ -18,7 +18,7 @@ class Product extends DbModel
 
     public function attributes(): array
     {
-        return ['ser_cen_id', 'description', 'price', 'media', 'created_at', 'updated_at'];
+        return ['ser_cen_id', 'description', 'price', 'media'];
     }
 
     public function primaryKey(): string
@@ -28,15 +28,11 @@ class Product extends DbModel
 
     public function save()
     {
-        // Handle media upload
+        // Handle media upload if file is provided
         if (!empty($_FILES['media']['name'])) {
             $this->media = $_FILES['media']['name'];
             move_uploaded_file($_FILES['media']['tmp_name'], 'assets/products/' . $this->media);
         }
-
-        // Set created and updated timestamps
-        $this->created_at = date('Y-m-d H:i:s');
-        $this->updated_at = date('Y-m-d H:i:s');
 
         return parent::save();
     }
