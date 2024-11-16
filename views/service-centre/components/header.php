@@ -1,4 +1,5 @@
 <?php
+use app\core\Application;
 ?>
 
 
@@ -16,7 +17,14 @@
             </label>
         </div>
 
+        <h6 class="user-name">
+            <?php
+            $username = strtoupper(Application::$app->service_center->{'name'});
+            echo $username;
+            ?>
+        </h6>
+
         <div class="user">
-            <img src="/assets/technician-dashboard/customer02.jpg" alt="">
+            <img src="/assets/select-user-service-centre.png" alt="">
         </div>
     </div>
