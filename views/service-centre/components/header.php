@@ -1,4 +1,7 @@
 <?php
+
+use app\core\Application;
+
 ?>
 
 
@@ -15,8 +18,13 @@
                 <ion-icon name="search-outline"></ion-icon>
             </label>
         </div>
-
-        <div class="user">
-            <img src="/assets/technician-dashboard/customer02.jpg" alt="">
-        </div>
+        <h6 class="user-name">
+            <?php
+            $username = strtoupper(Application::$app->serviceCenter->{'name'});
+            echo $username;
+            ?>
+        </h6>
+<!--        <div class="user">-->
+<!--            <img src="/assets/technician-dashboard/customer02.jpg" alt="">-->
+<!--        </div>-->
     </div>
