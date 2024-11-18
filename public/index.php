@@ -68,6 +68,7 @@ $app->router->post('/update-customer-profile', [CustomerController::class, 'upda
 $app->router->get('/customer-map', [CustomerController::class, 'customerMap']);
 $app->router->get('/geolocation-technicians', [CustomerController::class, 'getTechnicianGeocoding']);
 $app->router->get('/geolocation-service-centres', [CustomerController::class, 'getServiceCentresGeocoding']);
+$app->router->get('/customer-location', [CustomerController::class, 'customerLocation']);
 
 /* Auth routes handled by AuthController */
 
