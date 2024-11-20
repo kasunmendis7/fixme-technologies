@@ -21,7 +21,7 @@ $dotenv->load();
 $config = [
     'technicianClass' => \app\models\Technician::class,
     'customerClass' => \app\models\Customer::class,
-    'serviceCenterClass' => \app\models\ServiceCentre::class,
+    'serviceCenterClass' => \app\models\ServiceCenter::class,
     'db' => [
         'dsn' => $_ENV['DB_DSN'],
         'user' => $_ENV['DB_USER'],
@@ -93,7 +93,6 @@ $app->router->get('/service-centre-sign-up', [AuthController::class, 'serviceCen
 $app->router->post('/service-centre-sign-up', [AuthController::class, 'serviceCentreSignup']);
 $app->router->get('/service-centre-login', [AuthController::class, 'serviceCentreLogin']);
 $app->router->post('/service-centre-login', [AuthController::class, 'serviceCentreLogin']);
-$app->router->get('/technician-logout', [AuthController::class, 'technicianLogOut']);
 $app->router->get('/service-center-logout', [AuthController::class, 'serviceCenterLogout']);
 
 /* routes related to the by Post */
