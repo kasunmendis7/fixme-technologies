@@ -3,15 +3,49 @@ async function loadMap() {
     const {AdvancedMarkerElement, PinElement} = await google.maps.importLibrary(
         "marker",
     );
+    const infoWindow = new InfoWindow();
+
+    let centerLat = 0;
+    let centerLng = 0;
+
+    await fetch('http://localhost:8080/customer-location')
+        .then(response => response.json())
+        .then(custLocation => {
+            centerLat = parseFloat(custLocation.latitude);
+            centerLng = parseFloat(custLocation.longitude)
+        })
+        .catch(error => console.error('Error fetching customer location! ', error));
+
+    /* make the map focus directly into the customer location */
     const map = new Map(document.getElementById("map"), {
-        zoom: 8,
-        center: {lat: 7.873054, lng: 80.771797},
+        zoom: 15,
+        center: {lat: centerLat, lng: centerLng},
         mapId: "DEMO_MAP_ID",
     });
 
-    const infoWindow = new InfoWindow();
+    /* Mark the position of the customer in the map */
+    const pin = new PinElement({
+        background: "#459ff8",
+        borderColor: "#1b63b1",
+        glyphColor: "#f7f7f8",
+    });
+    const customerMarker = new AdvancedMarkerElement({
+        position: {lat: centerLat, lng: centerLng},
+        map: map,
+        title: `You`,
+        content: pin.element,
+    });
+    customerMarker.addListener("click", ({domEvent, latLng}) => {
+        const {target} = domEvent;
 
-    fetch('http://localhost:8080/geolocation-technicians')
+        infoWindow.close();
+        infoWindow.setContent(customerMarker.title);
+        infoWindow.open(customerMarker.map, customerMarker);
+    });
+    /* customer marker end */
+
+
+    await fetch('http://localhost:8080/geolocation-technicians')
         .then(response => response.json())
         .then(technicians => {
             console.log(technicians);
@@ -39,7 +73,7 @@ async function loadMap() {
         })
         .catch(error => console.error('Error fetching technician geo co-ordinates: ', error));
 
-    fetch('http://localhost:8080/geolocation-service-centres')
+    await fetch('http://localhost:8080/geolocation-service-centres')
         .then(response => response.json())
         .then(serviceCentres => {
             console.log(serviceCentres);

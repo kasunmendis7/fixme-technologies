@@ -71,6 +71,16 @@ class CustomerController extends Controller
         return $serviceCentre->serviceCentresGeocoding();
     }
 
+    public function customerLocation()
+    {
+        header("Access-Control-Allow-Origin: http://localhost:8080");
+        header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type");
+
+        $customer = new Customer();
+        return $customer->getCustomerLocation();
+    }
+
     public function updateCustomerProfile(Request $request)
     {
         $customer = new Customer();
