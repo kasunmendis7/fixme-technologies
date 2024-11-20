@@ -67,7 +67,7 @@ abstract class Model
         return empty($this->errors);
     }
 
-    public function PostValidate()
+    public function postValidate()
     {
         foreach ($this->postRules() as $attribute => $rules) {
             $value = $this->{$attribute};
