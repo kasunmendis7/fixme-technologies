@@ -55,11 +55,11 @@ class Application
             $this->customer = null;
         }
 
-        $primaryValueSeviceCentre = $this->session->get('service_center');
-        if ($primaryValueSeviceCentre) {
+        $primaryValueServiceCentre = $this->session->get('service_center');
+        if ($primaryValueServiceCentre) {
             $serviceCenterInstance = new $this->serviceCenterClass;
             $primaryKey = $serviceCenterInstance->primaryKey();
-            $this->serviceCenter = $serviceCenterInstance->findOne([$primaryKey => $primaryValueSeviceCentre]);
+            $this->serviceCenter = $serviceCenterInstance->findOne([$primaryKey => $primaryValueServiceCentre]);
         } else {
             $this->serviceCenter = null;
         }
@@ -130,4 +130,5 @@ class Application
         $this->serviceCenter = null;
         $this->session->remove('service_center');
     }
+
 }
