@@ -6,6 +6,7 @@ use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
+use app\models\Admin;
 use app\models\Customer;
 use app\models\CustomerLoginForm;
 
@@ -161,6 +162,28 @@ class AuthController extends Controller
     {
         Application::$app->logoutServiceCenter();
         $response->redirect('/service-centre-landing');
+    }
+
+    /* admin sign up method */
+    public function adminSignUp(Request $request)
+    {
+        $admin = new Admin();
+        if ($request->isPost()) {
+
+            $admin->loadData($request->getBody());
+            if ($admin->validate() && $admin->save()) {
+                Application::$app->session->setFlash('success', 'You have been registered successfully!');
+                Application::$app->response->redirect('/admin-login');
+            }
+            $this->setLayout('auth');
+            return $this->render('/admin/admin-sign-up', [
+                'model' => $admin
+            ]);
+        }
+        $this->setLayout('auth');
+        return $this->render('/admin/admin-sign-up', [
+            'model' => $admin
+        ]);
     }
 
 }
