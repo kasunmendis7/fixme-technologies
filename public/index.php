@@ -56,6 +56,7 @@ $app->router->post('/update-service-centre-profile', [ServiceCentreController::c
 $app->router->get('/service-center-help', [ServiceCentreController::class, 'serviceCenterHelp']);
 $app->router->get('/service-center-community', [ServiceCentreController::class, 'serviceCenterCommunity']);
 $app->router->get('/market-place-home', [ServiceCentreController::class, 'marketPlaceHome']);
+$app->router->get('/service-center-messages', [ServiceCentreController::class, 'serviceCenterMessages']);
 
 
 /* Customer Routes */
@@ -93,6 +94,10 @@ $app->router->post('/service-centre-sign-up', [AuthController::class, 'serviceCe
 $app->router->get('/service-centre-login', [AuthController::class, 'serviceCentreLogin']);
 $app->router->post('/service-centre-login', [AuthController::class, 'serviceCentreLogin']);
 $app->router->get('/service-center-logout', [AuthController::class, 'serviceCenterLogout']);
+
+/* Admin Auth routes */
+$app->router->get('/admin-sign-up', [AuthController::class, 'adminSignUp']);
+$app->router->post('/admin-sign-up', [AuthController::class, 'adminSignUp']);
 
 /* routes related to the by Post */
 $app->router->get('/technician-create-post', [TechnicianController::class, 'technicianCreatePost']);
