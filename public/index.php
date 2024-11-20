@@ -95,6 +95,10 @@ $app->router->get('/service-centre-login', [AuthController::class, 'serviceCentr
 $app->router->post('/service-centre-login', [AuthController::class, 'serviceCentreLogin']);
 $app->router->get('/service-center-logout', [AuthController::class, 'serviceCenterLogout']);
 
+/* Admin Auth routes */
+$app->router->get('/admin-sign-up', [AuthController::class, 'adminSignUp']);
+$app->router->post('/admin-sign-up', [AuthController::class, 'adminSignUp']);
+
 /* routes related to the by Post */
 $app->router->get('/technician-create-post', [TechnicianController::class, 'technicianCreatePost']);
 $app->router->get('/technician-edit-post', [TechnicianController::class, 'technicianEditPost']);
