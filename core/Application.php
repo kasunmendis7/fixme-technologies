@@ -11,6 +11,7 @@ class Application
     public string $serviceCenterClass;
     public static Application $app;
     public string $customerClass;
+    public string $adminClass;
     public Router $router;
     public Request $request;
     public Response $response;
@@ -27,6 +28,7 @@ class Application
         $this->customerClass = $config['customerClass'];
         $this->technicianClass = $config['technicianClass'];
         $this->serviceCenterClass = $config['serviceCenterClass'];
+        $this->adminClass = $config['adminClass'];
         self::$ROOT_DIR = $rootPath;
         self::$app = $this;
         $this->request = new Request();
@@ -64,6 +66,15 @@ class Application
             $this->serviceCenter = $serviceCenterInstance->findOne([$primaryKey => $primaryValueServiceCentre]);
         } else {
             $this->serviceCenter = null;
+        }
+
+        $primaryValueAdmin = $this->session->get('admin');
+        if ($primaryValueAdmin) {
+            $adminInstance = new $this->adminClass;
+            $primaryKey = $adminInstance->primaryKey();
+            $this->admin = $adminInstance->findOne([$primaryKey => $primaryValueAdmin]);
+        } else {
+            $this->admin = null;
         }
     }
 
@@ -131,6 +142,21 @@ class Application
     {
         $this->serviceCenter = null;
         $this->session->remove('serviceCenter');
+    }
+
+    public function loginAdmin(DbModel $admin)
+    {
+        $this->admin = $admin;
+        $primaryKey = $admin->primaryKey();
+        $primaryValue = $admin->{$primaryKey};
+        $this->session->set('admin', $primaryValue);
+        return true;
+    }
+
+    public function logoutAdmin()
+    {
+        $this->admin = null;
+        $this->session->remove('admin');
     }
 
 }
