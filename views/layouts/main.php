@@ -42,7 +42,7 @@ use app\core\Application;
             <li><a href="#" class="nav-link px-2">About</a></li>
         </ul>
 
-        <?php if (Application::isGuestTechnician()): ?>
+        <?php if (Application::isGuestTechnician() || Application::isGuestServiceCenter() || Application::isGuestCustomer()): ?>
             <div class="col-md-3 text-center">
                 <button type="button" class="btn btn-outline-primary me-2"><a class="text-decoration-none"
                                                                               href="/select-user-login">Login</a>
