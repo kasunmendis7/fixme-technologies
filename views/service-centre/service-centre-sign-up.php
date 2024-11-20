@@ -1,4 +1,7 @@
 <?php
+
+/** @var $model \app\models\ServiceCenter */
+
 ?>
 
 <!DOCTYPE html>
@@ -33,9 +36,9 @@
                 <form action="" method="post" class="technician-signup-form">
                     <div class="input-element">
                         <label for="user-name">Service centre name:</label>
-                        <input type="text" name="name" placeholder="Service centre name..." id="name" value="<?php echo $model->name ?>" class="<?php echo $model->hasError('centreName') ? 'invalid ' : '' ?>">
+                        <input type="text" name="name" placeholder="Service centre name..." id="name" value="<?php echo $model->name ?>" class="<?php echo $model->hasError('name') ? 'invalid ' : '' ?>">
                         <div class="invalid-feedback">
-                            <?php echo $model->getFirstError('centreName') ?>
+                            <?php echo $model->getFirstError('name') ?>
                         </div>
                     </div>
 <!--                    <div class="input-element">-->
@@ -47,9 +50,9 @@
 <!--                    </div>-->
                     <div class="input-element">
                         <label for="phoneNumber">Phone No: </label>
-                        <input type="text" name="phone_no" placeholder="Phone no..." id="phone_no" value="<?php echo $model->phone_no ?>" class="<?php echo $model->hasError('phoneNumber') ? 'invalid ' : '' ?>">
+                        <input type="text" name="phone_no" placeholder="Phone no..." id="phone_no" value="<?php echo $model->phone_no ?>" class="<?php echo $model->hasError('phone_no') ? 'invalid ' : '' ?>">
                         <div class="invalid-feedback">
-                            <?php echo $model->getFirstError('phoneNumber') ?>
+                            <?php echo $model->getFirstError('phone_no') ?>
                         </div>
                     </div>
                     <div class="input-element">

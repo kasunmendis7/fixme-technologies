@@ -1,5 +1,7 @@
 <?php
+
 use app\core\Application;
+
 ?>
 
 
@@ -27,4 +29,5 @@ use app\core\Application;
         <div class="user">
             <img src="/assets/select-user-service-centre.png" alt="">
         </div>
+
     </div>
