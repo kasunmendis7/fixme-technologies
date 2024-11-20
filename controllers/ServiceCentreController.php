@@ -1,11 +1,10 @@
 <?php
 
 namespace app\controllers;
-
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
-use app\models\ServiceCentre;
+use app\models\ServiceCenter;
 
 class ServiceCentreController extends Controller
 {
@@ -59,7 +58,7 @@ class ServiceCentreController extends Controller
 
     public function updateServiceCenter(Request $request)
     {
-        $serviceCenter = new ServiceCentre();
+        $serviceCenter = new ServiceCenter();
 
         if ($request->isPost()) {
             $serviceCenter->loadData($request->getBody());
@@ -67,7 +66,8 @@ class ServiceCentreController extends Controller
                 $serviceCenter->updateServiceCenter();
                 Application::$app->session->setFlash('update-success', 'Update is successful');
                 Application::$app->response->redirect('/service-centre-profile');
-            } else {
+            }
+            else {
                 Application::$app->session->setFlash('update-error', 'Update is failed');
                 Application::$app->response->redirect('/service-centre-profile');
             }

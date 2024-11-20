@@ -11,6 +11,7 @@ use app\models\CustomerLoginForm;
 
 //use app\core\Response;
 use app\models\CustomerRegisterModel;
+use app\models\ServiceCenter;
 use app\models\ServiceCenterLogin;
 use app\models\Technician;
 use app\models\ServiceCentre;
@@ -116,7 +117,7 @@ class AuthController extends Controller
 
     public function serviceCentreSignup(Request $request)
     {
-        $registerModel = new ServiceCentre();
+        $registerModel = new ServiceCenter();
         if ($request->isPost()) {
             $registerModel->loadData($request->getBody());
 
@@ -145,7 +146,7 @@ class AuthController extends Controller
             $serviceCenterLogin->loadData($request->getBody());
             if ($serviceCenterLogin->validate() && $serviceCenterLogin->loginServiceCenter()) {
                 $response->redirect('/service-centre-dashboard');
-                $service_centre = new ServiceCentre();
+                $service_centre = new ServiceCenter();
                 $service_centre->serviceCentreAddressGeocoding();
                 return;
             }
