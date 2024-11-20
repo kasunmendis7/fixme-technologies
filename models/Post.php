@@ -47,7 +47,7 @@ class Post extends DbModel
 //        return $statement->fetchAll(\PDO::FETCH_ASSOC);
 //    }
 
-    public static function getAllPostsWithLikes(int $userId)
+    public static function getAllPostsWithLikes(?int $userId)
     {
         $sql = "SELECT p.*, t.fname, t.lname, t.profile_picture,
             (SELECT COUNT(*) FROM post_like WHERE post_id = p.post_id) AS like_count,
