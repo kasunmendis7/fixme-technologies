@@ -92,4 +92,10 @@ class ServiceCentreController extends Controller
         return $this->render('service-centre/market-place/market-place-home');
     }
 
+    public function serviceCenterMessages()
+    {
+        $this->setLayout('auth');
+        return $this->render('/service-centre/service-center-messages');
+    }
+
 }

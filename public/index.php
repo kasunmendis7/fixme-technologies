@@ -56,6 +56,7 @@ $app->router->post('/update-service-centre-profile', [ServiceCentreController::c
 $app->router->get('/service-center-help', [ServiceCentreController::class, 'serviceCenterHelp']);
 $app->router->get('/service-center-community', [ServiceCentreController::class, 'serviceCenterCommunity']);
 $app->router->get('/market-place-home', [ServiceCentreController::class, 'marketPlaceHome']);
+$app->router->get('/service-center-messages', [ServiceCentreController::class, 'serviceCenterMessages']);
 
 
 /* Customer Routes */
