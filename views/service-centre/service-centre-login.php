@@ -1,6 +1,6 @@
 <?php
 
-/** @var $model \app\models\ServiceCentre */
+/** @var $model \app\models\ServiceCenter */
 
 use app\core\Application;
 
@@ -43,11 +43,21 @@ use app\core\Application;
             <form action="" method="post" class="login-form">
                 <div class="input-element">
                     <label for="email">Email address</label>
-                    <input type="email" name="email" id="email" placeholder="example@email.com..." required>
+                    <input type="email" name="email" id="email" placeholder="example@email.com..."
+                    value="<?php echo $model->email  ?>"
+                    class="<?php echo $model->hasError('email') ? 'invalid ' : '' ?>">
+                <div class="invalid-feedback">
+                    <?php echo $model->getFirstError('email') ?>
+                </div>
                 </div>
                 <div class="input-element">
                     <label for="password">Password</label>
-                    <input type="password" name="password" id="password" placeholder="Password..." required>
+                    <input type="password" name="password" id="password" placeholder="Password..."
+                        value="<?php echo $model->password ?>"
+                        class="<?php echo $model->hasError('password') ? 'invalid' : '' ?>">
+                    <div class="invalid-feedback">
+                        <?php echo $model->getFirstError('password') ?>
+                    </div>
                 </div>
                 <div class="remember-me">
                     <input type="checkbox" name="remember-me" id="remember-me">

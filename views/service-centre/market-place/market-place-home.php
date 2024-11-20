@@ -14,11 +14,12 @@ use app\core\Application;
     <link rel="stylesheet" href="/css/service-center/market-place-navbar.css">
     <link rel="stylesheet" href="/css/home/footer.css">
     <link rel="stylesheet" href="/css/home/home.css">
+    <link rel="stylesheet" href="/css/service-center/marketplace.css">
     <script src="/js/home/main.js"></script>
     <script src="/js/technician/main.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <title>Fixme Home</title>
+    <title>Market Place</title>
 </head>
 
 <body>
@@ -60,6 +61,36 @@ use app\core\Application;
         </form>
     </header>
 </nav>
+
+
+<div class="body-section">
+    <div class="product-section">
+        <!-- Product Card 1 -->
+        <div class="product-card">
+            <img src="/assets/market-images/tire.png" alt="Product 1 Image" class="product-image">
+            <h3>Product 1</h3>
+            <p>Description of Product 1</p>
+        </div>
+        <!-- Product Card 2 -->
+        <div class="product-card">
+            <img src="" alt="Product 2 Image" class="product-image">
+            <h3>Product 2</h3>
+            <p>Description of Product 2</p>
+        </div>
+        <!-- Add more product cards as needed -->
+    </div>
+    <div class="sidenav-section">
+        <!-- Side Navbar -->
+        <h1>Product Categories</h1>
+        <ul class="category-list">
+            <li><a href="#">Category 1</a></li>
+            <li><a href="#">Category 2</a></li>
+            <li><a href="#">Category 3</a></li>
+            <!-- Add more categories as needed -->
+        </ul>
+    </div>
+</div>
+
 
 
 
