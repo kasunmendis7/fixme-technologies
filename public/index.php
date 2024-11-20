@@ -22,6 +22,7 @@ $config = [
     'technicianClass' => \app\models\Technician::class,
     'customerClass' => \app\models\Customer::class,
     'serviceCenterClass' => \app\models\ServiceCenter::class,
+    'adminClass' => \app\models\Admin::class,
     'db' => [
         'dsn' => $_ENV['DB_DSN'],
         'user' => $_ENV['DB_USER'],
@@ -98,8 +99,11 @@ $app->router->get('/service-center-logout', [AuthController::class, 'serviceCent
 /* Admin Auth routes */
 $app->router->get('/admin-sign-up', [AuthController::class, 'adminSignUp']);
 $app->router->post('/admin-sign-up', [AuthController::class, 'adminSignUp']);
+$app->router->get('/admin-login', [AuthController::class, 'adminLogin']);
+$app->router->post('/admin-login', [AuthController::class, 'adminLogin']);
+$app->router->get('/admin-logout', [AuthController::class, 'adminLogout']);
 
-/* routes related to the by Post */
+/* Routes related to the by Post */
 $app->router->get('/technician-create-post', [TechnicianController::class, 'technicianCreatePost']);
 $app->router->get('/technician-edit-post', [TechnicianController::class, 'technicianEditPost']);
 $app->router->post('/technician-create-post', [PostController::class, 'create']);
