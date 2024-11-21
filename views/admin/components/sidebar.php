@@ -20,19 +20,19 @@
                 </a>
             </li>
             <li>
-                <a href="/technician-map">
+                <a href="/customers">
                         <span class="icon">
                             <ion-icon name="person-outline"></ion-icon>
                         </span>
-                    <span class="title">Users</span>
+                    <span class="title">Customers</span>
                 </a>
             </li>
             <li>
-                <a href="/technician-community">
+                <a href="/technicians">
                         <span class="icon">
-                           <ion-icon name="clipboard-outline"></ion-icon>
+                           <ion-icon name="build-outline"></ion-icon>
                         </span>
-                    <span class="title">Services</span>
+                    <span class="title">Technicians</span>
                 </a>
             </li>
 

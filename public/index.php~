@@ -104,6 +104,8 @@ $app->router->post('/service-centre-login', [AuthController::class, 'serviceCent
 $app->router->get('/service-center-logout', [AuthController::class, 'serviceCenterLogout']);
 
 /* Admin Auth routes */
+$app->router->get('/admin-sign-up', [AuthController::class, 'adminSignUp']);
+$app->router->post('/admin-sign-up', [AuthController::class, 'adminSignUp']);
 $app->router->get('/admin-login', [AuthController::class, 'adminLogin']);
 $app->router->post('/admin-login', [AuthController::class, 'adminLogin']);
 $app->router->get('/admin-logout', [AuthController::class, 'adminLogout']);

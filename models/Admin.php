@@ -7,7 +7,6 @@ use app\core\DbModel;
 
 class Admin extends DbModel
 {
-
     public string $fname = '';
     public string $lname = '';
     public string $email = '';
@@ -29,10 +28,16 @@ class Admin extends DbModel
     public function save()
     {
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
-        return parent::save();
+        try {
+            return parent::save();
+        } catch (\Exception $e) {
+            // Log the error for debugging (optional)
+            error_log($e->getMessage());
+            return false;
+        }
     }
 
-    public function updateAdmin()
+    public function updateAdmin(int $admin_id)
     {
         $sql = "UPDATE admin SET fname = :fname, lname = :lname, phone_no = :phone_no, address = :address WHERE admin_id = :admin_id";
         $stmt = self::prepare($sql);
@@ -40,8 +45,14 @@ class Admin extends DbModel
         $stmt->bindValue(':lname', $this->lname);
         $stmt->bindValue(':phone_no', $this->phone_no);
         $stmt->bindValue(':address', $this->address);
-        $stmt->bindValue(':admin_id', Application::$app->admin->{'admin_id'});
-        return $stmt->execute();
+        $stmt->bindValue(':admin_id', $admin_id);
+        try {
+            return $stmt->execute();
+        } catch (\Exception $e) {
+            // Log the error for debugging (optional)
+            error_log($e->getMessage());
+            return false;
+        }
     }
 
     public function rules(): array
@@ -81,4 +92,28 @@ class Admin extends DbModel
             'password',
         ];
     }
+
+    public static function findAllCustomers()
+    {
+        $sql = "SELECT cus_id, fname, lname, email, phone_no, address, reg_date FROM customer";
+        $statement = (new Admin)->prepare($sql);
+        $statement->execute();
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public static function deleteCustomerById($cus_id)
+    {
+        $db = Application::$app->db; // Ensure this points to the correct Database instance
+        $sql = "DELETE FROM customer WHERE cus_id = :cus_id";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':cus_id', $cus_id, \PDO::PARAM_INT);
+
+        try {
+            return $stmt->execute();
+        } catch (\PDOException $e) {
+            error_log($e->getMessage());
+            return false;
+        }
+    }
+
 }
