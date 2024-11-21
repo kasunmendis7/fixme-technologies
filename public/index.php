@@ -77,6 +77,9 @@ $app->router->get('/customer-location', [CustomerController::class, 'customerLoc
 $app->router->get('/admin-dashboard', [AdminController::class, 'adminDashboard']);
 $app->router->get('/customers', [AdminController::class, 'customers']);
 $app->router->post('/admin/delete-customer', [AdminController::class, 'deleteCustomer']);
+$app->router->get('/admin-settings', [AdminController::class, 'adminSettings']);
+$app->router->get('/admin-profile', [AdminController::class, 'adminProfile']);
+$app->router->post('/update-admin-profile', [AdminController::class, 'updateAdminProfile']);
 
 
 /* Auth routes handled by AuthController */

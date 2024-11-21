@@ -12,7 +12,7 @@
             </li>
 
             <li>
-                <a href="/technician-dashboard">
+                <a href="/admin-dashboard">
                         <span class="icon">
                             <ion-icon name="speedometer-outline"></ion-icon>
                         </span>
@@ -36,17 +36,17 @@
                 </a>
             </li>
 
-            <li>
-                <a href="/technician-messages">
-                        <span class="icon">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
-                        </span>
-                    <span class="title">Reports</span>
-                </a>
-            </li>
+            <!--            <li>-->
+            <!--                <a href="/technician-messages">-->
+            <!--                        <span class="icon">-->
+            <!--                            <ion-icon name="chatbubble-outline"></ion-icon>-->
+            <!--                        </span>-->
+            <!--                    <span class="title">Reports</span>-->
+            <!--                </a>-->
+            <!--            </li>-->
 
             <li>
-                <a href="/technician-settings">
+                <a href="/admin-settings">
                         <span class="icon">
                             <ion-icon name="settings-outline"></ion-icon>
                         </span>
