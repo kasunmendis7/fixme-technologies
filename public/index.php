@@ -8,6 +8,8 @@ use app\controllers\SiteController;
 use app\controllers\CustomerController;
 use app\controllers\TechnicianController;
 use app\controllers\ServiceCentreController;
+use app\controllers\AdminController;
+
 
 
 /* load environment variables */
@@ -44,6 +46,7 @@ $app->router->get('/technician-settings', [TechnicianController::class, 'technic
 $app->router->get('/technician-help', [TechnicianController::class, 'technicianHelp']);
 $app->router->get('/technician-profile', [TechnicianController::class, 'technicianProfile']);
 $app->router->post('/update-technician-profile', [TechnicianController::class, 'updateTechnicianProfile']);
+// $app->router->get('/admin/dashboard', [AdminController::class, 'dashboard']);
 
 /** Service Center Routes */
 $app->router->get('/service-centre-landing', [ServiceCentreController::class, 'serviceCentreLanding']);
@@ -82,6 +85,29 @@ $app->router->get('/service-centre-login', [AuthController::class, 'serviceCentr
 $app->router->post('/service-centre-login', [AuthController::class, 'serviceCentreLogin']);
 $app->router->get('/technician-logout', [AuthController::class, 'technicianLogOut']);
 $app->router->get('/service-center-logout', [AuthController::class, 'serviceCenterLogout']);
+
+/** Admin Routes */
+$app->router->get('/admin/dashboard', [AdminController::class, 'dashboard']);
+$app->router->get('/admin/users', [AdminController::class, 'manageUsers']);
+$app->router->post('/admin/users/add', [AdminController::class, 'addUser']);
+$app->router->post('/admin/users/edit', [AdminController::class, 'editUser']);
+$app->router->post('/admin/users/delete', [AdminController::class, 'deleteUser']);
+
+$app->router->get('/admin/services', [AdminController::class, 'manageServices']);
+$app->router->post('/admin/services/add', [AdminController::class, 'addService']);
+$app->router->post('/admin/services/edit', [AdminController::class, 'editService']);
+$app->router->post('/admin/services/delete', [AdminController::class, 'deleteService']);
+
+$app->router->get('/admin/reports', [AdminController::class, 'viewReports']);
+$app->router->post('/admin/reports/generate', [AdminController::class, 'generateReport']);
+
+$app->router->get('/admin/settings', [AdminController::class, 'settings']);
+$app->router->post('/admin/settings/update', [AdminController::class, 'updateSettings']);
+
+$app->router->get('/admin-login', [AuthController::class, 'adminLogin']);
+$app->router->post('/admin-login', [AuthController::class, 'adminLogin']);
+$app->router->get('/admin-login', [AuthController::class, 'adminLogin']);
+
 
 
 /* Run the application */
