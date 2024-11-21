@@ -17,6 +17,35 @@ class AdminController extends Controller
         return $this->render('/admin/admin-dashboard');
     }
 
+    public function adminSettings()
+    {
+        $this->setLayout('auth');
+        return $this->render('/admin/admin-settings');
+    }
+
+    public function adminProfile()
+    {
+        $this->setLayout('auth');
+        return $this->render('/admin/admin-profile');
+    }
+
+    public function updateAdminProfile(Request $request)
+    {
+        $admin = new Admin();
+
+        if ($request->isPost()) {
+            $admin->loadData($request->getBody());
+            if ($admin->updateValidate()) {
+                $admin->updateAdmin();
+                Application::$app->session->setFlash('update-success', 'You have been Updated your account info successfully!');
+                Application::$app->response->redirect('/admin-profile');
+            } else {
+                Application::$app->response->redirect('/admin-profile');
+            }
+        }
+    }
+
+
     public function customers()
     {
         // Fetch all customers records
