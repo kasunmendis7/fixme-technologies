@@ -10,6 +10,7 @@ use app\controllers\TechnicianController;
 use app\controllers\ServiceCentreController;
 use app\controllers\PostController;
 use app\controllers\CommentController;
+use app\controllers\ProductController;
 
 
 /* load environment variables */
@@ -55,7 +56,7 @@ $app->router->get('/service-centre-profile', [ServiceCentreController::class, 's
 $app->router->post('/update-service-centre-profile', [ServiceCentreController::class, 'updateServiceCenter']);
 $app->router->get('/service-center-help', [ServiceCentreController::class, 'serviceCenterHelp']);
 $app->router->get('/service-center-community', [ServiceCentreController::class, 'serviceCenterCommunity']);
-$app->router->get('/market-place-home', [ServiceCentreController::class, 'marketPlaceHome']);
+//$app->router->get('/market-place-home', [ServiceCentreController::class, 'marketPlaceHome']);
 
 
 /* Customer Routes */
@@ -92,6 +93,14 @@ $app->router->post('/service-centre-sign-up', [AuthController::class, 'serviceCe
 $app->router->get('/service-centre-login', [AuthController::class, 'serviceCentreLogin']);
 $app->router->post('/service-centre-login', [AuthController::class, 'serviceCentreLogin']);
 $app->router->get('/service-center-logout', [AuthController::class, 'serviceCenterLogout']);
+
+//routes related to the product(service center)
+$app->router->get('/service-center-create-product', [ServiceCentreController::class, 'serviceCenterCreateProduct']);
+$app->router->post('/service-center-create-product', [ProductController::class, 'create']);
+$app->router->get('/market-place-home', [ProductController::class, 'index']);
+$app->router->get('/service-center-create-product', [ProductController::class, 'filterProductsById']);
+$app->router->get('/service-center-update-product', [ServiceCentreController::class,'update']);
+$app->router->post('/service-center-update-product', [ProductController::class, 'update']);
 
 /* routes related to the by Post */
 $app->router->get('/technician-create-post', [TechnicianController::class, 'technicianCreatePost']);
