@@ -58,7 +58,7 @@
             </li>
 
             <li>
-                <a href="#">
+                <a href="/service-center-create-product">
                         <span class="icon">
                             <ion-icon name="bag-outline"></ion-icon>
                         </span>

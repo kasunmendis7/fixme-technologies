@@ -89,7 +89,19 @@ class ServiceCentreController extends Controller
     public function marketPlaceHome()
     {
         $this->setLayout('auth');
-        return $this->render('service-centre/market-place/market-place-home');
+        return $this->render('service-centre/market-place-home');
+    }
+
+    public function serviceCenterCreateProduct()
+    {
+        $this->setLayout('auth');
+        return $this->render('service-centre/create-product');
+    }
+
+    public function update()
+    {
+        $this->setLayout('auth');
+        return $this->render('service-centre/update-product');
     }
 
 }
