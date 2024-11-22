@@ -36,7 +36,15 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/fixme-community">
+                    <span class="icon">
+                        <ion-icon name="images-outline"></ion-icon>
+                    </span>
+                    <span class="title">Technician Community</span>
+                </a>
+            </li>
+            <li>
+                <a href="/customer-map">
                     <span class="icon">
                         <ion-icon name="location-outline"></ion-icon>
                     </span>
@@ -61,14 +69,6 @@
                 </a>
             </li>
 
-            <li>
-                <a href="/customer-help">
-                    <span class="icon">
-                        <ion-icon name="help-outline"></ion-icon>
-                    </span>
-                    <span class="title">Help</span>
-                </a>
-            </li>
 
             <li>
                 <a href="/customer-settings">

@@ -165,23 +165,65 @@
     .container {
         grid-template-columns: 1fr;
     }
+
     .container .box-2 {
         padding: 2rem;
     }
+
     .container .box-2 .wrapper {
         padding: 1.5rem;
     }
+
     .container .box-2 .wrapper .title-1 h2 {
         font-size: 1.3rem;
     }
+
     .login-form {
         font-size: 0.8rem;
     }
+
     .login-form .input-element input {
         padding: 0.7rem 0.5rem;
     }
+
     .login-form .btn {
         padding: 0.7rem 1.1rem;
         font-size: 0.8rem;
     }
+}
+
+/* Highlight invalid input fields */
+.container .box-2 .wrapper .login-form .input-element .invalid {
+    border-color: #dc3545; /* Red border for error */
+    background-color: #f8d7da; /* Light red background for error */
+}
+
+.container .box-2 .wrapper .login-form .input-element .invalid {
+    color: #dc3545; /* Red color for label to indicate error */
+}
+
+/* Error feedback message */
+.container .box-2 .wrapper .login-form .input-element .invalid-feedback {
+    color: #dc3545;
+    font-size: 0.8rem;
+    margin-top: 0.4rem;
+    /*display: none;  /* Hide by default, show only when invalid */
+}
+
+/* Display error feedback when invalid */
+.container .box-2 .wrapper .login-form .input-element.invalid .invalid-feedback {
+    display: block;
+}
+
+.alert {
+    position: relative;
+    padding: 1rem 1.25rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
 }

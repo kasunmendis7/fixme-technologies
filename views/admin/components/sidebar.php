@@ -12,7 +12,7 @@
             </li>
 
             <li>
-                <a href="/admin/dashboard">
+                <a href="/admin-dashboard">
                         <span class="icon">
                             <ion-icon name="speedometer-outline"></ion-icon>
                         </span>
@@ -20,7 +20,7 @@
                 </a>
             </li>
             <li>
-                <a href="/admin/users">
+                <a href="/admin-users">
                         <span class="icon">
                             <ion-icon name="person-outline"></ion-icon>
                         </span>
@@ -28,7 +28,7 @@
                 </a>
             </li>
             <li>
-                <a href="/admin/services">
+                <a href="/admin-services">
                         <span class="icon">
                            <ion-icon name="clipboard-outline"></ion-icon>
                         </span>
@@ -37,7 +37,7 @@
             </li>
 
             <li>
-                <a href="/admin/reports">
+                <a href="/admin-reports">
                         <span class="icon">
                             <ion-icon name="chatbubble-outline"></ion-icon>
                         </span>
@@ -46,7 +46,7 @@
             </li>
 
             <li>
-                <a href="/admin/settings">
+                <a href="/admin-settings">
                         <span class="icon">
                             <ion-icon name="settings-outline"></ion-icon>
                         </span>

@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\controllers\GeocodingController;
 use app\core\Application;
 use app\core\DbModel;
 
@@ -32,12 +33,98 @@ class Customer extends DbModel
         return parent::save();
     }
 
-    public function getAllTechnicians()
+    /* Relative to the currently logged in customer, sort the technicians in ascending order based on the distance from the customer */
+    public function getAllTechniciansSortedByDistance()
     {
-        $sql = "SELECT fname, lname, profile_picture FROM technician";
+        /* fetch all technicians from db */
+        $sql = "SELECT fname, lname, longitude, latitude, profile_picture FROM technician";
         $stmt = self::prepare($sql);
         $stmt->execute();
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $technicians = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        /* fetch the logged in customer */
+        $sql = "SELECT latitude, longitude FROM customer WHERE cus_id = :cus_id";
+        $stmt = self::prepare($sql);
+        $primaryKey = Application::$app->session->get('customer');
+        $stmt->bindValue(':cus_id', $primaryKey);
+        $stmt->execute();
+        $data = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        $customerLat = $data['latitude'];
+        $customerLng = $data['longitude'];
+
+        $API_KEY = "AIzaSyBCGNUZAUhEzeW8LeV_j3deW44jsA9hWY0";
+
+        $destinations = array_map(function ($technician) {
+            return $technician['latitude'] . ',' . $technician['longitude'];
+        }, $technicians);
+        $destinationsString = implode('|', $destinations);
+
+        /* Batch distance calculation using the distance matrix API */
+        $url = "https://maps.googleapis.com/maps/api/distancematrix/json?" .
+            "origins={$customerLat},{$customerLng}" .
+            "&destinations={$destinationsString}" .
+            "&mode=driving&units=metric&key={$API_KEY}";
+
+        $response = file_get_contents($url);
+        $data = json_decode($response, true);
+
+        if ($data['status'] !== 'OK') {
+            throw new Exception("Error fetching data from Distance Matrix API: " . $data['status']);
+        }
+
+        /* Add distance and duration of travel fields to each technician */
+        foreach ($data['rows'][0]['elements'] as $index => $element) {
+            if ($element['status'] === 'OK') {
+                $technicians[$index]['distance'] = $element['distance']['value'] / 1000; // Distance in km
+                $technicians[$index]['duration'] = $element['duration']['value'] / 60; // Duration in minutes
+            } else {
+                $technicians[$index]['distance'] = null;
+                $technicians[$index]['duration'] = null;
+            }
+        }
+
+        /* sort technicians by distance in ascending order */
+        usort($technicians, function ($a, $b) {
+            return $a['distance'] <=> $b['distance'];
+        });
+
+        return $technicians;
+    }
+
+    public function customerAddressGeocoding()
+    {
+        $sql = "SELECT address, cus_id FROM customer WHERE cus_id = :cus_id";
+        $stmt = self::prepare($sql);
+        $primaryKey = Application::$app->session->get('customer');
+        $stmt->bindValue(':cus_id', $primaryKey);
+        $stmt->execute();
+
+        $customer = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        $geocoding = new GeocodingController();
+        $latLng = $geocoding->getLatLngFromAddress($customer['address']);
+
+        if ($latLng) {
+            $sql = "UPDATE customer SET latitude = :lat, longitude = :lng WHERE cus_id = :cus_id";
+            $stmt = self::prepare($sql);
+            $stmt->bindValue(':lat', $latLng['lat']);
+            $stmt->bindValue(':lng', $latLng['lng']);
+            $stmt->bindValue(':cus_id', $customer['cus_id']);
+            $stmt->execute();
+        }
+    }
+
+    public function getCustomerLocation()
+    {
+        $sql = "SELECT latitude, longitude FROM customer WHERE cus_id = :cus_id";
+        $stmt = self::prepare($sql);
+        $primaryKey = Application::$app->session->get('customer');
+        $stmt->bindValue(':cus_id', $primaryKey);
+        $stmt->execute();
+
+        $data = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return json_encode($data);
     }
 
     public function updateCustomer()
@@ -67,6 +154,7 @@ class Customer extends DbModel
             'confirmPassword' => [self::RULE_REQUIRED, [self::RULE_MATCH, 'match' => 'password']],
         ];
     }
+
     public function updateRules(): array
     {
         return [

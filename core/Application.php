@@ -5,11 +5,13 @@ namespace app\core;
 class Application
 {
 
+    public string $layout = 'auth';
     public static string $ROOT_DIR;
     public string $technicianClass;
     public string $serviceCenterClass;
     public static Application $app;
     public string $customerClass;
+    public string $adminClass;
     public Router $router;
     public Request $request;
     public Response $response;
@@ -26,6 +28,7 @@ class Application
         $this->customerClass = $config['customerClass'];
         $this->technicianClass = $config['technicianClass'];
         $this->serviceCenterClass = $config['serviceCenterClass'];
+        $this->adminClass = $config['adminClass'];
         self::$ROOT_DIR = $rootPath;
         self::$app = $this;
         $this->request = new Request();
@@ -52,6 +55,26 @@ class Application
             $this->customer = $customerInstance->findOne([$primaryKey => $primaryValueCustomer]);
         } else {
             $this->customer = null;
+        }
+
+
+        $primaryValueServiceCentre = $this->session->get('service_center');
+
+        if ($primaryValueServiceCentre) {
+            $serviceCenterInstance = new $this->serviceCenterClass;
+            $primaryKey = $serviceCenterInstance->primaryKey();
+            $this->serviceCenter = $serviceCenterInstance->findOne([$primaryKey => $primaryValueServiceCentre]);
+        } else {
+            $this->serviceCenter = null;
+        }
+
+        $primaryValueAdmin = $this->session->get('admin');
+        if ($primaryValueAdmin) {
+            $adminInstance = new $this->adminClass;
+            $primaryKey = $adminInstance->primaryKey();
+            $this->admin = $adminInstance->findOne([$primaryKey => $primaryValueAdmin]);
+        } else {
+            $this->admin = null;
         }
     }
 
@@ -111,13 +134,29 @@ class Application
         $this->serviceCenter = $serviceCenter;
         $primaryKey = $serviceCenter->primaryKey();
         $primaryValue = $serviceCenter->{$primaryKey};
-        $this->session->set('service_center', $primaryValue);
+        $this->session->set('serviceCenter', $primaryValue);
         return true;
     }
 
     public function logoutServiceCenter()
     {
         $this->serviceCenter = null;
-        $this->session->remove('service_center');
+        $this->session->remove('serviceCenter');
     }
+
+    public function loginAdmin(DbModel $admin)
+    {
+        $this->admin = $admin;
+        $primaryKey = $admin->primaryKey();
+        $primaryValue = $admin->{$primaryKey};
+        $this->session->set('admin', $primaryValue);
+        return true;
+    }
+
+    public function logoutAdmin()
+    {
+        $this->admin = null;
+        $this->session->remove('admin');
+    }
+
 }
