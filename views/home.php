@@ -124,6 +124,44 @@ use app\core\Application;
         </div>
     </div>
 </section>
+
+<section class="section-6">
+
+    <div class="row">
+        <div class="box-3-container">
+            <div class="box-3">
+                <div class="section-6-header">
+                    <h1>Explore Our Marketplace</h1>
+                </div>
+            </div>
+            <div class="box-3">
+                <div class="section-6-btn">
+                    <a href="/market-place-home">
+                        <button id="navigateButton">Market  &rarr;</button>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+        <div class="box-3-container">
+            <div class="box-3">
+                <div class="img-box-6">
+                    <img src="assets/shop-location.png" alt="">
+                </div>
+                <div class="detail-box-6">
+
+                    <p>
+                        Connecting Innovation with Precision – Your Marketplace for Technical Excellence.
+                    </p>
+                    <p>
+                        <a href="/">See More...</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="section-5">
 
     <div class="row">

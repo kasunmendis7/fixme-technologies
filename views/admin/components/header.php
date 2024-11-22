@@ -7,6 +7,7 @@
             </div>
 
             <div class="search">
+
                 <label>
                     <input type="text" placeholder="Search here">
                     <ion-icon name="search-outline"></ion-icon>
