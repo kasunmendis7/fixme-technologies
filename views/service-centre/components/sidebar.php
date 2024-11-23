@@ -58,7 +58,8 @@
             </li>
 
             <li>
-                <a href="/technician-messages">
+
+                <a href="/service-center-create-product">
                         <span class="icon">
                             <ion-icon name="bag-outline"></ion-icon>
                         </span>
