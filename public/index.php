@@ -120,7 +120,6 @@ $app->router->post('/service-center-update-product', [ProductController::class, 
 
 /** Admin Routes */
 $app->router->get('/admin-dashboard', [AdminController::class, 'dashboard']);
-$app->router->get('/admin-users', [AdminController::class, 'manageUsers']);
 $app->router->post('/admin-users-add', [AdminController::class, 'addUser']);
 $app->router->post('/admin-users-edit', [AdminController::class, 'editUser']);
 $app->router->post('/admin-users-delete', [AdminController::class, 'deleteUser']);
