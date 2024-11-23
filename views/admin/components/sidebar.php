@@ -46,6 +46,15 @@
             </li>
 
             <li>
+                <a href="/admin-promotions">
+                        <span class="icon">
+                            <ion-icon name="gift-outline"></ion-icon>
+                        </span>
+                    <span class="title">Promotions</span>
+                </a>
+            </li>
+
+            <li>
                 <a href="/admin-settings">
                         <span class="icon">
                             <ion-icon name="settings-outline"></ion-icon>
