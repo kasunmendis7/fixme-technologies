@@ -85,58 +85,58 @@
     padding: 2rem;
 }
 
-.container .box-2 .wrapper .technician-signup-form {
+.container .box-2 .wrapper .admin-signup-form {
     display: flex;
     flex-direction: column;
 }
 
-.container .box-2 .wrapper .technician-signup-form > * {
+.container .box-2 .wrapper .admin-signup-form > * {
     margin-bottom: 1rem;
 }
 
-.container .box-2 .wrapper .technician-signup-form {
+.container .box-2 .wrapper .admin-signup-form {
     font-size: 0.9rem;
     font-weight: 400;
     color: #747373;
 }
 
-.container .box-2 .wrapper .technician-signup-form .input-element {
+.container .box-2 .wrapper .admin-signup-form .input-element {
     display: flex;
     flex-direction: column;
     margin-bottom: 1rem;
 }
 
-.container .box-2 .wrapper .technician-signup-form .input-element label {
+.container .box-2 .wrapper .admin-signup-form .input-element label {
     margin-bottom: .4rem;
 }
 
-.container .box-2 .wrapper .technician-signup-form .input-element input {
+.container .box-2 .wrapper .admin-signup-form .input-element input {
     padding: 0.8rem 0.6rem;
     border-radius: .6rem;
     border: 1px solid #e0e0e0;
     color: #747373;
 }
 
-.container .box-2 .wrapper .technician-signup-form .input-element input:focus {
+.container .box-2 .wrapper .admin-signup-form .input-element input:focus {
     border-color: #5db8f5ed;
     outline: none;
 }
 
-.container .box-2 .wrapper .technician-signup-form .input-element:focus-within label {
+.container .box-2 .wrapper .admin-signup-form .input-element:focus-within label {
     color: #5db8f5f0;
 }
 
-.container .box-2 .wrapper .technician-signup-form .input-element:nth-child(3) h6 {
+.container .box-2 .wrapper .admin-signup-form .input-element:nth-child(3) h6 {
     margin-top: 0.2rem;
     font-size: 0.7rem;
     color: #949393;
 }
 
-.container .box-2 .wrapper .technician-signup-form .terms-cond {
+.container .box-2 .wrapper .admin-signup-form .terms-cond {
     font-size: 0.8rem;
 }
 
-.container .box-2 .wrapper .technician-signup-form .not-robot {
+.container .box-2 .wrapper .admin-signup-form .not-robot {
     border: 1px solid #e0e0e0;
     padding: 1rem 0.6rem;
     border-radius: 0.6rem;
@@ -144,11 +144,11 @@
     background-color: #eff3f4;
 }
 
-.container .box-2 .wrapper .technician-signup-form input[type="checkbox"] {
+.container .box-2 .wrapper .admin-signup-form input[type="checkbox"] {
     accent-color: #5db8f5;
 }
 
-.container .box-2 .wrapper .technician-signup-form .btn {
+.container .box-2 .wrapper .admin-signup-form .btn {
     padding: 0.8rem 1.2rem;
     border-radius: 2rem;
     background: #5db8f5;
@@ -160,7 +160,7 @@
     transition: background 0.3s;
 }
 
-.admin-signup-form .log-in a {
+.admin-signup-form .log-in {
     text-align: center;
     font-size: 0.8rem;
     color: #5db8f5;
@@ -190,45 +190,45 @@
         font-size: 0.8rem;
     }
 
-    .container .box-2 .wrapper .technician-signup-form {
+    .container .box-2 .wrapper .admin-signup-form {
         font-size: 0.8rem;
     }
 
-    .container .box-2 .wrapper .technician-signup-form .input-element input {
+    .container .box-2 .wrapper .admin-signup-form .input-element input {
         padding: 0.7rem 0.5rem;
     }
 
-    .container .box-2 .wrapper .technician-signup-form .input-element:nth-child(3) h6 {
+    .container .box-2 .wrapper .admin-signup-form .input-element:nth-child(3) h6 {
         font-size: 0.6rem;
     }
 
-    .container .box-2 .wrapper .technician-signup-form .terms-cond {
+    .container .box-2 .wrapper .admin-signup-form .terms-cond {
         font-size: 0.7rem;
     }
 
-    .container .box-2 .wrapper .technician-signup-form .not-robot {
+    .container .box-2 .wrapper .admin-signup-form .not-robot {
         padding: 0.8rem 0.5rem;
         font-size: 0.7rem;
     }
 
-    .container .box-2 .wrapper .technician-signup-form .btn {
+    .container .box-2 .wrapper .admin-signup-form .btn {
         padding: 0.7rem 1.1rem;
         font-size: 0.8rem;
     }
 }
 
 /* Highlight invalid input fields */
-.container .box-2 .wrapper .technician-signup-form .input-element .invalid {
+.container .box-2 .wrapper .admin-signup-form .input-element .invalid {
     border-color: #dc3545; /* Red border for error */
     background-color: #f8d7da; /* Light red background for error */
 }
 
-.container .box-2 .wrapper .technician-signup-form .input-element .invalid {
+.container .box-2 .wrapper .admin-signup-form .input-element .invalid {
     color: #dc3545; /* Red color for label to indicate error */
 }
 
 /* Error feedback message */
-.container .box-2 .wrapper .technician-signup-form .input-element .invalid-feedback {
+.container .box-2 .wrapper .admin-signup-form .input-element .invalid-feedback {
     color: #dc3545;
     font-size: 0.8rem;
     margin-top: 0.4rem;
@@ -236,6 +236,6 @@
 }
 
 /* Display error feedback when invalid */
-.container .box-2 .wrapper .technician-signup-form .input-element.invalid .invalid-feedback {
+.container .box-2 .wrapper .admin-signup-form .input-element.invalid .invalid-feedback {
     display: block;
 }
