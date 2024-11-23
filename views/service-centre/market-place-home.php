@@ -15,8 +15,10 @@ use app\core\Application;
     <link rel="stylesheet" href="/css/home/footer.css">
     <link rel="stylesheet" href="/css/home/home.css">
     <link rel="stylesheet" href="/css/service-center/marketplace.css">
+    <link rel="stylesheet" href="/css/service-center/market-place-product-view.css">
     <script src="/js/home/main.js"></script>
     <script src="/js/technician/main.js"></script>
+    <script src="/js/service-center/marketplace-home.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <title>Market Place</title>
@@ -62,34 +64,41 @@ use app\core\Application;
     </header>
 </nav>
 
+<section>
+    <div class="flash-message">
+        <?php if (Application::$app->session->getFlash('success')): ?>
+            <div class="alert alert-success">
+                <?php echo Application::$app->session->getFlash('success') ?>
+            </div>
+        <?php endif;  ?>
+    </div>
+</section>
 
-<div class="body-section">
-    <div class="product-section">
-        <!-- Product Card 1 -->
-        <div class="product-card">
-            <img src="/assets/market-images/tire.png" alt="Product 1 Image" class="product-image">
-            <h3>Product 1</h3>
-            <p>Description of Product 1</p>
-        </div>
-        <!-- Product Card 2 -->
-        <div class="product-card">
-            <img src="" alt="Product 2 Image" class="product-image">
-            <h3>Product 2</h3>
-            <p>Description of Product 2</p>
-        </div>
-        <!-- Add more product cards as needed -->
+
+
+<section class="marketplace">
+    <h1 class="marketplace-title">Available Products</h1>
+    <div class="products-grid">
+        <?php if (!empty($products)): ?>
+            <?php foreach ($products as $product): ?>
+                <div class="product-card">
+                    <img class="product-image"
+                         src="/assets/uploads/<?php echo htmlspecialchars($product['media']); ?>"
+                         alt="Product Image">
+                    <div class="product-details">
+                        <h2 class="product-title"><?php echo htmlspecialchars($product['description']); ?></h2>
+                        <p class="product-price">$<?php echo htmlspecialchars($product['price']); ?></p>
+                        <p class="product-seller">Sold by: <?php echo htmlspecialchars($product['seller_name']); ?></p>
+                    </div>
+                    <a href="#" class="product-btn">View Details</a>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p class="no-products">No products are available at the moment.</p>
+        <?php endif; ?>
     </div>
-    <div class="sidenav-section">
-        <!-- Side Navbar -->
-        <h1>Product Categories</h1>
-        <ul class="category-list">
-            <li><a href="#">Category 1</a></li>
-            <li><a href="#">Category 2</a></li>
-            <li><a href="#">Category 3</a></li>
-            <!-- Add more categories as needed -->
-        </ul>
-    </div>
-</div>
+</section>
+
 
 
 

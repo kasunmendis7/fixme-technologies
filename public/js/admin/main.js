@@ -1,4 +1,4 @@
-const n = 6;
+
 // Menu Toggle
 let toggle = document.querySelector(".toggle");
 let navigation = document.querySelector(".navigation");
