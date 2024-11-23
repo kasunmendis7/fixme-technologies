@@ -7,7 +7,6 @@ use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
 use app\models\Admin;
-use app\models\AdminLogin;
 use app\models\Customer;
 use app\models\CustomerLoginForm;
 
@@ -185,30 +184,6 @@ class AuthController extends Controller
         return $this->render('/admin/admin-sign-up', [
             'model' => $admin
         ]);
-    }
-
-    /* admin login method */
-    public function adminLogin(Request $request, Response $response)
-    {
-        $adminLogin = new AdminLogin();
-        if ($request->isPost()) {
-            $adminLogin->loadData($request->getBody());
-            if ($adminLogin->validate() && $adminLogin->login()) {
-                $response->redirect('/admin-dashboard'); // later will change this to admin dashboard
-                return;
-            }
-        }
-        $this->setLayout('auth');
-        return $this->render('/admin/admin-login', [
-            'model' => $adminLogin
-        ]);
-    }
-
-    /* admin logout method */
-    public function adminLogout(Request $request, Response $response)
-    {
-        Application::$app->logoutAdmin();
-        $response->redirect('/');
     }
 
 }
