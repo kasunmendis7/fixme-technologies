@@ -21,7 +21,7 @@ use app\core\Application;
 
         <h6 class="user-name">
             <?php
-            $username = strtoupper(Application::$app->service_center->{'name'});
+            $username = strtoupper(Application::$app->serviceCenter->{'name'});
             echo $username;
             ?>
         </h6>
