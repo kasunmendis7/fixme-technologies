@@ -15,8 +15,7 @@ class AdminController extends Controller
         $this->setLayout('auth');
         return $this->render('/admin/dashboard');
     }
-    public function manageUsers()
-   
+
     public function settings()
     {
         $this->setLayout('auth');
