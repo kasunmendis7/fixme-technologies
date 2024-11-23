@@ -165,28 +165,6 @@ class AuthController extends Controller
         $response->redirect('/service-centre-landing');
     }
 
-    /* admin sign up method */
-    public function adminSignUp(Request $request)
-    {
-        $admin = new Admin();
-        if ($request->isPost()) {
-
-            $admin->loadData($request->getBody());
-            if ($admin->validate() && $admin->save()) {
-                Application::$app->session->setFlash('success', 'You have been registered successfully!');
-                Application::$app->response->redirect('/admin-login');
-            }
-            $this->setLayout('auth');
-            return $this->render('/admin/admin-sign-up', [
-                'model' => $admin
-            ]);
-        }
-        $this->setLayout('auth');
-        return $this->render('/admin/admin-sign-up', [
-            'model' => $admin
-        ]);
-    }
-
     /* admin login method */
     public function adminLogin(Request $request, Response $response)
     {
