@@ -8,9 +8,11 @@ use app\controllers\SiteController;
 use app\controllers\CustomerController;
 use app\controllers\TechnicianController;
 use app\controllers\ServiceCentreController;
+use app\controllers\AdminController;
 use app\controllers\PostController;
 use app\controllers\CommentController;
 use app\controllers\ProductController;
+
 
 
 /* load environment variables */
@@ -23,6 +25,7 @@ $config = [
     'technicianClass' => \app\models\Technician::class,
     'customerClass' => \app\models\Customer::class,
     'serviceCenterClass' => \app\models\ServiceCenter::class,
+    'adminClass' => \app\models\Admin::class,
     'db' => [
         'dsn' => $_ENV['DB_DSN'],
         'user' => $_ENV['DB_USER'],
@@ -47,6 +50,7 @@ $app->router->get('/technician-settings', [TechnicianController::class, 'technic
 $app->router->get('/technician-help', [TechnicianController::class, 'technicianHelp']);
 $app->router->get('/technician-profile', [TechnicianController::class, 'technicianProfile']);
 $app->router->post('/update-technician-profile', [TechnicianController::class, 'updateTechnicianProfile']);
+// $app->router->get('/admin/dashboard', [AdminController::class, 'dashboard']);
 
 /** Service Center Routes */
 $app->router->get('/service-centre-landing', [ServiceCentreController::class, 'serviceCentreLanding']);
@@ -56,7 +60,7 @@ $app->router->get('/service-centre-profile', [ServiceCentreController::class, 's
 $app->router->post('/update-service-centre-profile', [ServiceCentreController::class, 'updateServiceCenter']);
 $app->router->get('/service-center-help', [ServiceCentreController::class, 'serviceCenterHelp']);
 $app->router->get('/service-center-community', [ServiceCentreController::class, 'serviceCenterCommunity']);
-//$app->router->get('/market-place-home', [ServiceCentreController::class, 'marketPlaceHome']);
+$app->router->get('/service-center-messages', [ServiceCentreController::class, 'serviceCenterMessages']);
 
 
 /* Customer Routes */
@@ -95,7 +99,8 @@ $app->router->get('/service-centre-login', [AuthController::class, 'serviceCentr
 $app->router->post('/service-centre-login', [AuthController::class, 'serviceCentreLogin']);
 $app->router->get('/service-center-logout', [AuthController::class, 'serviceCenterLogout']);
 
-//routes related to the product(service center)
+
+/*routes related to the product(service center)*/
 $app->router->get('/service-center-create-product', [ServiceCentreController::class, 'serviceCenterCreateProduct']);
 $app->router->post('/service-center-create-product', [ProductController::class, 'create']);
 $app->router->get('/market-place-home', [ProductController::class, 'index']);
@@ -103,7 +108,31 @@ $app->router->get('/service-center-create-product', [ProductController::class, '
 $app->router->get('/service-center-update-product', [ServiceCentreController::class,'update']);
 $app->router->post('/service-center-update-product', [ProductController::class, 'update']);
 
-/* routes related to the by Post */
+
+/** Admin Routes */
+$app->router->get('/admin-dashboard', [AdminController::class, 'dashboard']);
+$app->router->get('/admin-users', [AdminController::class, 'manageUsers']);
+$app->router->post('/admin-users-add', [AdminController::class, 'addUser']);
+$app->router->post('/admin-users-edit', [AdminController::class, 'editUser']);
+$app->router->post('/admin-users-delete', [AdminController::class, 'deleteUser']);
+
+$app->router->get('/admin-services', [AdminController::class, 'manageServices']);
+$app->router->post('/admin-services-add', [AdminController::class, 'addService']);
+$app->router->post('/admin-services-edit', [AdminController::class, 'editService']);
+$app->router->post('/admin-services-delete', [AdminController::class, 'deleteService']);
+
+$app->router->get('/admin-reports', [AdminController::class, 'viewReports']);
+$app->router->post('/admin-reports-generate', [AdminController::class, 'generateReport']);
+
+$app->router->get('/admin-settings', [AdminController::class, 'settings']);
+$app->router->post('/admin-settings-update', [AdminController::class, 'updateSettings']);
+
+/* Admin Auth routes */
+$app->router->get('/admin-login', [AuthController::class, 'adminLogin']);
+$app->router->post('/admin-login', [AuthController::class, 'adminLogin']);
+$app->router->get('/admin-logout', [AuthController::class, 'adminLogout']);
+
+/* Routes related to the Post */
 $app->router->get('/technician-create-post', [TechnicianController::class, 'technicianCreatePost']);
 $app->router->get('/technician-edit-post', [TechnicianController::class, 'technicianEditPost']);
 $app->router->post('/technician-create-post', [PostController::class, 'create']);
@@ -112,14 +141,14 @@ $app->router->get('/technician-community', [PostController::class, 'index']);
 $app->router->post('/technician-delete-post', [PostController::class, 'delete']);
 $app->router->get('/fixme-community', [CustomerController::class, 'fixmeCommunity']);
 
-/* Routes related to the by Comment */
+/* Routes related to the Comment */
 $app->router->post('/comment-create', [CommentController::class, 'create']);
 $app->router->get('/comment-edit', [CommentController::class, 'edit']);
 $app->router->post('/comment-edit', [CommentController::class, 'edit']);
 $app->router->get('/comment-delete', [CommentController::class, 'delete']);
 $app->router->post('/comment-delete', [CommentController::class, 'delete']);
 
-/* Routes related to the by Like */
+/* Routes related to the Like */
 $app->router->post('/post-like', [PostController::class, 'like']);
 $app->router->post('/post-unlike', [PostController::class, 'unlike']);
 
