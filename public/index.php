@@ -14,7 +14,6 @@ use app\controllers\CommentController;
 use app\controllers\ProductController;
 
 
-
 /* load environment variables */
 
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
@@ -114,16 +113,15 @@ $app->router->get('/service-center-create-product', [ServiceCentreController::cl
 $app->router->post('/service-center-create-product', [ProductController::class, 'create']);
 $app->router->get('/market-place-home', [ProductController::class, 'index']);
 $app->router->get('/service-center-create-product', [ProductController::class, 'filterProductsById']);
-$app->router->get('/service-center-update-product', [ServiceCentreController::class,'update']);
+$app->router->get('/service-center-update-product', [ServiceCentreController::class, 'update']);
 $app->router->post('/service-center-update-product', [ProductController::class, 'update']);
 
 
 /** Admin Routes */
-$app->router->get('/admin-dashboard', [AdminController::class, 'dashboard']);
-$app->router->get('/admin-users', [AdminController::class, 'manageUsers']);
-$app->router->post('/admin-users-add', [AdminController::class, 'addUser']);
-$app->router->post('/admin-users-edit', [AdminController::class, 'editUser']);
-$app->router->post('/admin-users-delete', [AdminController::class, 'deleteUser']);
+$app->router->get('/admin-dashboard', [AdminController::class, 'adminDashboard']);
+$app->router->get('/customers', [AdminController::class, 'customers']);
+$app->router->post('/admin/delete-customer', [AdminController::class, 'deleteCustomer']);
+
 
 $app->router->get('/admin-services', [AdminController::class, 'manageServices']);
 $app->router->post('/admin-services-add', [AdminController::class, 'addService']);
