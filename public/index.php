@@ -119,9 +119,11 @@ $app->router->post('/service-center-update-product', [ProductController::class, 
 
 
 /** Admin Routes */
-$app->router->get('/admin-dashboard', [AdminController::class, 'adminDashboard']);
+$app->router->get('/admin-dashboard', [AdminController::class, 'dashboard']);
+
 $app->router->get('/customers', [AdminController::class, 'customers']);
 $app->router->post('/admin/delete-customer', [AdminController::class, 'deleteCustomer']);
+
 
 
 $app->router->get('/admin-services', [AdminController::class, 'manageServices']);
@@ -133,6 +135,8 @@ $app->router->get('/admin-reports', [AdminController::class, 'viewReports']);
 $app->router->post('/admin-reports-generate', [AdminController::class, 'generateReport']);
 
 $app->router->post('/admin-settings-update', [AdminController::class, 'updateSettings']);
+
+$app->router->get('/admin-promotions', [AdminController::class, 'promotions']);
 
 /* Admin Auth routes */
 $app->router->get('/admin-login', [AuthController::class, 'adminLogin']);
