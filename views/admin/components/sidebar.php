@@ -20,30 +20,30 @@
                 </a>
             </li>
             <li>
-                <a href="/customers">
+                <a href="/admin-users">
                         <span class="icon">
                             <ion-icon name="person-outline"></ion-icon>
                         </span>
-                    <span class="title">Customers</span>
+                    <span class="title">Users</span>
                 </a>
             </li>
             <li>
-                <a href="/technicians">
+                <a href="/admin-services">
                         <span class="icon">
-                           <ion-icon name="build-outline"></ion-icon>
+                           <ion-icon name="clipboard-outline"></ion-icon>
                         </span>
-                    <span class="title">Technicians</span>
+                    <span class="title">Services</span>
                 </a>
             </li>
 
-            <!--            <li>-->
-            <!--                <a href="/technician-messages">-->
-            <!--                        <span class="icon">-->
-            <!--                            <ion-icon name="chatbubble-outline"></ion-icon>-->
-            <!--                        </span>-->
-            <!--                    <span class="title">Reports</span>-->
-            <!--                </a>-->
-            <!--            </li>-->
+            <li>
+                <a href="/admin-reports">
+                        <span class="icon">
+                            <ion-icon name="chatbubble-outline"></ion-icon>
+                        </span>
+                    <span class="title">Reports</span>
+                </a>
+            </li>
 
             <li>
                 <a href="/admin-settings">
