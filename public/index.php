@@ -14,7 +14,6 @@ use app\controllers\CommentController;
 use app\controllers\ProductController;
 
 
-
 /* load environment variables */
 
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
@@ -78,6 +77,7 @@ $app->router->get('/customer-location', [CustomerController::class, 'customerLoc
 /* Admin Routes */
 $app->router->get('/admin-dashboard', [AdminController::class, 'adminDashboard']);
 $app->router->get('/customers', [AdminController::class, 'customers']);
+$app->router->get('/technicians', [AdminController::class, 'technicians']);
 $app->router->post('/admin/delete-customer', [AdminController::class, 'deleteCustomer']);
 $app->router->get('/admin-settings', [AdminController::class, 'adminSettings']);
 $app->router->get('/admin-profile', [AdminController::class, 'adminProfile']);
@@ -114,15 +114,17 @@ $app->router->get('/service-center-create-product', [ServiceCentreController::cl
 $app->router->post('/service-center-create-product', [ProductController::class, 'create']);
 $app->router->get('/market-place-home', [ProductController::class, 'index']);
 $app->router->get('/service-center-create-product', [ProductController::class, 'filterProductsById']);
-$app->router->get('/service-center-update-product', [ServiceCentreController::class,'update']);
+$app->router->get('/service-center-update-product', [ServiceCentreController::class, 'update']);
 $app->router->post('/service-center-update-product', [ProductController::class, 'update']);
 
 
 /** Admin Routes */
 $app->router->get('/admin-dashboard', [AdminController::class, 'dashboard']);
-$app->router->post('/admin-users-add', [AdminController::class, 'addUser']);
-$app->router->post('/admin-users-edit', [AdminController::class, 'editUser']);
-$app->router->post('/admin-users-delete', [AdminController::class, 'deleteUser']);
+
+$app->router->get('/customers', [AdminController::class, 'customers']);
+$app->router->post('/admin/delete-customer', [AdminController::class, 'deleteCustomer']);
+
+
 
 $app->router->get('/admin-services', [AdminController::class, 'manageServices']);
 $app->router->post('/admin-services-add', [AdminController::class, 'addService']);
@@ -132,7 +134,6 @@ $app->router->post('/admin-services-delete', [AdminController::class, 'deleteSer
 $app->router->get('/admin-reports', [AdminController::class, 'viewReports']);
 $app->router->post('/admin-reports-generate', [AdminController::class, 'generateReport']);
 
-$app->router->get('/admin-settings', [AdminController::class, 'settings']);
 $app->router->post('/admin-settings-update', [AdminController::class, 'updateSettings']);
 
 $app->router->get('/admin-promotions', [AdminController::class, 'promotions']);
