@@ -100,8 +100,10 @@ $app->router->get('/service-center-create-product', [ServiceCentreController::cl
 $app->router->post('/service-center-create-product', [ProductController::class, 'create']);
 $app->router->get('/market-place-home', [ProductController::class, 'index']);
 $app->router->get('/service-center-create-product', [ProductController::class, 'filterProductsById']);
-$app->router->get('/service-center-update-product', [ServiceCentreController::class,'update']);
+$app->router->get('/service-center-update-product', [ProductController::class,'update']);
 $app->router->post('/service-center-update-product', [ProductController::class, 'update']);
+$app->router->post('/service-center-delete-product', [ProductController::class, 'delete']);
+
 
 /* routes related to the by Post */
 $app->router->get('/technician-create-post', [TechnicianController::class, 'technicianCreatePost']);

@@ -7,9 +7,10 @@
     class Product extends DbModel
     {
         public int $ser_cen_id;
+        public int $product_id;
         public string $description = '';
         public float $price;
-        public string $media;
+        public string $media = '';
         public ?string $created_at = null;
         public ?string $updated_at = null;
 
@@ -85,29 +86,59 @@
             }
         }
 
+        public function getProductByIdAndServiceCenter(int $ser_cen_id, int $product_id): ?array
+        {
+            $sql = 'SELECT * FROM product WHERE product_id = :product_id AND ser_cen_id = :ser_cen_id';
+            $stmt = self::prepare($sql);
+            $stmt->bindValue(':product_id', $product_id);
+            $stmt->bindValue(':ser_cen_id', $ser_cen_id);
+            $stmt->execute();
+
+            return $stmt->fetch(\PDO::FETCH_ASSOC) ?: null;
+        }
+
         public function editProduct(): bool
         {
-            $sql = "UPDATE product SET description = :description, price = :price, media = :media, updated_at = NOW() WHERE product_id = :product_id AND ser_cen_id = :ser_cen_id";
+            $sql = "
+        UPDATE product
+        SET description = :description, price = :price, media = CASE WHEN :media = '' THEN media ELSE :media END, updated_at = NOW()
+        WHERE product_id = :product_id AND ser_cen_id = :ser_cen_id
+    ";
+
             $stmt = self::prepare($sql);
             $stmt->bindValue(':description', $this->description);
             $stmt->bindValue(':price', $this->price);
             $stmt->bindValue(':media', $this->media);
-            $stmt->bindValue("product_id", $this->product_id);
-            $stmt->bindValue("ser_cen_id", $this->ser_cen_id);
+            $stmt->bindValue(':product_id', $this->product_id);
+            $stmt->bindValue(':ser_cen_id', $this->ser_cen_id);
 
-            return $stmt->execute();
+            // Debugging: Check SQL and parameters
+//            var_dump([
+//                'SQL' => $sql,
+//                'description' => $this->description,
+//                'price' => $this->price,
+//                'media' => $this->media,
+//                'product_id' => $this->product_id,
+//                'ser_cen_id' => $this->ser_cen_id
+//            ]);
+
+            $result = $stmt->execute();
+
+            // Debugging: Check execution result
+//            var_dump($result);
+//            die();
+
+            return $result;
         }
+
 
         public function deleteProduct(int $product_id, int $ser_cen_id): bool
         {
-            $tableName = self::tableName();
-            $statement = self::prepare("
-            DELETE FROM $tableName 
-            WHERE product_id = :product_id AND ser_cen_id = :ser_cen_id
-        ");
-            $statement->bindValue(':product_id', $product_id);
-            $statement->bindValue(':seller_id', $ser_cen_id);
-            return $statement->execute();
+            $sql = 'DELETE FROM product WHERE product_id = :product_id AND ser_cen_id = :ser_cen_id';
+            $stmt = self::prepare($sql);
+            $stmt->bindValue(':product_id', $product_id);
+            $stmt->bindValue(':ser_cen_id', $ser_cen_id);
+            return $stmt->execute();
         }
         public function productRules(): array
         {

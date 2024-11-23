@@ -22,6 +22,7 @@ class Application
     public ?DbModel $customer;
     public ?DbModel $serviceCenter;
 
+
     public function __construct($rootPath, array $config)
     {
         $this->customerClass = $config['customerClass'];
@@ -56,7 +57,7 @@ class Application
         }
 
 
-        $primaryValueServiceCentre = $this->session->get('service_center');
+        $primaryValueServiceCentre = $this->session->get('serviceCenter');
 
         if ($primaryValueServiceCentre) {
             $serviceCenterInstance = new $this->serviceCenterClass;
@@ -65,6 +66,9 @@ class Application
         } else {
             $this->serviceCenter = null;
         }
+
+
+
     }
 
     public function loginCustomer(DbModel $customer)
