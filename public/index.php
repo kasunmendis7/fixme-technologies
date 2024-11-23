@@ -136,6 +136,8 @@ $app->router->post('/admin-reports-generate', [AdminController::class, 'generate
 $app->router->get('/admin-settings', [AdminController::class, 'settings']);
 $app->router->post('/admin-settings-update', [AdminController::class, 'updateSettings']);
 
+$app->router->get('/admin-promotions', [AdminController::class, 'promotions']);
+
 /* Admin Auth routes */
 $app->router->get('/admin-login', [AuthController::class, 'adminLogin']);
 $app->router->post('/admin-login', [AuthController::class, 'adminLogin']);
