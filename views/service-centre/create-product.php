@@ -1,7 +1,6 @@
-
 <?php
 
-    use app\core\Application;
+use app\core\Application;
 
 ?>
 
@@ -13,15 +12,11 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Create Product</title>
-    <link rel="stylesheet" href="/css/technician/technician-community.css">
     <link rel="stylesheet" href="/css/technician/overlay.css">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="/css/customer/customer-dashboard.css">
-    <link rel="stylesheet" href="/css/customer/overlay.css">
     <link rel="stylesheet" href="/css/service-center/add-products.css">
-    <link rel="stylesheet" href="/css/base/_reset.css">
-    <link rel="stylesheet" href="/css/base/_global.css">
 </head>
 
 <body>
@@ -40,7 +35,7 @@ include_once 'components/header.php';
 <?php endif; ?>
 
 <div class="create-product-container">
-<!--Product creation form-->
+    <!--Product creation form-->
     <h2>Add Products</h2>
     <form action="/service-center-create-product" method="post" enctype="multipart/form-data">
         <label for="description">Description</label>
@@ -55,7 +50,7 @@ include_once 'components/header.php';
         <button type="submit">Add Product</button>
     </form>
 
-<!--    List of products -->
+    <!--    List of products -->
 
 
     <h2>Your Products</h2>
@@ -73,17 +68,18 @@ include_once 'components/header.php';
             <?php foreach ($products as $product): ?>
                 <tr>
                     <td>
-                        <img src="/assets/uploads/<?php echo htmlspecialchars($product['media']); ?>" alt="Product Image" width="100">
+                        <img src="/assets/uploads/<?php echo htmlspecialchars($product['media']); ?>"
+                             alt="Product Image" width="100">
                     </td>
                     <td><?php echo htmlspecialchars($product['description']); ?></td>
-                    <td>$<?php echo htmlspecialchars($product['price']); ?></td>
+                    <td>Rs. <?php echo htmlspecialchars($product['price']); ?></td>
                     <td>
-                        <form action="/service-center-update-product" method="get" style="display:inline;">
+                        <form action="/service-center-update-product" method="get">
                             <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
                             <button type="submit">Edit</button>
                         </form>
 
-                        <form action="/service-center-delete-product" method="post" style="display:inline;">
+                        <form action="/service-center-delete-product" method="post">
                             <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
                             <button type="submit">Delete</button>
                         </form>
@@ -96,9 +92,6 @@ include_once 'components/header.php';
         <p>No products have been added yet.</p>
     <?php endif; ?>
 </div>
-
-
-
 
 
 <div id="signOutOverlay" class="overlay">

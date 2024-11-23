@@ -14,7 +14,7 @@
     include_once 'components/header.php';
     ?>
    
-            <h1>hello</h1>
+            
 
                 
     <!--    Icons-->
