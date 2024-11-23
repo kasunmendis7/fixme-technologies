@@ -19,6 +19,7 @@
                     <span class="title">Dashboard</span>
                 </a>
             </li>
+
             <li>
                 <a href="/customers">
                         <span class="icon">
@@ -35,6 +36,7 @@
                     <span class="title">Technicians</span>
                 </a>
             </li>
+
             <li>
                 <a href="/admin-services">
                         <span class="icon">
@@ -50,6 +52,15 @@
                             <ion-icon name="chatbubble-outline"></ion-icon>
                         </span>
                     <span class="title">Reports</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="/admin-promotions">
+                        <span class="icon">
+                            <ion-icon name="gift-outline"></ion-icon>
+                        </span>
+                    <span class="title">Promotions</span>
                 </a>
             </li>
 
