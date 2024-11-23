@@ -131,7 +131,6 @@ $app->router->post('/admin-services-delete', [AdminController::class, 'deleteSer
 $app->router->get('/admin-reports', [AdminController::class, 'viewReports']);
 $app->router->post('/admin-reports-generate', [AdminController::class, 'generateReport']);
 
-$app->router->get('/admin-settings', [AdminController::class, 'settings']);
 $app->router->post('/admin-settings-update', [AdminController::class, 'updateSettings']);
 
 /* Admin Auth routes */
