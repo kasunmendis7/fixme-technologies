@@ -78,6 +78,16 @@ class AdminController extends Controller
 
     }
 
+    public function technicians()
+    {
+        // Fetch all technicians records
+        $technicians = Admin::findAllTechnicians();
+        // Render the all the customer in the database
+        $this->setLayout('auth');
+        return $this->render('/admin/technicians', ['technicians' => $technicians]);
+
+    }
+
     public function deleteCustomer(Request $request)
     {
         $data = $request->getBody(); // Assuming this already returns an array
@@ -94,6 +104,25 @@ class AdminController extends Controller
             }
         } else {
             echo json_encode(['status' => 'error', 'message' => 'Invalid customer ID']);
+        }
+    }
+
+    public function deleteTechnician(Request $request)
+    {
+        $data = $request->getBody(); // Assuming this already returns an array
+        if (isset($data['tech_id'])) {
+            $tech_id = $data['tech_id'];
+
+            // Call the model function to delete the technician
+            $result = Admin::deleteTechnicianById($tech_id);
+
+            if ($result) {
+                echo json_encode(['status' => 'success']);
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'Failed to delete technician']);
+            }
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Invalid technician ID']);
         }
     }
 

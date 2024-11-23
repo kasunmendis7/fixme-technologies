@@ -77,6 +77,7 @@ $app->router->get('/customer-location', [CustomerController::class, 'customerLoc
 /* Admin Routes */
 $app->router->get('/admin-dashboard', [AdminController::class, 'adminDashboard']);
 $app->router->get('/customers', [AdminController::class, 'customers']);
+$app->router->get('/technicians', [AdminController::class, 'technicians']);
 $app->router->post('/admin/delete-customer', [AdminController::class, 'deleteCustomer']);
 $app->router->get('/admin-settings', [AdminController::class, 'adminSettings']);
 $app->router->get('/admin-profile', [AdminController::class, 'adminProfile']);
