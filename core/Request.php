@@ -4,6 +4,7 @@ namespace app\core;
 
 class Request
 {
+    public $params = [];
 
     public function getPath()
     {
