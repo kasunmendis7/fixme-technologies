@@ -41,7 +41,11 @@ class AdminController extends Controller
         return $this->render('/admin/admin-login.php');
     }
     
-
+    public function promotions()
+    {
+        $this->setLayout('auth');
+        return $this->render('/admin/admin-promotions');
+    }
     
 
 }
