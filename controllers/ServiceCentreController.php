@@ -104,4 +104,10 @@ class ServiceCentreController extends Controller
         return $this->render('service-centre/update-product');
     }
 
+    public function serviceCenterMessages()
+    {
+        $this->setLayout('auth');
+        return $this->render('/service-centre/service-center-messages');
+    }
+
 }

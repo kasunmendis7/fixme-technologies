@@ -11,6 +11,7 @@ class Application
     public string $serviceCenterClass;
     public static Application $app;
     public string $customerClass;
+    public string $adminClass;
     public Router $router;
     public Request $request;
     public Response $response;
@@ -22,12 +23,12 @@ class Application
     public ?DbModel $customer;
     public ?DbModel $serviceCenter;
 
-
     public function __construct($rootPath, array $config)
     {
         $this->customerClass = $config['customerClass'];
         $this->technicianClass = $config['technicianClass'];
         $this->serviceCenterClass = $config['serviceCenterClass'];
+        $this->adminClass = $config['adminClass'];
         self::$ROOT_DIR = $rootPath;
         self::$app = $this;
         $this->request = new Request();
@@ -57,7 +58,7 @@ class Application
         }
 
 
-        $primaryValueServiceCentre = $this->session->get('serviceCenter');
+        $primaryValueServiceCentre = $this->session->get('service_center');
 
         if ($primaryValueServiceCentre) {
             $serviceCenterInstance = new $this->serviceCenterClass;
@@ -67,8 +68,14 @@ class Application
             $this->serviceCenter = null;
         }
 
-
-
+        $primaryValueAdmin = $this->session->get('admin');
+        if ($primaryValueAdmin) {
+            $adminInstance = new $this->adminClass;
+            $primaryKey = $adminInstance->primaryKey();
+            $this->admin = $adminInstance->findOne([$primaryKey => $primaryValueAdmin]);
+        } else {
+            $this->admin = null;
+        }
     }
 
     public function loginCustomer(DbModel $customer)
@@ -135,6 +142,21 @@ class Application
     {
         $this->serviceCenter = null;
         $this->session->remove('serviceCenter');
+    }
+
+    public function loginAdmin(DbModel $admin)
+    {
+        $this->admin = $admin;
+        $primaryKey = $admin->primaryKey();
+        $primaryValue = $admin->{$primaryKey};
+        $this->session->set('admin', $primaryValue);
+        return true;
+    }
+
+    public function logoutAdmin()
+    {
+        $this->admin = null;
+        $this->session->remove('admin');
     }
 
 }
