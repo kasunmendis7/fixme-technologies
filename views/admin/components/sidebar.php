@@ -19,14 +19,7 @@
                     <span class="title">Dashboard</span>
                 </a>
             </li>
-            <li>
-                <a href="/admin-users">
-                        <span class="icon">
-                            <ion-icon name="person-outline"></ion-icon>
-                        </span>
-                    <span class="title">Users</span>
-                </a>
-            </li>
+            
             <li>
                 <a href="/admin-services">
                         <span class="icon">
