@@ -26,11 +26,11 @@ async function sendRequest(technicianId, customerId) {
 
         if (response.ok) {
             const result = await response.json();
-            alert('Request sent successfully!');
+            window.location.href = `/technician-profile/${technicianId}`
             console.log('Response: ', result);
         } else {
             const error = await response.json();
-            alert('Failed to send Request');
+            window.location.href = `/technician-profile/${technicianId}`
             console.error('Error: ', error);
         }
     } catch (e) {

@@ -111,7 +111,7 @@ class CustomerController extends Controller
 
             if (!$customerId || !$technicianId) {
                 Application::$app->response->setStatusCode(400);
-                echo json_encode(['success' => false, 'error' => 'Missing the required parameter customerId, technicianId']);
+                return json_encode(['success' => false, 'error' => 'Missing the required parameter customerId, technicianId']);
                 exit;
             }
 
