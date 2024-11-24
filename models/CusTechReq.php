@@ -42,6 +42,27 @@ class CusTechReq extends DbModel
         }
     }
 
+    public function getAllRequests($cusId)
+    {
+        $sql = "SELECT tech.fname AS fname, tech.lname AS lname, ctr.status AS status FROM technician AS tech, cus_tech_req AS ctr WHERE ctr.tech_id = tech.tech_id AND ctr.cus_id = :cus_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':cus_id', $cusId);
+        $stmt->execute();
+        $requests = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $requests;
+    }
+
+    public function getRecentTechnicians($cusId)
+    {
+        $sql = "SELECT tech.fname AS fname, tech.lname AS lname, tech.profile_picture AS profile_picture FROM technician AS tech, cus_tech_req AS ctr WHERE tech.tech_id = ctr.tech_id AND ctr.cus_id = :cus_id AND ctr.status = 'pending'";
+        /* Reminder : change ctr.status = 'completed' after implementing the completed status */
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':cus_id', $cusId);
+        $stmt->execute();
+        $recentTechnicians = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $recentTechnicians;
+    }
+
     public function attributes(): array
     {
         return [
