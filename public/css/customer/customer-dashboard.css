@@ -359,7 +359,7 @@ a {
     text-align: center;
 }
 
-.status.delivered {
+.status.completed {
     padding: 2px 4px;
     background: #8de02c;
     color: var(--white);
@@ -377,7 +377,7 @@ a {
     font-weight: 500;
 }
 
-.status.return {
+.status.rejected {
     padding: 2px 4px;
     background: #f00;
     color: var(--white);

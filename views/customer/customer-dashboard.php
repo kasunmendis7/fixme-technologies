@@ -1,6 +1,7 @@
 <?php
 
 use app\core\Application;
+use app\models\CusTechReq;
 
 ?>
 
@@ -70,7 +71,7 @@ include_once 'components/header.php';
     </div>
 </div>
 
-<!-- ================ Order Details List ================= -->
+<!-- ================ Request Details List ================= -->
 <div class="details">
     <div class="recentRequests">
         <div class="cardHeader">
@@ -89,142 +90,49 @@ include_once 'components/header.php';
             </thead>
 
             <tbody>
-            <tr>
-                <td>Kasun Mendis</td>
-                <td>Rs. 620</td>
-                <td>Due</td>
-                <td><span class="status inProgress">In Progress</span></td>
-            </tr>
-            <tr>
-                <td>Sheane Mario</td>
-                <td>Rs. 1200</td>
-                <td>Paid</td>
-                <td><span class="status delivered">Completed</span></td>
-            </tr>
-
-            <tr>
-                <td>Pulasthi Abhisheke</td>
-                <td>Rs. 110</td>
-                <td>Due</td>
-                <td><span class="status pending">Pending</span></td>
-            </tr>
-
-            <tr>
-                <td>Nimal Rathinarasa</td>
-                <td>Rs. 1200</td>
-                <td>-</td>
-                <td><span class="status return">Cancelled</span></td>
-            </tr>
-
-            <tr>
-                <td>Jimmy Donaldson</td>
-                <td>Rs. 620</td>
-                <td>Due</td>
-                <td><span class="status inProgress">In Progress</span></td>
-            </tr>
-
-            <tr>
-                <td>Erick Dodger</td>
-                <td>Rs. 1200</td>
-                <td>Paid</td>
-                <td><span class="status delivered">Completed</span></td>
-            </tr>
-
-            <tr>
-                <td>Steven Schaphiro Laptop</td>
-                <td>Rs. 110</td>
-                <td>Due</td>
-                <td><span class="status delivered">Completed</span></td>
-            </tr>
-
-            <tr>
-                <td>Dawson Smith</td>
-                <td>Rs. 1200</td>
-                <td>-</td>
-                <td><span class="status return">Cancelled</span></td>
-            </tr>
+            <?php
+            $ctr = new CusTechReq();
+            $requests = $ctr->getAllRequests(Application::$app->session->get('customer'));
+            foreach ($requests as $request) {
+                echo
+                    '<tr>
+                    <td>' . $request['fname'] . ' ' . $request['lname'] . '</td> 
+                    <td>Rs. 500</td> 
+                    <td>Due</td>
+                    <td><span class="status ' . $request['status'] . '">' . $request['status'] . '</span></td>
+                </tr>';
+            }
+            /* status: pending , in Progress, rejected, completed */
+            ?>
             </tbody>
         </table>
     </div>
 
-    <!-- ================= New Customers ================ -->
+    <!-- ================= Recent Technicians ================ -->
     <div class="recentTechnicians">
         <div class="cardHeader">
             <h2>Recent Technicians</h2>
         </div>
 
         <table>
-            <tr>
-                <td>
-                    <div class="imgBx"><img src="assets/technician-dashboard/customer02.jpg" alt=""></div>
-                </td>
-                <td>
-                    <h4>Kasun<br> <span>Panadura</span></h4>
-                </td>
-            </tr>
+            <?php
+            $ctr = new CusTechReq();
+            $recentTechnicians = $ctr->getRecentTechnicians(Application::$app->session->get('customer'));
+            foreach ($recentTechnicians as $recentTechnician) {
+                echo
+                    '
+                        <tr>
+                            <td>
+                                <div class="imgBx"><img src="' . $recentTechnician['profile_picture'] . '" alt="Technician profile-pic"></div>
+                            </td>
+                            <td>
+                                <h4>' . $recentTechnician['fname'] . ' ' . $recentTechnician['lname'] . '  <br> <span>Technician</span></h4>
+                            </td>
+                        </tr>
+                    ';
+            }
+            ?>
 
-            <tr>
-                <td>
-                    <div class="imgBx"><img src="assets/technician-dashboard/customer04.jpg" alt=""></div>
-                </td>
-                <td>
-                    <h4>Mario<br> <span>Negombo</span></h4>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <div class="imgBx"><img src="assets/technician-dashboard/customer01.jpg" alt=""></div>
-                </td>
-                <td>
-                    <h4>Abisheke <br> <span>Hambanthota</span></h4>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <div class="imgBx"><img src="assets/technician-dashboard/customer03.jpg" alt=""></div>
-                </td>
-                <td>
-                    <h4>Nimal<br> <span>Jaffna</span></h4>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <div class="imgBx"><img src="assets/technician-dashboard/customer02.jpg" alt=""></div>
-                </td>
-                <td>
-                    <h4>Tithira <br> <span>Havelock</span></h4>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <div class="imgBx"><img src="assets/technician-dashboard/customer01.jpg" alt=""></div>
-                </td>
-                <td>
-                    <h4>Pasan <br> <span>Kaluthara</span></h4>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <div class="imgBx"><img src="assets/technician-dashboard/customer01.jpg" alt=""></div>
-                </td>
-                <td>
-                    <h4>Sahan <br> <span>Galle</span></h4>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <div class="imgBx"><img src="assets/technician-dashboard/customer02.jpg" alt=""></div>
-                </td>
-                <td>
-                    <h4>Amit <br> <span>India</span></h4>
-                </td>
-            </tr>
         </table>
     </div>
 </div>
