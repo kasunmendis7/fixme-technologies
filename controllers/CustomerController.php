@@ -11,6 +11,7 @@ use app\models\Customer;
 use app\models\Post;
 use app\models\ServiceCentre;
 use app\models\Technician;
+use app\models\CusTechReq;
 
 class CustomerController extends Controller
 {
@@ -110,18 +111,14 @@ class CustomerController extends Controller
 
             if (!$customerId || !$technicianId) {
                 Application::$app->response->setStatusCode(400);
-                echo json_encode(['error' => 'Missing the required parameter customerId, technicianId']);
+                echo json_encode(['success' => false, 'error' => 'Missing the required parameter customerId, technicianId']);
                 exit;
             }
 
-            $sql = "INSERT INTO cus_tech_req (cus_id, tech_id, status) VALUES (:cus_id, :tech_id, 'pending')";
-            $stmt = Application::$app->db->pdo->prepare($sql);
-            $stmt->bindValue(':cus_id', $customerId);
-            $stmt->bindValue(':tech_id', $technicianId);
-            if ($stmt->execute()) {
-                Application::$app->response->setStatusCode(200);
-                echo json_encode(['success' => true, 'message' => 'Customer request has been sent!']);
-            }
+            $cusReq = new CusTechReq();
+            $res = $cusReq->createCusTechReq($customerId, $technicianId);
+            return json_encode($res);
+
         } catch (\Exception $e) {
             Application::$app->response->setStatusCode(500);
             echo json_encode(['success' => false, 'error' => $e->getMessage()]);
