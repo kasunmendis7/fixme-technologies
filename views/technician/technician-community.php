@@ -29,9 +29,7 @@ include_once 'components/header.php';
     </div>
 </section>
 
-<?php foreach ($posts
-
-as $post): ?>
+<?php foreach ($posts as $post): ?>
 <section class="post-section">
     <div class="post">
         <div class="post-header">

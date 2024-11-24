@@ -17,6 +17,8 @@ class AdminController extends Controller
         return $this->render('/admin/dashboard');
     }
 
+
+
     public function manageUsers()
     {
         $this->setLayout('auth');
@@ -30,6 +32,7 @@ class AdminController extends Controller
     }
 
     public function adminProfile()
+
     {
         $this->setLayout('auth');
         return $this->render('/admin/admin-profile');
@@ -67,6 +70,15 @@ class AdminController extends Controller
         $this->setLayout('auth');
         return $this->render('/admin/admin-login.php');
     }
+
+    
+    public function promotions()
+    {
+        $this->setLayout('auth');
+        return $this->render('/admin/admin-promotions');
+    }
+    
+
 
     public function customers()
     {
@@ -125,6 +137,7 @@ class AdminController extends Controller
             echo json_encode(['status' => 'error', 'message' => 'Invalid technician ID']);
         }
     }
+
 
 }
 
