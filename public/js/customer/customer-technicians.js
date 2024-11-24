@@ -3,11 +3,16 @@ function filterTechnicians() {
     const technicians = document.querySelectorAll('.technician-card');
 
     technicians.forEach(technician => {
-            const name = technician.getAttribute('data-name');
-            if (name.includes(searchInput)) {
-                technician.style.display = 'block'; // Show matching cards
-            } else {
-                technician.style.display = 'none'; // Hide non-matching cards
-            }
-        });
+        const name = technician.getAttribute('data-name');
+        if (name.includes(searchInput)) {
+            technician.style.display = 'block'; // Show matching cards
+        } else {
+            technician.style.display = 'none'; // Hide non-matching cards
+        }
+    });
+}
+
+function viewProfile(technicianId) {
+    /* Redirect to the technician profile page */
+    window.location.href = `/technician-profile/${technicianId}`;
 }

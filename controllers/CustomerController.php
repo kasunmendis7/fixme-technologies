@@ -11,6 +11,7 @@ use app\models\Customer;
 use app\models\Post;
 use app\models\ServiceCentre;
 use app\models\Technician;
+use app\models\CusTechReq;
 
 class CustomerController extends Controller
 {
@@ -94,6 +95,33 @@ class CustomerController extends Controller
             } else {
                 Application::$app->response->redirect('/customer-profile');
             }
+        }
+    }
+
+    public function cusTechReq()
+    {
+        header('Content-type: application/json');
+
+        try {
+            $jsonData = file_get_contents('php://input');
+            $data = json_decode($jsonData, true);
+
+            $customerId = $data['cus_id'];
+            $technicianId = $data['tech_id'];
+
+            if (!$customerId || !$technicianId) {
+                Application::$app->response->setStatusCode(400);
+                return json_encode(['success' => false, 'error' => 'Missing the required parameter customerId, technicianId']);
+                exit;
+            }
+
+            $cusReq = new CusTechReq();
+            $res = $cusReq->createCusTechReq($customerId, $technicianId);
+            return json_encode($res);
+
+        } catch (\Exception $e) {
+            Application::$app->response->setStatusCode(500);
+            echo json_encode(['success' => false, 'error' => $e->getMessage()]);
         }
     }
 
