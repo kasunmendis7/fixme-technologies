@@ -97,6 +97,37 @@ class CustomerController extends Controller
         }
     }
 
+    public function cusTechReq()
+    {
+        header('Content-type: application/json');
+
+        try {
+            $jsonData = file_get_contents('php://input');
+            $data = json_decode($jsonData, true);
+
+            $customerId = $data['cus_id'];
+            $technicianId = $data['tech_id'];
+
+            if (!$customerId || !$technicianId) {
+                Application::$app->response->setStatusCode(400);
+                echo json_encode(['error' => 'Missing the required parameter customerId, technicianId']);
+                exit;
+            }
+
+            $sql = "INSERT INTO cus_tech_req (cus_id, tech_id, status) VALUES (:cus_id, :tech_id, 'pending')";
+            $stmt = Application::$app->db->pdo->prepare($sql);
+            $stmt->bindValue(':cus_id', $customerId);
+            $stmt->bindValue(':tech_id', $technicianId);
+            if ($stmt->execute()) {
+                Application::$app->response->setStatusCode(200);
+                echo json_encode(['success' => true, 'message' => 'Customer request has been sent!']);
+            }
+        } catch (\Exception $e) {
+            Application::$app->response->setStatusCode(500);
+            echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+        }
+    }
+
     public function fixmeCommunity()
     {
 

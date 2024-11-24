@@ -6,6 +6,7 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
+use app\core\Response;
 use app\models\Customer;
 use app\models\Post;
 use app\models\Technician;
@@ -102,6 +103,19 @@ class TechnicianController extends Controller
 
         // Pass the post data to the view
         return $this->render('/technician/technician-edit-post', ['post' => $post]);
+    }
+
+    public function viewTechnicianProfile($id)
+    {
+        // echo json_encode($id);
+        // $id is an array, we need only the first element of that array
+        $technician = (new Technician())->findById(intval($id[0]));
+        $this->setLayout('auth');
+        if (!$technician) {
+            return $this->render('_404');
+        }
+//        show($technician['fname']);
+        return $this->render('/customer/technician-profile', ['technician' => $technician]);
     }
 }
 
