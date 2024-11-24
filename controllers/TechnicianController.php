@@ -10,6 +10,7 @@ use app\core\Response;
 use app\models\Customer;
 use app\models\Post;
 use app\models\Technician;
+use app\models\TechnicianRequest;
 
 class TechnicianController extends Controller
 {
@@ -116,6 +117,36 @@ class TechnicianController extends Controller
         }
 //        show($technician['fname']);
         return $this->render('/customer/technician-profile', ['technician' => $technician]);
+    }
+
+    public function viewRequests()
+    {
+        $technicianId = Application::$app->session->get('technician') ?? null;
+        if (!$technicianId) {
+            Application::$app->response->redirect('/technician-login');
+        }
+
+        $requests = TechnicianRequest::getRequestsByTechnicianId($technicianId);
+        $this->setLayout('auth');
+        return $this->render('/technician/technician-requests', ['requests' => $requests]);
+    }
+
+    public function updateRequestStatus($request)
+    {
+        $reqId = $request->getBody()['req_id'] ?? null;
+        $status = $request->getBody()['status'] ?? null;
+
+        if ($reqId && $status && in_array($status, ['InProgress', 'Rejected'])) {
+            $updated = TechnicianRequest::updateStatus($reqId, $status);
+            if ($updated) {
+                $_SESSION['success'] = "Request updated successfully!";
+            } else {
+                $_SESSION['error'] = "Failed to update request.";
+            }
+        } else {
+            $_SESSION['error'] = "Invalid request.";
+        }
+        Application::$app->response->redirect('/technician-requests');
     }
 }
 
