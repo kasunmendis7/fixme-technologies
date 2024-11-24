@@ -17,6 +17,7 @@ use app\core\Application;
     <title>Profile</title>
     <link rel="stylesheet" href="/css/customer/customer-dashboard.css">
     <link rel="stylesheet" href="/css/customer/overlay.css">
+    <link rel="stylesheet" href="/css/customer/flash-messages.css">
     <link rel="stylesheet" href="/css/customer/technician-profile.css">
 </head>
 
@@ -52,6 +53,17 @@ include_once 'components/header.php';
         </div>
     </div>
 </header>
+
+<?php if (Application::$app->session->getFlash('createCusTechReq-success')): ?>
+    <div class="alert alert-success">
+        <?php echo Application::$app->session->getFlash('createCusTechReq-success') ?>
+    </div>
+<?php endif; ?>
+<?php if (Application::$app->session->getFlash('createCusTechReq-error')): ?>
+    <div class="alert alert-error">
+        <?php echo Application::$app->session->getFlash('createCusTechReq-error') ?>
+    </div>
+<?php endif; ?>
 
 <nav class="tabs">
     <button class="tab active">Feed</button>

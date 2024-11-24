@@ -30,11 +30,14 @@ class CusTechReq extends DbModel
             $stmt->bindValue(':tech_id', $techId);
             $stmt->execute();
             Application::$app->response->setStatusCode(200);
+            Application::$app->session->setFlash('createCusTechReq-success', 'You have been successfully requested this technician');
 
             return ['success' => true, 'message' => 'Customer request created succesfully'];
         } else {
             /* Bad request http status code*/
             Application::$app->response->setStatusCode(400);
+            Application::$app->session->setFlash('createCusTechReq-error', 'You have already been requested this technician');
+
             return ['success' => false, 'message' => 'Customer request already created !'];
         }
     }
