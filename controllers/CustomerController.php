@@ -9,7 +9,7 @@ use app\core\Response;
 use app\models\Comment;
 use app\models\Customer;
 use app\models\Post;
-use app\models\ServiceCentre;
+use app\models\ServiceCenter;
 use app\models\Technician;
 use app\models\CusTechReq;
 
@@ -68,8 +68,8 @@ class CustomerController extends Controller
         header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
         header("Access-Control-Allow-Headers: Content-Type");
 
-        $serviceCentre = new ServiceCentre();
-        return $serviceCentre->serviceCentresGeocoding();
+        $serviceCenter = new ServiceCenter();
+        return $serviceCenter->serviceCentresGeocoding();
     }
 
     public function customerLocation()
