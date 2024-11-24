@@ -38,10 +38,10 @@ include_once 'components/header.php';
                     <td><?= $request['cus_name'] ?></td>
                     <td><span class="status <?= strtolower($request['status']) ?>"><?= $request['status'] ?></span></td>
                     <td>
-                        <?php if ($request['status'] == 'New'): ?>
+                        <?php if ($request['status'] == 'Pending'): ?>
                             <form action="/technician-requests-update" method="POST" style="display:inline;">
                                 <input type="hidden" name="req_id" value="<?= $request['req_id'] ?>">
-                                <input type="hidden" name="status" value="Pending">
+                                <input type="hidden" name="status" value="Accepted">
                                 <button type="submit" class="btn accept">Accept</button>
                             </form>
                             <form action="/technician-requests-update" method="POST" style="display:inline;">

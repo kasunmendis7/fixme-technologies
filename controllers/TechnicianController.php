@@ -123,7 +123,7 @@ class TechnicianController extends Controller
         $reqId = $request->getBody()['req_id'] ?? null;
         $status = $request->getBody()['status'] ?? null;
 
-        if ($reqId && $status && in_array($status, ['Pending', 'Rejected'])) {
+        if ($reqId && $status && in_array($status, ['Accepted', 'Rejected'])) {
             $updated = TechnicianRequest::updateStatus($reqId, $status);
             if ($updated) {
                 $_SESSION['success'] = "Request updated successfully!";
