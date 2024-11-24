@@ -41,7 +41,7 @@ include_once 'components/header.php';
                         <?php if ($request['status'] == 'Pending'): ?>
                             <form action="/technician-requests-update" method="POST" style="display:inline;">
                                 <input type="hidden" name="req_id" value="<?= $request['req_id'] ?>">
-                                <input type="hidden" name="status" value="InProgress">
+                                <input type="hidden" name="status" value="In Progress">
                                 <button type="submit" class="btn accept">Accept</button>
                             </form>
                             <form action="/technician-requests-update" method="POST" style="display:inline;">

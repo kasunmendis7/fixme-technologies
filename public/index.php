@@ -115,7 +115,6 @@ $app->router->get('/service-center-create-product', [ServiceCentreController::cl
 $app->router->post('/service-center-create-product', [ProductController::class, 'create']);
 $app->router->get('/market-place-home', [ProductController::class, 'index']);
 $app->router->get('/service-center-create-product', [ProductController::class, 'filterProductsById']);
-$app->router->get('/service-center-update-product', [ServiceCentreController::class, 'update']);
 $app->router->post('/service-center-update-product', [ProductController::class, 'update']);
 
 
