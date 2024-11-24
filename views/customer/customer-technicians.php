@@ -57,7 +57,7 @@ include_once 'components/header.php';
                             <ion-icon name="star" style="color: Gold"></ion-icon>
                             <ion-icon name="star" style="color: Gold"></ion-icon>
                             <p class="card-text">12 years expericenced motor mechanic worked for BMW.</p>
-                            <button type="button" class="btn btn-primary">View Profile</button>
+                            <button type="button" class="btn btn-primary" onclick="viewProfile(' . $technician['tech_id'] . ')">View Profile</button>
                         </div>
                     </div>
                 </div>';
