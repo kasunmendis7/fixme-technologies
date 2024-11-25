@@ -43,7 +43,7 @@ as $post): ?>
                 <span class="username"><?php echo htmlspecialchars($post['fname']); ?></span>
             </div>
 
-            <?php if (Application::$app->technician->tech_id == $post['tech_id']): ?>
+            <?php if (isset(Application::$app->technician) && Application::$app->technician->tech_id == $post['tech_id']): ?>
                 <div class="options">
                     <a href="/technician-edit-post?post_id=<?php echo $post['post_id']; ?>">
                         <button class="post-edit-btn">Edit</button>

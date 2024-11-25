@@ -34,12 +34,12 @@ $config = [
 
 $app = new Application(dirname(__DIR__), $config);
 
-/** Home Route */
+/* Home Route */
 $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/select-user-login', [SiteController::class, 'selectUserLogin']);
 $app->router->get('/select-user-sign-up', [SiteController::class, 'selectUserSignUp']);
 
-/** Technician Routes */
+/* Technician Routes */
 $app->router->get('/technician-landing', [TechnicianController::class, 'technicianLanding']);
 $app->router->get('/technician-home', [TechnicianController::class, 'technicianHome']);
 $app->router->get('/technician-dashboard', [TechnicianController::class, 'technicianDashboard']);
@@ -51,7 +51,28 @@ $app->router->get('/technician-profile', [TechnicianController::class, 'technici
 $app->router->post('/update-technician-profile', [TechnicianController::class, 'updateTechnicianProfile']);
 // $app->router->get('/admin/dashboard', [AdminController::class, 'dashboard']);
 
-/** Service Center Routes */
+/* Routes related to the Post */
+$app->router->get('/technician-create-post', [TechnicianController::class, 'technicianCreatePost']);
+$app->router->get('/technician-edit-post', [TechnicianController::class, 'technicianEditPost']);
+$app->router->post('/technician-create-post', [PostController::class, 'create']);
+$app->router->post('/technician-edit-post', [PostController::class, 'edit']);
+$app->router->get('/technician-community', [PostController::class, 'index']);
+$app->router->post('/technician-delete-post', [PostController::class, 'delete']);
+$app->router->get('/fixme-community', [CustomerController::class, 'fixmeCommunity']);
+
+/* Routes related to the Comment */
+$app->router->post('/comment-create', [CommentController::class, 'create']);
+$app->router->get('/comment-edit', [CommentController::class, 'edit']);
+$app->router->post('/comment-edit', [CommentController::class, 'edit']);
+$app->router->get('/comment-delete', [CommentController::class, 'delete']);
+$app->router->post('/comment-delete', [CommentController::class, 'delete']);
+
+/* Routes related to the Like */
+$app->router->post('/post-like', [PostController::class, 'like']);
+$app->router->post('/post-unlike', [PostController::class, 'unlike']);
+
+
+/* Service Center Routes */
 $app->router->get('/service-centre-landing', [ServiceCentreController::class, 'serviceCentreLanding']);
 $app->router->get('/service-centre-dashboard', [ServiceCentreController::class, 'serviceCentreDashboard']);
 $app->router->get('/service-centre-settings', [ServiceCentreController::class, 'serviceCentreSettings']);
@@ -61,6 +82,15 @@ $app->router->get('/service-center-help', [ServiceCentreController::class, 'serv
 $app->router->get('/service-center-community', [ServiceCentreController::class, 'serviceCenterCommunity']);
 $app->router->get('/service-center-messages', [ServiceCentreController::class, 'serviceCenterMessages']);
 
+/* Routes related to the product (service center) */
+$app->router->get('/service-center-create-product', [ServiceCentreController::class, 'serviceCenterCreateProduct']);
+$app->router->post('/service-center-create-product', [ProductController::class, 'create']);
+$app->router->get('/market-place-home', [ProductController::class, 'index']);
+$app->router->get('/service-center-create-product', [ProductController::class, 'filterProductsById']);
+$app->router->get('/service-center-update-product', [ProductController::class,'update']);
+$app->router->get('/service-center-update-product', [ServiceCentreController::class, 'update']);
+$app->router->post('/service-center-update-product', [ProductController::class, 'update']);
+$app->router->post('/service-center-delete-product', [ProductController::class, 'delete']);
 
 /* Customer Routes */
 $app->router->get('/customer-dashboard', [CustomerController::class, 'customerDashboard']);
@@ -85,6 +115,18 @@ $app->router->get('/admin-settings', [AdminController::class, 'adminSettings']);
 $app->router->get('/admin-profile', [AdminController::class, 'adminProfile']);
 $app->router->post('/update-admin-profile', [AdminController::class, 'updateAdminProfile']);
 
+/* Admin Routes */
+$app->router->get('/admin-dashboard', [AdminController::class, 'dashboard']);
+$app->router->get('/customers', [AdminController::class, 'customers']);
+$app->router->post('/admin/delete-customer', [AdminController::class, 'deleteCustomer']);
+$app->router->get('/admin-services', [AdminController::class, 'manageServices']);
+$app->router->post('/admin-services-add', [AdminController::class, 'addService']);
+$app->router->post('/admin-services-edit', [AdminController::class, 'editService']);
+$app->router->post('/admin-services-delete', [AdminController::class, 'deleteService']);
+$app->router->get('/admin-reports', [AdminController::class, 'viewReports']);
+$app->router->post('/admin-reports-generate', [AdminController::class, 'generateReport']);
+$app->router->post('/admin-settings-update', [AdminController::class, 'updateSettings']);
+$app->router->get('/admin-promotions', [AdminController::class, 'promotions']);
 
 /* Auth routes handled by AuthController */
 
@@ -102,7 +144,6 @@ $app->router->get('/technician-login', [AuthController::class, 'technicianLogin'
 $app->router->post('/technician-login', [AuthController::class, 'technicianLogin']);
 $app->router->get('/technician-logout', [AuthController::class, 'technicianLogOut']);
 
-
 /* Service Centre Auth routes */
 $app->router->get('/service-centre-sign-up', [AuthController::class, 'serviceCentreSignup']);
 $app->router->post('/service-centre-sign-up', [AuthController::class, 'serviceCentreSignup']);
@@ -110,63 +151,10 @@ $app->router->get('/service-centre-login', [AuthController::class, 'serviceCentr
 $app->router->post('/service-centre-login', [AuthController::class, 'serviceCentreLogin']);
 $app->router->get('/service-center-logout', [AuthController::class, 'serviceCenterLogout']);
 
-
-/*routes related to the product(service center)*/
-$app->router->get('/service-center-create-product', [ServiceCentreController::class, 'serviceCenterCreateProduct']);
-$app->router->post('/service-center-create-product', [ProductController::class, 'create']);
-$app->router->get('/market-place-home', [ProductController::class, 'index']);
-$app->router->get('/service-center-create-product', [ProductController::class, 'filterProductsById']);
-$app->router->get('/service-center-update-product', [ProductController::class,'update']);
-$app->router->get('/service-center-update-product', [ServiceCentreController::class, 'update']);
-$app->router->post('/service-center-update-product', [ProductController::class, 'update']);
-$app->router->post('/service-center-delete-product', [ProductController::class, 'delete']);
-
-
-
-/** Admin Routes */
-$app->router->get('/admin-dashboard', [AdminController::class, 'dashboard']);
-
-$app->router->get('/customers', [AdminController::class, 'customers']);
-$app->router->post('/admin/delete-customer', [AdminController::class, 'deleteCustomer']);
-
-
-
-$app->router->get('/admin-services', [AdminController::class, 'manageServices']);
-$app->router->post('/admin-services-add', [AdminController::class, 'addService']);
-$app->router->post('/admin-services-edit', [AdminController::class, 'editService']);
-$app->router->post('/admin-services-delete', [AdminController::class, 'deleteService']);
-
-$app->router->get('/admin-reports', [AdminController::class, 'viewReports']);
-$app->router->post('/admin-reports-generate', [AdminController::class, 'generateReport']);
-
-$app->router->post('/admin-settings-update', [AdminController::class, 'updateSettings']);
-
-$app->router->get('/admin-promotions', [AdminController::class, 'promotions']);
-
 /* Admin Auth routes */
 $app->router->get('/admin-login', [AuthController::class, 'adminLogin']);
 $app->router->post('/admin-login', [AuthController::class, 'adminLogin']);
 $app->router->get('/admin-logout', [AuthController::class, 'adminLogout']);
-
-/* Routes related to the Post */
-$app->router->get('/technician-create-post', [TechnicianController::class, 'technicianCreatePost']);
-$app->router->get('/technician-edit-post', [TechnicianController::class, 'technicianEditPost']);
-$app->router->post('/technician-create-post', [PostController::class, 'create']);
-$app->router->post('/technician-edit-post', [PostController::class, 'edit']);
-$app->router->get('/technician-community', [PostController::class, 'index']);
-$app->router->post('/technician-delete-post', [PostController::class, 'delete']);
-$app->router->get('/fixme-community', [CustomerController::class, 'fixmeCommunity']);
-
-/* Routes related to the Comment */
-$app->router->post('/comment-create', [CommentController::class, 'create']);
-$app->router->get('/comment-edit', [CommentController::class, 'edit']);
-$app->router->post('/comment-edit', [CommentController::class, 'edit']);
-$app->router->get('/comment-delete', [CommentController::class, 'delete']);
-$app->router->post('/comment-delete', [CommentController::class, 'delete']);
-
-/* Routes related to the Like */
-$app->router->post('/post-like', [PostController::class, 'like']);
-$app->router->post('/post-unlike', [PostController::class, 'unlike']);
 
 
 /* Run the application */
