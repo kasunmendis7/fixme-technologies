@@ -38,6 +38,9 @@ $app = new Application(dirname(__DIR__), $config);
 $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/select-user-login', [SiteController::class, 'selectUserLogin']);
 $app->router->get('/select-user-sign-up', [SiteController::class, 'selectUserSignUp']);
+$app->router->get('/home-map', [SiteController::class, 'homeMap']);
+$app->router->get('/home-geolocation-technicians', [SiteController::class, 'homeGeolocationTechnicians']);
+$app->router->get('/home-geolocation-service-centres', [SiteController::class, 'homeGeolocationServiceCentres']);
 
 /* Technician Routes */
 $app->router->get('/technician-landing', [TechnicianController::class, 'technicianLanding']);
