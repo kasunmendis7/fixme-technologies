@@ -152,6 +152,7 @@ $app->router->get('/service-centre-login', [AuthController::class, 'serviceCentr
 $app->router->post('/service-centre-login', [AuthController::class, 'serviceCentreLogin']);
 $app->router->get('/service-center-logout', [AuthController::class, 'serviceCenterLogout']);
 
+<<<<<<< HEAD
 
 /*routes related to the product(service center)*/
 $app->router->get('/service-center-create-product', [ServiceCentreController::class, 'serviceCenterCreateProduct']);
@@ -180,6 +181,8 @@ $app->router->post('/admin-settings-update', [AdminController::class, 'updateSet
 
 $app->router->get('/admin-promotions', [AdminController::class, 'promotions']);
 
+=======
+>>>>>>> b86a731cce58e8163277622a4058ef4fc088d556
 /* Admin Auth routes */
 $app->router->get('/admin-login', [AuthController::class, 'adminLogin']);
 $app->router->post('/admin-login', [AuthController::class, 'adminLogin']);
