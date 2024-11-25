@@ -9,12 +9,17 @@
 }
 
 .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Keeps responsive grid */
-    gap: 0.1rem; /* Decreased gap between grid items */
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap onto the next row */
+    justify-content: flex-start; /* Distribute cards evenly across the row */
+    gap: 0.5rem; /* Adjust gap between items */
+    margin: 0 auto;
 }
 
 .product-card {
+    flex: 1 1 calc(20% - 0.5rem); /* 20% width per card minus the gap */
+    max-width: calc(20% - 0.5rem); /* Ensure no card exceeds 20% of the row width */
+    box-sizing: border-box;
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;

@@ -75,6 +75,16 @@ $app->router->get('/geolocation-technicians', [CustomerController::class, 'getTe
 $app->router->get('/geolocation-service-centres', [CustomerController::class, 'getServiceCentresGeocoding']);
 $app->router->get('/customer-location', [CustomerController::class, 'customerLocation']);
 
+/* Admin Routes */
+$app->router->get('/admin-dashboard', [AdminController::class, 'adminDashboard']);
+$app->router->get('/customers', [AdminController::class, 'customers']);
+$app->router->get('/technicians', [AdminController::class, 'technicians']);
+$app->router->post('/admin/delete-customer', [AdminController::class, 'deleteCustomer']);
+$app->router->get('/admin-settings', [AdminController::class, 'adminSettings']);
+$app->router->get('/admin-profile', [AdminController::class, 'adminProfile']);
+$app->router->post('/update-admin-profile', [AdminController::class, 'updateAdminProfile']);
+
+
 /* Auth routes handled by AuthController */
 
 /* Customer Auth routes */
@@ -113,10 +123,11 @@ $app->router->post('/service-center-delete-product', [ProductController::class, 
 
 /** Admin Routes */
 $app->router->get('/admin-dashboard', [AdminController::class, 'dashboard']);
-$app->router->get('/admin-users', [AdminController::class, 'manageUsers']);
-$app->router->post('/admin-users-add', [AdminController::class, 'addUser']);
-$app->router->post('/admin-users-edit', [AdminController::class, 'editUser']);
-$app->router->post('/admin-users-delete', [AdminController::class, 'deleteUser']);
+
+$app->router->get('/customers', [AdminController::class, 'customers']);
+$app->router->post('/admin/delete-customer', [AdminController::class, 'deleteCustomer']);
+
+
 
 $app->router->get('/admin-services', [AdminController::class, 'manageServices']);
 $app->router->post('/admin-services-add', [AdminController::class, 'addService']);
@@ -126,8 +137,9 @@ $app->router->post('/admin-services-delete', [AdminController::class, 'deleteSer
 $app->router->get('/admin-reports', [AdminController::class, 'viewReports']);
 $app->router->post('/admin-reports-generate', [AdminController::class, 'generateReport']);
 
-$app->router->get('/admin-settings', [AdminController::class, 'settings']);
 $app->router->post('/admin-settings-update', [AdminController::class, 'updateSettings']);
+
+$app->router->get('/admin-promotions', [AdminController::class, 'promotions']);
 
 /* Admin Auth routes */
 $app->router->get('/admin-login', [AuthController::class, 'adminLogin']);
