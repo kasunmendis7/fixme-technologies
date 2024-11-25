@@ -412,3 +412,37 @@ body {
         left: initial;
     }
 }
+
+
+.view-on-map {
+    background-color: #1795ce;
+    padding: 8px;
+    border-radius: 10px;
+    border: none;
+    color: #fff;
+    transition: transform 0.3s ease;
+}
+
+.view-on-map:hover {
+    transform: scale(0.95);
+}
+
+.accept {
+    background-color: #1795ce;
+    color: #dee2e6;
+    transition: transform 0.3s ease;
+}
+
+.accept:hover {
+    transform: scale(0.95);
+}
+
+.reject {
+    background-color: #f00;
+    color: #dee2e6;
+    transition: transform 0.3s ease;
+}
+
+.reject:hover {
+    transform: scale(0.95);
+}
