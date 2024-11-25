@@ -50,7 +50,11 @@ include_once 'components/header.php';
                                 <button type="submit" class="btn reject">Reject</button>
                             </form>
                         <?php else: ?>
-                            <span>No actions available</span>
+                            <?php if ($request['status'] == 'InProgress'): ?>
+                                <span><button class="view-on-map" onclick="window.location.href='/technician-map'">View On Map</button></span>
+                            <?php else: ?>
+                                <span>Request Rejected</span>
+                            <?php endif; ?>
                         <?php endif; ?>
                     </td>
                 </tr>
