@@ -3,6 +3,7 @@
 .cust-tech-container {
     margin: 2rem;
 }
+
 /* Grid System */
 .row {
     display: flex;
@@ -99,11 +100,13 @@
     background-color: #0069d9;
     border-color: #0062cc;
 }
+
 .distance {
     font-size: 1rem;
     color: #555;
     margin: 0.5rem 0;
 }
+
 .service-category {
     font-size: 1rem;
     color: #03b527;
@@ -112,8 +115,9 @@
     display: inline-block;
     border-radius: 0.25rem;
     padding: 0.25rem 0.5rem;
-    
+
 }
+
 .rating {
     font-size: 1rem;
     color: #e65704;
@@ -123,6 +127,7 @@
     padding: 0.25rem 0.5rem;
     width: 6rem;
 }
+
 /* Container for search bar */
 .search-container {
     max-width: 700px;
