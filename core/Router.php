@@ -30,6 +30,40 @@ class  Router
         $path = $this->request->getPath();
         $method = $this->request->method();
         $callback = $this->routes[$method][$path] ?? false;
+
+        /* Configuring query stings */
+        $isQueryStr = false;
+        if (!$callback) {
+            foreach ($this->routes[$method] as $route => $handler) {
+                $routePattern = preg_replace('/\{[a-zA-Z0-9_]+\}/', '([a-zA-Z0-9_]+)', $route);
+                $routePattern = "#^" . $routePattern . "$#";
+
+                if (preg_match($routePattern, $path, $matches)) {
+                    $callback = $handler;
+                    array_shift($matches); // Remove the full match
+                    $this->request->params = $matches; // Store extracted params
+                    $isQueryStr = true;
+                    break;
+                }
+            }
+        }
+        if ($isQueryStr) {
+            if ($callback === false) {
+                $this->response->setStatusCode(404);
+                return $this->renderView('_404');
+            }
+            if (is_string($callback)) {
+                return $this->renderView($callback);
+            }
+            if (is_array($callback)) {
+                Application::$app->controller = new $callback[0]();
+                $callback[0] = Application::$app->controller;
+            }
+            /* In dynamic url's pass the extracted params as the parameters of the callback function */
+            return call_user_func($callback, $this->request->params ?? [], $this->response);
+        }
+        /* End of configuring query parameters in dynamic url */
+
         if ($callback === false) {
             $this->response->setStatusCode(404);
             return $this->renderView('_404');
