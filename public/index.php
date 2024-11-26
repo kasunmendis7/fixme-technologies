@@ -52,6 +52,8 @@ $app->router->get('/technician-settings', [TechnicianController::class, 'technic
 $app->router->get('/technician-help', [TechnicianController::class, 'technicianHelp']);
 $app->router->get('/technician-profile', [TechnicianController::class, 'technicianProfile']);
 $app->router->post('/update-technician-profile', [TechnicianController::class, 'updateTechnicianProfile']);
+$app->router->get('/technician-requests', [TechnicianController::class, 'viewRequests']);
+$app->router->post('/technician-requests-update', [TechnicianController::class, 'updateRequestStatus']);
 
 /* Routes related to the Post */
 $app->router->get('/technician-create-post', [TechnicianController::class, 'technicianCreatePost']);
@@ -149,6 +151,34 @@ $app->router->post('/service-centre-sign-up', [AuthController::class, 'serviceCe
 $app->router->get('/service-centre-login', [AuthController::class, 'serviceCentreLogin']);
 $app->router->post('/service-centre-login', [AuthController::class, 'serviceCentreLogin']);
 $app->router->get('/service-center-logout', [AuthController::class, 'serviceCenterLogout']);
+
+
+/*routes related to the product(service center)*/
+$app->router->get('/service-center-create-product', [ServiceCentreController::class, 'serviceCenterCreateProduct']);
+$app->router->post('/service-center-create-product', [ProductController::class, 'create']);
+$app->router->get('/market-place-home', [ProductController::class, 'index']);
+$app->router->get('/service-center-create-product', [ProductController::class, 'filterProductsById']);
+$app->router->get('/service-center-update-product', [ProductController::class, 'update']);
+$app->router->post('/service-center-update-product', [ProductController::class, 'update']);
+$app->router->post('/service-center-delete-product', [ProductController::class, 'delete']);
+
+
+/** Admin Routes */
+$app->router->get('/customers', [AdminController::class, 'customers']);
+$app->router->post('/admin/delete-customer', [AdminController::class, 'deleteCustomer']);
+
+
+$app->router->get('/admin-services', [AdminController::class, 'manageServices']);
+$app->router->post('/admin-services-add', [AdminController::class, 'addService']);
+$app->router->post('/admin-services-edit', [AdminController::class, 'editService']);
+$app->router->post('/admin-services-delete', [AdminController::class, 'deleteService']);
+
+$app->router->get('/admin-reports', [AdminController::class, 'viewReports']);
+$app->router->post('/admin-reports-generate', [AdminController::class, 'generateReport']);
+
+$app->router->post('/admin-settings-update', [AdminController::class, 'updateSettings']);
+
+$app->router->get('/admin-promotions', [AdminController::class, 'promotions']);
 
 /* Admin Auth routes */
 $app->router->get('/admin-login', [AuthController::class, 'adminLogin']);

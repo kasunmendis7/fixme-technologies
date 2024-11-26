@@ -40,7 +40,7 @@ as $post): ?>
                     <img src="<?php echo htmlspecialchars($post['profile_picture']) ?>" alt="Profile Pic">
 
                 </div>
-                <span class="username"><?php echo htmlspecialchars($post['fname']); ?></span>
+                <span class="username"><?php echo htmlspecialchars($post['fname'] . ' ' . $post['lname']); ?></span>
             </div>
 
             <?php if (Application::$app->technician->tech_id == $post['tech_id']): ?>
