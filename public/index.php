@@ -38,6 +38,9 @@ $app = new Application(dirname(__DIR__), $config);
 $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/select-user-login', [SiteController::class, 'selectUserLogin']);
 $app->router->get('/select-user-sign-up', [SiteController::class, 'selectUserSignUp']);
+$app->router->get('/home-map', [SiteController::class, 'homeMap']);
+$app->router->get('/home-geolocation-technicians', [SiteController::class, 'homeGeolocationTechnicians']);
+$app->router->get('/home-geolocation-service-centres', [SiteController::class, 'homeGeolocationServiceCentres']);
 
 /* Technician Routes */
 $app->router->get('/technician-landing', [TechnicianController::class, 'technicianLanding']);
@@ -88,7 +91,7 @@ $app->router->get('/service-center-create-product', [ServiceCentreController::cl
 $app->router->post('/service-center-create-product', [ProductController::class, 'create']);
 $app->router->get('/market-place-home', [ProductController::class, 'index']);
 $app->router->get('/service-center-create-product', [ProductController::class, 'filterProductsById']);
-$app->router->get('/service-center-update-product', [ProductController::class,'update']);
+$app->router->get('/service-center-update-product', [ProductController::class, 'update']);
 $app->router->get('/service-center-update-product', [ServiceCentreController::class, 'update']);
 $app->router->post('/service-center-update-product', [ProductController::class, 'update']);
 $app->router->post('/service-center-delete-product', [ProductController::class, 'delete']);
@@ -117,9 +120,6 @@ $app->router->get('/admin-profile', [AdminController::class, 'adminProfile']);
 $app->router->post('/update-admin-profile', [AdminController::class, 'updateAdminProfile']);
 
 /* Admin Routes */
-$app->router->get('/admin-dashboard', [AdminController::class, 'dashboard']);
-$app->router->get('/customers', [AdminController::class, 'customers']);
-$app->router->post('/admin/delete-customer', [AdminController::class, 'deleteCustomer']);
 $app->router->get('/admin-services', [AdminController::class, 'manageServices']);
 $app->router->post('/admin-services-add', [AdminController::class, 'addService']);
 $app->router->post('/admin-services-edit', [AdminController::class, 'editService']);

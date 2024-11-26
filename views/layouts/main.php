@@ -14,6 +14,8 @@ use app\core\Application;
     <link rel="stylesheet" href="/css/home/navbar.css">
     <link rel="stylesheet" href="/css/home/footer.css">
     <link rel="stylesheet" href="/css/home/home.css">
+    <link rel="stylesheet" href="/css/home/home-map.css">
+    <script src="/js/home/home-map.js"></script>
     <script src="/js/home/main.js"></script>
     <script src="/js/technician/main.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -36,8 +38,7 @@ use app\core\Application;
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
             <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
             <li><a href="#" class="nav-link px-2">Features</a></li>
-            <li><a href="#" class="nav-link px-2">Map</a></li>
-            <li><a href="/service-centre-landing" class="nav-link px-2">Service Centre</a></li>
+            <li><a href="/home-map" class="nav-link px-2">Map</a></li>
             <li><a href="#" class="nav-link px-2">FAQs</a></li>
             <li><a href="#" class="nav-link px-2">About</a></li>
         </ul>
@@ -128,6 +129,9 @@ use app\core\Application;
         </div>
     </footer>
 </div>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCGNUZAUhEzeW8LeV_j3deW44jsA9hWY0&callback=loadMap&loading=async&libraries=marker&v=beta">
+</script>
 </body>
 
 </html>
