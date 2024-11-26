@@ -67,7 +67,7 @@ class Technician extends DbModel
 
     public function techniciansGeocoding()
     {
-        $sql = "SELECT tech_id, fname, lname, latitude, longitude FROM technician WHERE latitude IS NOT NULL AND longitude IS NOT NULL";
+        $sql = "SELECT tech_id, fname, lname, latitude, longitude, profile_picture FROM technician WHERE latitude IS NOT NULL AND longitude IS NOT NULL";
         $stmt = self::prepare($sql);
         $stmt->execute();
         $technicians = $stmt->fetchAll(\PDO::FETCH_ASSOC);
