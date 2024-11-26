@@ -99,7 +99,7 @@ include_once 'components/header.php';
                     <td>' . $request['fname'] . ' ' . $request['lname'] . '</td> 
                     <td>Rs. 500</td> 
                     <td>Due</td>
-                    <td><span class="status ' . ($request['status']) . '">' . ucfirst($request['status']) . '</span></td>
+                    <td><span class="status ' . strtolower($request['status']) . '">' . ucfirst($request['status']) . '</span></td>
                 </tr>';
             }
             /* status: pending , in Progress, rejected, completed */
