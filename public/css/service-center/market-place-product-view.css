@@ -45,6 +45,10 @@
     padding: 0.5rem;
 }
 
+.product-details p {
+    padding: 0.2rem;
+}
+
 .product-title {
     font-size: 1.1rem; /* Slightly smaller title font */
     margin: 0.3rem 0;

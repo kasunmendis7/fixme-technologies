@@ -17,6 +17,15 @@ class Technician extends DbModel
     public string $password = '';
     public string $confirmPassword = '';
 
+    public function findById($id)
+    {
+        $sql = "SELECT * FROM technician WHERE tech_id = :tech_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':tech_id', $id);
+        $stmt->execute();
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
     public function tableName(): string
     {
         return 'technician';
@@ -58,7 +67,7 @@ class Technician extends DbModel
 
     public function techniciansGeocoding()
     {
-        $sql = "SELECT tech_id, fname, lname, latitude, longitude FROM technician WHERE latitude IS NOT NULL AND longitude IS NOT NULL";
+        $sql = "SELECT tech_id, fname, lname, latitude, longitude, profile_picture FROM technician WHERE latitude IS NOT NULL AND longitude IS NOT NULL";
         $stmt = self::prepare($sql);
         $stmt->execute();
         $technicians = $stmt->fetchAll(\PDO::FETCH_ASSOC);

@@ -34,29 +34,30 @@ use app\core\Application;
             </a>
         </div>
 
-        
 
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
             <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
             <li><a href="/service-centre-landing" class="nav-link px-2">Service Centre</a></li>
             <li><a href="#" class="nav-link px-2">FAQs</a></li>
             <li><a href="#" class="nav-link px-2">About</a></li>
-            <li><a href="#" class="nav-link px-2"><ion-icon name="cart-outline"></ion-icon></a></li>
+            <li><a href="#" class="nav-link px-2">
+                    <ion-icon name="cart-outline"></ion-icon>
+                </a></li>
         </ul>
 
-<!--        --><?php //if (Application::isGuestTechnician()): ?>
-<!--            <div class="col-md-3 text-center">-->
-<!--                <button type="button" class="btn btn-outline-primary me-2"><a class="text-decoration-none"-->
-<!--                                                                              href="/select-user-login">Login</a>-->
-<!--                </button>-->
-<!--                <button type="button" class="btn btn-primary"><a class="text-decoration-none"-->
-<!--                                                                 href="/select-user-sign-up">Sign Up</a></button>-->
-<!--            </div>-->
-<!--        --><?php //else: ?>
-<!--            <div class="col-md-3 text-center">-->
-<!---->
-<!--            </div>-->
-<!--        --><?php //endif; ?>
+        <!--        --><?php //if (Application::isGuestTechnician()): ?>
+        <!--            <div class="col-md-3 text-center">-->
+        <!--                <button type="button" class="btn btn-outline-primary me-2"><a class="text-decoration-none"-->
+        <!--                                                                              href="/select-user-login">Login</a>-->
+        <!--                </button>-->
+        <!--                <button type="button" class="btn btn-primary"><a class="text-decoration-none"-->
+        <!--                                                                 href="/select-user-sign-up">Sign Up</a></button>-->
+        <!--            </div>-->
+        <!--        --><?php //else: ?>
+        <!--            <div class="col-md-3 text-center">-->
+        <!---->
+        <!--            </div>-->
+        <!--        --><?php //endif; ?>
         <form class="search-bar">
             <input class="search-bar-enter" type="search" placeholder="Search" aria-label="Search">
             <button class="btn" type="submit">Search</button>
@@ -70,10 +71,9 @@ use app\core\Application;
             <div class="alert alert-success">
                 <?php echo Application::$app->session->getFlash('success') ?>
             </div>
-        <?php endif;  ?>
+        <?php endif; ?>
     </div>
 </section>
-
 
 
 <section class="marketplace">
@@ -87,7 +87,7 @@ use app\core\Application;
                          alt="Product Image">
                     <div class="product-details">
                         <h2 class="product-title"><?php echo htmlspecialchars($product['description']); ?></h2>
-                        <p class="product-price">$<?php echo htmlspecialchars($product['price']); ?></p>
+                        <p class="product-price">Rs. <?php echo htmlspecialchars($product['price']); ?></p>
                         <p class="product-seller">Sold by: <?php echo htmlspecialchars($product['seller_name']); ?></p>
                     </div>
                     <a href="#" class="product-btn">View Details</a>
@@ -98,9 +98,6 @@ use app\core\Application;
         <?php endif; ?>
     </div>
 </section>
-
-
-
 
 
 <div class="container-f">

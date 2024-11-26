@@ -29,6 +29,14 @@
                 </a>
             </li>
             <li>
+                <a href="/technician-requests">
+                        <span class="icon">
+                            <ion-icon name="radio-outline"></ion-icon>
+                        </span>
+                    <span class="title">Requests</span>
+                </a>
+            </li>
+            <li>
                 <a href="/technician-create-post">
                         <span class="icon">
                             <ion-icon name="duplicate-outline"></ion-icon>

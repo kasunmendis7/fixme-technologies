@@ -1,15 +1,41 @@
 .section-1 {
-    /* background-image: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'); */
-    background-image: url('/assets/home-img-1.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    position: relative;
     height: 100vh;
-    color: black;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     display: grid;
     grid-template-columns: 1fr 1fr;
+    overflow: hidden; /* Ensures the video doesn't overflow the section */
+    color: black;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
+
+#background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 75%;
+    object-fit: cover; /* Ensures the video covers the entire area */
+    z-index: -1; /* Places the video behind your content */
+}
+
+.box-1, .box-2 {
+    position: relative;
+    z-index: 1; /* Ensures that these elements are above the video */
+}
+
+
+/*.section-1 {*/
+/*    !* background-image: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'); *!*/
+/*    !*background-image: url('/assets/home-img-1.jpg');*!*/
+/*    background-size: cover;*/
+/*    background-position: center;*/
+/*    background-repeat: no-repeat;*/
+/*    height: 100vh;*/
+/*    color: black;*/
+/*    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);*/
+/*    display: grid;*/
+/*    grid-template-columns: 1fr 1fr;*/
+/*}*/
 
 .box-1 {
     display: flex;
@@ -113,12 +139,14 @@
 }
 
 .section-2 {
-    background-image: url('/assets/homepage3.webp');
+    /*background-image: url('/assets/homepage3.webp');*/
+    background-color: #010336;
+    margin-top: 50px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 40vh;
-    max-height: 400px;
+    height: 100vh;
+    max-height: 800px;
     color: black;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     display: grid;
@@ -181,7 +209,7 @@
 /* For larger screens, increase height and maintain 1fr 1fr layout */
 @media (min-width: 1024px) {
     .section-2 {
-        height: 50vh;
+        height: 100vh;
         max-height: 500px;
     }
 }
@@ -492,12 +520,12 @@ body {
     box-sizing: border-box;
 }
 
-.img-box-6 img{
+.img-box-6 img {
     max-width: 40%;
     height: auto;
 }
 
-.detail-box-6{
+.detail-box-6 {
     margin-top: 80px;
     display: flex;
     justify-content: center;
@@ -511,7 +539,7 @@ body {
 
 }
 
-.section-6-btn{
+.section-6-btn {
     display: flex;
     justify-content: center;
     align-items: center;
