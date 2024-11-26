@@ -116,7 +116,13 @@ class TechnicianController extends Controller
             return $this->render('_404');
         }
 //        show($technician['fname']);
-        return $this->render('/customer/technician-profile', ['technician' => $technician]);
+        $postModel = new Post();
+        $posts = $postModel->getPostsByTechnicianId(intval($id[0]));
+
+        return $this->render('/customer/technician-profile', [
+            'technician' => $technician,
+            'posts' => $posts
+        ]);
     }
 
     public function viewRequests()
@@ -145,6 +151,23 @@ class TechnicianController extends Controller
             $_SESSION['error'] = "Invalid request.";
         }
         Application::$app->response->redirect('/technician-requests');
+    }
+
+    public function profile($technicianId)
+    {
+        $technician = (new Technician)->findOne(['tech_id' => $technicianId]);
+        if (!$technician) {
+            Application::$app->response->setStatusCode(404);
+            return "Technician not found";
+        }
+
+        $postModel = new Post();
+        $posts = $postModel->getPostsByTechnicianId($technicianId);
+
+        return $this->render('/customer/technician-profile', [
+            'technician' => $technician,
+            'posts' => $posts
+        ]);
     }
 }
 

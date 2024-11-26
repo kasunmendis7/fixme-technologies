@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\core\DbModel;
+use app\core\Application;
 
 class Post extends DbModel
 {
@@ -113,5 +114,15 @@ class Post extends DbModel
 
         ];
     }
-}
 
+    // In models/Post.php
+    public function getPostsByTechnicianId($id)
+    {
+        $sql = "SELECT * FROM post WHERE tech_id = :tech_id ORDER BY created_at DESC";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':tech_id', $id);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+}
