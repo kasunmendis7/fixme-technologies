@@ -37,7 +37,7 @@ class Customer extends DbModel
     public function getAllTechniciansSortedByDistance()
     {
         /* fetch all technicians from db */
-        $sql = "SELECT fname, lname, longitude, latitude, profile_picture FROM technician";
+        $sql = "SELECT tech_id, fname, lname, longitude, latitude, profile_picture FROM technician";
         $stmt = self::prepare($sql);
         $stmt->execute();
         $technicians = $stmt->fetchAll(\PDO::FETCH_ASSOC);

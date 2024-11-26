@@ -4,6 +4,10 @@ use app\core\Application;
 
 ?>
 <section class="section-1">
+    <video autoplay muted loop id="background-video">
+        <source src="/assets/home-video-1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
     <div class="box-1">
         <div class="box-1-container">
             <div class="box-1-navigate">
@@ -33,6 +37,13 @@ use app\core\Application;
     <div class="box-2">
     </div>
 </section>
+
+<section >
+
+    <?php include_once 'logo-slider.php' ?>
+
+</section>
+
 <section class="section-2">
     <div class="box-2">
         <div class="box-2-container">
@@ -105,7 +116,9 @@ use app\core\Application;
                 <div class="detail-box-4">
                     <h5>
                         Become a Technician
-                        <a href="/technician-landing"><ion-icon name="chevron-forward-circle"></ion-icon></ion-icon></a>
+                        <a href="/technician-landing">
+                            <ion-icon name="chevron-forward-circle"></ion-icon>
+                            </ion-icon></a>
                     </h5>
 
                 </div>
@@ -116,7 +129,9 @@ use app\core\Application;
                 <div class="detail-box-4">
                     <h5>
                         Register Service Centre
-                        <a href="/service-centre-landing"><ion-icon name="chevron-forward-circle"></ion-icon></ion-icon></a>
+                        <a href="/service-centre-landing">
+                            <ion-icon name="chevron-forward-circle"></ion-icon>
+                            </ion-icon></a>
                     </h5>
 
                 </div>
@@ -137,7 +152,7 @@ use app\core\Application;
             <div class="box-3">
                 <div class="section-6-btn">
                     <a href="/market-place-home">
-                        <button id="navigateButton">Market  &rarr;</button>
+                        <button id="navigateButton">Market &rarr;</button>
                     </a>
 
                 </div>
