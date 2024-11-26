@@ -1,5 +1,5 @@
 vendor
 .idea
 .env
-./public/assets/uploads/
+public/assets/uploads/
 composer.lock
