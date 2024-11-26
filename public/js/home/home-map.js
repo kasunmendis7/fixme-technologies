@@ -100,7 +100,7 @@ async function loadMap() {
                         <div class="name">${serviceCentre['name']}</div>
                         <div class="address">${serviceCentre['address']}</div>
                         <div class="features">
-                            <button type="submit" class="btn-visit-profile-centre" onclick="locateServiceCentre(${serviceCentre['tech_id']})">Visit Profile</button>
+                            <button type="submit" class="btn-visit-profile-centre" onclick="locateServiceCentre(${serviceCentre['ser_cen_id']})">Visit Profile</button>
                         </div>
                     </div>
                     `;
