@@ -107,14 +107,14 @@ class Admin extends DbModel
 
     }
 
-    public static function deleteTechnicianById($cus_id)
+    public static function deleteTechnicianById($tech_id)
     {
-        $db = Application::$app->db; // Ensure this points to the correct Database instance
+        $db = Application::$app->db; // Database instance
         $sql = "DELETE FROM technician WHERE tech_id = :tech_id";
         $stmt = $db->prepare($sql);
-        $stmt->bindParam(':tech_id', $tech_id, \PDO::PARAM_INT);
+        $stmt->bindValue(':tech_id', (int)$tech_id, \PDO::PARAM_INT);
         return $stmt->execute();
-
     }
+
 
 }
