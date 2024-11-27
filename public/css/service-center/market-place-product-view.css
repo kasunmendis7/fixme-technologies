@@ -12,7 +12,7 @@
     display: flex;
     flex-wrap: wrap; /* Allow items to wrap onto the next row */
     justify-content: flex-start; /* Distribute cards evenly across the row */
-    gap: 1rem; /* Adjust gap between items */
+    gap: 0.5rem; /* Adjust gap between items */
     margin: 0 auto;
 }
 

@@ -37,6 +37,13 @@ use app\core\Application;
     <div class="box-2">
     </div>
 </section>
+
+<section >
+
+    <?php include_once 'logo-slider.php' ?>
+
+</section>
+
 <section class="section-2">
     <div class="box-2">
         <div class="box-2-container">

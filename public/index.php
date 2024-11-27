@@ -129,6 +129,7 @@ $app->router->post('/admin-reports-generate', [AdminController::class, 'generate
 $app->router->post('/admin-settings-update', [AdminController::class, 'updateSettings']);
 $app->router->get('/admin-promotions', [AdminController::class, 'promotions']);
 
+
 /* Auth routes handled by AuthController */
 
 /* Customer Auth routes */
@@ -158,7 +159,7 @@ $app->router->get('/service-center-create-product', [ServiceCentreController::cl
 $app->router->post('/service-center-create-product', [ProductController::class, 'create']);
 $app->router->get('/market-place-home', [ProductController::class, 'index']);
 $app->router->get('/service-center-create-product', [ProductController::class, 'filterProductsById']);
-$app->router->get('/service-center-update-product', [ProductController::class, 'update']);
+$app->router->get('/service-center-update-product', [ProductController::class,'update']);
 $app->router->post('/service-center-update-product', [ProductController::class, 'update']);
 $app->router->post('/service-center-delete-product', [ProductController::class, 'delete']);
 
