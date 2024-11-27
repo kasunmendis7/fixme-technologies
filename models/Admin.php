@@ -102,7 +102,7 @@ class Admin extends DbModel
         $db = Application::$app->db; // Ensure this points to the correct Database instance
         $sql = "DELETE FROM customer WHERE cus_id = :cus_id";
         $stmt = $db->prepare($sql);
-        $stmt->bindParam(':cus_id', $cus_id, \PDO::PARAM_INT);
+        $stmt->bindValue(':cus_id', (int)$cus_id, \PDO::PARAM_INT);
         return $stmt->execute();
 
     }

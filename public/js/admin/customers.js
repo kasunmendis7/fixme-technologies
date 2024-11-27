@@ -5,6 +5,7 @@ document.querySelectorAll(".delete-btn").forEach(button => {
     button.addEventListener("click", (e) => {
         const customerRow = e.target.closest("tr");
         customerIdToDelete = customerRow.getAttribute("data-customer-id"); // Get customer ID
+        console.log("Customer ID to delete: ", customerIdToDelete);
         document.getElementById("delete-modal").classList.remove("hidden"); // Show modal
     });
 });
@@ -18,6 +19,7 @@ document.getElementById("cancel-delete").addEventListener("click", () => {
 // Confirm delete action
 document.getElementById("confirm-delete").addEventListener("click", () => {
     if (customerIdToDelete) {
+        console.log("Sending request to delete customer ID: ", customerIdToDelete);
         fetch("/admin/delete-customer", {
             method: "POST",
             headers: {
@@ -28,6 +30,7 @@ document.getElementById("confirm-delete").addEventListener("click", () => {
             .then((response) => response.json())
             .then((data) => {
                 if (data.status === "success") {
+                    console.log("Response from server: ", data);
                     // Find and remove the row from the table
                     const row = document.querySelector(`tr[data-customer-id="${customerIdToDelete}"]`);
                     row.remove();
