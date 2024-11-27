@@ -114,7 +114,7 @@ $app->router->post('/cus-tech-req', [CustomerController::class, 'cusTechReq']);
 $app->router->get('/admin-dashboard', [AdminController::class, 'adminDashboard']);
 $app->router->get('/customers', [AdminController::class, 'customers']);
 $app->router->get('/technicians', [AdminController::class, 'technicians']);
-$app->router->post('/admin/delete-customer', [AdminController::class, 'deleteCustomer']);
+$app->router->post('/admin/delete-technician', [AdminController::class, 'deleteTechnician']);
 $app->router->get('/admin-settings', [AdminController::class, 'adminSettings']);
 $app->router->get('/admin-profile', [AdminController::class, 'adminProfile']);
 $app->router->post('/update-admin-profile', [AdminController::class, 'updateAdminProfile']);
@@ -166,7 +166,6 @@ $app->router->post('/service-center-delete-product', [ProductController::class, 
 /** Admin Routes */
 $app->router->get('/customers', [AdminController::class, 'customers']);
 $app->router->post('/admin/delete-customer', [AdminController::class, 'deleteCustomer']);
-
 
 $app->router->get('/admin-services', [AdminController::class, 'manageServices']);
 $app->router->post('/admin-services-add', [AdminController::class, 'addService']);

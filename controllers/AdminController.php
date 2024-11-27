@@ -131,20 +131,21 @@ class AdminController extends Controller
 
     public function deleteTechnician(Request $request)
     {
-        $data = $request->getBody(); // Assuming this already returns an array
+        $data = json_decode(file_get_contents("php://input"), true);
+
         if (isset($data['tech_id'])) {
             $tech_id = $data['tech_id'];
 
-            // Call the model function to delete the technician
+            // Call model to delete technician
             $result = Admin::deleteTechnicianById($tech_id);
 
             if ($result) {
-                echo json_encode(['status' => 'success']);
+                return $response->json(['status' => 'success']);
             } else {
-                echo json_encode(['status' => 'error', 'message' => 'Failed to delete technician']);
+                return $response->json(['status' => 'error', 'message' => 'Failed to delete technician']);
             }
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Invalid technician ID']);
+            return $response->json(['status' => 'error', 'message' => 'Invalid technician ID']);
         }
     }
 
