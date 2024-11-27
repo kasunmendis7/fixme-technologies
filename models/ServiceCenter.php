@@ -66,7 +66,7 @@ class ServiceCenter extends DbModel
 
     public function serviceCentresGeocoding()
     {
-        $sql = "SELECT ser_cen_id, name, latitude, longitude FROM service_center WHERE latitude IS NOT NULL AND longitude IS NOT NULL";
+        $sql = "SELECT ser_cen_id, name, latitude, longitude, address FROM service_center WHERE latitude IS NOT NULL AND longitude IS NOT NULL";
         $stmt = self::prepare($sql);
         $stmt->execute();
         $service_centres = $stmt->fetchAll(\PDO::FETCH_ASSOC);
