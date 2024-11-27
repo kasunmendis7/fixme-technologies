@@ -18,7 +18,6 @@ class AdminController extends Controller
     }
 
 
-
     public function manageUsers()
     {
         $this->setLayout('auth');
@@ -71,13 +70,12 @@ class AdminController extends Controller
         return $this->render('/admin/admin-login.php');
     }
 
-    
+
     public function promotions()
     {
         $this->setLayout('auth');
         return $this->render('/admin/admin-promotions');
     }
-    
 
 
     public function customers()
@@ -102,7 +100,12 @@ class AdminController extends Controller
 
     public function deleteCustomer(Request $request)
     {
-        $data = $request->getBody(); // Assuming this already returns an array
+        // Decode JSON payload manually since getBody() does not handle JSON
+        $data = json_decode(file_get_contents('php://input'), true);
+
+        // Debug: Log incoming data
+        error_log('Request payload: ' . print_r($data, true));
+
         if (isset($data['cus_id'])) {
             $cus_id = $data['cus_id'];
 
@@ -110,14 +113,21 @@ class AdminController extends Controller
             $result = Admin::deleteCustomerById($cus_id);
 
             if ($result) {
+                // Debug: Log successful deletion
+                error_log("Customer with ID $cus_id deleted successfully.");
                 echo json_encode(['status' => 'success']);
             } else {
+                // Debug: Log failure
+                error_log("Failed to delete customer with ID $cus_id.");
                 echo json_encode(['status' => 'error', 'message' => 'Failed to delete customer']);
             }
         } else {
+            // Debug: Log invalid request
+            error_log("Invalid customer ID in request payload.");
             echo json_encode(['status' => 'error', 'message' => 'Invalid customer ID']);
         }
     }
+
 
     public function deleteTechnician(Request $request)
     {
