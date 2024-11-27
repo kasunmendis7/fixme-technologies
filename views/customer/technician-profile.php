@@ -72,30 +72,53 @@ include_once 'components/header.php';
 
 <main class="content">
     <div class="cards">
-        <!-- Card Template -->
-        <article class="card">
-            <div class="card-image">
-                <img src="https://via.placeholder.com/150" alt="Food Image">
-            </div>
-            <div class="card-content">
-                <h3>Shane Mario</h3>
-                <p>You and your family will love this refreshing salad that's perfect for warm days or summer meals!</p>
-                <button class="visit-btn">Visit Us</button>
-            </div>
-        </article>
-        <!-- Repeat as needed -->
-        <article class="card">
-            <div class="card-image">
-                <img src="https://via.placeholder.com/150" alt="Food Image">
-            </div>
-            <div class="card-content">
-                <h3>Shane Mario</h3>
-                <p>You and your family will love this refreshing salad that's perfect for warm days or summer meals!</p>
-                <button class="visit-btn">Visit Us</button>
-            </div>
-        </article>
+        <?php if (!empty($posts)): ?>
+            <?php foreach ($posts as $post): ?>
+                <article class="card">
+                    <div class="card-image">
+                        <img src="/assets/uploads/<?php echo $post['media']; ?>" alt="Post Media">
+                    </div>
+                    <div class="card-content">
+                        <h3><?php echo $technician['fname'] . ' ' . $technician['lname']; ?></h3>
+                        <p><?php echo htmlspecialchars($post['description'], ENT_QUOTES, 'UTF-8'); ?></p>
+                        <p><small>Posted on <?php echo date('F j, Y, g:i a', strtotime($post['created_at'])); ?></small>
+                        </p>
+                    </div>
+                </article>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>No posts to display.</p>
+        <?php endif; ?>
     </div>
 </main>
+
+
+<!--<main class="content">-->
+<!--    <div class="cards">-->
+<!--        <!-- Card Template -->
+<!--        <article class="card">-->
+<!--            <div class="card-image">-->
+<!--                <img src="https://via.placeholder.com/150" alt="Food Image">-->
+<!--            </div>-->
+<!--            <div class="card-content">-->
+<!--                <h3>Shane Mario</h3>-->
+<!--                <p>You and your family will love this refreshing salad that's perfect for warm days or summer meals!</p>-->
+<!--                <button class="visit-btn">Visit Us</button>-->
+<!--            </div>-->
+<!--        </article>-->
+<!--        <!-- Repeat as needed -->
+<!--        <article class="card">-->
+<!--            <div class="card-image">-->
+<!--                <img src="https://via.placeholder.com/150" alt="Food Image">-->
+<!--            </div>-->
+<!--            <div class="card-content">-->
+<!--                <h3>Shane Mario</h3>-->
+<!--                <p>You and your family will love this refreshing salad that's perfect for warm days or summer meals!</p>-->
+<!--                <button class="visit-btn">Visit Us</button>-->
+<!--            </div>-->
+<!--        </article>-->
+<!--    </div>-->
+<!--</main>-->
 
 <!-- Overlay for the confirmation message -->
 <div id="signOutOverlay" class="overlay">

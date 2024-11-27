@@ -36,7 +36,9 @@ include_once 'components/header.php';
                 <tr>
                     <td><?= $request['cus_id'] ?></td>
                     <td><?= $request['cus_name'] ?></td>
-                    <td><span class="status <?= strtolower($request['status']) ?>"><?= $request['status'] ?></span></td>
+                    <td>
+                        <span class="status <?= strtolower($request['status']) ?>"><?= ucfirst($request['status']) ?></span>
+                    </td>
                     <td>
                         <?php if ($request['status'] == 'Pending' || $request['status'] == 'pending'): ?>
                             <form action="/technician-requests-update" method="POST" style="display:inline;">
