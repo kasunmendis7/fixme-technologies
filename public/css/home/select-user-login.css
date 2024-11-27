@@ -1,72 +1,113 @@
-* {
-    box-sizing: border-box;
+/* Global Styles */
+body, html {
     margin: 0;
     padding: 0;
-}
-
-body, html {
-    height: 100%;
     font-family: Arial, sans-serif;
+    height: 100%;
+    display: flex;
+    width: 100%;
 }
 
-.container {
+/* Section Styling */
+section {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+/* Left Column Styling */
+.container-left {
+    width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 50px;
-    padding: 50px;
-    background-size: cover;
-    background: #eef3f4 center;
-    min-height: 100vh;
+    flex: 1; /* Takes up half of the screen */
+    background-color: #010336;
 }
 
+/* Right Column Styling */
+.container-right {
+    width: 50%; /* Take up 50% of the width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Card Container */
+.container {
+    display: flex;
+    flex-direction: column; /* Arrange cards in a column */
+    gap: 20px; /* Space between cards */
+    width: 40%;  /* Restrict width for better alignment */
+}
+
+/* Card Styling */
 .card {
     background-color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
-    align-items: center;
-    width: 400px;
-    height: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 80%;
+    /*justify-content: center;*/
 }
 
-.icon img {
-    width: 200px;
-    height: 200px;
-    margin-bottom: 15px;
+/* Card Hover Effect */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
-.heading {
-    font-size: 2em;
-    color: #007BFF;
+/* Card Icon Styling */
+.card .icon img {
+    width: 80px;
+    height: 80px;
     margin-bottom: 10px;
 }
 
-.paragraph {
-    font-size: 1.6em;
-    color: #555555;
-    margin-bottom: 20px;
-    flex-grow: 1;
+/* Card Heading */
+.card .heading {
+    font-size: 20px;
+    margin: 10px 0;
+    color: #333333;
 }
 
-.button {
+/* Card Paragraph */
+.card .paragraph {
+    font-size: 14px;
+    color: #666666;
+    margin: 10px 0 20px 0;
+}
+
+/* Button Styling */
+.card .button {
     display: inline-block;
-    padding: 10px 20px;
-    font-size: 1.2em;
-    color: #fff;
-    background: linear-gradient(to right, #010336, #0b5ed7);
-    border: none;
-    border-radius: 5px;
     text-decoration: none;
-    cursor: pointer;
-    transition: background 0.3s ease;
+    background-color: #010336;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
 }
 
-.button:hover {
-    background: linear-gradient(to right, #010336, #0b5ed7);
+.card .button:hover {
+    background-color: #0027ff;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    section {
+        flex-direction: column;
+    }
+
+    .container-left, .container-right {
+        flex: none;
+        width: 100%;
+    }
+
+    .container {
+        width: 90%;
+    }
 }
