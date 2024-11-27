@@ -19,11 +19,47 @@ section {
 .container-left {
     width: 50%;
     display: flex;
-    justify-content: center;
+    justify-content: right;
     align-items: center;
-    flex: 1; /* Takes up half of the screen */
+    flex: 1;
     background-color: #010336;
+    /*padding-bottom: 140px;*/
 }
+
+.branding-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 200px;
+    padding: 2rem;
+    background-color: transparent;
+}
+
+.brand-name {
+    font-weight: bold;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.brand-button {
+    padding: 0.25rem 0.5rem;
+    background: linear-gradient(to right, #183369, #1e8dc5);
+    border-radius: 0.5rem;
+    color: white;
+    font-size: 5rem;
+    display: inline-block;
+    float: right;
+}
+
+.tagline {
+    margin-top: 10px;
+    line-height: 1.5;
+    color: white;
+    text-align: right;
+}
+
 
 /* Right Column Styling */
 .container-right {
@@ -38,7 +74,7 @@ section {
     display: flex;
     flex-direction: column; /* Arrange cards in a column */
     gap: 20px; /* Space between cards */
-    width: 40%;  /* Restrict width for better alignment */
+    width: 40%; /* Restrict width for better alignment */
 }
 
 /* Card Styling */
