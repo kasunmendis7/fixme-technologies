@@ -42,9 +42,38 @@ class CusTechReq extends DbModel
         }
     }
 
+    public function deleteCusTechReq($cusId, $techId)
+    {
+        /* Check if a pending request from customer to technician already exits in the database */
+        $sql = "SELECT req_id FROM cus_tech_req WHERE cus_id = :cus_id AND tech_id = :tech_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':cus_id', $cusId);
+        $stmt->bindValue(':tech_id', $techId);
+        $stmt->execute();
+        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        if ($row) {
+            $sql = "DELETE FROM cus_tech_req WHERE cus_id = :cus_id AND tech_id = :tech_id";
+            $stmt = self::prepare($sql);
+            $stmt->bindValue(':cus_id', $cusId);
+            $stmt->bindValue(':tech_id', $techId);
+            $stmt->execute();
+            Application::$app->response->setStatusCode(200);
+            Application::$app->session->setflash('deleteCusTechReq-success', 'You have been successfully deleted the request !');
+
+            return ['success' => true, 'message' => 'Customer request deleted succesfully'];
+
+        } else {
+            Application::$app->response->setStatusCode(400);
+            Application::$app->session->setFlash('deleteCusTechReq-error', 'You have already been deleted the request for this technician !');
+
+            return ['success' => false, 'message' => 'Unable to delete technician request !'];
+        }
+    }
+
     public function getAllRequests($cusId)
     {
-        $sql = "SELECT tech.fname AS fname, tech.lname AS lname, ctr.status AS status FROM technician AS tech, cus_tech_req AS ctr WHERE ctr.tech_id = tech.tech_id AND ctr.cus_id = :cus_id";
+        $sql = "SELECT ctr.tech_id AS tech_id, ctr.cus_id AS cus_id, tech.fname AS fname, tech.lname AS lname, ctr.status AS status FROM technician AS tech, cus_tech_req AS ctr WHERE ctr.tech_id = tech.tech_id AND ctr.cus_id = :cus_id";
         $stmt = self::prepare($sql);
         $stmt->bindValue(':cus_id', $cusId);
         $stmt->execute();

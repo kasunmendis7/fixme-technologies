@@ -85,6 +85,7 @@ include_once 'components/header.php';
                 <td>Name</td>
                 <td>Price</td>
                 <td>Payment</td>
+                <td></td>
                 <td>Status</td>
             </tr>
             </thead>
@@ -98,8 +99,16 @@ include_once 'components/header.php';
                     '<tr>
                     <td>' . $request['fname'] . ' ' . $request['lname'] . '</td> 
                     <td>Rs. 500</td> 
-                    <td>Due</td>
-                    <td><span class="status ' . strtolower($request['status']) . '">' . ucfirst($request['status']) . '</span></td>
+                    <td>Due</td>';
+
+                if ($request['status'] == 'pending') {
+                    echo '<td><span><button type="submit" class="cancel-btn" onclick="cancelReq(' . $request['cus_id'] . ',' . $request['tech_id'] . ' )">Cancel</button></span></td>';
+                } else {
+                    echo '<td></td>';
+                }
+
+                echo '
+                    <td> <span class="status ' . strtolower($request['status']) . '">' . ucfirst($request['status']) . '</span></td>
                 </tr>';
             }
             /* status: pending , in Progress, rejected, completed */
@@ -148,6 +157,7 @@ include_once 'components/header.php';
 <!--    Icons-->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="/js/customer/customer-dashboard.js"></script>
 <script src="/js/customer/customer-home.js"></script>
 <script src="/js/customer/overlay.js"></script>
 </body>
