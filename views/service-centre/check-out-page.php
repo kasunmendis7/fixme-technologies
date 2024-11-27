@@ -1,10 +1,16 @@
 <?php
+?>
+
+
+<?php
 
 use app\core\Application;
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
+
 
 <head>
     <meta charset="UTF-8">
@@ -75,29 +81,12 @@ use app\core\Application;
     </div>
 </section>
 
+<?php
 
-<section class="marketplace">
-    <h1 class="marketplace-title">Available Products</h1>
-    <div class="products-grid">
-        <?php if (!empty($products)): ?>
-            <?php foreach ($products as $product): ?>
-                <div class="product-card">
-                    <img class="product-image"
-                         src="/assets/uploads/<?php echo htmlspecialchars($product['media']); ?>"
-                         alt="Product Image">
-                    <div class="product-details">
-                        <h2 class="product-title"><?php echo htmlspecialchars($product['description']); ?></h2>
-                        <p class="product-price">Rs. <?php echo htmlspecialchars($product['price']); ?></p>
-                        <p class="product-seller">Sold by: <?php echo htmlspecialchars($product['seller_name']); ?></p>
-                    </div>
-                    <a href="/check-out-page" class="product-btn">View Details</a>
-                </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p class="no-products">No products are available at the moment.</p>
-        <?php endif; ?>
-    </div>
-</section>
+    include_once 'check-out.php';
+
+?>
+
 
 
 <div class="container-f">
