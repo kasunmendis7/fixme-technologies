@@ -58,7 +58,7 @@ class Application
         }
 
 
-        $primaryValueServiceCentre = $this->session->get('service_center');
+        $primaryValueServiceCentre = $this->session->get('serviceCenter');
 
         if ($primaryValueServiceCentre) {
             $serviceCenterInstance = new $this->serviceCenterClass;

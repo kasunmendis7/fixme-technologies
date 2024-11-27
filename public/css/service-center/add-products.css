@@ -94,6 +94,10 @@ table {
     overflow: hidden; /* Ensures rounded corners for tables with borders */
 }
 
+.delete-button {
+    background-color: red;
+}
+
 /* Table Headers */
 table th {
     background-color: #007bff;

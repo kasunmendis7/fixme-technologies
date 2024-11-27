@@ -1,0 +1,81 @@
+/* technician-community.css */
+form {
+    max-width: 600px; /* Set a max width for the form */
+    margin: 50px auto; /* Center the form horizontally and add some vertical spacing */
+    padding: 20px; /* Add some padding inside the form */
+    border: 1px solid #ddd; /* Add a light border around the form */
+    border-radius: 8px; /* Round the corners */
+    background-color: #f9f9f9; /* Set a background color for the form */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+form div {
+    margin-bottom: 15px; /* Add spacing between form fields */
+}
+
+form label {
+    display: block; /* Make the labels take up the full width */
+    margin-bottom: 5px; /* Add spacing between the label and input */
+    font-weight: bold; /* Make the labels bold */
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="file"] {
+    width: 100%; /* Make the input fields stretch across the form */
+    padding: 8px; /* Add padding inside the input fields */
+    border: 1px solid #ccc; /* Add a light border around inputs */
+    border-radius: 4px; /* Round the corners of the input fields */
+    box-sizing: border-box; /* Include padding in the width */
+}
+
+form button[type="submit"] {
+    display: block; /* Make the button take up its own line */
+    width: 100%; /* Stretch the button across the form */
+    padding: 10px; /* Add padding inside the button */
+    background-color: #007BFF; /* Set a primary color for the button */
+    color: white; /* Make the text color white */
+    border: none; /* Remove the border */
+    border-radius: 4px; /* Round the corners */
+    cursor: pointer; /* Add a pointer cursor */
+    font-size: 16px; /* Set a larger font size */
+}
+
+form button[type="submit"]:hover {
+    background-color: #0056b3; /* Darken the button on hover */
+}
+
+.current-media-preview {
+    display: block; /* Ensure it behaves like a block element */
+    margin: 20px auto; /* Center the image horizontally and add vertical spacing */
+    max-width: 300px; /* Limit the maximum width of the image */
+    max-height: 300px; /* Limit the maximum height of the image */
+    border: 2px solid #ccc; /* Add a light gray border */
+    border-radius: 8px; /* Slightly round the corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for better visibility */
+    padding: 5px; /* Add padding between the image and the border */
+    background-color: #fff; /* Add a white background for contrast */
+}
+
+.media-container {
+    display: flex; /* Create a flex container */
+    align-items: center; /* Vertically align items to the middle */
+    gap: 20px; /* Add some space between the text and the media */
+    margin: 20px 0; /* Add vertical spacing around the container */
+}
+
+.media-container p {
+    margin: 0; /* Remove default margins */
+    font-size: 16px; /* Adjust the font size for better readability */
+    color: #555; /* Set a subtle text color */
+}
+
+.current-media-preview {
+    max-width: 300px; /* Limit the maximum width of the media */
+    max-height: 300px; /* Limit the maximum height of the media */
+    border: 2px solid #ccc; /* Add a light border */
+    border-radius: 8px; /* Slightly round the corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    padding: 5px; /* Add padding inside the border */
+    background-color: #fff; /* Add a white background for contrast */
+}

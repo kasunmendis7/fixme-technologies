@@ -18,6 +18,7 @@ use app\models\Customer;
     <link rel="stylesheet" href="/css/customer/customer-map.css">
     <link rel="stylesheet" href="/css/customer/overlay.css">
     <script src="/js/customer/customer-map.js"></script>
+    <script src="https://kit.fontawesome.com/7d9ff0de02.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -25,14 +26,8 @@ use app\models\Customer;
 include_once 'components/sidebar.php';
 include_once 'components/header.php';
 ?>
-<div class="container">
-    <center>
-        <!--        <h1>Geolocations of the technicians and service centres</h1>-->
-    </center>
+<div class="container-map">
     <div class="map" id="map"></div>
-    <?php
-    //echo var_dump($data['results'][0]['geometry']['location']['lat']);
-    ?>
 </div>
 
 <!-- Overlay for the confirmation message -->

@@ -81,7 +81,7 @@ include_once 'components/header.php';
 
                         <form action="/service-center-delete-product" method="post">
                             <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
-                            <button type="submit">Delete</button>
+                            <button class="delete-button" type="submit">Delete</button>
                         </form>
                     </td>
                 </tr>
