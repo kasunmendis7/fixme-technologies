@@ -12,16 +12,11 @@
     <!-- Left Column -->
     <div class="container-left">
 
-<!--        <div class="col-left-container">-->
-<!--            <div class="branding-container">-->
-<!--                <div>-->
-<!--                    <a href="/" class="brand-name">-->
-<!--                        <span class="brand-button">FixMe</span>-->
-<!--                    </a>-->
-<!--                </div>-->
-<!--                <p class="tagline">Expert Car Care, Anytime, Anywhere.</p>-->
-<!--            </div>-->
-<!--        </div>-->
+        <div class="logo-container">
+            <a href="/">
+            <img style="width: 600px;" src="/assets/logo/fixme-logo.png">
+            </a>
+        </div>
 
     </div>
 
