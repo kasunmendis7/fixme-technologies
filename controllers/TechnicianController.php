@@ -153,21 +153,6 @@ class TechnicianController extends Controller
         Application::$app->response->redirect('/technician-requests');
     }
 
-    public function profile($technicianId)
-    {
-        $technician = (new Technician)->findOne(['tech_id' => $technicianId]);
-        if (!$technician) {
-            Application::$app->response->setStatusCode(404);
-            return "Technician not found";
-        }
 
-        $postModel = new Post();
-        $posts = $postModel->getPostsByTechnicianId($technicianId);
-
-        return $this->render('/customer/technician-profile', [
-            'technician' => $technician,
-            'posts' => $posts
-        ]);
-    }
 }
 
