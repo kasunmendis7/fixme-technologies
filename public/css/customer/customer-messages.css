@@ -379,7 +379,7 @@ body {
 .container .right-side {
     position: relative;
     flex: 70%;
-    background-color: #efddd5;
+    background-color: #e3f8f8;
 }
 
 .container .right-side::before {

@@ -87,6 +87,8 @@ $app->router->get('/service-center-community', [ServiceCentreController::class, 
 $app->router->get('/service-center-messages', [ServiceCentreController::class, 'serviceCenterMessages']);
 $app->router->get('/check-out-page', [ServiceCentreController::class, 'checkOutPage']);
 $app->router->get('/card-details', [ServiceCentreController::class, 'cardDetails']);
+$app->router->get('/service-centre-map', [ServiceCentreController::class, 'serviceCentreMap']);
+
 
 /* Routes related to the product (service center) */
 $app->router->get('/service-center-create-product', [ServiceCentreController::class, 'serviceCenterCreateProduct']);
@@ -104,17 +106,19 @@ $app->router->get('/customer-settings', [CustomerController::class, 'customerSet
 $app->router->get('/customer-help', [CustomerController::class, 'customerHelp']);
 $app->router->get('/customer-profile', [CustomerController::class, 'customerProfile']);
 $app->router->get('/customer-technicians', [CustomerController::class, 'customerTechnicians']);
+$app->router->get('/customer-service-centers', [CustomerController::class, 'customerServiceCenters']);
 $app->router->post('/update-customer-profile', [CustomerController::class, 'updateCustomerProfile']);
 $app->router->get('/customer-map', [CustomerController::class, 'customerMap']);
 $app->router->get('/geolocation-technicians', [CustomerController::class, 'getTechnicianGeocoding']);
 $app->router->get('/geolocation-service-centres', [CustomerController::class, 'getServiceCentresGeocoding']);
 $app->router->get('/customer-location', [CustomerController::class, 'customerLocation']);
 $app->router->get('/technician-profile/{id}', [TechnicianController::class, 'viewTechnicianProfile']);
+$app->router->get('/service-center-profile/{id}', [ServiceCentreController::class, 'viewServiceCenterProfile']);
 $app->router->post('/cus-tech-req', [CustomerController::class, 'cusTechReq']);
 $app->router->post('/delete-cus-tech-req', [CustomerController::class, 'deleteCusTechReq']);
 $app->router->get('/customer-messages', [CustomerController::class, 'customerMessages']);
-$app->router->get('/customer-serviceCenter', [CustomerController::class, 'customerServiceCenter']);
 $app->router->get('/service-center-profile', [CustomerController::class, 'serviceCenterProfile']);
+$app->router->get('/customer-vehicle-issue', [CustomerController::class, 'customerVehicleIssue']);
 
 
 /* Admin Routes */

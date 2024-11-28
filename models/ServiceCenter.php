@@ -34,6 +34,16 @@ class ServiceCenter extends DbModel
         return 'ser_cen_id';
     }
 
+    public function findById($id)
+    {
+
+        $sql = "SELECT * FROM service_center WHERE ser_cen_id = :ser_cen_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':ser_cen_id', $id);
+        $stmt->execute();
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
 
     public function save()
     {

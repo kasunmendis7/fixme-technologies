@@ -46,10 +46,10 @@ class CustomerController extends Controller
         return $this->render('/customer/customer-technicians');
     }
 
-    public function customerServiceCenter()
+    public function customerServiceCenters()
     {
         $this->setLayout('auth');
-        return $this->render('/customer/customer-serviceCenter');
+        return $this->render('/customer/customer-service-centers');
     }
 
     public function serviceCenterProfile()
@@ -182,5 +182,11 @@ class CustomerController extends Controller
     {
         $this->setLayout('auth');
         return $this->render('/customer/customer-messages');
+    }
+
+    public function customerVehicleIssue()
+    {
+        $this->setLayout('auth');
+        return $this->render('/customer/customer-vehicle-issue');
     }
 }

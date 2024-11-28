@@ -1,10 +1,13 @@
 <?php
 
 namespace app\controllers;
+
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
+use app\models\Post;
 use app\models\ServiceCenter;
+use app\models\Technician;
 
 class ServiceCentreController extends Controller
 {
@@ -66,8 +69,7 @@ class ServiceCentreController extends Controller
                 $serviceCenter->updateServiceCenter();
                 Application::$app->session->setFlash('update-success', 'Update is successful');
                 Application::$app->response->redirect('/service-centre-profile');
-            }
-            else {
+            } else {
                 Application::$app->session->setFlash('update-error', 'Update is failed');
                 Application::$app->response->redirect('/service-centre-profile');
             }
@@ -120,6 +122,23 @@ class ServiceCentreController extends Controller
     {
         $this->setLayout('auth');
         return $this->render('/service-centre/service-center-messages');
+    }
+
+    public function viewServiceCenterProfile($id)
+    {
+
+        // echo json_encode($id);
+        // $id is an array, we need only the first element of that array
+        $serviceCenter = (new ServiceCenter())->findById(intval($id[0]));
+        $this->setLayout('auth');
+        if (!$serviceCenter) {
+            return $this->render('_404');
+        }
+//        show($serviceCenter['name']);
+
+        return $this->render('/customer/service-center-profile', [
+            'serviceCenter' => $serviceCenter,
+        ]);
     }
 
 }
