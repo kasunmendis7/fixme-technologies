@@ -20,7 +20,7 @@
         /*display: flex;*/
         /*height: 100vh;*/
         margin: 0;
-        background-color: #f4f4f4;
+        background-color: white;
         align-items: center;
         justify-content: center;
     }
@@ -109,6 +109,49 @@
 
 <div class="slider">
     <div class="slide-track">
+        <div class="slide">
+            <img src="/assets/slider/jaguar.svg" height="100" width="250" alt="image-1" />
+        </div>
+        <div class="slide">
+            <img src="/assets/slider/bmw.svg" height="100" width="250" alt="image-2" />
+        </div>
+        <div class="slide">
+            <img src="/assets/slider/chevrolet.svg" height="100" width="250" alt="image-3" />
+        </div>
+        <div class="slide">
+            <img src="/assets/slider/ferrari.svg" height="100" width="250" alt="image-4" />
+        </div>
+        <div class="slide">
+            <img src="/assets/slider/honda.svg" height="100" width="250" alt="image-5" />
+        </div>
+        <div class="slide">
+            <img src="/assets/slider/hyundai.svg" height="100" width="250" alt="image-6" />
+        </div>
+        <div class="slide">
+            <img src="/assets/slider/jeep.svg" height="100" width="250" alt="image-7" />
+        </div>
+        <div class="slide">
+            <img src="/assets/slider/kia.svg" height="100" width="250" alt="image-8" />
+        </div>
+        <div class="slide">
+            <img src="/assets/slider/land.svg" height="100" width="250" alt="image-9" />
+        </div>
+        <div class="slide">
+            <img src="/assets/slider/mercedes.svg" height="100" width="250" alt="image-10" />
+        </div>
+        <div class="slide">
+            <img src="/assets/slider/volkswagen.svg" height="100" width="250" alt="image-11" />
+        </div>
+        <div class="slide">
+            <img src="/assets/slider/nissan.svg" height="100" width="250" alt="image-12" />
+        </div>
+        <div class="slide">
+            <img src="/assets/slider/volvo.svg" height="100" width="250" alt="image-13" />
+        </div>
+        <div class="slide">
+            <img src="/assets/slider/toyota.svg" height="100" width="250" alt="image-14" />
+        </div>
+
         <div class="slide">
             <img src="/assets/slider/jaguar.svg" height="100" width="250" alt="image-1" />
         </div>
