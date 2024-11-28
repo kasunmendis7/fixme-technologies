@@ -20,6 +20,8 @@ use app\core\Application;
     <script src="/js/technician/main.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!--    <script src="https://use.fontawesome.com/releases/v6.2.0/js/all.js"></script>-->
+    <script src="https://kit.fontawesome.com/7d9ff0de02.js" crossorigin="anonymous"></script>
     <title>Fixme Home</title>
 </head>
 
@@ -39,7 +41,6 @@ use app\core\Application;
             <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
             <li><a href="#" class="nav-link px-2">Features</a></li>
             <li><a href="/home-map" class="nav-link px-2">Map</a></li>
-            <li><a href="#" class="nav-link px-2">Map</a></li>
             <li><a href="/market-place-home" class="nav-link px-2">Marketplace</a></li>
             <li><a href="#" class="nav-link px-2">FAQs</a></li>
             <li><a href="#" class="nav-link px-2">About</a></li>

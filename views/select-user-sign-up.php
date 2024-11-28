@@ -8,8 +8,6 @@
 </head>
 <body>
 <section>
-
-
     <div class="container-left">
 
         <div class="logo-container">
@@ -18,7 +16,7 @@
             </a>
         </div>
     </div>
-
+    <!-- Right Column -->
     <div class="container-right">
         <div class="container">
             <div class="card" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">
@@ -52,11 +50,10 @@
                     Sign up as a Service Center and find customers.
                 </p>
                 <a href="/service-centre-sign-up" class="button">Sign up</a>
+
             </div>
         </div>
     </div>
-
-
 
 </section>
 
