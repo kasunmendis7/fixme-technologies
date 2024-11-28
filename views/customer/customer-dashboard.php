@@ -16,6 +16,7 @@ use app\models\CusTechReq;
     <title>Customer Dashboard</title>
     <link rel="stylesheet" href="/css/customer/customer-dashboard.css">
     <link rel="stylesheet" href="/css/customer/overlay.css">
+    <link rel="stylesheet" href="/css/customer/flash-messages.css">
 </head>
 
 <body>
@@ -24,6 +25,16 @@ include_once 'components/sidebar.php';
 include_once 'components/header.php';
 ?>
 <!-- ======================= Cards ================== -->
+<?php if (Application::$app->session->getFlash('deleteCusTechReq-success')): ?>
+    <div class="alert alert-success">
+        <?php echo Application::$app->session->getFlash('deleteCusTechReq-success') ?>
+    </div>
+<?php endif; ?>
+<?php if (Application::$app->session->getFlash('deleteCusTechReq-error')): ?>
+    <div class="alert alert-error">
+        <?php echo Application::$app->session->getFlash('deleteCusTechReq-error') ?>
+    </div>
+<?php endif; ?>
 <div class="cardBox">
     <div class="card">
         <div>
