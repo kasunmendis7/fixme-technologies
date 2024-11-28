@@ -25,7 +25,31 @@ use app\models\CusTechReq;
 include_once 'components/sidebar.php';
 include_once 'components/header.php';
 ?>
+<body>
+<div class="form-container">
+    <h1>Vehicle Issue Form</h1>
+    <form id="vehicleForm">
+        <label for="vehicleType">Select Vehicle Type:</label>
+        <select id="vehicleType" name="vehicleType" required>
+            <option value="" disabled selected>Select a vehicle</option>
+            <option value="motorbike">Motorbike</option>
+            <option value="tuk-tuk">Tuk-Tuk</option>
+            <option value="car">Car</option>
+        </select>
 
+        <div id="issuesContainer" style="display: none;">
+            <label for="issues">Select Issues:</label>
+            <div id="issuesList"></div>
+        </div>
+
+        <label for="description">Additional Information:</label>
+        <textarea id="description" name="description" rows="4"
+                  placeholder="Describe the issue in detail (optional)"></textarea>
+
+        <button type="submit">Get Recommended Technician</button>
+    </form>
+</div>
+</body>
 <!-- Overlay for the confirmation message -->
 <div id="signOutOverlay" class="overlay">
     <div class="overlay-content">

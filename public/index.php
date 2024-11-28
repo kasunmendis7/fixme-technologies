@@ -55,6 +55,7 @@ $app->router->get('/technician-profile', [TechnicianController::class, 'technici
 $app->router->post('/update-technician-profile', [TechnicianController::class, 'updateTechnicianProfile']);
 $app->router->get('/technician-requests', [TechnicianController::class, 'viewRequests']);
 $app->router->post('/technician-requests-update', [TechnicianController::class, 'updateRequestStatus']);
+$app->router->get('/technician-transactions', [TechnicianController::class, 'technicianTransactions']);
 $app->router->get('/technician-payment-details', [TechnicianController::class, 'technicianPaymentDetails']);
 
 /* Routes related to the Post */
@@ -121,6 +122,7 @@ $app->router->post('/delete-cus-tech-req', [CustomerController::class, 'deleteCu
 $app->router->get('/customer-messages', [CustomerController::class, 'customerMessages']);
 $app->router->get('/service-center-profile', [CustomerController::class, 'serviceCenterProfile']);
 $app->router->get('/customer-vehicle-issue', [CustomerController::class, 'customerVehicleIssue']);
+$app->router->get('/customer-transactions', [CustomerController::class, 'customerTransactions']);
 
 
 /* Admin Routes */
