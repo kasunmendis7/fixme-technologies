@@ -42,7 +42,7 @@ include_once 'components/header.php';
             </div>
         </div>
     </a>
-    <a href="#">
+    <a href="/technician-transactions">
         <div class="card">
             <div>
                 <div class="cardName">Transactions</div>
