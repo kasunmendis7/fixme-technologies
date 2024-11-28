@@ -17,7 +17,6 @@
             <img style="width: 600px;" src="/assets/logo/fixme-logo.png">
             </a>
         </div>
-
     </div>
 
     <!-- Right Column -->
