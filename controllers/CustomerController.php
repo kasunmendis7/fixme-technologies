@@ -165,4 +165,10 @@ class CustomerController extends Controller
             'posts' => $posts
         ]);
     }
+
+    public function customerMessages()
+    {
+        $this->setLayout('auth');
+        return $this->render('/customer/customer-messages');
+    }
 }
