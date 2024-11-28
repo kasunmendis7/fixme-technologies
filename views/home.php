@@ -46,25 +46,25 @@ use app\core\Application;
 
 <section class="section-2">
     <div class="box-2">
-        <div class="box-2-container">
-            <div class="box-2-content">
-                <h2 class="box-2-title">Fixme For Service Center</h2>
-                <p class="box-2-desc">
-                    Transform the way your service center moves and feeds its people.
-                </p>
-                <button class="box-2-btn" type="button" onclick="redirectServiceCentreLanding()">See More...</button>
-            </div>
-            <div class="box-2-video">
-                <video autoplay muted loop id="background-video">
-                    <source  src="/assets/logo/FIXME (1).mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
+        <!-- Left column: Content -->
+        <div class="box-2-content">
+            <h2 class="box-2-title">Fixme For Service Center</h2>
+            <p class="box-2-desc">
+                Transform the way your service center moves and feeds its people.
+            </p>
+            <button class="box-2-btn" type="button" onclick="redirectServiceCentreLanding()">See More...</button>
         </div>
-
+        <!-- Right column: Video -->
+        <div class="box-2-video">
+            <video autoplay muted loop id="background-video">
+                <source src="/assets/logo/FIXME (1).mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
     </div>
-
 </section>
+
+
 <section class="section-3">
     <div class="heading-container">
         <h2>
