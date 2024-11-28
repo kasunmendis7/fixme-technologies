@@ -11,6 +11,7 @@
 <section>
     <!-- Left Column -->
     <div class="container-left">
+
         <div class="logo-container">
             <a href="/">
             <img style="width: 600px;" src="/assets/logo/fixme-logo.png">

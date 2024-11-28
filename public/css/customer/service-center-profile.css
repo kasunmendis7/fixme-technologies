@@ -1,0 +1,111 @@
+/* Profile Cards */
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.card {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 15px;
+    text-align: center;
+}
+
+.card-content h3 {
+    margin: 10px 0;
+    font-size: 1.5rem;
+    color: #333333;
+}
+
+.card-content p {
+    font-size: 1rem;
+    color: #666666;
+    margin: 5px 0;
+}
+
+.card-content small {
+    display: block;
+    margin-top: 10px;
+    color: #888888;
+}
+
+.message-btn {
+    background: #4CAF50;
+    color: #ffffff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 10px 0;
+    transition: background-color 0.3s ease;
+}
+
+.message-btn:hover {
+    background: #45a049;
+}
+
+/* Feedback Section */
+.feedback-section {
+    margin: 30px 0;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.feedback-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333333;
+}
+
+.feedback-card {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.feedback-card h4 {
+    margin-bottom: 10px;
+    font-size: 1.25rem;
+    color: #333333;
+}
+
+.feedback-card p {
+    font-size: 1rem;
+    color: #666666;
+    margin: 5px 0;
+}
+
+.feedback-card small {
+    display: block;
+    margin-top: 10px;
+    color: #888888;
+}
