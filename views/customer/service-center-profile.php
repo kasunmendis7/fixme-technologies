@@ -13,12 +13,12 @@ use app\core\Application;
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?php echo $technician['fname'] . ' ' . $technician['lname'] ?> - Profile</title>
-    <title>Profile</title>
+    <title>Service Center</title>
     <link rel="stylesheet" href="/css/customer/customer-dashboard.css">
     <link rel="stylesheet" href="/css/customer/overlay.css">
     <link rel="stylesheet" href="/css/customer/flash-messages.css">
     <link rel="stylesheet" href="/css/customer/technician-profile.css">
+    <link rel="stylesheet" href="/css/customer/service-center-profile.css">
 </head>
 
 <body>
@@ -32,11 +32,11 @@ include_once 'components/header.php';
     <!--    <div class="banner"></div>-->
     <div class="profile-info">
         <div class="profile-pic">
-            <img src="<?php echo $technician['profile_picture'] ?>" alt="Technician Profile Picture">
+<!--            <img src="--><?php //echo $technician['profile_picture'] ?><!--" alt="Technician Profile Picture">-->
         </div>
         <div class="profile-details">
             <h2><?php echo $technician['fname'] . ' ' . $technician['lname'] ?></h2>
-            <p>Technician</p>
+            <p>Service center</p>
         </div>
         <div class="status">
             <div class="availability">
@@ -72,23 +72,76 @@ include_once 'components/header.php';
 
 <main class="content">
     <div class="cards">
-        <?php if (!empty($posts)): ?>
-            <?php foreach ($posts as $post): ?>
-                <article class="card">
-                    <div class="card-image">
-                        <img src="/assets/uploads/<?php echo $post['media']; ?>" alt="Post Media">
-                    </div>
-                    <div class="card-content">
-                        <h3><?php echo $technician['fname'] . ' ' . $technician['lname']; ?></h3>
-                        <p><?php echo htmlspecialchars($post['description'], ENT_QUOTES, 'UTF-8'); ?></p>
-                        <p><small>Posted on <?php echo date('F j, Y, g:i a', strtotime($post['created_at'])); ?></small>
-                        </p>
-                    </div>
-                </article>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p>No posts to display.</p>
-        <?php endif; ?>
+        <!-- Profile Card 1 -->
+        <article class="card">
+            <div class="card-image">
+<!--                <img src="/assets/uploads/tech1.jpg" alt="Technician Profile Picture">-->
+            </div>
+            <div class="card-content">
+                <h3>Shane Mario</h3>
+                <p>Expert in electrical repairs with 10+ years of experience.</p>
+                <p><small>Posted on <?php echo date('F j, Y, g:i a'); ?></small></p>
+                <button class="message-btn">Message</button>
+            </div>
+        </article>
+
+        <!-- Profile Card 2 -->
+        <article class="card">
+            <div class="card-image">
+<!--                <img src="/assets/uploads/tech2.jpg" alt="Technician Profile Picture">-->
+            </div>
+            <div class="card-content">
+                <h3>Alex Johnson</h3>
+                <p>Specialist in plumbing and maintenance with a reputation for quick solutions.</p>
+                <p><small>Posted on <?php echo date('F j, Y, g:i a'); ?></small></p>
+                <button class="message-btn">Message</button>
+            </div>
+        </article>
+
+        <!-- Profile Card 3 -->
+        <article class="card">
+            <div class="card-image">
+<!--                <img src="/assets/uploads/tech3.jpg" alt="Technician Profile Picture">-->
+            </div>
+            <div class="card-content">
+                <h3>Lisa Ray</h3>
+                <p>Certified HVAC technician, ensuring quality and efficient services.</p>
+                <p><small>Posted on <?php echo date('F j, Y, g:i a'); ?></small></p>
+                <button class="message-btn">Message</button>
+            </div>
+        </article>
+    </div>
+
+    <!-- Feedback Section -->
+    <div class="feedback-section">
+        <h2>Feedback</h2>
+
+        <!-- Feedback Card 1 -->
+        <article class="feedback-card">
+            <div class="feedback-content">
+                <h4>John Doe</h4>
+                <p>"Shane was extremely professional and resolved my electrical issues quickly!"</p>
+                <p><small>Rated: ★★★★★</small></p>
+            </div>
+        </article>
+
+        <!-- Feedback Card 2 -->
+        <article class="feedback-card">
+            <div class="feedback-content">
+                <h4>Jane Smith</h4>
+                <p>"Alex is reliable and provided excellent plumbing services at a fair price."</p>
+                <p><small>Rated: ★★★★☆</small></p>
+            </div>
+        </article>
+
+        <!-- Feedback Card 3 -->
+        <article class="feedback-card">
+            <div class="feedback-content">
+                <h4>Mike Brown</h4>
+                <p>"Lisa's HVAC expertise saved us a lot of trouble during the heatwave."</p>
+                <p><small>Rated: ★★★★★</small></p>
+            </div>
+        </article>
     </div>
 </main>
 

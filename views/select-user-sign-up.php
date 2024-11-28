@@ -32,31 +32,27 @@
                 <a href="/customer-sign-up" class="button">Sign up</a>
             </div>
 
-            <div class="card" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">
-                <div class="icon">
-                    <img src="assets/select-user-technician.png" alt="Technician icon">
-                </div>
-                <h3 class="heading">Technician</h3>
-                <p class="paragraph">
-                    Sign up as a Technician and find customers.
-                </p>
-                <a href="/technician-sign-up" class="button">Sign up</a>
+        <div class="card" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">
+            <div class="icon">
+                <img src="assets/select-user-technician.png" alt="guider icon">
             </div>
-
-            <div class="card" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">
-                <div class="icon">
-                    <img src="assets/select-user-service-centre.png" alt="Service Center icon">
-                </div>
-                <h3 class="heading">Service Center</h3>
-                <p class="paragraph">
-                    Sign up as a Service Center and find customers.
-                </p>
-                <a href="/service-centre-sign-up" class="button">Sign up</a>
+            <h3 class="heading">Technician</h3>
+            <p class="paragraph">
+                Sign Up as a Technician and find customers.
+            </p>
+            <a href="/technician-sign-up" class="button">Sign Up</a>
+        </div>
+        <div class="card" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">
+            <div class="icon">
+                <img src="assets/select-user-service-centre.png" alt="guider icon">
             </div>
+            <h3 class="heading">Service Center</h3>
+            <p class="paragraph">
+                Sign Up as a Service Center and find customers.
+            </p>
+            <a href="/service-centre-sign-up" class="button">Sign Up</a>
         </div>
     </div>
-
-
 
 </section>
 
