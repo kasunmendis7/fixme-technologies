@@ -43,7 +43,7 @@ use app\core\Application;
             <li><a href="/home-map" class="nav-link px-2">Map</a></li>
             <li><a href="/market-place-home" class="nav-link px-2">Marketplace</a></li>
             <li><a href="#" class="nav-link px-2">FAQs</a></li>
-            <li><a href="#" class="nav-link px-2">About</a></li>
+            <li><a href="/about-us" class="nav-link px-2">About</a></li>
         </ul>
 
         <?php if (Application::isGuestTechnician() || Application::isGuestCustomer() || Application::isGuestServiceCenter()): ?>
@@ -78,7 +78,8 @@ use app\core\Application;
             <div class="col-6 col-md-2 mb-3">
                 <h5>Company</h5>
                 <ul class="nav-f flex-column">
-                    <li class="nav-item-f mb-2"><a href="#" class="nav-link-f p-0 text-body-secondary">About Us</a></li>
+                    <li class="nav-item-f mb-2"><a href="/about-us" class="nav-link-f p-0 text-body-secondary">About
+                            Us</a></li>
                     <li class="nav-item-f mb-2"><a href="#" class="nav-link-f p-0 text-body-secondary">Our Offerings</a>
                     </li>
                 </ul>
