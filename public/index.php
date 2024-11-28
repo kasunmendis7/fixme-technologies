@@ -120,6 +120,7 @@ $app->router->post('/delete-cus-tech-req', [CustomerController::class, 'deleteCu
 $app->router->get('/customer-messages', [CustomerController::class, 'customerMessages']);
 $app->router->get('/service-center-profile', [CustomerController::class, 'serviceCenterProfile']);
 $app->router->get('/customer-vehicle-issue', [CustomerController::class, 'customerVehicleIssue']);
+$app->router->get('/customer-transactions', [CustomerController::class, 'customerTransactions']);
 
 
 /* Admin Routes */
