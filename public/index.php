@@ -55,6 +55,7 @@ $app->router->get('/technician-profile', [TechnicianController::class, 'technici
 $app->router->post('/update-technician-profile', [TechnicianController::class, 'updateTechnicianProfile']);
 $app->router->get('/technician-requests', [TechnicianController::class, 'viewRequests']);
 $app->router->post('/technician-requests-update', [TechnicianController::class, 'updateRequestStatus']);
+$app->router->get('/technician-transactions', [TechnicianController::class, 'technicianTransactions']);
 
 /* Routes related to the Post */
 $app->router->get('/technician-create-post', [TechnicianController::class, 'technicianCreatePost']);
