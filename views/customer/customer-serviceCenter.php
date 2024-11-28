@@ -1,3 +1,6 @@
+<?php
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +9,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Technicians</title>
+    <title>Find service center</title>
     <link rel="stylesheet" href="/css/customer/customer-dashboard.css">
     <link rel="stylesheet" href="/css/customer/overlay.css">
     <link rel="stylesheet" href="/css/customer/customer-technicians.css">
@@ -23,15 +26,15 @@ include_once 'components/header.php';
 ?>
 
 <div class="search-container">
-    <h2 class="search-title">Search Technicians</h2>
+    <h2 class="search-title">Search Service center</h2>
     <div class="search-options">
-        <button class="option-button active">Technician Only</button>
+        <button class="option-button active">Service center Only</button>
     </div>
 
     <form class="search-form" onsubmit="event.preventDefault();">
         <div class="input-group">
-            <label><span><ion-icon name="person"></ion-icon></span> Technician Name</label>
-            <input type="text" id="technician-search" placeholder="Amila Sugathsiri" oninput="filterTechnicians()">
+            <label><span><ion-icon name="person"></ion-icon></span> Service center Name</label>
+            <input type="text" id="technician-search" placeholder="Amila Sugathsiri">
         </div>
     </form>
 </div>

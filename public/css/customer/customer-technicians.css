@@ -1,7 +1,20 @@
 /* Reset and basic styles */
 
+body {
+    background-image: url('/public/assets/customer-dashboard/customer-technicians.jpg'); /* Replace with the actual path to your image */
+    background-size: cover; /* Ensures the image covers the entire section */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-position: center;
+}
+
 .cust-tech-container {
     margin: 2rem;
+}
+
+.tech-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Grid System */
@@ -12,22 +25,29 @@
     margin-right: -1rem;
 }
 
+.col {
+    padding: 1rem;
+}
+
+/* Mobile screens - 1 column */
 .row-cols-1 .col {
     flex: 0 0 100%;
     max-width: 100%;
-    padding: 1rem;
 }
 
-.row-cols-md-2 .col {
-    flex: 0 0 100%;
-    max-width: 100%;
-    padding: 1rem;
-}
-
+/* Tablet screens - 2 columns */
 @media (min-width: 768px) {
     .row-cols-md-2 .col {
         flex: 0 0 50%;
         max-width: 50%;
+    }
+}
+
+/* Desktop screens - 3 columns */
+@media (min-width: 992px) {
+    .row-cols-lg-3 .col {
+        flex: 0 0 25%;
+        max-width: 25%;
     }
 }
 
@@ -41,7 +61,7 @@
     border: 1px solid #ddd;
     border-radius: 0.5rem;
     overflow: hidden;
-    background-color: #fff;
+    background-color: rgba(244, 247, 248, 0.91);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease;
 }
@@ -115,7 +135,6 @@
     display: inline-block;
     border-radius: 0.25rem;
     padding: 0.25rem 0.5rem;
-
 }
 
 .rating {
@@ -221,4 +240,5 @@
     grid-column: span 1;
     align-self: end;
 }
+
 

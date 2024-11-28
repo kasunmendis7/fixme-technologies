@@ -116,7 +116,13 @@ class TechnicianController extends Controller
             return $this->render('_404');
         }
 //        show($technician['fname']);
-        return $this->render('/customer/technician-profile', ['technician' => $technician]);
+        $postModel = new Post();
+        $posts = $postModel->getPostsByTechnicianId(intval($id[0]));
+
+        return $this->render('/customer/technician-profile', [
+            'technician' => $technician,
+            'posts' => $posts
+        ]);
     }
 
     public function viewRequests()
@@ -146,5 +152,7 @@ class TechnicianController extends Controller
         }
         Application::$app->response->redirect('/technician-requests');
     }
+
+
 }
 

@@ -111,12 +111,16 @@ $app->router->get('/geolocation-service-centres', [CustomerController::class, 'g
 $app->router->get('/customer-location', [CustomerController::class, 'customerLocation']);
 $app->router->get('/technician-profile/{id}', [TechnicianController::class, 'viewTechnicianProfile']);
 $app->router->post('/cus-tech-req', [CustomerController::class, 'cusTechReq']);
+$app->router->post('/delete-cus-tech-req', [CustomerController::class, 'deleteCusTechReq']);
+$app->router->get('/customer-serviceCenter', [CustomerController::class, 'customerServiceCenter']);
+$app->router->get('/service-center-profile', [CustomerController::class, 'serviceCenterProfile']);
+
 
 /* Admin Routes */
 $app->router->get('/admin-dashboard', [AdminController::class, 'adminDashboard']);
 $app->router->get('/customers', [AdminController::class, 'customers']);
 $app->router->get('/technicians', [AdminController::class, 'technicians']);
-$app->router->post('/admin/delete-customer', [AdminController::class, 'deleteCustomer']);
+$app->router->post('/admin/delete-technician', [AdminController::class, 'deleteTechnician']);
 $app->router->get('/admin-settings', [AdminController::class, 'adminSettings']);
 $app->router->get('/admin-profile', [AdminController::class, 'adminProfile']);
 $app->router->post('/update-admin-profile', [AdminController::class, 'updateAdminProfile']);
@@ -161,7 +165,7 @@ $app->router->get('/service-center-create-product', [ServiceCentreController::cl
 $app->router->post('/service-center-create-product', [ProductController::class, 'create']);
 $app->router->get('/market-place-home', [ProductController::class, 'index']);
 $app->router->get('/service-center-create-product', [ProductController::class, 'filterProductsById']);
-$app->router->get('/service-center-update-product', [ProductController::class,'update']);
+$app->router->get('/service-center-update-product', [ProductController::class, 'update']);
 $app->router->post('/service-center-update-product', [ProductController::class, 'update']);
 $app->router->post('/service-center-delete-product', [ProductController::class, 'delete']);
 
@@ -169,7 +173,6 @@ $app->router->post('/service-center-delete-product', [ProductController::class, 
 /** Admin Routes */
 $app->router->get('/customers', [AdminController::class, 'customers']);
 $app->router->post('/admin/delete-customer', [AdminController::class, 'deleteCustomer']);
-
 
 $app->router->get('/admin-services', [AdminController::class, 'manageServices']);
 $app->router->post('/admin-services-add', [AdminController::class, 'addService']);
