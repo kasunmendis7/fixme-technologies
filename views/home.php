@@ -54,8 +54,16 @@ use app\core\Application;
                 </p>
                 <button class="box-2-btn" type="button" onclick="redirectServiceCentreLanding()">See More...</button>
             </div>
+            <div class="box-2-video">
+                <video autoplay muted loop id="background-video">
+                    <source  src="/assets/logo/FIXME (1).mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
         </div>
+
     </div>
+
 </section>
 <section class="section-3">
     <div class="heading-container">

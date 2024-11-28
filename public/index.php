@@ -85,6 +85,8 @@ $app->router->post('/update-service-centre-profile', [ServiceCentreController::c
 $app->router->get('/service-center-help', [ServiceCentreController::class, 'serviceCenterHelp']);
 $app->router->get('/service-center-community', [ServiceCentreController::class, 'serviceCenterCommunity']);
 $app->router->get('/service-center-messages', [ServiceCentreController::class, 'serviceCenterMessages']);
+$app->router->get('/check-out-page', [ServiceCentreController::class, 'checkOutPage']);
+$app->router->get('/card-details', [ServiceCentreController::class, 'cardDetails']);
 
 /* Routes related to the product (service center) */
 $app->router->get('/service-center-create-product', [ServiceCentreController::class, 'serviceCenterCreateProduct']);
