@@ -55,4 +55,10 @@ class SiteController extends Controller
         return $serviceCenter->serviceCentresGeocoding();
 
     }
+
+    public function aboutUs()
+    {
+        $this->setLayout('main');
+        return $this->render('/about-us');
+    }
 }
