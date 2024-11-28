@@ -320,7 +320,7 @@ body {
 /* User name */
 .user-name {
     position: relative;
-    margin-left: 300px;
+    margin-left: 350px;
     color: var(--white);
     font-size: 0.9rem;
 }
