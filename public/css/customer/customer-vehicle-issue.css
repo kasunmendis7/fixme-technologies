@@ -1,0 +1,146 @@
+/*body {*/
+/*    font-family: Arial, sans-serif;*/
+/*    background-color: #f7f7f7;*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*}*/
+
+/*.form-container {*/
+/*    max-width: 500px;*/
+/*    margin: 50px auto;*/
+/*    padding: 20px;*/
+/*    background: #fff;*/
+/*    border-radius: 8px;*/
+/*    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);*/
+/*}*/
+
+/*h1 {*/
+/*    margin-bottom: 20px;*/
+/*    font-size: 24px;*/
+/*    text-align: center;*/
+/*}*/
+
+/*label {*/
+/*    display: block;*/
+/*    margin-bottom: 8px;*/
+/*    font-weight: bold;*/
+/*}*/
+
+/*select,*/
+/*textarea,*/
+/*button {*/
+/*    width: 100%;*/
+/*    padding: 10px;*/
+/*    margin-bottom: 20px;*/
+/*    border: 1px solid #ccc;*/
+/*    border-radius: 4px;*/
+/*}*/
+
+/*button {*/
+/*    background-color: #007bff;*/
+/*    color: #fff;*/
+/*    border: none;*/
+/*    cursor: pointer;*/
+/*    font-size: 16px;*/
+/*}*/
+
+/*button:hover {*/
+/*    background-color: #0056b3;*/
+/*}*/
+
+/*#issuesList {*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+/*    gap: 10px;*/
+/*}*/
+
+/*.issue-checkbox {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*}*/
+
+/*.issue-checkbox input {*/
+/*    margin-right: 8px;*/
+/*}*/
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 0;
+}
+
+.form-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 25px 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+    color: #333333;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #444444;
+    font-size: 16px;
+}
+
+select,
+textarea,
+button {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333333;
+}
+
+textarea {
+    resize: none;
+}
+
+button {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#issuesList {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.issue-checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.issue-checkbox input {
+    margin-right: 12px;
+}
+
+.issue-checkbox label {
+    font-size: 14px;
+    color: #333333;
+    margin: 0;
+}
