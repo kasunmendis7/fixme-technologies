@@ -113,6 +113,9 @@ $app->router->get('/technician-profile/{id}', [TechnicianController::class, 'vie
 $app->router->post('/cus-tech-req', [CustomerController::class, 'cusTechReq']);
 $app->router->post('/delete-cus-tech-req', [CustomerController::class, 'deleteCusTechReq']);
 $app->router->get('/customer-messages', [CustomerController::class, 'customerMessages']);
+$app->router->get('/customer-serviceCenter', [CustomerController::class, 'customerServiceCenter']);
+$app->router->get('/service-center-profile', [CustomerController::class, 'serviceCenterProfile']);
+
 
 /* Admin Routes */
 $app->router->get('/admin-dashboard', [AdminController::class, 'adminDashboard']);

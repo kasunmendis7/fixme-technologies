@@ -46,6 +46,18 @@ class CustomerController extends Controller
         return $this->render('/customer/customer-technicians');
     }
 
+    public function customerServiceCenter()
+    {
+        $this->setLayout('auth');
+        return $this->render('/customer/customer-serviceCenter');
+    }
+
+    public function serviceCenterProfile()
+    {
+        $this->setLayout('auth');
+        return $this->render('/customer/service-center-profile');
+    }
+
     public function customerMap()
     {
         $this->setLayout('auth');
