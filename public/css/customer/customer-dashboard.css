@@ -360,7 +360,7 @@ a {
 }
 
 .status.completed {
-    padding: 2px 4px;
+    padding: .5rem 1rem;
     background: #8de02c;
     color: var(--white);
     border-radius: 4px;
@@ -369,16 +369,17 @@ a {
 }
 
 .status.pending {
-    padding: 2px 4px;
+    padding: .5rem 1rem;
     background: #e9b10a;
     color: var(--white);
     border-radius: 4px;
     font-size: 14px;
     font-weight: 500;
+    border-radius: 1rem;
 }
 
 .status.rejected {
-    padding: 2px 4px;
+    padding: .5rem 1rem;
     background: #f00;
     color: var(--white);
     border-radius: 4px;
@@ -386,8 +387,8 @@ a {
     font-weight: 500;
 }
 
-.status.inProgress {
-    padding: 2px 4px;
+.status.inprogress {
+    padding: .5rem 1rem;
     background: #1795ce;
     color: var(--white);
     border-radius: 4px;
@@ -544,4 +545,18 @@ a {
     margin-left: 300px;
     color: var(--white);
     font-size: 0.9rem;
+}
+
+.cancel-btn {
+    background-color: #0d6efd;
+    border: none;
+    border-radius: 1rem;
+    color: #FFFFFF;
+    padding: .5rem 1rem;
+    margin: 0;
+}
+
+.cancel-btn:hover {
+    cursor: pointer;
+    background-color: rgba(13, 110, 253, 0.84);
 }

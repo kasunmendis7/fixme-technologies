@@ -33,12 +33,11 @@ include_once 'components/header.php';
             <label><span><ion-icon name="person"></ion-icon></span> Technician Name</label>
             <input type="text" id="technician-search" placeholder="Amila Sugathsiri" oninput="filterTechnicians()">
         </div>
-        <!-- <button type="submit" class="btn btn-primary">Search</button> -->
     </form>
 </div>
 
 <div class="cust-tech-container">
-    <div class="row row-cols-1 row-cols-md-2 g-4" id="technicians-list">
+    <div class="tech-container row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="technicians-list">
         <?php
         $customer = new Customer();
         $technicians = $customer->getAllTechniciansSortedByDistance();

@@ -38,3 +38,4 @@ async function sendRequest(technicianId, customerId) {
         console.error('Error: ', e);
     }
 }
+
