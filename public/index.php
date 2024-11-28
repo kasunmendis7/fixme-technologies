@@ -41,6 +41,7 @@ $app->router->get('/select-user-sign-up', [SiteController::class, 'selectUserSig
 $app->router->get('/home-map', [SiteController::class, 'homeMap']);
 $app->router->get('/home-geolocation-technicians', [SiteController::class, 'homeGeolocationTechnicians']);
 $app->router->get('/home-geolocation-service-centres', [SiteController::class, 'homeGeolocationServiceCentres']);
+$app->router->get('/about-us', [SiteController::class, 'aboutUs']);
 
 /* Technician Routes */
 $app->router->get('/technician-landing', [TechnicianController::class, 'technicianLanding']);
