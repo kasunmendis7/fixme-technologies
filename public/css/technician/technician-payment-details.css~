@@ -130,7 +130,7 @@ body {
 
 .select-bank-account {
     background: #fff;
-    font-size: 25px;
+    font-size: 30px;
     padding: 20px;
     margin-top: 20px;
     margin-left: 250px;

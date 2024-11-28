@@ -146,7 +146,7 @@ body {
 }
 
 .payment-card-1 {
-    background: #fff;
+    background: #7aa3f6;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -158,7 +158,7 @@ body {
 }
 
 .payment-card-2 {
-    background: #7aa3f6;
+    background: #FFFFFF;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
