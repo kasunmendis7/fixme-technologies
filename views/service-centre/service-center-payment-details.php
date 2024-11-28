@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Technician Dashboard</title>
     <link rel="stylesheet" href="/css/technician/technician-dashboard.css">
-    <link rel="stylesheet" href="/css/technician/technician-payment-details.css">
+    <link rel="stylesheet" href="/css/service-center/service-center-payment-details.css">
     <link rel="stylesheet" href="/css/technician/overlay.css">
 
 </head>

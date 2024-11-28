@@ -91,6 +91,7 @@ $app->router->get('/service-center-messages', [ServiceCentreController::class, '
 $app->router->get('/check-out-page', [ServiceCentreController::class, 'checkOutPage']);
 $app->router->get('/card-details', [ServiceCentreController::class, 'cardDetails']);
 $app->router->get('/service-centre-map', [ServiceCentreController::class, 'serviceCentreMap']);
+$app->router->get('/service-center-payment-details', [ServiceCentreController::class, 'serviceCenterPaymentDetails']);
 
 
 /* Routes related to the product (service center) */
@@ -123,6 +124,7 @@ $app->router->get('/customer-messages', [CustomerController::class, 'customerMes
 $app->router->get('/service-center-profile', [CustomerController::class, 'serviceCenterProfile']);
 $app->router->get('/customer-vehicle-issue', [CustomerController::class, 'customerVehicleIssue']);
 $app->router->get('/customer-transactions', [CustomerController::class, 'customerTransactions']);
+$app->router->get('/customer-payment-details', [CustomerController::class, 'customerPaymentDetails']);
 
 
 /* Admin Routes */
@@ -199,6 +201,12 @@ $app->router->get('/admin-promotions', [AdminController::class, 'promotions']);
 $app->router->get('/admin-login', [AuthController::class, 'adminLogin']);
 $app->router->post('/admin-login', [AuthController::class, 'adminLogin']);
 $app->router->get('/admin-logout', [AuthController::class, 'adminLogout']);
+
+//promotion for admin
+$app->router->get('/promotion-create', [PromotionController::class, 'create']);
+$app->router->post('/promotion/add', [AdminController::class, 'insert_promotion']);
+$app->router->post('/promotion/update', [AdminController::class, 'update_promotion']);
+$app->router->post('/promotion/delete', [AdminController::class, 'delete_promotion']);
 
 
 /* Run the application */
