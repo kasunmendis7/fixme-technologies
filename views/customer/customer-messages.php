@@ -420,6 +420,8 @@ include_once 'components/header.php';
     </div>
 </div>
 <script src="/js/customer/overlay.js"></script>
+<script src="/js/customer/customer-dashboard.js"></script>
+<script src="/js/customer/customer-home.js"></script>
 
 </body>
 </html>

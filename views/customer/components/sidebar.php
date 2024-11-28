@@ -28,7 +28,7 @@
                 </a>
             </li>
             <li>
-                <a href="/customer-serviceCenter">
+                <a href="/customer-service-centers">
                     <span class="icon">
                         <ion-icon name="car-outline"></ion-icon>
                     </span>
@@ -52,7 +52,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/customer-vehicle-issue">
                     <span class="icon">
                         <ion-icon name="document-text-outline"></ion-icon>
                     </span>

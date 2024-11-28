@@ -1,5 +1,5 @@
 <?php
-/** @var $technician app\models\Technician */
+/** @var $serviceCenter app\models\ServiceCenter */
 
 use app\core\Application;
 
@@ -17,7 +17,6 @@ use app\core\Application;
     <link rel="stylesheet" href="/css/customer/customer-dashboard.css">
     <link rel="stylesheet" href="/css/customer/overlay.css">
     <link rel="stylesheet" href="/css/customer/flash-messages.css">
-    <link rel="stylesheet" href="/css/customer/technician-profile.css">
     <link rel="stylesheet" href="/css/customer/service-center-profile.css">
 </head>
 
@@ -32,10 +31,11 @@ include_once 'components/header.php';
     <!--    <div class="banner"></div>-->
     <div class="profile-info">
         <div class="profile-pic">
-<!--            <img src="--><?php //echo $technician['profile_picture'] ?><!--" alt="Technician Profile Picture">-->
+            <!--            <img src="-->
+            <?php //echo $technician['profile_picture'] ?><!--" alt="Technician Profile Picture">-->
         </div>
         <div class="profile-details">
-            <h2><?php echo $technician['fname'] . ' ' . $technician['lname'] ?></h2>
+            <h2><?php echo $serviceCenter['name'] ?></h2>
             <p>Service center</p>
         </div>
         <div class="status">
@@ -46,7 +46,7 @@ include_once 'components/header.php';
             <button class="message-btn">Message</button>
             <button class="message-btn">Call</button>
             <button class="message-btn"
-                    onclick="sendRequest( <?php echo $technician['tech_id'] . ', ' . Application::$app->session->get('customer') ?> )"
+                    onclick="sendRequest( <?php echo $serviceCenter['ser_cen_id'] . ', ' . Application::$app->session->get('customer') ?> )"
             >
                 Request
             </button>
@@ -54,14 +54,14 @@ include_once 'components/header.php';
     </div>
 </header>
 
-<?php if (Application::$app->session->getFlash('createCusTechReq-success')): ?>
+<?php if (Application::$app->session->getFlash('createCusSerCenReq-success')): ?>
     <div class="alert alert-success">
-        <?php echo Application::$app->session->getFlash('createCusTechReq-success') ?>
+        <?php echo Application::$app->session->getFlash('createCusSerCenReq-success') ?>
     </div>
 <?php endif; ?>
-<?php if (Application::$app->session->getFlash('createCusTechReq-error')): ?>
+<?php if (Application::$app->session->getFlash('createCusSerCenReq-error')): ?>
     <div class="alert alert-error">
-        <?php echo Application::$app->session->getFlash('createCusTechReq-error') ?>
+        <?php echo Application::$app->session->getFlash('createCusSerCenReq-error') ?>
     </div>
 <?php endif; ?>
 
@@ -75,7 +75,7 @@ include_once 'components/header.php';
         <!-- Profile Card 1 -->
         <article class="card">
             <div class="card-image">
-<!--                <img src="/assets/uploads/tech1.jpg" alt="Technician Profile Picture">-->
+                <!--                <img src="/assets/uploads/tech1.jpg" alt="Technician Profile Picture">-->
             </div>
             <div class="card-content">
                 <h3>Shane Mario</h3>
@@ -88,7 +88,7 @@ include_once 'components/header.php';
         <!-- Profile Card 2 -->
         <article class="card">
             <div class="card-image">
-<!--                <img src="/assets/uploads/tech2.jpg" alt="Technician Profile Picture">-->
+                <!--                <img src="/assets/uploads/tech2.jpg" alt="Technician Profile Picture">-->
             </div>
             <div class="card-content">
                 <h3>Alex Johnson</h3>
@@ -101,7 +101,7 @@ include_once 'components/header.php';
         <!-- Profile Card 3 -->
         <article class="card">
             <div class="card-image">
-<!--                <img src="/assets/uploads/tech3.jpg" alt="Technician Profile Picture">-->
+                <!--                <img src="/assets/uploads/tech3.jpg" alt="Technician Profile Picture">-->
             </div>
             <div class="card-content">
                 <h3>Lisa Ray</h3>
@@ -184,7 +184,7 @@ include_once 'components/header.php';
 <!--    Icons-->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-<script src="/js/customer/technician-profile.js"></script>
+<script src="/js/customer/service-center-profile.js"></script>
 <script src="/js/customer/customer-home.js"></script>
 <script src="/js/customer/overlay.js"></script>
 </body>
