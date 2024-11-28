@@ -153,6 +153,11 @@ class TechnicianController extends Controller
         Application::$app->response->redirect('/technician-requests');
     }
 
+    public function technicianPaymentDetails()
+    {
+        $this->setLayout('auth');
+        return $this->render('/technician/technician-payment-details');
+    }
 
 }
 
