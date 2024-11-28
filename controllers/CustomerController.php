@@ -189,4 +189,10 @@ class CustomerController extends Controller
         $this->setLayout('auth');
         return $this->render('/customer/customer-vehicle-issue');
     }
+
+    public function customerTransactions()
+    {
+        $this->setLayout('auth');
+        return $this->render('/customer/customer-transactions');
+    }
 }
