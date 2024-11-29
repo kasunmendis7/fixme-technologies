@@ -1,4 +1,3 @@
-
 <style>
 
     /** {*/
@@ -35,7 +34,7 @@
             column-gap: 100px;
             margin: 50px;
 
-            .checkout-form  {
+            .checkout-form {
                 width: 50%;
 
                 form {
@@ -45,7 +44,7 @@
                         font-weight: 500;
                     }
 
-                    .form-control  {
+                    .form-control {
                         margin: 10px 0px;
                         position: relative;
 
@@ -158,6 +157,7 @@
                                     font-size: 12px;
                                     font-weight: 500;
                                 }
+
                                 .card-price {
                                     font-size: 10px;
                                     font-weight: 500;
@@ -170,6 +170,7 @@
                                         margin-left: 10px;
                                     }
                                 }
+
                                 .card-wheel {
                                     margin-top: 17px;
                                     border: .2px solid #4e515085;
@@ -270,7 +271,9 @@
 </style>
 
 <header>
-    <h3><center>Checkout</center></h3>
+    <h3>
+        <center>Checkout</center>
+    </h3>
 </header>
 
 <main>
@@ -320,7 +323,8 @@
                     <label for="checkout-country">Country</label>
                     <div>
                         <span class="fa fa-globe"></span>
-                        <input type="text" name="checkout-country" id="checkout-country" placeholder="Your country..." list="country-list">
+                        <input type="text" name="checkout-country" id="checkout-country" placeholder="Your country..."
+                               list="country-list">
                         <datalist id="country-list">
                             <option value="India"></option>
                             <option value="USA"></option>
@@ -334,7 +338,8 @@
                     <label for="checkout-postal">Postal code</label>
                     <div>
                         <span class="fa fa-archive"></span>
-                        <input type="numeric" name="checkout-postal" id="checkout-postal" placeholder="Your postal code...">
+                        <input type="numeric" name="checkout-postal" id="checkout-postal"
+                               placeholder="Your postal code...">
                     </div>
                 </div>
             </div>
@@ -343,7 +348,9 @@
                 <label for="checkout-checkbox">Save this information for next time</label>
             </div>
             <div class="form-control-btn">
-                <a href="/card-details"><button>Continue</button></a>
+                <a href="/card-details">
+                    <button>Continue</button>
+                </a>
             </div>
         </form>
     </section>
@@ -352,10 +359,12 @@
         <div class="checkout-details-inner">
             <div class="checkout-lists">
                 <div class="card">
-                    <div class="card-image"><img src="https://rvs-checkout-page.onrender.com/photo1.png" alt=""></div>
+                    <div class="card-image"><img
+                                src="https://media.wuerth.com/source/eshop/stmedia/0100/images/std.lang.all/resolutions/category/576px/34254125.jpg"
+                                alt=""></div>
                     <div class="card-details">
-                        <div class="card-name">Vintage Backbag</div>
-                        <div class="card-price">$54.99 <span>$94.99</span></div>
+                        <div class="card-name">Hydraulic Jack</div>
+                        <div class="card-price">Rs. 4000 <span>Rs. 4500</span></div>
                         <div class="card-wheel">
                             <button>-</button>
                             <span>1</span>
@@ -363,18 +372,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-image"><img src="https://rvs-checkout-page.onrender.com/photo2.png" alt=""></div>
-                    <div class="card-details">
-                        <div class="card-name">Levi Shoes</div>
-                        <div class="card-price">$74.99 <span>$124.99</span></div>
-                        <div class="card-wheel">
-                            <button>-</button>
-                            <span>1</span>
-                            <button>+</button>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
             <div class="checkout-shipping">
                 <h6>Shipping</h6>
