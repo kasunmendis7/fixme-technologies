@@ -159,6 +159,11 @@ class TechnicianController extends Controller
         return $this->render('/technician/technician-transactions');
     }
 
+    public function technicianPaymentDetails()
+    {
+        $this->setLayout('auth');
+        return $this->render('/technician/technician-payment-details');
+    }
 
 }
 

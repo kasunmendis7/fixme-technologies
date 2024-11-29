@@ -1,6 +1,6 @@
 const chartData = {
-    labels: ["Customers", "Technician", "Service Centre", ],
-    data: [30, 17, 10],
+    labels: ["Five star reviews", "Four star reviews", "Three star reviews", "Two star reviews","One star reviews"],
+    data: [30, 17, 10,22,42],
   };
   
   const myChart = document.querySelector(".my-chart");

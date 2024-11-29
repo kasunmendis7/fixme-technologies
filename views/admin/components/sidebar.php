@@ -36,15 +36,7 @@
                     <span class="title">Technicians</span>
                 </a>
             </li>
-
-            <li>
-                <a href="/admin-services">
-                        <span class="icon">
-                           <ion-icon name="clipboard-outline"></ion-icon>
-                        </span>
-                    <span class="title">Services</span>
-                </a>
-            </li>
+            
 
             <li>
                 <a href="/admin-reports">
