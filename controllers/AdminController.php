@@ -7,6 +7,7 @@ use app\core\Controller;
 use app\core\Request;
 use app\models\Admin;
 use app\models\Customer;
+use app\models\Promotion;
 use app\models\Technician;
 
 class AdminController extends Controller
@@ -74,7 +75,62 @@ class AdminController extends Controller
     public function promotions()
     {
         $this->setLayout('auth');
-        return $this->render('/admin/admin-promotions');
+        $promotions = Promotion::getAllPromotions();
+        return $this->render('/admin/admin-promotions', [
+            'promotions' => $promotions
+        ]);
+    }
+
+    public function insert_promotion()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $desc = $_POST['promdesc'];
+            $price = $_POST['price'];
+            $create = $_POST['strdate'];
+            $update = $_POST['enddate'];
+
+            $success = Promotion::insert_promotion($desc, $create, $price, $update);
+
+            if ($success) {
+                header('Location:/admin-promotions');
+            }
+
+
+        }
+    }
+
+    public function update_promotion()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            print_r($_POST);
+            $desc = $_POST['promdesc'];
+            $price = $_POST['price'];
+            $update = $_POST['enddate'];
+            $id = $_POST['promid'];
+            $success = Promotion::updatePromotion($id, $desc, $price, $update);
+
+            if ($success) {
+                header('Location:/admin-promotions');
+            }
+
+
+        }
+    }
+
+    public function delete_promotion()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $id = $_POST['promid'];
+            $success = Promotion::deletePromotion($id);
+
+            if ($success) {
+                header('Location:/admin-promotions');
+            }
+
+
+        }
     }
 
 

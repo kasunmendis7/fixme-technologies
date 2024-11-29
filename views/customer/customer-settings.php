@@ -31,7 +31,7 @@ include_once 'components/header.php';
             </div>
         </div>
     </a>
-    <a href="#">
+    <a href="/customer-payment-details">
         <div class="card">
             <div>
                 <div class="cardName">Payment Details</div>

@@ -141,4 +141,10 @@ class ServiceCentreController extends Controller
         ]);
     }
 
+    public function serviceCenterPaymentDetails()
+    {
+        $this->setLayout('auth');
+        return $this->render('service-centre/service-center-payment-details');
+    }
+
 }

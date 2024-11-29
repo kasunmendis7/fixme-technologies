@@ -31,26 +31,6 @@ include_once 'components/header.php';
             </div>
         </div>
     </a>
-    <a href="#">
-        <div class="card">
-            <div>
-                <div class="cardName">Payment Details</div>
-            </div>
-            <div class="iconBx">
-                <ion-icon name="card-outline"></ion-icon>
-            </div>
-        </div>
-    </a>
-    <a href="#">
-        <div class="card">
-            <div>
-                <div class="cardName">Transactions</div>
-            </div>
-            <div class="iconBx">
-                <ion-icon name="receipt-outline"></ion-icon>
-            </div>
-        </div>
-    </a>
 </div>
 
 <!-- Overlay for the confirmation message -->
