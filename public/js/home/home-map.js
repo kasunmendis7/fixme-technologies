@@ -113,11 +113,11 @@ async function loadMap() {
 }
 
 function locateTechnician(techId) {
-    window.location.href = `#`;
+    window.location.href = `/select-user-login`;
 }
 
 function locateServiceCentre(serviceCentreId) {
-    window.location.href = '#';
+    window.location.href = '/select-user-login';
 }
 
 window.onload = loadMap;
