@@ -55,7 +55,7 @@ class ServiceCenter extends DbModel
     {
         $sql = "SELECT address, ser_cen_id FROM service_center WHERE ser_cen_id = :ser_cen_id";
         $stmt = self::prepare($sql);
-        $primaryKey = Application::$app->session->get('service_center');
+        $primaryKey = Application::$app->session->get('serviceCenter');
         $stmt->bindValue(':ser_cen_id', $primaryKey);
         $stmt->execute();
 
