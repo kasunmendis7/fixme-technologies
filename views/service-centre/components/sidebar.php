@@ -39,14 +39,6 @@
             <!--                </a>-->
             <!--            </li>-->
 
-            <li>
-                <a href="#">
-                        <span class="icon">
-                            <ion-icon name="people-outline"></ion-icon>
-                        </span>
-                    <span class="title">Customers</span>
-                </a>
-            </li>
 
             <li>
                 <a href="/service-center-messages">
