@@ -51,7 +51,7 @@ include_once 'components/header.php';
                                      alt="">
                                 <div class="details">
                                     <span><?php echo htmlspecialchars($customer['fname'] . ' ' . $customer['lname']); ?></span>
-                                    <p>This is the latest message</p>
+                                    <p>This is a test message</p>
                                 </div>
                             </div>
                             <div class="status-dot"><i class="fas fa-circle"></i></div>
@@ -67,36 +67,30 @@ include_once 'components/header.php';
         <div class="wrapper">
             <section class="chat-area">
                 <header>
-                    <a href="" class="back-icon"><i class="fas fa-arrow-left"></i></a>
-                    <img src="assets/technician-dashboard/customer03.jpg" alt="">
+                    <a href="/technician-messages" class="back-icon"><i class="fas fa-arrow-left"></i></a>
+                    <img src="<?php echo $customer['profile_picture'] ?? '/assets/user_avatar.png'; ?>" alt="">
                     <div class="details">
-                        <span>Kasun Mendis</span>
+                        <span><?php echo htmlspecialchars($customer['fname'] . ' ' . $customer['lname']); ?>    </span>
                         <p>Active Now</p>
                     </div>
                 </header>
                 <div class="chat-box">
-                    <div class="chat outgoing">
-                        <div class="details">
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                        </div>
-                    </div>
-                    <div class="chat incoming">
-                        <img src="assets/technician-dashboard/customer03.jpg" alt="">
-                        <div class="details">
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                        </div>
-                    </div>
-                    <div class="chat outgoing">
-                        <div class="details">
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                        </div>
-                    </div>
-                    <div class="chat incoming">
-                        <img src="assets/technician-dashboard/customer03.jpg" alt="">
-                        <div class="details">
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                        </div>
-                    </div>
+                    <?php foreach ($messages as $message): ?>
+                        <?php if ($message['outgoing_msg_id'] === Application::$app->session->get('technician')): ?>
+                            <div class="chat outgoing">
+                                <div class="details">
+                                    <p><?php echo htmlspecialchars($message['message']); ?></p>
+                                </div>
+                            </div>
+                        <?php else: ?>
+                            <div class="chat incoming">
+                                <img src="<?php echo $customer['profile_picture'] ?? '/assets/user_avatar.png'; ?>" alt="">
+                                <div class="details">
+                                    <p><?php echo htmlspecialchars($message['message']); ?></p>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
                 </div>
                 <form action="#" class="typing-area" autocomplete="off">
                     <input type="text" name="outgoing_id" value="<?php echo Application::$app->technician->tech_id; ?>"

@@ -12,6 +12,7 @@ use app\models\Post;
 use app\models\ServiceCenter;
 use app\models\Technician;
 use app\models\CusTechReq;
+use app\models\Chat;
 
 class CustomerController extends Controller
 {
@@ -200,5 +201,29 @@ class CustomerController extends Controller
     {
         $this->setLayout('auth');
         return $this->render('/customer/customer-payment-details');
+    }
+
+    public function viewCustomerMessages($id)
+    {
+        $chatModel = new Chat();
+        // echo json_encode($id);
+        // $id is an array, we need only the first element of that array
+        $tech_id = Application::$app->session->get('technician');
+
+        $customer = (new Customer())->findById(intval($id[0]));
+        $customers = $chatModel->getChatList($tech_id);
+        $this->setLayout('auth');
+        if (!$customer) {
+            return $this->render('_404');
+        }
+//        show($technician['fname']);
+//        var_dump($tech_id);
+//        exit;
+        $messages = $chatModel->getChatMessages(intval($id[0]), $tech_id);
+        return $this->render('/technician/customer-messages', [
+            'customers' => $customers,
+            'customer' => $customer,
+            'messages' => $messages
+        ]);
     }
 }

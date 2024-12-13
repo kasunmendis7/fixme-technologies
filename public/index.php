@@ -12,7 +12,7 @@ use app\controllers\AdminController;
 use app\controllers\PostController;
 use app\controllers\CommentController;
 use app\controllers\ProductController;
-
+use app\controllers\ChatController;
 
 /* load environment variables */
 
@@ -208,6 +208,11 @@ $app->router->post('/promotion/add', [AdminController::class, 'insert_promotion'
 $app->router->post('/promotion/update', [AdminController::class, 'update_promotion']);
 $app->router->post('/promotion/delete', [AdminController::class, 'delete_promotion']);
 
+/* Routes related to Chat */
+$app->router->post('/send-message', [ChatController::class, 'sendMessage']);
+$app->router->post('/load-messages', [ChatController::class, 'loadMessages']);
+$app->router->post('/chat/search-customers', [ChatController::class, 'searchCustomers']);
+$app->router->get('/customer-messages/{id}', [CustomerController::class, 'viewCustomerMessages']);
 
 /* Run the application */
 $app->run();

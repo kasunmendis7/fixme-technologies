@@ -7,6 +7,7 @@ use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
+use app\models\Chat;
 use app\models\Customer;
 use app\models\Post;
 use app\models\Technician;
@@ -41,8 +42,16 @@ class TechnicianController extends Controller
 
     public function technicianMessages()
     {
+        $tech_id = Application::$app->session->get('technician');
+        $model = new Chat();
+
+        // Get customer chat list
+        $customers = $model->getChatList($tech_id);
+
         $this->setLayout('auth');
-        return $this->render('/technician/technician-messages');
+        return $this->render('/technician/technician-messages', [
+            'customers' => $customers
+        ]);
     }
 
     public function technicianSettings()

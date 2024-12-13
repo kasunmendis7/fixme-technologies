@@ -1,3 +1,9 @@
+const form = document.querySelector(".comment-typing-area");
+
+form.onsubmit = (e) => {
+    e.preventDefault(); // preventing form from submitting
+}
+
 // Function to start editing a comment
 function editComment(commentID) {
     document.getElementById(`comment-text-${commentID}`).style.display = 'none';

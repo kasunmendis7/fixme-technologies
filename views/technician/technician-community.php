@@ -127,7 +127,7 @@ as $post): ?>
             </div>
         </div>
         <div class="input-box">
-            <form action="/comment-create" method="POST">
+            <form action="/comment-create" method="POST" class="comment-typing-area">
                 <input type="hidden" name="post_id" value="<?php echo $post['post_id']; ?>">
                 <input type="text" name="comment_text" placeholder="Add a comment..." class="text" required>
                 <button type="submit">Post</button>

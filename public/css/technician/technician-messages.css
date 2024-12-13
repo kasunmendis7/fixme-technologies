@@ -359,9 +359,8 @@ body {
 /* =============== App Container ==============  */
 .container {
     position: relative;
-    /*width: 1396px;*/
     max-width: 100%;
-    height: calc(100vh - 40px);
+    height: calc(104.5vh - 40px);
     background: #fff;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1), 0 2px 5px 0 rgba(0, 0, 0, .1);
     border-radius: 5px;
@@ -392,297 +391,429 @@ body {
     opacity: .1;
 }
 
+.wrapper {
+    background: #ffff;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1),
+    0 32px 64px -48px rgba(0, 0, 0, 0.5);
+}
+
 /* ================= Left Side ============== */
-.header {
-    position: relative;
-    width: 100%;
-    height: 60px;
-    background: #ededed;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 15px;
+/* User Area CSS styling */
+.users {
+    padding: 25px 30px;
+
 }
 
-.user-imgBx {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    overflow: hidden;
+.users header,
+.users-list a {
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+    justify-content: space-between;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.wrapper img {
+    object-fit: cover;
     border-radius: 50%;
 }
 
-.user-imgBx img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    cursor: pointer;
-}
-
-.nav-icons {
+:is(.users, .users-list) .content {
     display: flex;
+    align-items: center;
 }
 
-.nav-icons li {
-    cursor: pointer;
-    color: #51585c;
-    font-size: 1.5rem;
-    margin-left: 22px;
-    display: flex;
-}
-
-.search-chat {
-    position: relative;
-    width: 100%;
+.users header .content img {
     height: 50px;
-    background: #f6f6f6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 15px;
+    width: 50px;
 }
 
-.search-chat input {
-    width: 100%;
+:is(.users, .users-list) .details {
+    color: #000;
+    margin-left: 15px;
+}
+
+:is(.users, .users-list) .details span {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.users .search {
+    margin: 10px 0;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.users .search .text {
+    font-size: 18px;
+}
+
+.users .search input {
+    position: relative;
+    height: 42px;
+    width: calc(100% - 50px);
+    border: 1px solid #ccc;
+    padding: 0 13px;
+    font-size: 16px;
+    border-radius: 10px 0 0 10px;
     outline: none;
+}
+
+.users .search button {
+    width: 47px;
+    height: 42px;
     border: none;
-    padding: 6px;
-    background: #fff;
-    height: 38px;
-    border-radius: 30px;
-    font-size: 14px;
-    padding-left: 40px;
-}
-
-.search-chat input::placeholder {
-    color: #bbbb;
-}
-
-.search-chat ion-icon {
-    position: absolute;
-    left: 30px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.chat-list {
-    position: relative;
-    overflow-y: auto;
-    /* background: #00f; */
-    height: calc(100% - 110px); /* 60 + 50 = 110px */
-}
-
-.chat-list .chat {
-    position: relative;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    border-bottom: 1px solid rgba(0, 0, 0, .1);
-    cursor: pointer;
-}
-
-.chat-list .chat.active {
-    background: #ebebeb;
-}
-
-.chat-list .chat:hover {
-    background: #f5f5f5;
-}
-
-.chat-list .chat .imgBx {
-    position: relative;
-    min-width: 45px;
-    height: 45px;
-    overflow: hidden;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
-.chat-list .chat .imgBx img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    object-fit: cover;
-}
-
-.chat-list .chat .details {
-    position: relative;
-    width: 100%;
-}
-
-.chat-list .chat .details .head {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
-}
-
-.chat-list .chat .details .head .name {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #111;
-}
-
-.chat-list .chat .details .head .time {
-    font-size: .75rem;
-    color: #aaa;
-}
-
-.chat-list .chat.active .details .head .time {
-    color: #111;
-}
-
-.chat-list .chat .details .msgs {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.chat-list .chat .details .msg {
-    color: #aaa;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    font-size: .9rem;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.chat-list .chat .details .num.unread {
-    background-color: #010336;
+    outline: none;
     color: #fff;
-    min-width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: .75rem;
+    background: #010336;
+    cursor: pointer;
+    font-size: 17px;
+    border-radius: 0 5px 5px 0;
 }
 
+.users-list {
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+:is(.users-list, .chat-box)::-webkit-scrollbar {
+    width: 0px;
+}
+
+.users-list a {
+    margin-bottom: 15px;
+    page-break-after: 10px;
+    padding-right: 15px;
+    border-bottom-color: #f1f1f1;
+    text-decoration: none;
+}
+
+.users-list a:last-child {
+    border: none;
+    margin-bottom: 0px;
+}
+
+.users-list a .content img {
+    height: 40px;
+    width: 40px;
+}
+
+.users-list a .content p {
+    color: #67676a;
+}
+
+.users-list a .status-dot {
+    font-size: 12px;
+    color: #468669;
+}
+
+/* We'll use this class name in php to show offline status */
+.users-list a .status-dot.offline {
+    color: #ccc;
+}
 
 /* ================= Right Side ============== */
-.user-details {
-    position: relative;
+/* Chat Area CSS Styling */
+.chat-area header {
     display: flex;
-    justify-content: center;
     align-items: center;
+    padding: 18px 30px;
 }
 
-.user-details h4 {
+.chat-area header .back-icon {
+    font-size: 18px;
+    color: #010336;
+}
+
+.chat-area header img {
+    height: 45px;
+    width: 45px;
+    margin: 0 15px;
+}
+
+.chat-area header span {
+    font-size: 17px;
     font-weight: 500;
-    line-height: 1.2rem;
-    margin-left: 15px;
-
 }
 
-.user-details h4 span {
-    font-size: .8rem;
-    color: #555;
-}
-
-.chatBx {
-    position: relative;
-    width: 100%;
-    height: calc(100% - 120px); /* 60 + 60 = 120px */
-    padding: 50px;
+.chat-box {
+    height: 75vh;
     overflow-y: auto;
+    background: #f7f7f7;
+    padding: 10px 30px 20px 30px;
+    box-shadow: inset 0 32px 32px -32px rgba(0 0 0 / 5%),
+    inset 0 -32px 32px -32px rgba(0 0 0 / 5%);
 }
 
-.chatBx .msg {
-    position: relative;
+.chat-box .chat {
+    margin: 15px 0;
+}
+
+.chat-box .chat p {
+    word-wrap: break-word;
+    padding: 8px 16px;
+    box-shadow: 0 0 32px rgba(0 0 0 / 8%),
+    0 16px 16px -16px rgba(0 0 0 / 10%);
+
+}
+
+.chat-box .outgoing {
     display: flex;
-    width: 100%;
-    margin: 5px 0;
+
 }
 
-.chatBx .msg p {
-    position: relative;
-    right: 0;
-    text-align: right;
-    max-width: 65%;
-    padding: 12px;
-    background: #8bcbf3;
-    border-radius: 10px;
-    font-size: .9rem;
+.outgoing .details {
+    margin-left: auto;
+    max-width: calc(100% - 130px);
 }
 
-.chatBx .msg p::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: -10px;
-    border-top: 10px solid #8bcbf3;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-left: 10px solid #8bcbf3;
+.outgoing .details p {
+    background: #010336;
+    color: #fff;
+    border-radius: 18px 18px 0 18px;
 }
 
-.chatBx .msg p span {
-    display: block;
-    margin-top: 5px;
-    font-size: .85rem;
-    opacity: .5;
+
+.chat-box .incoming {
+    display: flex;
+    align-items: flex-end;
 }
 
-.chatBx .msg-me {
-    justify-content: flex-end;
+.chat-box .incoming img {
+    height: 35px;
+    width: 35px;
+
 }
 
-.chatBx .msg-frnd {
-    justify-content: flex-start;
+.incoming .details {
+    margin-left: 10px;
+    margin-right: auto;
+    max-width: calc(100% - 130px);
 }
 
-.chatBx .msg-frnd p {
+.incoming .details p {
+    color: #333;
     background: #fff;
-    text-align: left;
+    border-radius: 18px 18px 18px 0;
+
 }
 
-.chatBx .msg-frnd p::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: unset;
-    left: -10px;
-    border-top: 10px solid #fff;
-    border-right: 10px solid #fff;
-    border-bottom: 10px solid transparent;
-    border-left: 10px solid transparent;
-}
-
-.chat-input {
-    position: relative;
-    width: 100%;
-    height: 60px;
-    background: #f0f0f0;
-    padding: 15px;
+.chat-area .typing-area {
+    padding: 18px 30px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }
 
-.chat-input ion-icon {
-    cursor: pointer;
-    font-size: 1.8rem;
-    color: #51585c;
-}
-
-.chat-input ion-icon:nth-child(1) {
-    margin-right: 15px;
-}
-
-.chat-input input {
+.typing-area input {
     position: relative;
-    width: 90%;
-    margin: 0 20px;
-    padding: 10px 20px;
+    height: 45px;
+    width: calc(100% - 58px);
+    font-size: 17px;
+    border: 1px solid #ccc;
+    padding: 0 13px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+.typing-area button {
+    width: 55px;
     border: none;
     outline: none;
-    border-radius: 30px;
-    font-size: 1rem;
+    background: #010336;
+    color: #fff;
+    font-size: 25px;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+
+}
+
+/* Responsive Styling */
+
+/* General adjustments for smaller screens */
+@media (max-width: 1200px) {
+    .navigation {
+        width: 250px;
+    }
+
+    .navigation.active {
+        width: 70px;
+    }
+
+    .main {
+        width: calc(100% - 250px);
+        left: 250px;
+    }
+
+    .main.active {
+        width: calc(100% - 70px);
+        left: 70px;
+    }
+
+    .search {
+        width: 300px;
+    }
+}
+
+@media (max-width: 992px) {
+    .navigation {
+        position: fixed;
+        width: 100%;
+        height: auto;
+        bottom: 0;
+        border-left: none;
+        border-top: 10px solid var(--blue);
+    }
+
+    .navigation ul {
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 0;
+    }
+
+    .navigation ul li {
+        border-radius: 50%;
+        margin: 0 10px;
+    }
+
+    .main {
+        width: 100%;
+        left: 0;
+        padding-top: 70px;
+    }
+
+    .topbar {
+        height: 70px;
+    }
+
+    .search {
+        width: 200px;
+    }
+
+    .chat-box {
+        height: 65vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+    }
+
+    .col-md-3, .col-md-9 {
+        width: 100%;
+    }
+
+    .chat-box {
+        padding: 5px 15px;
+    }
+
+    .users .search input {
+        width: calc(100% - 45px);
+    }
+
+    .users .search button {
+        width: 45px;
+    }
+
+    .typing-area input {
+        width: calc(100% - 50px);
+    }
+}
+
+@media (max-width: 576px) {
+    .toggle {
+        font-size: 2rem;
+    }
+
+    .search {
+        display: none;
+    }
+
+    .user-name {
+        display: none;
+    }
+
+    .chat-area header img {
+        height: 35px;
+        width: 35px;
+    }
+
+    .chat-area header span {
+        font-size: 15px;
+    }
+
+    .chat-box .chat p {
+        padding: 5px 10px;
+    }
+
+    .users header .content img {
+        height: 40px;
+        width: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navigation ul li a .title {
+        display: none;
+    }
+
+    .users .search {
+        flex-direction: column;
+    }
+
+    .users .search input {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+
+    .users .search button {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    .chat-area {
+        padding: 0 10px;
+    }
+
+    .typing-area input {
+        font-size: 14px;
+    }
+
+    .typing-area button {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 320px) {
+    .chat-area header img {
+        height: 30px;
+        width: 30px;
+    }
+
+    .chat-area header span {
+        font-size: 13px;
+    }
+
+    .chat-box .chat p {
+        padding: 3px 8px;
+        font-size: 12px;
+    }
+
+    .chat-box {
+        padding: 5px 10px;
+    }
+
+    .typing-area input {
+        font-size: 12px;
+        padding: 0 10px;
+    }
+
+    .typing-area button {
+        font-size: 18px;
+    }
 }
