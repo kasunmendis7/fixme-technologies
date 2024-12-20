@@ -226,4 +226,24 @@ class CustomerController extends Controller
             'messages' => $messages
         ]);
     }
+
+    public function loadCustomerMessages($id)
+    {
+        $chatModel = new Chat();
+        // echo json_encode($id);
+        // $id is an array, we need only the first element of that array
+        $tech_id = Application::$app->session->get('technician');
+
+        $customer = (new Customer())->findById(intval($id[0]));
+        $this->setLayout('auth');
+        if (!$customer) {
+            return $this->render('_404');
+        }
+
+        $messages = $chatModel->getChatMessages(intval($id[0]), $tech_id);
+        return $this->render('/technician/components/load-messages', [
+            'customer' => $customer,
+            'messages' => $messages
+        ]);
+    }
 }

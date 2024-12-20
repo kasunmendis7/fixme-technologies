@@ -85,7 +85,9 @@ include_once 'components/header.php';
                     <input type="text" name="incoming_id" class="incoming_id" value="<?php echo $customer['cus_id']; ?>"
                            hidden>
                     <input type="text" name="message" class="input-field" placeholder="Type a message here...">
-                    <button type="submit"><i class="fab fa-telegram-plane"></i></button>
+                    <button type="submit"
+                            onclick="sendRequest( <?php echo $customer['cus_id'] . ', ' . Application::$app->session->get('technician') ?> )">
+                        <i class="fab fa-telegram-plane"></i></button>
                 </form>
             </section>
         </div>

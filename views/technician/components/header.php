@@ -1,6 +1,7 @@
 <?php
 
 use app\core\Application;
+
 ?>
 <!-- Menu and search -->
 <div class="main">
@@ -21,6 +22,7 @@ use app\core\Application;
             ?>
         </h6>
         <div class="user">
-            <img src="<?php echo Application::$app->technician->{'profile_picture'} ?>" alt="Profile Pic">
+            <img src="<?= Application::$app->technician->profile_picture ? '/assets/uploads/' . Application::$app->technician->profile_picture : '/assets/user_avatar.png'; ?>"
+                 alt="Profile Pic">
         </div>
     </div>

@@ -212,7 +212,7 @@ $app->router->post('/promotion/delete', [AdminController::class, 'delete_promoti
 $app->router->post('/chat/search-customers', [ChatController::class, 'searchCustomers']);
 $app->router->get('/customer-messages/{id}', [CustomerController::class, 'viewCustomerMessages']);
 $app->router->post('/customer-messages/{id}', [ChatController::class, 'sendMessage']);
-$app->router->get('/customer-messages/{id}/load-messages', [CustomerController::class, 'loadCustomerMessages']);
+$app->router->get('/customer-messages/{id}/load-messages', [CustomerController::class, 'viewCustomerMessages']);
 
 /* Run the application */
 $app->run();

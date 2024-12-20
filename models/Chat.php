@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use AllowDynamicProperties;
 use app\core\DbModel;
 
 class Chat extends DbModel
@@ -13,7 +14,7 @@ class Chat extends DbModel
 
     public function attributes(): array
     {
-        return ['message_id', 'cus_id', 'tech_id', 'message', 'timestamp'];
+        return ['message_id', 'cus_id', 'tech_id', 'outgoing_msg_id', 'incoming_msg_id', 'message', 'timestamp'];
     }
 
     public function primaryKey(): string
@@ -68,14 +69,17 @@ class Chat extends DbModel
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function saveMessage($tech_id, $cus_id, $message)
+
+    public function customerSaveMessage($tech_id, $cus_id, $message)
     {
-        $sql = "INSERT INTO chat_messages (tech_id, cus_id, message) VALUES (:tech_id, :cus_id, :message)";
+        $sql = "INSERT INTO chat_messages (tech_id, cus_id, outgoing_msg_id, incoming_msg_id, message) VALUES (:tech_id, :cus_id, :outgoing_msg_id, :incoming_msg_id, :message)";
         $stmt = (new Chat)->prepare($sql);
         $stmt->bindValue(':tech_id', $tech_id);
         $stmt->bindValue(':cus_id', $cus_id);
+        $stmt->bindValue(':outgoing_msg_id', $tech_id);
+        $stmt->bindValue(':incoming_msg_id', $cus_id);
         $stmt->bindValue(':message', $message);
         $stmt->execute();
-        return $this->pdo->lastInsertId();
+//        return $this->pdo->lastInsertId();
     }
 }
