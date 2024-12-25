@@ -80,8 +80,9 @@ const fetchMessages = async () => {
     try {
         // Extract customer ID from the current URL
         const url = window.location.href;
+        let baseUrl = window.location.origin;
         const id = url.split('/').pop();
-        const path = `/customer-messages/${id}/load-messages`;
+        const path = `${baseUrl}/customer-messages/${id}/load-messages`;
 
         // Fetch messages from the server
         const response = await fetch(path);
@@ -118,6 +119,7 @@ async function sendMessage(technicianId, customerId) {
     };
 
     console.log('Sending message:', payload);
+    console.log(chatUrl);
 
     try {
         const response = await fetch(chatUrl, {
