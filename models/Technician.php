@@ -17,15 +17,6 @@ class Technician extends DbModel
     public string $password = '';
     public string $confirmPassword = '';
 
-    public function findById($id)
-    {
-        $sql = "SELECT * FROM technician WHERE tech_id = :tech_id";
-        $stmt = self::prepare($sql);
-        $stmt->bindValue(':tech_id', $id);
-        $stmt->execute();
-        return $stmt->fetch(\PDO::FETCH_ASSOC);
-    }
-
     public function tableName(): string
     {
         return 'technician';
@@ -125,5 +116,14 @@ class Technician extends DbModel
             'email',
             'password',
         ];
+    }
+
+    public function findById($id)
+    {
+        $sql = "SELECT * FROM technician WHERE tech_id = :tech_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':tech_id', $id);
+        $stmt->execute();
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 }

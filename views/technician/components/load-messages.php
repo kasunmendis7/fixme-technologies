@@ -15,7 +15,7 @@ use app\core\Application;
 </head>
 <body>
 <?php foreach ($messages as $message): ?>
-    <?php if ($message['outgoing_msg_id'] === Application::$app->session->get('customer')): ?>
+    <?php if ($message['outgoing_msg_id'] === Application::$app->session->get('technician')): ?>
         <div class="chat outgoing">
             <div class="details">
                 <p><?php echo htmlspecialchars($message['message']); ?></p>
@@ -23,7 +23,7 @@ use app\core\Application;
         </div>
     <?php else: ?>
         <div class="chat incoming">
-            <img src="<?php echo $technician['profile_picture'] ?? '/assets/user_avatar.png'; ?>"
+            <img src="<?php echo $customer['profile_picture'] ?? '/assets/user_avatar.png'; ?>"
                  alt="">
             <div class="details">
                 <p><?php echo htmlspecialchars($message['message']); ?></p>
