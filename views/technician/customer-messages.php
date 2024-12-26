@@ -2,7 +2,8 @@
 
 use app\core\Application;
 
-?><!doctype html>
+?>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -29,8 +30,8 @@ include_once 'components/header.php';
             <section class="users">
                 <header>
                     <div class="content">
-                        <img src="<?= Application::$app->technician->profile_picture ? '/assets/uploads/' . Application::$app->technician->profile_picture : '/assets/user_avatar.png'; ?>"
-                             alt="">
+                        <img src="<?php echo Application::$app->technician->profile_picture ?>" alt="Profile Pic">
+
                         <div class="details">
                             <span><?php echo Application::$app->technician->fname . ' ' . Application::$app->technician->lname ?></span>
                             <!--                             <p>Active Now</p> to add active we need a status but i don't have that -->
@@ -54,43 +55,22 @@ include_once 'components/header.php';
         <div class="wrapper">
             <section class="chat-area">
                 <header>
-                    <a href="" class="back-icon"><i class="fas fa-arrow-left"></i></a>
-                    <img src="assets/technician-dashboard/customer03.jpg" alt="">
+                    <a href="/technician-messages" class="back-icon"><i class="fas fa-arrow-left"></i></a>
+                    <img src="<?php echo $customer['profile_picture'] ?? '/assets/user_avatar.png'; ?>" alt="">
                     <div class="details">
-                        <span>Kasun Mendis</span>
+                        <span><?php echo $customer['fname'] . ' ' . $customer['lname']; ?></span>
                         <p>Active Now</p>
                     </div>
                 </header>
                 <div class="chat-box">
-                    <div class="chat outgoing">
-                        <div class="details">
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                        </div>
-                    </div>
-                    <div class="chat incoming">
-                        <img src="assets/technician-dashboard/customer03.jpg" alt="">
-                        <div class="details">
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                        </div>
-                    </div>
-                    <div class="chat outgoing">
-                        <div class="details">
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                        </div>
-                    </div>
-                    <div class="chat incoming">
-                        <img src="assets/technician-dashboard/customer03.jpg" alt="">
-                        <div class="details">
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                        </div>
-                    </div>
+                    <?php include_once 'components/load-messages.php'; ?>
                 </div>
-                <form action="#" class="typing-area" autocomplete="off">
-                    <input type="text" name="outgoing_id" value="<?php echo Application::$app->technician->tech_id; ?>"
-                           hidden>
-                    <input type="text" name="incoming_id" value="<?php echo $customer['cus_id']; ?>" hidden>
+                <form action="#" class="typing-area"
+                      autocomplete="off">
                     <input type="text" name="message" class="input-field" placeholder="Type a message here...">
-                    <button><i class="fab fa-telegram-plane"></i></button>
+                    <button type="submit"
+                            onclick="sendMessage( <?php echo Application::$app->session->get('technician') . ', ' . $customer['cus_id'] ?> )">
+                        <i class="fab fa-telegram-plane"></i></button>
                 </form>
             </section>
         </div>
@@ -101,7 +81,7 @@ include_once 'components/header.php';
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <!-- JavaScript Files -->
-    <script src="/js/technician/technician-messages.js"></script>
+    <script src="/js/technician/customer-messages.js"></script>
     <!-- Overlay for the confirmation message -->
     <div id="signOutOverlay" class="overlay">
         <div class="overlay-content">

@@ -30,10 +30,10 @@ include_once 'components/header.php';
             <section class="users">
                 <header>
                     <div class="content">
-                        <img src="<?= Application::$app->technician->profile_picture ? '/assets/uploads/' . Application::$app->technician->profile_picture : '/assets/user_avatar.png'; ?>"
+                        <img src="<?= Application::$app->customer->profile_picture ? '/assets/uploads/' . Application::$app->customer->profile_picture : '/assets/user_avatar.png'; ?>"
                              alt="">
                         <div class="details">
-                            <span><?php echo Application::$app->technician->fname . ' ' . Application::$app->technician->lname ?></span>
+                            <span><?php echo Application::$app->customer->fname . ' ' . Application::$app->customer->lname ?></span>
                             <!--                             <p>Active Now</p> to add active we need a status but i don't have that -->
                         </div>
                     </div>
@@ -55,10 +55,10 @@ include_once 'components/header.php';
         <div class="wrapper">
             <section class="chat-area">
                 <header>
-                    <a href="/technician-messages" class="back-icon"><i class="fas fa-arrow-left"></i></a>
-                    <img src="<?php echo $customer['profile_picture'] ?? '/assets/user_avatar.png'; ?>" alt="">
+                    <a href="/customer-messages" class="back-icon"><i class="fas fa-arrow-left"></i></a>
+                    <img src="<?php echo $technician['profile_picture'] ?? '/assets/user_avatar.png'; ?>" alt="">
                     <div class="details">
-                        <span><?php echo $customer['fname'] . ' ' . $customer['lname']; ?></span>
+                        <span><?php echo $technician['fname'] . ' ' . $technician['lname']; ?></span>
                         <p>Active Now</p>
                     </div>
                 </header>
@@ -69,7 +69,7 @@ include_once 'components/header.php';
                       autocomplete="off">
                     <input type="text" name="message" class="input-field" placeholder="Type a message here...">
                     <button type="submit"
-                            onclick="sendMessage( <?php echo Application::$app->session->get('technician') . ', ' . $customer['cus_id'] ?> )">
+                            onclick="sendMessage( <?php echo Application::$app->session->get('customer') . ', ' . $technician['tech_id'] ?> )">
                         <i class="fab fa-telegram-plane"></i></button>
                 </form>
             </section>
@@ -81,7 +81,7 @@ include_once 'components/header.php';
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <!-- JavaScript Files -->
-    <script src="/js/technician/technician-messages.js"></script>
+    <script src="/js/customer/technician-messages.js"></script>
     <!-- Overlay for the confirmation message -->
     <div id="signOutOverlay" class="overlay">
         <div class="overlay-content">

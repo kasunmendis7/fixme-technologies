@@ -208,14 +208,19 @@ $app->router->post('/promotion/add', [AdminController::class, 'insert_promotion'
 $app->router->post('/promotion/update', [AdminController::class, 'update_promotion']);
 $app->router->post('/promotion/delete', [AdminController::class, 'delete_promotion']);
 
-/* Routes related to the Chat */
+/* Routes related to the Technician sending message to Customer */
 $app->router->get('/technician-messages', [TechnicianController::class, 'technicianMessages']);
-$app->router->get('/technician-messages/load-user-list', [ChatController::class, 'loadUserList']);
+$app->router->get('/technician-messages/load-user-list', [ChatController::class, 'loadCustomerList']);
 $app->router->get('/customer-messages/{id}', [ChatController::class, 'viewCustomerMessages']);
-$app->router->post('/customer-messages/{id}', [ChatController::class, 'getCustomerMessages']);
 $app->router->get('/customer-messages/{id}/load-messages', [ChatController::class, 'loadCustomerMessages']);
-$app->router->post('/customer-messages/{id}', [ChatController::class, 'sendMessage']);
-$app->router->get('/customer-messages/{id}', [ChatController::class, 'getUser']);
+$app->router->post('/customer-messages/{id}', [ChatController::class, 'technicianSendMessage']);
+
+/* Routes related to the Customer sending message to Technician */
+$app->router->get('/customer-messages', [CustomerController::class, 'customerMessages']);
+$app->router->get('/customer-messages/load-user-list', [ChatController::class, 'loadTechnicianList']);
+$app->router->get('/technician-messages/{id}', [ChatController::class, 'viewTechnicianMessages']);
+$app->router->get('/technician-messages/{id}/load-messages', [ChatController::class, 'loadTechnicianMessages']);
+$app->router->post('/technician-messages/{id}', [ChatController::class, 'customerSendMessage']);
 
 
 /* Run the application */

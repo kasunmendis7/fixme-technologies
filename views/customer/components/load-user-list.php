@@ -14,15 +14,15 @@ use app\core\Application;
     <title>loading user list</title>
 </head>
 <body>
-<?php foreach ($customers as $customer): ?>
+<?php foreach ($technicians as $technician): ?>
     <button type="button"
-            onclick="viewUser(<?= htmlspecialchars(json_encode($customer['cus_id'])); ?>)">
+            onclick="viewUser(<?= htmlspecialchars(json_encode($technician['tech_id'])); ?>)">
         <div class="content">
-            <img src="<?php echo htmlspecialchars($customer['profile_picture'] ?? '/assets/user_avatar.png'); ?>"
-                 alt="<?php echo htmlspecialchars($customer['fname'] . ' ' . $customer['lname']); ?>'s profile picture">
+            <img src="<?php echo htmlspecialchars($technician['profile_picture'] ?? '/assets/user_avatar.png'); ?>"
+                 alt="<?php echo htmlspecialchars($technician['fname'] . ' ' . $technician['lname']); ?>'s profile picture">
             <div class="details">
-                <span><?php echo htmlspecialchars($customer['fname'] . ' ' . $customer['lname']); ?></span>
-                <p><?php echo htmlspecialchars($customer['last_message'] ?? 'No messages yet.'); ?></p>
+                <span><?php echo htmlspecialchars($technician['fname'] . ' ' . $technician['lname']); ?></span>
+                <p><?php echo htmlspecialchars($technician['last_message'] ?? 'No messages yet.'); ?></p>
             </div>
         </div>
         <div class="status-dot" aria-label="Status">
