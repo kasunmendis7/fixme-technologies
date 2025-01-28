@@ -31,6 +31,13 @@ include_once 'components/header.php';
             <?php
             $techOrders = new CusTechReq();
             $totalTechnicianRepairs = $techOrders->getTechnicianTotalRepairs(Application::$app->session->get('technician'));
+
+            echo '
+            <pre>';
+            //            var_dump($totalTechnicianRepairs);
+            //            echo '</pre>
+            //            ';
+            //            exit;
             ?>
             <div class="numbers">
                 <?php echo $totalTechnicianRepairs ?>
