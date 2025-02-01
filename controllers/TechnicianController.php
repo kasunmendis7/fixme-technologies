@@ -11,6 +11,7 @@ use app\models\Customer;
 use app\models\Post;
 use app\models\Technician;
 use app\models\TechnicianRequest;
+use app\models\Chat;
 
 class TechnicianController extends Controller
 {
@@ -41,8 +42,16 @@ class TechnicianController extends Controller
 
     public function technicianMessages()
     {
+        $tech_id = Application::$app->session->get('technician');
+        $model = new Chat();
+
+        // Get customer chat list
+        $customers = $model->getCustomerChatList($tech_id);
+
         $this->setLayout('auth');
-        return $this->render('/technician/technician-messages');
+        return $this->render('/technician/technician-messages', [
+            'customers' => $customers
+        ]);
     }
 
     public function technicianSettings()
@@ -115,7 +124,7 @@ class TechnicianController extends Controller
         if (!$technician) {
             return $this->render('_404');
         }
-//        show($technician['fname']);
+        // show($technician['fname']);
         $postModel = new Post();
         $posts = $postModel->getPostsByTechnicianId(intval($id[0]));
 

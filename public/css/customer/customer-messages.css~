@@ -633,6 +633,12 @@ body {
     border-radius: 0 5px 5px 0;
 }
 
+<<<<<<< HEAD
+.user-account {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+=======
 /* Responsive Styling */
 
 /* General adjustments for smaller screens */
@@ -739,11 +745,6 @@ body {
         display: none;
     }
 
-.user-account {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
     .chat-area header img {
         height: 35px;
         width: 35px;
@@ -823,4 +824,5 @@ body {
     .typing-area button {
         font-size: 18px;
     }
+>>>>>>> feature/chat-with-customer
 }

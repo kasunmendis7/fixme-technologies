@@ -12,6 +12,7 @@ use app\controllers\AdminController;
 use app\controllers\PostController;
 use app\controllers\CommentController;
 use app\controllers\ProductController;
+use app\controllers\ChatController;
 
 
 /* load environment variables */
@@ -48,7 +49,6 @@ $app->router->get('/technician-landing', [TechnicianController::class, 'technici
 $app->router->get('/technician-home', [TechnicianController::class, 'technicianHome']);
 $app->router->get('/technician-dashboard', [TechnicianController::class, 'technicianDashboard']);
 $app->router->get('/technician-map', [TechnicianController::class, 'technicianMap']);
-$app->router->get('/technician-messages', [TechnicianController::class, 'technicianMessages']);
 $app->router->get('/technician-settings', [TechnicianController::class, 'technicianSettings']);
 $app->router->get('/technician-help', [TechnicianController::class, 'technicianHelp']);
 $app->router->get('/technician-profile', [TechnicianController::class, 'technicianProfile']);
@@ -208,6 +208,20 @@ $app->router->get('/promotion-create', [PromotionController::class, 'create']);
 $app->router->post('/promotion/add', [AdminController::class, 'insert_promotion']);
 $app->router->post('/promotion/update', [AdminController::class, 'update_promotion']);
 $app->router->post('/promotion/delete', [AdminController::class, 'delete_promotion']);
+
+/* Routes related to the Technician sending message to Customer */
+$app->router->get('/technician-messages', [TechnicianController::class, 'technicianMessages']);
+$app->router->get('/technician-messages/load-user-list', [ChatController::class, 'loadCustomerList']);
+$app->router->get('/customer-messages/{id}', [ChatController::class, 'viewCustomerMessages']);
+$app->router->get('/customer-messages/{id}/load-messages', [ChatController::class, 'loadCustomerMessages']);
+$app->router->post('/customer-messages/{id}', [ChatController::class, 'technicianSendMessage']);
+
+/* Routes related to the Customer sending message to Technician */
+$app->router->get('/customer-messages', [CustomerController::class, 'customerMessages']);
+$app->router->get('/customer-messages/load-user-list', [ChatController::class, 'loadTechnicianList']);
+$app->router->get('/technician-messages/{id}', [ChatController::class, 'viewTechnicianMessages']);
+$app->router->get('/technician-messages/{id}/load-messages', [ChatController::class, 'loadTechnicianMessages']);
+$app->router->post('/technician-messages/{id}', [ChatController::class, 'customerSendMessage']);
 
 
 /* Run the application */
