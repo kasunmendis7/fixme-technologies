@@ -686,3 +686,9 @@ body {
     border-radius: 30px;
     font-size: 1rem;
 }
+
+.user-account {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
