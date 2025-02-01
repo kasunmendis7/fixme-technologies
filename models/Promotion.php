@@ -23,7 +23,7 @@ class Promotion extends DbModel
     {
         return [
             'admin_id' => [self::RULE_REQUIRED],
-            'descriptioin' => [self::RULE_REQUIRED],
+            'description' => [self::RULE_REQUIRED],
             'price' => [self::RULE_REQUIRED],
             'created_at' => [self::RULE_REQUIRED],
             'updated_at' => [self::RULE_REQUIRED],
@@ -62,7 +62,7 @@ class Promotion extends DbModel
 
     }
 
-    public static function insert_promotion($desc, $create, $price, $update, $admin_id = 1)
+    public static function insert_promotion($desc, $create, $price, $update, $admin_id = 7)
     {
         $sql = "INSERT INTO promotion 
                 (description, created_at, price, updated_at,admin_id) 
