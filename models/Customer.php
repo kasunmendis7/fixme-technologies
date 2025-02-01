@@ -244,4 +244,13 @@ class Customer extends DbModel
             'password',
         ];
     }
+
+    public function findById($id)
+    {
+        $sql = "SELECT * FROM customer WHERE cus_id = :cus_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':cus_id', $id);
+        $stmt->execute();
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
 }

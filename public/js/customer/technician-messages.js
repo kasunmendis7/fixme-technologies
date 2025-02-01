@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
             let baseUrl = window.location.origin;
 
             // Construct the endpoint URL
-            let apiUrl = `${baseUrl}/technician-messages/load-user-list`;
+            let apiUrl = `${baseUrl}/customer-messages/load-user-list`;
 
             const response = await fetch(apiUrl);
             if (response.ok) {
@@ -46,42 +46,49 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(fetchUserList, 1000);
 });
 
-function viewChat(customerId) {
-    let baseUrl = window.location.origin;
-    const chatUrl = `${baseUrl}/customer-messages/${customerId}`;
-    console.log('Fetching chat from:', chatUrl);
-
-    fetch(chatUrl, {
-        method: 'GET'
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.text();
-        })
-        .then(html => {
-            const chatContainer = document.querySelector('.chat-container'); // Ensure this matches your layout
-            if (chatContainer) {
-                chatContainer.innerHTML = html;
-            } else {
-                console.error('Chat container not found in the DOM.');
-            }
-        })
-        .catch(error => console.error('Error loading chat:', error));
-}
-
 function scrollToBottom() {
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-async function sendMessage(technicianId, customerId) {
+// Function to fetch chat messages and update the chat-box
+const fetchMessages = async () => {
+    try {
+        // Extract technician ID from the current URL
+        const url = window.location.href;
+        const id = url.split('/').pop();
+        const path = `/technician-messages/${id}/load-messages`;
+
+        // Fetch messages from the server
+        const response = await fetch(path);
+
+        if (response.ok) {
+            const chatContent = await response.text();
+
+            // Update the .chat-box content
+            chatBox.innerHTML = chatContent;
+
+            // Scroll to the bottom if chatBox is not active
+            if (!chatBox.classList.contains("active")) {
+                scrollToBottom();
+            }
+        } else {
+            console.error(`Failed to fetch messages: ${response.statusText}`);
+        }
+    } catch (error) {
+        console.error(`Error fetching messages: ${error.message}`);
+    }
+};
+
+// Automatically fetch messages at regular intervals
+setInterval(fetchMessages, 1000); // Fetch every 1000 milliseconds
+
+async function sendMessage(customerId, technicianId) {
     let baseUrl = window.location.origin;
-    const chatUrl = `${baseUrl}/customer-messages/${customerId}`;
+    const chatUrl = `${baseUrl}/technician-messages/${technicianId}`;
 
     const payload = {
-        outgoing_msg_id: technicianId,
-        incoming_msg_id: customerId,
+        outgoing_msg_id: customerId,
+        incoming_msg_id: technicianId,
         message: inputField.value,
     };
 
@@ -112,7 +119,7 @@ async function sendMessage(technicianId, customerId) {
     }
 }
 
-function viewUser(customerId) {
+function viewUser(technicianId) {
     /* Redirect to the technician profile page */
-    window.location.href = `/customer-messages/${customerId}`;
+    window.location.href = `/technician-messages/${technicianId}`;
 }
