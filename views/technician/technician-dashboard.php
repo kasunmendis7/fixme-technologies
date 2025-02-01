@@ -83,7 +83,6 @@ include_once 'components/header.php';
     <div class="recentOrders">
         <div class="cardHeader">
             <h2>Recent Orders</h2>
-            <a href="#" class="btn">View All</a>
         </div>
 
         <table>
@@ -106,23 +105,12 @@ include_once 'components/header.php';
                         <td>Rs. 500</td> 
                         <td>Due</td>';
 
-                if ($recentCustomer['status'] == 'pending') {
-                    echo '<td><span><button type="submit" class="cancel-btn" onclick="cancelReq(' . $recentCustomer['cus_id'] . ',' . $recentCustomer['tech_id'] . ')">Cancel</button> </span></td>';
-                } else {
-                    echo '<td></td>';
-                }
 
                 echo '
                     <td> <span class="status ' . strtolower($recentCustomer['status']) . '">' . ucfirst($recentCustomer['status']) . '</span></td>
                 </tr>';
             }
             ?>
-            <!--                    <tr>-->
-            <!--                        <td>Kasun Mendis</td>-->
-            <!--                        <td>Rs. 620</td>-->
-            <!--                        <td>Due</td>-->
-            <!--                        <td><span class="status inProgress">In Progress</span></td>-->
-            <!--                    </tr>-->
             </tbody>
         </table>
     </div>
@@ -148,77 +136,6 @@ include_once 'components/header.php';
                     </tr>';
             }
             ?>
-            <!--            <tr>-->
-            <!--                <td>-->
-            <!--                    <div class="imgBx"><img src="assets/technician-dashboard/customer02.jpg" alt=""></div>-->
-            <!--                </td>-->
-            <!--                <td>-->
-            <!--                    <h4>Kasun<br> <span>Panadura</span></h4>-->
-            <!--                </td>-->
-            <!--            </tr>-->
-            <!---->
-            <!--            <tr>-->
-            <!--                <td>-->
-            <!--                    <div class="imgBx"><img src="assets/technician-dashboard/customer04.jpg" alt=""></div>-->
-            <!--                </td>-->
-            <!--                <td>-->
-            <!--                    <h4>Mario<br> <span>Negombo</span></h4>-->
-            <!--                </td>-->
-            <!--            </tr>-->
-            <!---->
-            <!--            <tr>-->
-            <!--                <td>-->
-            <!--                    <div class="imgBx"><img src="assets/technician-dashboard/customer01.jpg" alt=""></div>-->
-            <!--                </td>-->
-            <!--                <td>-->
-            <!--                    <h4>Abisheke <br> <span>Hambanthota</span></h4>-->
-            <!--                </td>-->
-            <!--            </tr>-->
-            <!---->
-            <!--            <tr>-->
-            <!--                <td>-->
-            <!--                    <div class="imgBx"><img src="assets/technician-dashboard/customer03.jpg" alt=""></div>-->
-            <!--                </td>-->
-            <!--                <td>-->
-            <!--                    <h4>Nimal<br> <span>Jaffna</span></h4>-->
-            <!--                </td>-->
-            <!--            </tr>-->
-            <!---->
-            <!--            <tr>-->
-            <!--                <td>-->
-            <!--                    <div class="imgBx"><img src="assets/technician-dashboard/customer02.jpg" alt=""></div>-->
-            <!--                </td>-->
-            <!--                <td>-->
-            <!--                    <h4>Tithira <br> <span>Havelock</span></h4>-->
-            <!--                </td>-->
-            <!--            </tr>-->
-            <!---->
-            <!--            <tr>-->
-            <!--                <td>-->
-            <!--                    <div class="imgBx"><img src="assets/technician-dashboard/customer01.jpg" alt=""></div>-->
-            <!--                </td>-->
-            <!--                <td>-->
-            <!--                    <h4>Pasan <br> <span>Kaluthara</span></h4>-->
-            <!--                </td>-->
-            <!--            </tr>-->
-            <!---->
-            <!--            <tr>-->
-            <!--                <td>-->
-            <!--                    <div class="imgBx"><img src="assets/technician-dashboard/customer01.jpg" alt=""></div>-->
-            <!--                </td>-->
-            <!--                <td>-->
-            <!--                    <h4>Sahan <br> <span>Galle</span></h4>-->
-            <!--                </td>-->
-            <!--            </tr>-->
-            <!---->
-            <!--            <tr>-->
-            <!--                <td>-->
-            <!--                    <div class="imgBx"><img src="assets/technician-dashboard/customer02.jpg" alt=""></div>-->
-            <!--                </td>-->
-            <!--                <td>-->
-            <!--                    <h4>Amit <br> <span>India</span></h4>-->
-            <!--                </td>-->
-            <!--            </tr>-->
         </table>
     </div>
 </div>

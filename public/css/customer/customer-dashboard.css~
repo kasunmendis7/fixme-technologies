@@ -22,6 +22,10 @@ body {
     overflow-x: hidden;
 }
 
+a {
+    text-decoration: none;
+}
+
 .container {
     position: relative;
     width: 100%;
@@ -69,6 +73,7 @@ body {
 
 .navigation ul li a {
     position: relative;
+    display: block;
     width: 100%;
     display: flex;
     text-decoration: none;
@@ -216,6 +221,13 @@ body {
     object-fit: cover;
 }
 
+.user-name {
+    position: relative;
+    padding: 0 10px;
+    color: var(--white);
+    font-size: 0.9rem;
+}
+
 /* ======================= Cards ====================== */
 .cardBox {
     position: relative;
@@ -277,7 +289,7 @@ body {
     /* margin-top: 10px; */
 }
 
-.details .recentOrders {
+.details .recentRequests {
     position: relative;
     /*display: grid;*/
     min-height: 500px;
@@ -318,38 +330,38 @@ body {
     font-weight: 600;
 }
 
-.details .recentOrders table tr {
+.details .recentRequests table tr {
     color: var(--black1);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.details .recentOrders table tr:last-child {
+.details .recentRequests table tr:last-child {
     border-bottom: none;
 }
 
-.details .recentOrders table tbody tr:hover {
+.details .recentRequests table tbody tr:hover {
     background: var(--blue);
     color: var(--white);
 }
 
-.details .recentOrders table tr td {
+.details .recentRequests table tr td {
     padding: 15px;
 }
 
-.details .recentOrders table tr td:last-child {
+.details .recentRequests table tr td:last-child {
     text-align: end;
 }
 
-.details .recentOrders table tr td:nth-child(2) {
+.details .recentRequests table tr td:nth-child(2) {
     text-align: end;
 }
 
-.details .recentOrders table tr td:nth-child(3) {
+.details .recentRequests table tr td:nth-child(3) {
     text-align: center;
 }
 
 .status.completed {
-    padding: 2px 4px;
+    padding: .5rem 1rem;
     background: #8de02c;
     color: var(--white);
     border-radius: 4px;
@@ -364,6 +376,7 @@ body {
     border-radius: 4px;
     font-size: 14px;
     font-weight: 500;
+    border-radius: 1rem;
 }
 
 .status.rejected {
@@ -384,7 +397,7 @@ body {
     font-weight: 500;
 }
 
-.recentCustomers {
+.recentTechnicians {
     position: relative;
     min-height: 500px;
     padding: 20px;
@@ -397,7 +410,7 @@ body {
     margin-bottom: 20px;
 }
 
-.recentCustomers .imgBx {
+.recentTechnicians .imgBx {
     position: relative;
     width: 40px;
     height: 40px;
@@ -405,7 +418,7 @@ body {
     overflow: hidden;
 }
 
-.recentCustomers .imgBx img {
+.recentTechnicians .imgBx img {
     position: absolute;
     top: 0;
     left: 0;
@@ -414,28 +427,45 @@ body {
     object-fit: cover;
 }
 
-.recentCustomers table tr td {
+.recentTechnicians table tr td {
     padding: 12px 10px;
 }
 
-.recentCustomers table tr td h4 {
+.recentTechnicians table tr td h4 {
     font-size: 16px;
     font-weight: 500;
     line-height: 1.2rem;
 }
 
-.recentCustomers table tr td h4 span {
+.recentTechnicians table tr td h4 span {
     font-size: 14px;
     color: var(--black2);
 }
 
-.recentCustomers table tr:hover {
+.recentTechnicians table tr:hover {
     background: var(--blue);
     color: var(--white);
 }
 
-.recentCustomers table tr:hover td h4 span {
+.recentTechnicians table tr:hover td h4 span {
     color: var(--white);
+}
+
+.alert {
+    position: relative;
+    padding: 1rem 1.25rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.wrapper {
+    margin: 1rem;
 }
 
 /* ====================== Responsive Design ========================== */
@@ -468,7 +498,7 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .recentOrders {
+    .recentRequests {
         overflow-x: auto;
     }
 
@@ -533,10 +563,4 @@ body {
 .cancel-btn:hover {
     cursor: pointer;
     background-color: rgba(13, 110, 253, 0.84);
-}
-
-.user-account {
-    display: flex;
-    align-items: center;
-    gap: 10px;
 }
