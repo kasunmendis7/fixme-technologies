@@ -165,5 +165,14 @@ class TechnicianController extends Controller
         return $this->render('/technician/technician-payment-details');
     }
 
+    public function viewCustomerRequest($id)
+    {
+        $customer = (new Customer())->findById(intval($id[0]));
+
+        $this->setLayout('auth');
+        return $this->render('/technician/customer-request', [
+            'customer' => $customer
+        ]);
+    }
 }
 

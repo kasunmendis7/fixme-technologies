@@ -414,7 +414,7 @@ body {
 }
 
 
-.view-on-map {
+.view-request {
     background-color: #1795ce;
     padding: 8px;
     border-radius: 10px;
@@ -423,7 +423,7 @@ body {
     transition: transform 0.3s ease;
 }
 
-.view-on-map:hover {
+.view-request:hover {
     transform: scale(0.95);
 }
 
