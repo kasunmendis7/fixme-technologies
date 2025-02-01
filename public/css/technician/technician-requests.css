@@ -446,3 +446,9 @@ body {
 .reject:hover {
     transform: scale(0.95);
 }
+
+.user-account {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
