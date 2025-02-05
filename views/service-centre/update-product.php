@@ -78,6 +78,23 @@
         </div>
 
         <div>
+            <label for="">Category:</label>
+            <select class="category-select" name="category" id="category" required>
+                <option value=""><?php echo htmlspecialchars($product['category']) ?></option>
+                <option value="Tools">Tools</option>
+                <option value="Engine & Transmission">Engine & Transmission</option>
+                <option value="Brakes & Suspension">Brakes & Suspension</option>
+                <option value="Electrical & Electronics">Electrical & Electronics</option>
+                <option value="Body Parts & Exterior">Body Parts & Exterior</option>
+                <option value="Tires & Wheels">Tires & Wheels</option>
+                <option value="Interior Accessories">Interior Accessories</option>
+                <option value="Fluids & Maintenance">Fluids & Maintenance</option>
+                <option value="Performance & Upgrades">Performance & Upgrades</option>
+                <option value="Safety & Security">Safety & Security</option>
+            </select>
+        </div>
+
+        <div>
             <label>Media:</label>
             <input type="file" name="media">
             <?php if (!empty($product['media'])): ?>
