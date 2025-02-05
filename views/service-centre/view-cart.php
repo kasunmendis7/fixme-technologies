@@ -21,10 +21,106 @@ use app\core\Application;
     <script src="/js/service-center/marketplace-home.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <title>Market Place</title>
+    <title>Cart</title>
+    <style>
+        .cart-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .cart-header {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .cart-items {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+
+        .item-details {
+            flex: 1;
+        }
+
+        .item-details h2 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .item-details p {
+            margin: 5px 0;
+        }
+
+        .remove-from-cart-btn {
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .remove-from-cart-btn:hover {
+            background: #ff1a1a;
+        }
+
+        .cart-summary {
+            margin-top: 30px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-summary h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cart-summary p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        .checkout-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.2rem;
+        }
+
+        .checkout-btn:hover {
+            background: #45a049;
+        }
+    </style>
 </head>
 
 <body>
+
 <nav class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3">
         <div class="col-md-3 mb-2 mb-md-0">
@@ -37,9 +133,6 @@ use app\core\Application;
             <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
             <li><a href="/service-centre-landing" class="nav-link px-2">Service Centre</a></li>
             <li><a href="/about-us" class="nav-link px-2">About</a></li>
-            <li><a href="/view-cart" class="nav-link px-2">
-                    <ion-icon name="cart-outline"></ion-icon>
-                </a></li>
         </ul>
 
         <form class="search-bar">
@@ -48,7 +141,6 @@ use app\core\Application;
         </form>
         <h6>
             <?php 
-            
                 $username = strtoupper(Application::$app->customer->{'name'});
                 
                 if ($username) {
@@ -56,7 +148,6 @@ use app\core\Application;
                 } else {
                     echo '<button class="btn" onclick="window.location.href=\'/customer-login\'" style="margin-right:20px;">Login</button>';
                 }
-                
             ?>
         </h6>
     </header>
@@ -72,58 +163,49 @@ use app\core\Application;
     </div>
 </section>
 
-<!-- Main Content with Sidebar -->
-<section class="marketplace-container">
-    <!-- Categories Sidebar -->
-    <aside class="categories-sidebar">
-        <h3 class="categories-title">Product Categories</h3>
-        <ul class="categories-list">
-            <li><a href="/get-product-by-category?category=all" class="category-link" data-category="all" >All</a></li>
-            <li><a href="/get-product-by-category?category=tools" class="category-link" data-category="tools" >Tools</a></li>
-            <li><a href="/get-product-by-category?category=engine-transmission" class="category-link" data-category="engine-transmission" >Engine & Transmission</a></li>
-            <li><a href="/get-product-by-category?category=brakes-suspension" class="category-link" data-category="brakes-suspension" >Brakes & Suspension</a></li>
-            <li><a href="/get-product-by-category?category=electrical-electronics" class="category-link" data-category="electrical-electronics" >Electrical & Electronics</a></li>
-            <li><a href="/get-product-by-category?category=body-parts-exterior" class="category-link" data-category="body-parts-exterior" >Body Parts & Exterior</a></li>
-            <li><a href="/get-product-by-category?category=tires-wheels" class="category-link" data-category="tires-wheels" >Tires & Wheels</a></li>
-            <li><a href="/get-product-by-category?category=interior-accessories" class="category-link" data-category="interior-accessories" >Interior Accessories</a></li>
-            <li><a href="/get-product-by-category?category=fluids-maintenance" class="category-link" data-category="fluids-maintenance" >Fluids & Maintenance</a></li>
-            <li><a href="/get-product-by-category?category=performance-upgrades" class="category-link" data-category="performance-upgrades" >Performance & Upgrades</a></li>
-            <li><a href="/get-product-by-category?category=safety-security" class="category-link" data-category="safety-security" >Safety & Security</a></li>
-        </ul>
-    </aside>
-
-    <!-- Marketplace Products Section -->
-    <div class="marketplace">
-        <h1 class="marketplace-title">Available Products</h1>
-        <div class="products-grid">
-            <?php if (!empty($products)): ?>
-                <?php foreach ($products as $product): ?>
-                    <div class="product-card">
-                        <img class="product-image"
-                            src="/assets/uploads/<?php echo htmlspecialchars($product['media']); ?>"
-                            alt="Product Image">
-                        <div class="product-details">
-                            <h2 class="product-title"><?php echo htmlspecialchars($product['description']); ?></h2>
-                            <p class="product-price">Rs. <?php echo htmlspecialchars($product['price']); ?></p>
-                            <p class="product-seller">Sold by: <?php echo htmlspecialchars($product['seller_name']); ?></p>
-                            <p>Product id: <?php echo htmlspecialchars($product['product_id']) ?></p>
-                        </div>
-                    <!-- <a href="/check-out-page" class="product-btn">View Details</a> -->
-                    <!-- <button class="add-to-cart-btn" data-product-id="<?php echo $product['product_id']; ?>">Add to Cart</button> -->
-                     <form action="/add-to-cart" method="post">
-                        <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
-                        <button class="btn" style="color:black;" type="submit">Add to cart</button>
-                     </form>
+<div class="cart-container">
+    <h1 class="cart-header">Your Cart</h1>
+    <div class="cart-items">
+        <?php if (!empty($cartItems)): ?>
+            <?php 
+                $totalItems = 0;
+                $totalCost = 0;
+            ?>
+            <?php foreach ($cartItems as $item): ?>
+                <?php 
+                    $totalItems += $item['quantity'];
+                    $totalCost += $item['price'] * $item['quantity'];
+                ?>
+                <div class="cart-item">
+                    <img src="/assets/uploads/<?php echo htmlspecialchars($item['media']); ?>" alt="Product Image">
+                    <div class="item-details">
+                        <h2><?php echo htmlspecialchars($item['description']); ?></h2>
+                        <p>Price: Rs. <?php echo htmlspecialchars($item['price']); ?></p>
+                        <p>Quantity: <?php echo htmlspecialchars($item['quantity']); ?></p>
+                        <p>product_id: <?php echo htmlspecialchars($item['product_id']); ?></p>
+                        <form action="/remove-from-cart" method="post">
+                            <input type="hidden" name="product_id" value="<?php echo $item['product_id'] ?>">
+                            <button class="remove-from-cart-btn" type="submit">Remove</button>
+                        </form>
+                    </div>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <p class="no-products">No products are available in this category.</p>
+            <p>Your cart is empty.</p>
         <?php endif; ?>
     </div>
-    </div>
-</section>
 
-<!-- Footer -->
+    <?php if (!empty($cartItems)): ?>
+        <div class="cart-summary">
+            <h2>Cart Summary</h2>
+            <p>Total Items: <?php echo $totalItems; ?></p>
+            <p>Total Cost: Rs. <?php echo $totalCost; ?></p>
+            <button class="checkout-btn" onclick="window.location.href='/checkout'">Proceed to Checkout</button>
+        </div>
+    <?php endif; ?>
+</div>
+
+<!-- footer -->
 <div class="container-f">
     <footer class="py-5">
         <div class="row">
@@ -178,34 +260,6 @@ use app\core\Application;
         </div>
     </footer>
 </div>
-
-<!-- <script src="/js/service-center/filterProducts.js"></script> -->
-<!-- <script>
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".category-link").forEach(link => {
-        link.addEventListener("click", function (event) {
-            event.preventDefault(); // Prevent default anchor behavior
-
-            let category = this.getAttribute("data-category");
-
-            // Send an AJAX request to fetch filtered products
-            fetch(`/get-product-by-category?category=${category}`, {
-                method: "GET",
-                headers: {
-                    "X-Requested-With": "XMLHttpRequest"
-                }
-            })
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById("product-list").innerHTML = data; // Update the product list
-            })
-            .catch(error => console.error("Error:", error));
-        });
-    });
-});
-</script> -->
-
-<script src="/js/service-center/cart.js"></script>
 
 </body>
 </html>

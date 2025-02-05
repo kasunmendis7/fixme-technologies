@@ -124,6 +124,12 @@ class ServiceCentreController extends Controller
         return $this->render('/service-centre/service-center-messages');
     }
 
+    public function cart()
+    {
+        $this->setLayout('auth');
+        return $this->render('/service-centre/view-cart');
+    }
+
     public function viewServiceCenterProfile($id)
     {
 
