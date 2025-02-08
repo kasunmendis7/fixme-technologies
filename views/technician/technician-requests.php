@@ -51,9 +51,11 @@ include_once 'components/header.php';
                                 <input type="hidden" name="status" value="Rejected">
                                 <button type="submit" class="btn reject">Reject</button>
                             </form>
+                            <span><button class="view-request" onclick="viewRequest(<?= $request['cus_id'] ?>)">View Request</button></span>
                         <?php else: ?>
+
                             <?php if ($request['status'] == 'InProgress'): ?>
-                                <span><button class="view-on-map" onclick="window.location.href='/technician-map'">View On Map</button></span>
+                                <span><button class="view-request" onclick="viewRequest(<?= $request['cus_id'] ?>)">View Request</button></span>
                             <?php else: ?>
                                 <span>Request Rejected</span>
                             <?php endif; ?>
@@ -77,5 +79,6 @@ include_once 'components/header.php';
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <script src="/js/technician/overlay.js"></script>
+<script src="/js/technician/technician-requests.js"></script>
 </body>
 </html>
