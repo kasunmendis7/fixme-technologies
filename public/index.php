@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use app\controllers\AuthController;
+use app\controllers\CartController;
 use app\core\Application;
 use app\controllers\SiteController;
 use app\controllers\CustomerController;
@@ -93,6 +94,9 @@ $app->router->get('/check-out-page', [ServiceCentreController::class, 'checkOutP
 $app->router->get('/card-details', [ServiceCentreController::class, 'cardDetails']);
 $app->router->get('/service-centre-map', [ServiceCentreController::class, 'serviceCentreMap']);
 $app->router->get('/service-center-payment-details', [ServiceCentreController::class, 'serviceCenterPaymentDetails']);
+$app->router->get('/service-center-profile/{id}', [ServiceCentreController::class, 'viewServiceCenterProfile']);
+$app->router->get('/view-cart', [CartController::class, 'viewCart']);
+$app->router->post('/remove-from-cart', [CartController::class, 'removeItemsFromCart']);
 
 
 /* Routes related to the product (service center) */
@@ -104,6 +108,8 @@ $app->router->get('/service-center-update-product', [ProductController::class, '
 $app->router->get('/service-center-update-product', [ServiceCentreController::class, 'update']);
 $app->router->post('/service-center-update-product', [ProductController::class, 'update']);
 $app->router->post('/service-center-delete-product', [ProductController::class, 'delete']);
+$app->router->get('/get-product-by-category', [ProductController::class, 'filterProductByCategory']);
+$app->router->post('/add-to-cart', [CartController::class, 'addToCartController']);
 
 /* Customer Routes */
 $app->router->get('/customer-dashboard', [CustomerController::class, 'customerDashboard']);
@@ -118,7 +124,6 @@ $app->router->get('/geolocation-technicians', [CustomerController::class, 'getTe
 $app->router->get('/geolocation-service-centres', [CustomerController::class, 'getServiceCentresGeocoding']);
 $app->router->get('/customer-location', [CustomerController::class, 'customerLocation']);
 $app->router->get('/technician-profile/{id}', [TechnicianController::class, 'viewTechnicianProfile']);
-$app->router->get('/service-center-profile/{id}', [ServiceCentreController::class, 'viewServiceCenterProfile']);
 $app->router->post('/cus-tech-req', [CustomerController::class, 'cusTechReq']);
 $app->router->post('/delete-cus-tech-req', [CustomerController::class, 'deleteCusTechReq']);
 $app->router->get('/customer-messages', [CustomerController::class, 'customerMessages']);

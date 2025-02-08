@@ -71,6 +71,16 @@
 
 
             <li>
+                <a href="/market-place-home">
+                    <span class="icon">
+                        <ion-icon name="chatbubble-outline"></ion-icon>
+                    </span>
+                    <span class="title">Market</span>
+                </a>
+            </li>
+
+
+            <li>
                 <a href="/customer-settings">
                     <span class="icon">
                         <ion-icon name="settings-outline"></ion-icon>
