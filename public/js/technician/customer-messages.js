@@ -4,6 +4,7 @@ let navigation = document.querySelector(".navigation");
 let main = document.querySelector(".main");
 let url = window.location.href;
 const chatBox = document.querySelector(".chat-box");
+const chatArea = document.querySelector(".chat-area");
 const form = document.querySelector(".typing-area");
 const inputField = form.querySelector(".input-field");
 
@@ -65,7 +66,7 @@ const fetchMessages = async () => {
             const chatContent = await response.text();
 
             // Update the .chat-box content
-            chatBox.innerHTML = chatContent;
+            chatArea.innerHTML = chatContent;
 
             // Scroll to the bottom if chatBox is not active
             if (!chatBox.classList.contains("active")) {
@@ -82,8 +83,9 @@ const fetchMessages = async () => {
 // Automatically fetch messages at regular intervals
 setInterval(fetchMessages, 1000); // Fetch every 1000 milliseconds
 
-async function sendMessage(technicianId, customerId) {
+async function sendMessage(technicianId) {
     let baseUrl = window.location.origin;
+    const customerId = url.split('/').pop(); // Extract customer ID from the current URL
     const chatUrl = `${baseUrl}/customer-messages/${customerId}`;
 
     const payload = {
@@ -92,7 +94,7 @@ async function sendMessage(technicianId, customerId) {
         message: inputField.value,
     };
 
-    console.log('Sending message:', payload);
+    // console.log('Sending message:', payload);
 
     try {
         const response = await fetch(chatUrl, {
@@ -107,6 +109,8 @@ async function sendMessage(technicianId, customerId) {
             inputField.value = "";
             const result = await response.json();
             console.log('Response: ', result);
+            scrollToBottom();
+            await fetchMessages();
         } else {
             inputField.value = "";
             const error = await response.json();

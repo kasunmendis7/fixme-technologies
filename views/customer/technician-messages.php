@@ -34,7 +34,6 @@ include_once 'components/header.php';
                              alt="">
                         <div class="details">
                             <span><?php echo Application::$app->customer->fname . ' ' . Application::$app->customer->lname ?></span>
-                            <!--                             <p>Active Now</p> to add active we need a status but i don't have that -->
                         </div>
                     </div>
                 </header>
@@ -54,25 +53,18 @@ include_once 'components/header.php';
     <div class="right-side">
         <div class="wrapper">
             <section class="chat-area">
-                <header>
-                    <a href="/customer-messages" class="back-icon"><i class="fas fa-arrow-left"></i></a>
-                    <img src="<?php echo $technician['profile_picture'] ?? '/assets/user_avatar.png'; ?>" alt="">
-                    <div class="details">
-                        <span><?php echo $technician['fname'] . ' ' . $technician['lname']; ?></span>
-                        <p>Active Now</p>
-                    </div>
-                </header>
-                <div class="chat-box">
-                    <?php include_once 'components/load-messages.php'; ?>
-                </div>
+                <?php include_once 'components/load-messages.php'; ?>
+            </section>
+            <div class="message-area">
                 <form action="#" class="typing-area"
                       autocomplete="off">
                     <input type="text" name="message" class="input-field" placeholder="Type a message here...">
                     <button type="submit"
-                            onclick="sendMessage( <?php echo Application::$app->session->get('customer') . ', ' . $technician['tech_id'] ?> )">
+                            onclick="sendMessage( <?php echo Application::$app->session->get('customer') ?> )">
                         <i class="fab fa-telegram-plane"></i></button>
                 </form>
-            </section>
+            </div>
+
         </div>
     </div>
 

@@ -25,11 +25,7 @@ use app\core\Application;
                 <p><?php echo htmlspecialchars($technician['last_message'] ?? 'No messages yet.'); ?></p>
             </div>
         </div>
-        <div class="status-dot" aria-label="Status">
-            <i class="fas fa-circle"></i>
-        </div>
     </button>
-    <!--    </a>-->
 <?php endforeach; ?>
 </body>
 </html>

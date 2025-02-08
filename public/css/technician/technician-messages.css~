@@ -873,6 +873,7 @@ body {
     color: #2b2929;
     font-size: 28px;
     padding: 20px;
+    margin-bottom: 100px;
 }
 
 .chat-welcome-icon {

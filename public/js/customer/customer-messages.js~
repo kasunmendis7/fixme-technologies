@@ -86,7 +86,7 @@ const fetchMessages = async () => {
 };
 
 // Automatically fetch messages at regular intervals
-//setInterval(fetchMessages, 1000); // Fetch every 1000 milliseconds
+setInterval(fetchMessages, 1000); // Fetch every 1000 milliseconds
 
 
 function viewUser(technicianId) {

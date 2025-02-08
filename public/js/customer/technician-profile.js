@@ -39,3 +39,7 @@ async function sendRequest(technicianId, customerId) {
     }
 }
 
+function viewUser(customerId) {
+    /* Redirect to the message sending page */
+    window.location.href = `/technician-messages/${customerId}`;
+}
