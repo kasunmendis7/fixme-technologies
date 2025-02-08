@@ -304,7 +304,7 @@ body {
 }
 
 .status.pending {
-    padding: 2px 4px;
+    padding: .5rem 1rem;
     background: #e9b10a;
     color: var(--white);
     border-radius: 4px;
@@ -313,7 +313,7 @@ body {
 }
 
 .status.rejected {
-    padding: 2px 4px;
+    padding: .5rem 1rem;
     background: #f00;
     color: var(--white);
     border-radius: 4px;
@@ -322,7 +322,7 @@ body {
 }
 
 .status.inprogress {
-    padding: 2px 4px;
+    padding: .5rem 1rem;
     background: #1795ce;
     color: var(--white);
     border-radius: 4px;
@@ -414,7 +414,7 @@ body {
 }
 
 
-.view-on-map {
+.view-request {
     background-color: #1795ce;
     padding: 8px;
     border-radius: 10px;
@@ -423,7 +423,7 @@ body {
     transition: transform 0.3s ease;
 }
 
-.view-on-map:hover {
+.view-request:hover {
     transform: scale(0.95);
 }
 
@@ -445,4 +445,10 @@ body {
 
 .reject:hover {
     transform: scale(0.95);
+}
+
+.user-account {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }

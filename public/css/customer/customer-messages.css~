@@ -26,10 +26,6 @@ body {
 body {
     min-height: 100vh;
     overflow-x: hidden;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
 }
 
 /* =============== Navigation ================ */
@@ -557,7 +553,7 @@ body {
 }
 
 .chat-box {
-    height: 77vh;
+    height: 75vh;
     overflow-y: auto;
     background: #f7f7f7;
     padding: 10px 30px 20px 30px;
@@ -624,11 +620,6 @@ body {
     justify-content: space-between;
 }
 
-.typing-area {
-    display: flex;
-    align-items: center;
-}
-
 .typing-area input {
     position: relative;
     height: 45px;
@@ -640,11 +631,6 @@ body {
     outline: none;
 }
 
-.typing-area input, .typing-area button {
-    display: inline-block;
-    vertical-align: middle;
-}
-
 .typing-area button {
     width: 55px;
     border: none;
@@ -654,12 +640,6 @@ body {
     font-size: 25px;
     cursor: pointer;
     border-radius: 0 5px 5px 0;
-    height: 45px;
-}
-
-.message-area {
-    display: flex;
-    flex-direction: column;
 }
 
 /* Responsive Styling */
