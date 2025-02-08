@@ -431,6 +431,9 @@ body {
 :is(.users, .users-list) .details {
     color: #000;
     margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 :is(.users, .users-list) .details span {
@@ -488,14 +491,20 @@ body {
     width: 100%;
     background-color: #e8ecf1;
     justify-content: space-between;
-    margin-bottom: 1px;
     padding: 15px 15px;
     text-decoration: none;
     cursor: pointer;
     border: none;
 }
 
+.users-list button:first-child {
+    border-radius: 10px 10px 0 0;
+    border: none;
+    margin-bottom: 0;
+}
+
 .users-list button:last-child {
+    border-radius: 0 0 10px 10px;
     border: none;
     margin-bottom: 0;
 }
@@ -684,7 +693,6 @@ body {
     .main {
         width: 100%;
         left: 0;
-        padding-top: 70px;
     }
 
     .topbar {
@@ -724,6 +732,15 @@ body {
     .typing-area input {
         width: calc(100% - 50px);
     }
+
+    .chat-welcome {
+        align-items: center;
+        text-align: center;
+    }
+
+    .chat-welcome h2 {
+        font-size: 20px;
+    }
 }
 
 @media (max-width: 576px) {
@@ -739,11 +756,6 @@ body {
         display: none;
     }
 
-.user-account {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
     .chat-area header img {
         height: 35px;
         width: 35px;
@@ -823,4 +835,26 @@ body {
     .typing-area button {
         font-size: 18px;
     }
+}
+
+.user-account {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chat-welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    background: #f7f7f7;
+    color: #2b2929;
+    font-size: 28px;
+    padding: 20px;
+}
+
+.chat-welcome-icon {
+    font-size: 100px;
 }

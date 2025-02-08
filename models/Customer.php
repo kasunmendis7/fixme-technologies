@@ -245,12 +245,4 @@ class Customer extends DbModel
         ];
     }
 
-    public function findById($id)
-    {
-        $sql = "SELECT * FROM customer WHERE cus_id = :cus_id";
-        $stmt = self::prepare($sql);
-        $stmt->bindValue(':cus_id', $id);
-        $stmt->execute();
-        return $stmt->fetch(\PDO::FETCH_ASSOC);
-    }
 }
