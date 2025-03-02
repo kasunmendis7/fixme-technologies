@@ -87,7 +87,6 @@ include_once 'components/header.php';
     <div class="recentRequests">
         <div class="cardHeader">
             <h2>Recent Requests</h2>
-            <a href="#" class="btn">View All</a>
         </div>
 
         <table>

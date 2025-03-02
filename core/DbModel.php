@@ -11,6 +11,13 @@ abstract class DbModel extends Model
     abstract public function primaryKey(): string;
 
 
+    // protected Database $db;
+
+    // public function __construct(){
+    //     $this->db = Application::$app->db;
+    // }
+
+
     public function save()
     {
 
