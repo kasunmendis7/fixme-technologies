@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use app\controllers\AuthController;
+use app\controllers\CartController;
 use app\core\Application;
 use app\controllers\SiteController;
 use app\controllers\CustomerController;
@@ -12,6 +13,7 @@ use app\controllers\AdminController;
 use app\controllers\PostController;
 use app\controllers\CommentController;
 use app\controllers\ProductController;
+use app\controllers\ChatController;
 
 
 /* load environment variables */
@@ -48,7 +50,6 @@ $app->router->get('/technician-landing', [TechnicianController::class, 'technici
 $app->router->get('/technician-home', [TechnicianController::class, 'technicianHome']);
 $app->router->get('/technician-dashboard', [TechnicianController::class, 'technicianDashboard']);
 $app->router->get('/technician-map', [TechnicianController::class, 'technicianMap']);
-$app->router->get('/technician-messages', [TechnicianController::class, 'technicianMessages']);
 $app->router->get('/technician-settings', [TechnicianController::class, 'technicianSettings']);
 $app->router->get('/technician-help', [TechnicianController::class, 'technicianHelp']);
 $app->router->get('/technician-profile', [TechnicianController::class, 'technicianProfile']);
@@ -57,6 +58,7 @@ $app->router->get('/technician-requests', [TechnicianController::class, 'viewReq
 $app->router->post('/technician-requests-update', [TechnicianController::class, 'updateRequestStatus']);
 $app->router->get('/technician-transactions', [TechnicianController::class, 'technicianTransactions']);
 $app->router->get('/technician-payment-details', [TechnicianController::class, 'technicianPaymentDetails']);
+$app->router->get('/customer-request/{id}', [TechnicianController::class, 'viewCustomerRequest']);
 
 /* Routes related to the Post */
 $app->router->get('/technician-create-post', [TechnicianController::class, 'technicianCreatePost']);
@@ -92,6 +94,9 @@ $app->router->get('/check-out-page', [ServiceCentreController::class, 'checkOutP
 $app->router->get('/card-details', [ServiceCentreController::class, 'cardDetails']);
 $app->router->get('/service-centre-map', [ServiceCentreController::class, 'serviceCentreMap']);
 $app->router->get('/service-center-payment-details', [ServiceCentreController::class, 'serviceCenterPaymentDetails']);
+$app->router->get('/service-center-profile/{id}', [ServiceCentreController::class, 'viewServiceCenterProfile']);
+$app->router->get('/view-cart', [CartController::class, 'viewCart']);
+$app->router->post('/remove-from-cart', [CartController::class, 'removeItemsFromCart']);
 
 
 /* Routes related to the product (service center) */
@@ -103,6 +108,8 @@ $app->router->get('/service-center-update-product', [ProductController::class, '
 $app->router->get('/service-center-update-product', [ServiceCentreController::class, 'update']);
 $app->router->post('/service-center-update-product', [ProductController::class, 'update']);
 $app->router->post('/service-center-delete-product', [ProductController::class, 'delete']);
+$app->router->get('/get-product-by-category', [ProductController::class, 'filterProductByCategory']);
+$app->router->post('/add-to-cart', [CartController::class, 'addToCartController']);
 
 /* Customer Routes */
 $app->router->get('/customer-dashboard', [CustomerController::class, 'customerDashboard']);
@@ -117,7 +124,6 @@ $app->router->get('/geolocation-technicians', [CustomerController::class, 'getTe
 $app->router->get('/geolocation-service-centres', [CustomerController::class, 'getServiceCentresGeocoding']);
 $app->router->get('/customer-location', [CustomerController::class, 'customerLocation']);
 $app->router->get('/technician-profile/{id}', [TechnicianController::class, 'viewTechnicianProfile']);
-$app->router->get('/service-center-profile/{id}', [ServiceCentreController::class, 'viewServiceCenterProfile']);
 $app->router->post('/cus-tech-req', [CustomerController::class, 'cusTechReq']);
 $app->router->post('/delete-cus-tech-req', [CustomerController::class, 'deleteCusTechReq']);
 $app->router->get('/customer-messages', [CustomerController::class, 'customerMessages']);
@@ -207,6 +213,20 @@ $app->router->get('/promotion-create', [PromotionController::class, 'create']);
 $app->router->post('/promotion/add', [AdminController::class, 'insert_promotion']);
 $app->router->post('/promotion/update', [AdminController::class, 'update_promotion']);
 $app->router->post('/promotion/delete', [AdminController::class, 'delete_promotion']);
+
+/* Routes related to the Technician sending message to Customer */
+$app->router->get('/technician-messages', [TechnicianController::class, 'technicianMessages']);
+$app->router->get('/technician-messages/load-user-list', [ChatController::class, 'loadCustomerList']);
+$app->router->get('/customer-messages/{id}', [ChatController::class, 'viewCustomerMessages']);
+$app->router->get('/customer-messages/{id}/load-messages', [ChatController::class, 'loadCustomerMessages']);
+$app->router->post('/customer-messages/{id}', [ChatController::class, 'technicianSendMessage']);
+
+/* Routes related to the Customer sending message to Technician */
+$app->router->get('/customer-messages', [CustomerController::class, 'customerMessages']);
+$app->router->get('/customer-messages/load-user-list', [ChatController::class, 'loadTechnicianList']);
+$app->router->get('/technician-messages/{id}', [ChatController::class, 'viewTechnicianMessages']);
+$app->router->get('/technician-messages/{id}/load-messages', [ChatController::class, 'loadTechnicianMessages']);
+$app->router->post('/technician-messages/{id}', [ChatController::class, 'customerSendMessage']);
 
 
 /* Run the application */

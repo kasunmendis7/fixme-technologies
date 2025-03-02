@@ -6,6 +6,7 @@ use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
+use app\models\Chat;
 use app\models\Comment;
 use app\models\Customer;
 use app\models\Post;
@@ -180,8 +181,15 @@ class CustomerController extends Controller
 
     public function customerMessages()
     {
+        $cus_id = Application::$app->session->get('customer');
+        $model = new Chat();
+
+        // Get customer chat list
+        $technicians = $model->getTechnicianChatList($cus_id);
         $this->setLayout('auth');
-        return $this->render('/customer/customer-messages');
+        return $this->render('/customer/customer-messages', [
+            'technicians' => $technicians
+        ]);
     }
 
     public function customerVehicleIssue()
