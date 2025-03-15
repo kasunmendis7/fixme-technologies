@@ -47,7 +47,7 @@ include_once 'components/header.php';
         if ($serviceCenters['status'] === 'success' && empty($serviceCenters['data'])) {
             echo '<h2>No Service Centers found !</h2>';
         } elseif ($serviceCenters['status'] === 'success' && !empty($serviceCenters['data'])) {
-            foreach ($serviceCenters as $serviceCenter) {
+            foreach ($serviceCenters['data'] as $serviceCenter) {
                 echo '<div class="col service-center-card" data-name="' . strtolower($serviceCenter['name']) . '">
                     <div class="card">
                         <div class="card-body">

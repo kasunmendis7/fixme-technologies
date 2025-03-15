@@ -131,7 +131,7 @@ include_once 'components/header.php';
                             <div class="imgBx"><img src="' . $recentCustomer['profile_picture'] . '" alt=""></div>
                         </td>
                         <td>
-                            <h4>' . $recentCustomer['fname'] . ' ' . $recentCustomer['lname'] . '<br> <span>' . $recentCustomer['address'] . '</span></h4>
+                            <h4>' . $recentCustomer['fname'] . ' ' . $recentCustomer['lname'] . '</h4>
                         </td>
                     </tr>';
             }
