@@ -45,7 +45,7 @@ include_once 'components/header.php';
         if ($technicians['status'] === 'success' && empty($technicians['data'])) {
             echo '<h2>No Technicians found !</h2>';
         } elseif ($technicians['status'] === 'success' && !empty($technicians['data'])) {
-            foreach ($technicians as $technician) {
+            foreach ($technicians['data'] as $technician) {
                 echo '<div class="col technician-card" data-name="' . strtolower($technician['fname']) . '' . strtolower($technician['lname']) . '">
                     <div class="card">
                         <img src="' . $technician['profile_picture'] . '" class="card-img-top" alt="...">
