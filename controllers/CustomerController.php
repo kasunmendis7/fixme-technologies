@@ -13,6 +13,7 @@ use app\models\Post;
 use app\models\ServiceCenter;
 use app\models\Technician;
 use app\models\CusTechReq;
+use app\models\CustomerPaymentMethod;
 
 class CustomerController extends Controller
 {
@@ -248,5 +249,38 @@ class CustomerController extends Controller
     {
         $this->setLayout('auth');
         return $this->render('/customer/customer-payment-details');
+    }
+
+    public function customerPaymentMethod()
+    {
+        $request = json_decode(file_get_contents('php://input'), true);
+
+        $cardNumber = $request['card_number'] ?? null;
+        $expiryDate = $request['expiry_date'] ?? null;
+        $cardName = $request['card_name'] ?? null;
+
+        if (!$cardNumber || !$expiryDate || !$cardName) {
+            echo json_encode(['success' => false, 'message' => 'Invalid input.']);
+            exit;
+        }
+
+        $lastFour = substr($cardNumber, -4);
+        $maskedCardNumber = str_repeat("*", 12) . $lastFour;
+
+        $paymentMethod = new CustomerPaymentMethod();
+        $cusId = Application::$app->session->get('customer');
+        $paymentMethod->addPaymentMethod($cusId, $lastFour, $cardName, $expiryDate);
+
+        // Respond to frontend
+        echo json_encode([
+            'success' => true,
+            'message' => 'Payment method stored successfully.',
+            'data' => [
+                'card_holder_name' => $cardName,
+                'card_number' => $maskedCardNumber,
+                'expiry_date' => $expiryDate,
+            ],
+        ]);
+        exit;
     }
 }
