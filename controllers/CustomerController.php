@@ -103,6 +103,7 @@ class CustomerController extends Controller
             $customer->loadData($request->getBody());
             if ($customer->updateValidate()) {
                 $customer->updateCustomer();
+                $customer->customerAddressGeocoding();
                 Application::$app->session->setFlash('update-success', 'You have been Updated your account info successfully!');
                 Application::$app->response->redirect('/customer-profile');
             } else {
