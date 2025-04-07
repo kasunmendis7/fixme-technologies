@@ -101,6 +101,45 @@ class CustomerController extends Controller
 
         if ($request->isPost()) {
             $customer->loadData($request->getBody());
+
+            if (!empty($_FILES['profile_picture']['name'])) {
+                $file = $_FILES['profile_picture'];
+                $fileName = $file['name'];
+                $fileTmpName = $file['tmp_name'];
+                $fileSize = $file['size'];
+                $fileError = $file['error'];
+                $fileType = $file['type'];
+                $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+                $maxSize = 2 * 1024 * 1024; // max file size 2MB
+
+                if (!in_array($fileType, $allowedTypes)) {
+                    throw new \Exception('Unsupported file type. Please upload a JPEG, PNG or JPG file.');
+                }
+                if ($fileSize > $maxSize) {
+                    throw new \Exception('File size exceeds the 2MB limit.');
+                }
+
+                $uploadDir = dirname(__DIR__) . '/public/uploads/profile-pictures/customer/';
+                $newFileName = uniqid('profile_', true) . '.' . pathinfo($fileName, PATHINFO_EXTENSION);
+                $destination = $uploadDir . $newFileName;
+
+                if (!file_exists($uploadDir)) {
+                    mkdir($uploadDir, 0777, true);
+                }
+
+                if (!move_uploaded_file($fileTmpName, $destination)) {
+                    throw new \Exception('Failed to upload the file');
+                }
+
+                $customerId = Application::$app->session->get('customer');
+                $relativePath = '/uploads/profile-pictures/customer/' . $newFileName;
+                $sql = 'UPDATE customer SET profile_picture = :profile_picture WHERE cus_id = :cus_id';
+                $stmt = Application::$app->db->prepare($sql);
+                $stmt->bindValue(':profile_picture', $relativePath);
+                $stmt->bindValue(':cus_id', $customerId);
+                $stmt->execute();
+            }
+
             if ($customer->updateValidate()) {
                 $customer->updateCustomer();
                 $customer->customerAddressGeocoding();
