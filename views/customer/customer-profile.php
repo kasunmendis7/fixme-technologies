@@ -36,7 +36,7 @@ include_once 'components/header.php';
                 <div class="profile-img">
                     <img src="<?php echo Application::$app->customer->{'profile_picture'} ?>"
                          alt="user profile picture"/>
-                    <button class="file btn btn-lg btn-primary">
+                    <button class="file btn btn-lg btn-primary" id="changePhotoBtn">
                         Change Photo
                         <input type="file" name="profile_picture"/>
                     </button>
