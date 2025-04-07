@@ -131,6 +131,7 @@ $app->router->get('/service-center-profile', [CustomerController::class, 'servic
 $app->router->get('/customer-vehicle-issue', [CustomerController::class, 'customerVehicleIssue']);
 $app->router->get('/customer-transactions', [CustomerController::class, 'customerTransactions']);
 $app->router->get('/customer-payment-details', [CustomerController::class, 'customerPaymentDetails']);
+$app->router->post('/customer-payment-method', [CustomerController::class, 'customerPaymentMethod']);
 
 
 /* Admin Routes */
