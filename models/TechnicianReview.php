@@ -6,7 +6,7 @@ use app\core\Application;
 use app\core\DbModel;
 use app\models\Customer;
 
-class Review extends DbModel
+class TechnicianReview extends DbModel
 {
     public string $user_name = '';
     public int $user_rating = 0;
@@ -44,7 +44,7 @@ class Review extends DbModel
     public static function fetchTechnicianReviews($tech_id): array
     {
         $sql = "SELECT * FROM technician_reviews WHERE tech_id = :tech_id ORDER BY review_id DESC";
-        $stmt = (new Review)->prepare($sql);
+        $stmt = (new ServiceCenterReview)->prepare($sql);
         $stmt->bindValue(':tech_id', $tech_id);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);

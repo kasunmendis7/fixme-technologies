@@ -71,9 +71,9 @@
 
 
             <li>
-                <a href="/market-place-home">
+                <a href="/service-center-marketplace">
                     <span class="icon">
-                        <ion-icon name="chatbubble-outline"></ion-icon>
+                        <ion-icon name="storefront-outline"></ion-icon>
                     </span>
                     <span class="title">Market</span>
                 </a>
