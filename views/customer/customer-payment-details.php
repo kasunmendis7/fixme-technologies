@@ -42,7 +42,23 @@ include_once 'components/header.php';
     <button type="submit">Add Card</button>
 </form>
 
-</section>
+<!-- Payment methods display table -->
+<div id="payment-methods-container">
+    <h2>Your Payment Methods</h2>
+    <table id="payment-methods-table">
+        <thead>
+        <tr>
+            <th>Card Name</th>
+            <th>Last Four Digits</th>
+            <th>Expiry Date</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Rows will be dynamically populated -->
+        </tbody>
+    </table>
+</div>
 
 <!-- Overlay for the confirmation message -->
 <div id="signOutOverlay" class="overlay">

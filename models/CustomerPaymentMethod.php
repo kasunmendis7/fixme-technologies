@@ -26,7 +26,25 @@ class CustomerPaymentMethod extends DbModel
         $stmt->bindValue(':card_type', $cardType);
         $stmt->bindValue(':exp_date', $expDate);
         $stmt->execute();
+    }
 
+    public function getPaymentMethods($cusId)
+    {
+        $sql = "SELECT * FROM cus_payment_opt WHERE cus_id = :cus_id";
+        $stmt = Application::$app->db->prepare($sql);
+        $stmt->bindValue(':cus_id', $cusId);
+        $stmt->execute();
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function deletePaymentMethod($id, $cusId)
+    {
+        $sql = "DELETE FROM cus_payment_opt WHERE cus_pay_opt_id = :id AND cus_id = :cus_id";
+        $stmt = Application::$app->db->prepare($sql);
+        $stmt->bindValue(':id', $id);
+        $stmt->bindValue(':cus_id', $cusId);
+        $stmt->execute();
     }
 
     public function rules(): array

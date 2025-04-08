@@ -287,6 +287,59 @@ body {
     font-weight: bold;
 }
 
+#payment-methods-container {
+    margin: 30px auto;
+    max-width: 800px;
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#payment-methods-container h2 {
+    text-align: center;
+    color: #f8fafc;
+    margin-bottom: 20px;
+}
+
+#payment-methods-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+}
+
+#payment-methods-table th,
+#payment-methods-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #334155;
+    color: #f1f5f9;
+}
+
+#payment-methods-table th {
+    background: #2563eb;
+    color: #f8fafc;
+}
+
+#payment-methods-table tr:hover {
+    background: #334155;
+}
+
+#payment-methods-table button {
+    background-color: #2563eb;
+    color: #f8fafc;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#payment-methods-table button:hover {
+    background-color: #15549b;
+}
+
+
 /* Add responsive design */
 @media (max-width: 768px) {
     #payment-form {
