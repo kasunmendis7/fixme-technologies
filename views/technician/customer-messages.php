@@ -30,8 +30,8 @@ include_once 'components/header.php';
             <section class="users">
                 <header>
                     <div class="content">
-                        <img src="<?php echo Application::$app->technician->profile_picture ?>" alt="Profile Pic">
-
+                        <img src="<?php echo Application::$app->technician->profile_picture ?? '/assets/user_avatar.png'; ?>"
+                             alt="Profile Pic">
                         <div class="details">
                             <span><?php echo Application::$app->technician->fname . ' ' . Application::$app->technician->lname ?></span>
                         </div>
@@ -39,8 +39,6 @@ include_once 'components/header.php';
                 </header>
                 <!--Search button-->
                 <div class="search">
-                    <input type="text" placeholder="Enter name to search...">
-                    <button><i class="fas fa-search"></i></button>
                 </div>
                 <div class="users-list">
                     <?php include_once 'components/load-user-list.php'; ?>

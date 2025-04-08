@@ -4,7 +4,7 @@ use app\core\Application;
 
 ?>
 <body>
-<div class="container">
+<div class="container" id="ratings-reviews-section">
     <div class="card">
         <div class="card-header">Ratings & Reviews
             of <?php echo $serviceCenter['name'] ?></div>

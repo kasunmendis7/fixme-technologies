@@ -29,18 +29,14 @@ include_once 'components/header.php';
             <section class="users">
                 <header>
                     <div class="content">
-                        <img src="<?= Application::$app->technician->profile_picture ? '/assets/uploads/' . Application::$app->technician->profile_picture : '/assets/user_avatar.png'; ?>"
+                        <img src="<?php echo Application::$app->technician->profile_picture ?? '/assets/user_avatar.png'; ?>"
                              alt="">
                         <div class="details">
                             <span><?php echo Application::$app->technician->fname . ' ' . Application::$app->technician->lname ?></span>
-                            <!--                             <p>Active Now</p> to add active we need a status but i don't have that -->
                         </div>
                     </div>
                 </header>
-                <!--Search button-->
                 <div class="search">
-                    <input type="text" placeholder="Enter name to search...">
-                    <button><i class="fas fa-search"></i></button>
                 </div>
                 <div class="users-list">
                     <?php include_once 'components/load-user-list.php'; ?>
