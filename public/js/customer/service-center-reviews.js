@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('review_modal').style.display = 'none';
     }
 
-    // Open modal when "Review" button is clicked
+    // Open modal when "TechnicianReview" button is clicked
     document.getElementById('add_review').addEventListener('click', showModal);
     // Close modal when close button is clicked
     document.getElementById('modal_close').addEventListener('click', hideModal);
@@ -53,16 +53,16 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('save_review').addEventListener('click', function () {
         var user_name = document.getElementById('user_name').value.trim();
         var user_review = document.getElementById('user_review').value.trim();
-        // Extract technician ID from the current URL
+        // Extract ser_cennician ID from the current URL
         const url = window.location.href;
-        const tech_id = url.split('/').pop();
+        const ser_cen_id = url.split('/').pop();
 
         if (user_name === '' || user_review === '') {
             alert("Please Fill Both Field");
             return;
         } else {
             var formData = new FormData();
-            formData.append('tech_id', tech_id);
+            formData.append('ser_cen_id', ser_cen_id);
             formData.append('user_name', user_name);
             formData.append('user_rating', rating_data);
             formData.append('user_review', user_review);
@@ -83,13 +83,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Load rating data via fetch
     function load_rating_data() {
-        // Extract technician ID from URL
+        // Extract service_center ID from URL
         const url = window.location.href;
-        const tech_id = url.split('/').pop();
+        const ser_cen_id = url.split('/').pop();
 
         var formData = new FormData();
         formData.append('action', 'load_data');
-        formData.append('tech_id', tech_id);
+        formData.append('ser_cen_id', ser_cen_id);
 
         fetch("fetch-reviews", {
             method: "POST",
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     var html = '';
                     data.review_data.forEach(function (review) {
                         html += '<div class="row mb-3">';
-                        html += '<div class="col-sm-1"><div style="background:#010336; color:#fff; padding:25px; text-align:center; border-radius:50%; margin-left: 20px"><h3 style="margin:0;">' + review.user_name.split(' ').map(n => n[0]).join('') + '</h3></div></div>';
+                        html += '<div class="col-sm-1"><div style="background:#010336; color:#fff; padding:25px; text-align:center; border-radius:50%; margin-left: 20px"><h2 style="margin:0;">' + review.user_name.split(' ').map(n => n[0]).join('') + '</h2></div></div>';
                         html += '<div class="col-sm-11">';
                         html += '<div class="card">';
                         html += '<div class="card-header"><b>' + review.user_name + '</b></div>';

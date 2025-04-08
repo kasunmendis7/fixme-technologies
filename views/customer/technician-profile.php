@@ -100,7 +100,7 @@ include_once 'components/header.php';
 </main>
 
 <?php
-include_once 'components/reviews.php';
+include_once 'components/technician-reviews.php';
 ?>
 
 <!--<main class="content">-->

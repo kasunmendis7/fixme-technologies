@@ -3,20 +3,20 @@
 namespace app\controllers;
 
 use app\core\Controller;
-use app\models\Review;
+use app\models\ServiceCenterReview;
 use app\core\Request;
 use app\core\Response;
 use app\models\Technician;
 
-class ReviewController extends Controller
+class ServiceCenterReviewController extends Controller
 {
     public function submit(Request $request, Response $response)
     {
         if ($request->isPost()) {
-            $review = new Review();
+            $review = new ServiceCenterReview();
             $review->loadData($request->getBody());
             if ($review->saveReview()) {
-                echo "Your Review & Rating Successfully Submitted";
+                echo "Your Service Center Review & Rating Successfully Submitted";
             } else {
                 echo "Error saving review.";
             }
@@ -37,8 +37,8 @@ class ReviewController extends Controller
                 return;
             }
 
-            $reviewModel = new Review();
-            $reviews = $reviewModel->fetchTechnicianReviews($tech_id);
+            $reviewModel = new ServiceCenterReview();
+            $reviews = $reviewModel->fetchServiceCenterReviews($tech_id);
 
             $stats = [
                 'total_review' => count($reviews),

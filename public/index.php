@@ -14,8 +14,8 @@ use app\controllers\PostController;
 use app\controllers\CommentController;
 use app\controllers\ProductController;
 use app\controllers\ChatController;
-use app\controllers\ReviewController;
-
+use app\controllers\TechnicianReviewController;
+use app\controllers\ServiceCenterReviewController;
 
 /* load environment variables */
 
@@ -181,7 +181,7 @@ $app->router->get('/service-center-logout', [AuthController::class, 'serviceCent
 /*routes related to the product(service center)*/
 $app->router->get('/service-center-create-product', [ServiceCentreController::class, 'serviceCenterCreateProduct']);
 $app->router->post('/service-center-create-product', [ProductController::class, 'create']);
-$app->router->get('/market-place-home', [ProductController::class, 'index']);
+$app->router->get('/service-center-marketplace', [ProductController::class, 'viewMarketplace']);
 $app->router->get('/service-center-create-product', [ProductController::class, 'filterProductsById']);
 $app->router->get('/service-center-update-product', [ProductController::class, 'update']);
 $app->router->post('/service-center-update-product', [ProductController::class, 'update']);
@@ -230,8 +230,10 @@ $app->router->get('/technician-messages/{id}/load-messages', [ChatController::cl
 $app->router->post('/technician-messages/{id}', [ChatController::class, 'customerSendMessage']);
 
 /* Routes related to the customer reviews */
-$app->router->post('/technician-profile/submit-rating', [ReviewController::class, 'submit']);
-$app->router->post('/technician-profile/fetch-reviews', [ReviewController::class, 'fetch']);
+$app->router->post('/technician-profile/submit-rating', [TechnicianReviewController::class, 'submit']);
+$app->router->post('/technician-profile/fetch-reviews', [TechnicianReviewController::class, 'fetch']);
+$app->router->post('/service-center-profile/submit-rating', [ServiceCenterReviewController::class, 'submit']);
+$app->router->post('/service-center-profile/fetch-reviews', [ServiceCenterReviewController::class, 'fetch']);
 
 
 /* Run the application */
