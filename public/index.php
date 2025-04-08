@@ -133,6 +133,8 @@ $app->router->get('/customer-vehicle-issue', [CustomerController::class, 'custom
 $app->router->get('/customer-transactions', [CustomerController::class, 'customerTransactions']);
 $app->router->get('/customer-payment-details', [CustomerController::class, 'customerPaymentDetails']);
 $app->router->post('/customer-payment-method', [CustomerController::class, 'customerPaymentMethod']);
+$app->router->get('/get-customer-payment-methods', [CustomerController::class, 'getCustomerPaymentMethods']);
+$app->router->post('/delete-customer-payment-method/{id}', [CustomerController::class, 'deleteCustomerPaymentMethod']);
 
 
 /* Admin Routes */

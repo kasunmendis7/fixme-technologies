@@ -283,4 +283,39 @@ class CustomerController extends Controller
         ]);
         exit;
     }
+
+    public function getCustomerPaymentMethods()
+    {
+        try {
+            $cusId = Application::$app->session->get('customer');
+            if (!$cusId) {
+                throw new \Exception('Customer not logged in ');
+            }
+
+            $paymentMethodModel = new CustomerPaymentMethod();
+            $paymentMethods = $paymentMethodModel->getPaymentMethods($cusId);
+            echo json_encode(['success' => true, 'data' => $paymentMethods]);
+        } catch (\Exception $e) {
+            http_response_code(500);
+            echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+        }
+    }
+
+    public function deleteCustomerPaymentMethod($id)
+    {
+        try {
+            $cusId = Application::$app->session->get('customer');
+            $id = intval($id[0]);
+            if (!$cusId) {
+                throw new \Exception('Customer not logged in');
+            }
+            $paymentMethodModel = new CustomerPaymentMethod();
+            $paymentMethodModel->deletePaymentMethod($id, $cusId);
+
+            echo json_encode(['success' => true, 'message' => 'Payment method deleted successfully']);
+        } catch (\Exception $e) {
+            http_response_code(500);
+            echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+        }
+    }
 }
