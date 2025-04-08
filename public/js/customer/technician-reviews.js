@@ -168,3 +168,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Load rating data when the page loads
     load_rating_data();
 });
+
+
+function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({behavior: 'smooth'});
+}

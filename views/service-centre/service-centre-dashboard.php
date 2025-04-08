@@ -1,3 +1,9 @@
+<?php
+
+use app\core\Application;
+use app\models\ServiceCenterReview;
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +49,11 @@ include_once 'components/header.php';
 
     <div class="card">
         <div>
-            <div class="numbers">20</div>
+            <?php
+            $serviceCenterReviews = new ServiceCenterReview();
+            $totalReviews = $serviceCenterReviews->countTotalReviewsByServiceCenterId(Application::$app->session->get('serviceCenter'));
+            ?>
+            <div class="numbers" id="total_review"><?php echo $totalReviews ?></div>
             <div class="cardName">Total Reviews</div>
         </div>
 
