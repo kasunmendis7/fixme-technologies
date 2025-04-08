@@ -4,10 +4,10 @@ use app\core\Application;
 
 ?>
 <body>
-<div class="container">
+<div class="container" id="ratings-reviews-section">
     <div class="card">
         <div class="card-header">Ratings & Reviews
-            of <?php echo $technician['fname'] . ' ' . $technician['lname'] ?></div>
+            of <?php echo $serviceCenter['name'] ?></div>
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-4 text-center">
@@ -99,5 +99,5 @@ use app\core\Application;
     </div>
 </div>
 
-<script src="/js/customer/reviews.js"></script>
+<script src="/js/customer/service-center-reviews.js"></script>
 </body>

@@ -8,7 +8,7 @@ use app\core\Request;
 use app\core\Response;
 use app\models\Technician;
 
-class ReviewController extends Controller
+class TechnicianReviewController extends Controller
 {
     public function submit(Request $request, Response $response)
     {
@@ -16,7 +16,7 @@ class ReviewController extends Controller
             $review = new TechnicianReview();
             $review->loadData($request->getBody());
             if ($review->saveReview()) {
-                echo "Your TechnicianReview & Rating Successfully Submitted";
+                echo "Your Technician Review & Rating Successfully Submitted";
             } else {
                 echo "Error saving review.";
             }

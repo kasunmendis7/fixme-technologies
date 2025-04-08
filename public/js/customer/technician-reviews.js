@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('review_modal').style.display = 'none';
     }
 
-    // Open modal when "Review" button is clicked
+    // Open modal when "TechnicianReview" button is clicked
     document.getElementById('add_review').addEventListener('click', showModal);
     // Close modal when close button is clicked
     document.getElementById('modal_close').addEventListener('click', hideModal);
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     var html = '';
                     data.review_data.forEach(function (review) {
                         html += '<div class="row mb-3">';
-                        html += '<div class="col-sm-1"><div style="background:#010336; color:#fff; padding:25px; text-align:center; border-radius:50%; margin-left: 20px"><h3 style="margin:0;">' + review.user_name.split(' ').map(n => n[0]).join('') + '</h3></div></div>';
+                        html += '<div class="col-sm-1"><div style="background:#010336; color:#fff; padding:25px; text-align:center; border-radius:50%; margin-left: 20px"><h2 style="margin:0;">' + review.user_name.split(' ').map(n => n[0]).join('') + '</h2></div></div>';
                         html += '<div class="col-sm-11">';
                         html += '<div class="card">';
                         html += '<div class="card-header"><b>' + review.user_name + '</b></div>';
@@ -168,3 +168,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Load rating data when the page loads
     load_rating_data();
 });
+
+
+function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({behavior: 'smooth'});
+}

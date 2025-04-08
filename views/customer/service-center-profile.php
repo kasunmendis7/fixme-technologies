@@ -18,6 +18,10 @@ use app\core\Application;
     <link rel="stylesheet" href="/css/customer/overlay.css">
     <link rel="stylesheet" href="/css/customer/flash-messages.css">
     <link rel="stylesheet" href="/css/customer/service-center-profile.css">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" crossorigin="anonymous"/>
+    <!-- adding the css styling -->
+    <link rel="stylesheet" href="/css/customer/reviews.css">
 </head>
 
 <body>
@@ -67,7 +71,7 @@ include_once 'components/header.php';
 
 <nav class="tabs">
     <button class="tab active">Feed</button>
-    <button class="tab">Ratings & Reviews</button>
+    <button class="tab" onclick="scrollToSection('ratings-reviews-section');">Ratings & Reviews</button>
 </nav>
 
 <main class="content">
@@ -111,39 +115,12 @@ include_once 'components/header.php';
             </div>
         </article>
     </div>
-
-    <!-- Feedback Section -->
-    <div class="feedback-section">
-        <h2>Feedback</h2>
-
-        <!-- Feedback Card 1 -->
-        <article class="feedback-card">
-            <div class="feedback-content">
-                <h4>John Doe</h4>
-                <p>"Shane was extremely professional and resolved my electrical issues quickly!"</p>
-                <p><small>Rated: ★★★★★</small></p>
-            </div>
-        </article>
-
-        <!-- Feedback Card 2 -->
-        <article class="feedback-card">
-            <div class="feedback-content">
-                <h4>Jane Smith</h4>
-                <p>"Alex is reliable and provided excellent plumbing services at a fair price."</p>
-                <p><small>Rated: ★★★★☆</small></p>
-            </div>
-        </article>
-
-        <!-- Feedback Card 3 -->
-        <article class="feedback-card">
-            <div class="feedback-content">
-                <h4>Mike Brown</h4>
-                <p>"Lisa's HVAC expertise saved us a lot of trouble during the heatwave."</p>
-                <p><small>Rated: ★★★★★</small></p>
-            </div>
-        </article>
-    </div>
 </main>
+
+<!-- Feedback Section -->
+<?php
+include_once 'components/service-center-reviews.php';
+?>
 
 
 <!--<main class="content">-->
