@@ -74,7 +74,7 @@ include_once 'components/header.php';
 
 <nav class="tabs">
     <button class="tab active">Feed</button>
-    <!--    <button class="tab">Ratings & Reviews</button>-->
+    <button class="tab" onclick="scrollToSection('ratings-reviews-section');">Ratings & Reviews</button>
 </nav>
 
 <main class="content">
@@ -100,7 +100,7 @@ include_once 'components/header.php';
 </main>
 
 <?php
-include_once 'components/reviews.php';
+include_once 'components/technician-reviews.php';
 ?>
 
 <!--<main class="content">-->

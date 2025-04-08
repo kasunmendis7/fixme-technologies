@@ -2,6 +2,7 @@
 
 use app\core\Application;
 use app\models\CusTechReq;
+use app\models\TechnicianReview;
 
 ?>
 
@@ -57,7 +58,11 @@ include_once 'components/header.php';
 
     <div class="card">
         <div>
-            <div class="numbers">20</div>
+            <?php
+            $techReviews = new TechnicianReview();
+            $totalReviews = $techReviews->countTotalReviewsByTechnicianId(Application::$app->session->get('technician'));
+            ?>
+            <div class="numbers" id="total_review"><?php echo $totalReviews ?></div>
             <div class="cardName">Total Reviews</div>
         </div>
 
