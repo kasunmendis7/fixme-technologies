@@ -9,7 +9,7 @@ use app\core\Request;
 use app\core\Response;
 use app\models\Customer;
 use app\models\Post;
-use app\models\Review;
+use app\models\ServiceCenterReview;
 use app\models\Technician;
 use app\models\TechnicianRequest;
 use app\models\Chat;
@@ -168,7 +168,7 @@ class TechnicianController extends Controller
         $postModel = new Post();
         $posts = $postModel->getPostsByTechnicianId(intval($id[0]));
 
-        $reviewModel = new Review();
+        $reviewModel = new ServiceCenterReview();
 
         return $this->render('/customer/technician-profile', [
             'technician' => $technician,
