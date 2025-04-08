@@ -38,7 +38,7 @@ use app\core\Application;
     </div>
 </section>
 
-<section >
+<section>
 
     <?php include_once 'logo-slider.php' ?>
 
@@ -152,12 +152,12 @@ use app\core\Application;
 
     <div class="row">
         <div class="box-3-container">
-            <div class="box-3">
+            <div class="box-4">
                 <div class="section-6-header">
                     <h1>Explore Our Marketplace</h1>
                 </div>
             </div>
-            <div class="box-3">
+            <div class="box-4">
                 <div class="section-6-btn">
                     <a href="/market-place-home">
                         <button id="navigateButton">Market &rarr;</button>
@@ -167,7 +167,7 @@ use app\core\Application;
             </div>
         </div>
         <div class="box-3-container">
-            <div class="box-3">
+            <div class="box-4">
                 <div class="img-box-6">
                     <img src="assets/shop-location.png" alt="">
                 </div>
