@@ -30,17 +30,14 @@ include_once 'components/header.php';
             <section class="users">
                 <header>
                     <div class="content">
-                        <img src="<?= Application::$app->customer->profile_picture ? '/assets/uploads/' . Application::$app->customer->profile_picture : '/assets/user_avatar.png'; ?>"
+                        <img src="<?= Application::$app->customer->profile_picture ?? '/assets/user_avatar.png'; ?>"
                              alt="">
                         <div class="details">
                             <span><?php echo Application::$app->customer->fname . ' ' . Application::$app->customer->lname ?></span>
                         </div>
                     </div>
                 </header>
-                <!--Search button-->
                 <div class="search">
-                    <input type="text" placeholder="Enter name to search...">
-                    <button><i class="fas fa-search"></i></button>
                 </div>
                 <div class="users-list">
                     <?php include_once 'components/load-user-list.php'; ?>

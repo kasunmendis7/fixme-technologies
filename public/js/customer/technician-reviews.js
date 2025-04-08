@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('review_modal').style.display = 'none';
     }
 
-    // Open modal when "Review" button is clicked
+    // Open modal when "TechnicianReview" button is clicked
     document.getElementById('add_review').addEventListener('click', showModal);
     // Close modal when close button is clicked
     document.getElementById('modal_close').addEventListener('click', hideModal);
