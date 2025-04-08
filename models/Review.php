@@ -1,0 +1,63 @@
+<?php
+
+namespace app\models;
+
+use app\core\Application;
+use app\core\DbModel;
+use app\models\Customer;
+
+class Review extends DbModel
+{
+    public string $user_name = '';
+    public int $user_rating = 0;
+    public string $user_review = '';
+    public int $datetime;
+    public int $cus_id;
+    public int $tech_id;
+
+
+    public function tableName(): string
+    {
+        return 'technician_reviews';
+    }
+
+    public function attributes(): array
+    {
+        return ['cus_id', 'tech_id', 'user_name', 'user_rating', 'user_review'];
+    }
+
+    public function rules(): array
+    {
+        return [
+//            'user_name' => [self::RULE_REQUIRED],
+            'user_rating' => [self::RULE_REQUIRED],
+        ];
+    }
+
+    public function saveReview(): bool
+    {
+        $customer_id = Application::$app->session->get('customer');
+        $this->cus_id = $customer_id;
+        return $this->save();
+    }
+
+    public static function fetchTechnicianReviews($tech_id): array
+    {
+        $sql = "SELECT * FROM technician_reviews WHERE tech_id = :tech_id ORDER BY review_id DESC";
+        $stmt = (new Review)->prepare($sql);
+        $stmt->bindValue(':tech_id', $tech_id);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+
+    public function primaryKey(): string
+    {
+        return 'review_id';  // Assuming review_id is your primary key
+    }
+
+    public function updateRules(): array
+    {
+        return $this->rules();
+    }
+}
