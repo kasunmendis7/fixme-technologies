@@ -109,7 +109,6 @@ use app\models\Customer;
 
         .customer-address {
             margin-top: 20px;
-            margin-bottom: 20px;
         }
     </style>
     <link rel="stylesheet" href="/css/technician/technician-dashboard.css">
