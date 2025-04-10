@@ -15,7 +15,7 @@
     <div class="contact-us-left">
         <h2 class="contact-us-heading">Contact Us</h2>
         <p class="contact-us-text">We are here for you! How can we help you?</p>
-        <form method="post" action="/technician-help/send-email">
+        <form method="post" action="send-email">
             <div class="contact-us-input-box">
                 <label for="contact-us-name">Name: </label>
                 <input type="text" name="contact-us-name" id="contact-us-name" class="contact-us-name"
