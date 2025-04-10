@@ -1,24 +1,25 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Technician Home</title>
+    <title>Service Center Help</title>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="/css/customer/customer-dashboard.css">
     <link rel="stylesheet" href="/css/technician/technician-help.css">
-    <link rel="stylesheet" href="/css/technician/overlay.css">
-
+    <link rel="stylesheet" href="/css/customer/overlay.css">
 </head>
+
 <body>
 <?php
 include_once 'components/sidebar.php';
 include_once 'components/header.php';
 ?>
-<!-- JavaScript Files -->
-<script src="/js/technician/technician-help.js"></script>
+
 <div class="help-container">
     <div class="help-header">
         <h2 class="help-title">Get in Touch with Us</h2>
@@ -38,8 +39,8 @@ include_once 'components/header.php';
         <div class="help-contact-card">
             <div class="help-icon">📞</div>
             <div class="help-title">Talk to us</div>
-            <p class="help-description">If you are having trouble finding the right automobile technician, or need help
-                with booking an appointment, just give us a call. We are here to help you to find the best technician
+            <p class="help-description">If you are having trouble finding the right automobile service center, or need help
+                with booking an appointment, just give us a call. We are here to help you to find the best service center 
                 for your vehicle.</p>
             <p class="help-contact-info">0710154855</p>
         </div>
@@ -56,26 +57,17 @@ include_once 'components/header.php';
 
     </div>
 </div>
-
-<!-- Overlay for the confirmation message -->
 <div id="signOutOverlay" class="overlay">
     <div class="overlay-content">
         <p>Are you sure you want to sign out?</p>
-        <button id="confirmSignOut" class="btn"><a href="/technician-logout"></a> Yes</button>
+        <button id="confirmSignOut" class="btn"><a href="/customer-logout"></a> Yes</button>
         <button id="cancelSignOut" class="btn">No</button>
     </div>
 </div>
 
-<!-- Overlay for the confirmation message -->
-<div id="signOutOverlay" class="overlay">
-    <div class="overlay-content">
-        <p>Are you sure you want to sign out?</p>
-        <button id="confirmSignOut" class="btn"><a href="/technician-logout"></a> Yes</button>
-        <button id="cancelSignOut" class="btn">No</button>
-    </div>
-</div>
-
-<script src="/js/technician/overlay.js"></script>
-
+<!-- JavaScript Files -->
+<script src="/js/customer/overlay.js"></script>
+<script src="/js/service-center/service-center-home.js"></script>
 </body>
+
 </html>
