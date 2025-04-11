@@ -31,7 +31,6 @@
                 efficiently. The platform caters to millions of users, simplifying the process of finding expert
                 assistance while saving time and effort.
             </p>
-            <button class="about-button">Read More...</button>
         </div>
     </div>
 </section>

@@ -44,30 +44,23 @@ use app\core\Application;
                 <div class="input-element">
                     <label for="email">Email address</label>
                     <input type="email" name="email" id="email" placeholder="example@email.com..."
-                    value="<?php echo $model->email  ?>"
-                    class="<?php echo $model->hasError('email') ? 'invalid ' : '' ?>">
-                <div class="invalid-feedback">
-                    <?php echo $model->getFirstError('email') ?>
-                </div>
+                           value="<?php echo $model->email ?>"
+                           class="<?php echo $model->hasError('email') ? 'invalid ' : '' ?>">
+                    <div class="invalid-feedback">
+                        <?php echo $model->getFirstError('email') ?>
+                    </div>
                 </div>
                 <div class="input-element">
                     <label for="password">Password</label>
                     <input type="password" name="password" id="password" placeholder="Password..."
-                        value="<?php echo $model->password ?>"
-                        class="<?php echo $model->hasError('password') ? 'invalid' : '' ?>">
+                           value="<?php echo $model->password ?>"
+                           class="<?php echo $model->hasError('password') ? 'invalid' : '' ?>">
                     <div class="invalid-feedback">
                         <?php echo $model->getFirstError('password') ?>
                     </div>
                 </div>
-                <div class="remember-me">
-                    <input type="checkbox" name="remember-me" id="remember-me">
-                    <label for="remember-me">Remember me</label>
-                </div>
                 <div>
                     <button type="submit" class="btn">Log in</button>
-                </div>
-                <div class="forgot-password">
-                    <a href="#">Forgot password?</a>
                 </div>
                 <div class="sign-up">
                     <h6>Don't have an account? <a href="/service-centre-sign-up">Sign up</a></h6>
