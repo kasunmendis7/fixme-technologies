@@ -134,7 +134,7 @@ use app\core\Application;
     </footer>
 </div>
 <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCGNUZAUhEzeW8LeV_j3deW44jsA9hWY0&callback=loadMap&loading=async&libraries=marker&v=beta">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAp2lOYaWEfsNp-yZCWSpkRa3y2vf6b5yo&callback=loadMap&loading=async&libraries=marker&v=beta">
 </script>
 </body>
 
