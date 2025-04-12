@@ -219,11 +219,88 @@ class TechnicianController extends Controller
     public function viewCustomerRequest($id)
     {
         $customer = (new Customer())->findById(intval($id[0]));
+        Application::$app->session->set('customer-destination', $id[0]);
 
         $this->setLayout('auth');
         return $this->render('/technician/customer-request', [
             'customer' => $customer
         ]);
+    }
+
+    public function getOriginDestination()
+    {
+        $tech_id = Application::$app->session->get('technician');
+        $cus_id = Application::$app->session->get('customer-destination');
+
+        $cus_loc = json_decode((new Customer())->getCustomerLocationUsingId($cus_id));
+        $tech_loc = json_decode((new Technician())->getTechnicianLocationUsingId($tech_id));
+
+        return json_encode(['customer_location' => $cus_loc, 'technician_location' => $tech_loc]);
+    }
+
+    public function getRoute(Request $request)
+    {
+        $body = json_decode(file_get_contents('php://input'), true);
+
+        if (!isset($body['origin'], $body['destination'], $body['mode'])) {
+            throw new \Exception("Missing required parameters: origin, destination, or mode.");
+        }
+
+
+        $origin = $body['origin'];       // Format: "latitude,longitude"
+        $destination = $body['destination']; // Format: "latitude,longitude"
+        $travelMode = strtoupper($body['mode']);     // Example: DRIVING, WALKING, TRANSIT, BICYCLING
+
+        $API_KEY = $_ENV['API_KEY']; // Replace with your actual API key
+
+        $url = "https://routes.googleapis.com/directions/v2:computeRoutes";
+
+        // Build the request JSON for Google's Routes API
+        $routeRequest = [
+            'origin' => [
+                'location' => [
+                    'latLng' => [
+                        'latitude' => floatval(explode(',', $origin)[0]),
+                        'longitude' => floatval(explode(',', $origin)[1])
+                    ]
+                ]
+            ],
+            'destination' => [
+                'location' => [
+                    'latLng' => [
+                        'latitude' => floatval(explode(',', $destination)[0]),
+                        'longitude' => floatval(explode(',', $destination)[1])
+                    ]
+                ]
+            ],
+            'travelMode' => $travelMode, // Can be WALKING, DRIVING, etc.
+            'routingPreference' => 'TRAFFIC_AWARE',
+            'computeAlternativeRoutes' => false,
+            'units' => 'IMPERIAL',
+            'languageCode' => 'en-US',
+        ];
+
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, [
+            'Content-Type: application/json',
+            'X-Goog-Api-Key:' . $_ENV['API_KEY'],
+            'X-Goog-FieldMask: routes.duration,routes.distanceMeters,routes.polyline.encodedPolyline',
+
+        ]);
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($routeRequest));
+
+        $response = curl_exec($curl);
+
+        if ($error = curl_error($curl)) {
+            curl_close($curl);
+            return json_encode(['success' => false, 'error' => $error]);
+        }
+
+        curl_close($curl);
+
+        return $response; // JSON response from Routes API
     }
 }
 
