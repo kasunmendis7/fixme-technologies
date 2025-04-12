@@ -214,6 +214,17 @@ class Customer extends DbModel
         return json_encode($data);
     }
 
+    public function getCustomerLocationUsingId($id)
+    {
+        $sql = "SELECT latitude, longitude FROM customer WHERE cus_id = :cus_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':cus_id', $id);
+        $stmt->execute();
+
+        $data = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return json_encode($data);
+    }
+
     public function updateCustomer()
     {
         $sql = "UPDATE customer SET fname = :fname, lname = :lname, phone_no = :phone_no, address = :address WHERE cus_id = :cus_id";
