@@ -14,107 +14,9 @@ use app\models\Customer;
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Customer Dashboard</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        .invoice-container {
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .header {
-            background-color: #010336;
-            color: #FFFFFF;
-            padding: 20px;
-        }
-
-        .header .company-info h1 {
-            margin-top: 5px;
-        }
-
-        .header .company-info p {
-            margin-top: 15px;
-        }
-
-        .header .header-item {
-            color: #010336;
-        }
-
-
-        .header h1 {
-            margin: 0;
-            font-size: 30px;
-        }
-
-        .header .invoice-info {
-            text-align: right;
-        }
-
-        .header .invoice-info p {
-            margin: 0;
-        }
-
-        .content {
-            padding: 20px;
-        }
-
-        .content h2 {
-            margin-top: 0;
-        }
-
-        .content table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        .content table, .content th, .content td {
-            border: 1px solid #ddd;
-        }
-
-        .content th, .content td {
-            padding: 8px;
-            text-align: left;
-        }
-
-        .content th {
-            background-color: #f4f4f4;
-        }
-
-        .total {
-            text-align: right;
-            margin-bottom: 20px;
-        }
-
-        .payment-info, .terms {
-            margin-bottom: 20px;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #f4f4f4;
-            border-radius: 0 0 8px 8px;
-        }
-
-        .customer-address {
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-    </style>
+    <title>Customer Request</title>
     <link rel="stylesheet" href="/css/technician/technician-dashboard.css">
     <link rel="stylesheet" href="/css/technician/overlay.css">
-    <link rel="stylesheet" href="/css/technician/technician-transactions.css">
 </head>
 
 <body>
@@ -122,110 +24,6 @@ use app\models\Customer;
 include_once 'components/sidebar.php';
 include_once 'components/header.php';
 ?>
-<div class="container">
-
-    <div class="header">
-        <div class="header-item">
-            <div class="total-payments">
-                <h3>Total Payment</h3>
-                <h2>LKR 430.00</h2>
-                <small>as of 01-August 2024</small>
-            </div>
-        </div>
-        <div class="header-item">
-            <div class="advanced-payment">
-                <h3>Advanced Payment to be made</h3>
-                <h2>LKR 100.00</h2>
-                <small>as of 01-August 2024</small>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="invoice-container">
-    <div class="header">
-        <div class="company-info">
-            <h1>Customer ID: <?php echo $customer['cus_id'] ?></h1>
-            <h1>Customer Name: <?php echo $customer['fname'] . ' ' . $customer['lname'] ?></h1>
-            <p>
-                Date: <?php
-                $today = date("j F Y");
-                $day = date("j");
-                $suffix = "";
-                if ($day >= 11 && $day <= 13) {
-                    $suffix = "th";
-                } else {
-                    switch ($day % 10) {
-                        case 1:
-                            $suffix = "st";
-                            break;
-                        case 2:
-                            $suffix = "nd";
-                            break;
-                        case 3:
-                            $suffix = "rd";
-                            break;
-                        default:
-                            $suffix = "th";
-                            break;
-                    }
-                }
-                echo $day . $suffix . " " . date("F Y");
-                ?></p>
-        </div>
-        <div class="invoice-info">
-        </div>
-    </div>
-    <div class="content">
-        <h2>Distance to the Customer: <?php echo $customer['distance'] ?>km</h2>
-        <h2>Duration to the Customer: <?php echo $customer['duration'] ?> minutes</h2>
-        <div class="customer-address">
-            <p><?php echo $customer['address'] ?></p>
-        </div>
-        <table>
-            <thead>
-            <tr>
-                <th>No.</th>
-                <th>Description</th>
-                <th>Quantity</th>
-                <th>Unit Price</th>
-                <th>Total</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>01</td>
-                <td>Social Media Manager</td>
-                <td>10 hours</td>
-                <td>$100/hour</td>
-                <td>$1000</td>
-            </tr>
-            <tr>
-                <td>02</td>
-                <td>Content Creation</td>
-                <td>30 design</td>
-                <td>$20/design</td>
-                <td>$600</td>
-            </tr>
-            <tr>
-                <td>03</td>
-                <td>SEO Optimization</td>
-                <td>1 project</td>
-                <td>$400</td>
-                <td>$400</td>
-            </tr>
-            </tbody>
-        </table>
-        <div class="total">
-            <p>Subtotal: $1700</p>
-            <p>Tax: $170</p>
-            <h3>Total Due: $1,870.00</h3>
-        </div>
-    </div>
-    <div class="footer">
-        <p>Thank you for your business!</p>
-    </div>
-</div>
-<body>
 
 </body>
 <!-- Overlay for the confirmation message -->
@@ -242,7 +40,6 @@ include_once 'components/header.php';
 <script src="/js/technician/technician-dashboard.js"></script>
 <script src="/js/technician/technician-home.js"></script>
 <script src="/js/technician/overlay.js"></script>
-<script src="/js/technician/technician-transactions.js"></script>
 </body>
 
 </html>
