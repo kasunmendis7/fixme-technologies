@@ -134,10 +134,11 @@ use app\core\Application;
     </footer>
 </div>
 <script async defer
-<?php
-$API_KEY = $_ENV['API_KEY'];
-echo 'src="https://maps.googleapis.com/maps/api/js?key=' . $API_KEY . '&callback=loadMap&loading=async&libraries=marker&v=beta">';
-?>
+    <?php
+    $API_KEY = $_ENV['API_KEY'];
+    echo 'src="https://maps.googleapis.com/maps/api/js?key=' . $API_KEY . '&callback=loadMap&loading=async&libraries=marker&v=beta"';
+    ?>
+>
 </script>
 </body>
 
