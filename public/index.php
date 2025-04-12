@@ -61,6 +61,8 @@ $app->router->post('/technician-requests-update', [TechnicianController::class, 
 $app->router->get('/technician-transactions', [TechnicianController::class, 'technicianTransactions']);
 $app->router->get('/technician-payment-details', [TechnicianController::class, 'technicianPaymentDetails']);
 $app->router->get('/customer-request/{id}', [TechnicianController::class, 'viewCustomerRequest']);
+$app->router->get('/get-origin-destination', [TechnicianController::class, 'getOriginDestination']);
+$app->router->post('/get-route', [TechnicianController::class, 'getRoute']);
 
 /* Routes related to the Post */
 $app->router->get('/technician-create-post', [TechnicianController::class, 'technicianCreatePost']);
