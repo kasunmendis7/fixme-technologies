@@ -54,7 +54,7 @@ class Customer extends DbModel
             $customerLat = $data['latitude'];
             $customerLng = $data['longitude'];
 
-            $API_KEY = "AIzaSyAp2lOYaWEfsNp-yZCWSpkRa3y2vf6b5yo";
+            $API_KEY = $_ENV['API_KEY'];
 
             $destinations = array_map(function ($technician) {
                 return $technician['latitude'] . ',' . $technician['longitude'];
@@ -126,7 +126,7 @@ class Customer extends DbModel
             $customerLat = $data['latitude'];
             $customerLng = $data['longitude'];
 
-            $API_KEY = "AIzaSyAp2lOYaWEfsNp-yZCWSpkRa3y2vf6b5yo";
+            $API_KEY = $_ENV['API_KEY'];
 
             $destinations = array_map(function ($serviceCenter) {
                 return $serviceCenter['latitude'] . ',' . $serviceCenter['longitude'];
