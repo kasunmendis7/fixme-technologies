@@ -84,9 +84,6 @@ use app\core\Application;
                     <p>Your Safety is Our Priority: From strict vetting processes to real-time support, we ensure a
                         secure experience with every interaction
                     </p>
-                    <p>
-                        <a href="/">See More...</a>
-                    </p>
                 </div>
             </div>
         </div>
@@ -102,9 +99,6 @@ use app\core\Application;
                     <p>
                         Ensuring Fairness for Technicians: With upfront payments and verified customer profiles, we
                         protect your time and effort from potential fraud
-                    </p>
-                    <p>
-                        <a href="/">See More...</a>
                     </p>
                 </div>
             </div>
@@ -176,9 +170,6 @@ use app\core\Application;
                     <p>
                         Connecting Innovation with Precision – Your Marketplace for Technical Excellence.
                     </p>
-                    <p>
-                        <a href="/">See More...</a>
-                    </p>
                 </div>
             </div>
         </div>
@@ -215,7 +206,7 @@ use app\core\Application;
                     </h5>
                     <p>We connect highly skilful and trustworthy technicians for vehicle repair anywhere, anytime </p>
                     <p>
-                        <a href="/technician-map">Learn More...</a>
+                        <a href="/home-map">Learn More...</a>
                     </p>
                 </div>
             </div>
@@ -232,7 +223,7 @@ use app\core\Application;
                     <p>Discover our certified service centers, offering expert care and quality vehicle repairs you can
                         trust</p>
                     <p>
-                        <a href="service-centre-map">Learn More...</a>
+                        <a href="home-map">Learn More...</a>
                     </p>
 
                 </div>

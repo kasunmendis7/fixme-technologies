@@ -252,3 +252,37 @@ body {
 .payment-form button:hover {
     background: #15549b;
 }
+
+.actions {
+    gap: 50px;
+}
+
+.edit-btn {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #1c6acf;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.edit-btn:hover {
+    background: #15549b;
+}
+
+.delete-btn {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #fd2a2a;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.delete-btn:hover {
+    background: #c82333;
+}

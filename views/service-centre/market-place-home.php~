@@ -14,7 +14,7 @@ use app\core\Application;
     <link rel="stylesheet" href="/css/service-center/market-place-navbar.css">
     <link rel="stylesheet" href="/css/home/footer.css">
     <link rel="stylesheet" href="/css/home/home.css">
-    <link rel="stylesheet" href="/css/service-center/marketplace.css">
+        <link rel="stylesheet" href="/css/service-center/marketplace.css">
     <link rel="stylesheet" href="/css/service-center/market-place-product-view.css">
     <script src="/js/home/main.js"></script>
     <script src="/js/technician/main.js"></script>

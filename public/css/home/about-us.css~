@@ -2,7 +2,7 @@
 
 .about {
     background: rgb(149, 166, 177);
-    background: linear-gradient(360deg, rgb(245, 250, 255) 0%, rgb(219, 231, 255) 100%);
+    background: linear-gradient(360deg, rgb(245, 255, 245) 0%, rgb(219, 231, 255) 100%);
     padding: 100px 0 20px 0;
     text-align: center;
 }
