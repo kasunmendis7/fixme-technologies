@@ -124,12 +124,18 @@ function displayRoute(route) {
     const distanceKm = (distanceMeters / 1000).toFixed(2);
     const durationMinutes = Math.ceil(durationSeconds / 60); // Round up to nearest minute
 
+    const baseCost = 500;
+    const distCostPerKm = 50;
+    const timeCostPerHr = 600;
+    const travelCost = baseCost + (distanceKm * distCostPerKm) + ((durationMinutes / 60) * timeCostPerHr);
+
     // Select the HTML elements and update their content
     const distanceElement = document.getElementById('travel-distance');
     const timeElement = document.getElementById('travel-time');
 
     distanceElement.textContent = `Distance: ${distanceKm} km`;
     timeElement.textContent = `Time: ${durationMinutes} minutes`;
+    document.getElementById('advance-payment').textContent = `Advance Payment: LKR ${travelCost.toFixed(2)}`;
 
 }
 

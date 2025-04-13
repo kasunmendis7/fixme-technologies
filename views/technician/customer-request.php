@@ -35,8 +35,11 @@ include_once 'components/header.php';
         <h2 style="font-size: 1.25em; margin-bottom: 10px;">Travel Information</h2>
         <p id="travel-distance" style="font-size: 1em; color: #333; margin-bottom: 5px;">Distance: Calculating...</p>
         <p id="travel-time" style="font-size: 1em; color: #333;">Time: Calculating...</p>
+        <h3 id="advance-payment" style="font-size: 1.1em; color: darkred; font-weight: bold; margin-top: 10px;">Advance
+            Payment: Calculating...</h3>
     </div>
 </div>
+
 
 <!--<div style="margin-top: 20px;">-->
 <!--    <label for="travel-mode">Select Travel Mode:</label>-->
@@ -49,7 +52,6 @@ include_once 'components/header.php';
 <!--</div>-->
 
 
-</body>
 <!-- Overlay for the confirmation message -->
 <div id="signOutOverlay" class="overlay">
     <div class="overlay-content">
