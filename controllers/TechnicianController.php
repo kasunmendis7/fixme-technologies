@@ -13,6 +13,7 @@ use app\models\ServiceCenterReview;
 use app\models\Technician;
 use app\models\TechnicianRequest;
 use app\models\Chat;
+use app\models\TechnicianPaymentMethod;
 
 class TechnicianController extends Controller
 {
@@ -227,6 +228,93 @@ class TechnicianController extends Controller
         ]);
     }
 
+    public function technicianPaymentMethod()
+    {
+        $request = json_decode(file_get_contents('php://input'), true);
+
+        $bankAccNum = $request['bank_acc_num'] ?? null;
+        $bankAccName = $request['bank_acc_name'] ?? null;
+        $bankAccBranch = $request['bank_acc_branch'] ?? null;
+
+        if (!$bankAccNum || !$bankAccName) {
+            echo json_encode(['success' => false, 'message' => 'Bank account number and name are required.']);
+            exit;
+        }
+
+        $lastFour = substr($bankAccNum, -4);
+
+        $paymentMethod = new TechnicianPaymentMethod();
+        $techId = Application::$app->session->get('technician');
+
+        try {
+            $paymentMethod->addPaymentMethod(
+                $techId,
+                $lastFour,
+                $bankAccNum,
+                $bankAccName,
+                $bankAccBranch
+            );
+
+            // Respond to frontend
+            echo json_encode([
+                'success' => true,
+                'message' => 'Bank account added successfully.',
+                'data' => [
+                    'bank_acc_name' => $bankAccName,
+                    'last_four' => $lastFour,
+                    'bank_acc_branch' => $bankAccBranch,
+                ],
+            ]);
+        } catch (\Exception $e) {
+            echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+        }
+        exit;
+    }
+
+    /**
+     * Get all bank accounts for the logged-in technician
+     */
+    public function getTechnicianPaymentMethods()
+    {
+        try {
+            $techId = Application::$app->session->get('technician');
+            if (!$techId) {
+                throw new \Exception('Technician not logged in');
+            }
+
+            $paymentMethodModel = new TechnicianPaymentMethod();
+            $paymentMethods = $paymentMethodModel->getPaymentMethods($techId);
+            echo json_encode(['success' => true, 'data' => $paymentMethods]);
+        } catch (\Exception $e) {
+            http_response_code(500);
+            echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+        }
+    }
+
+    /**
+     * Delete a specific bank account
+     *
+     * @param array $id Bank account ID
+     */
+    public function deleteTechnicianPaymentMethod($id)
+    {
+        try {
+            $techId = Application::$app->session->get('technician');
+            $id = intval($id[0]);
+
+            if (!$techId) {
+                throw new \Exception('Technician not logged in');
+            }
+
+            $paymentMethodModel = new TechnicianPaymentMethod();
+            $paymentMethodModel->deletePaymentMethod($id, $techId);
+
+            echo json_encode(['success' => true, 'message' => 'Bank account deleted successfully']);
+        } catch (\Exception $e) {
+            http_response_code(500);
+            echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+        }
+
     public function getOriginDestination()
     {
         $tech_id = Application::$app->session->get('technician');
@@ -301,6 +389,7 @@ class TechnicianController extends Controller
         curl_close($curl);
 
         return $response; // JSON response from Routes API
+
     }
 }
 
