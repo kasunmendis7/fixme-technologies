@@ -1,3 +1,9 @@
+<?php
+
+use \app\core\Application;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +14,7 @@
     <title>Technician Dashboard</title>
     <link rel="stylesheet" href="/css/technician/technician-requests.css">
     <link rel="stylesheet" href="/css/technician/overlay.css">
+    <link rel="stylesheet" href="/css/customer/flash-messages.css">
 </head>
 <body>
 <?php
@@ -17,6 +24,11 @@ include_once 'components/header.php';
 <!-- JavaScript Files -->
 <script src="/js/technician/technician-home.js"></script>
 
+<?php if (Application::$app->session->getFlash('Accept-before-view-error')): ?>
+    <div class="alert alert-error">
+        <?php echo Application::$app->session->getFlash('Accept-before-view-error') ?>
+    </div>
+<?php endif; ?>
 <div class="details">
     <div class="recentOrders">
         <div class="cardHeader">
@@ -44,14 +56,25 @@ include_once 'components/header.php';
                             <form action="/technician-requests-update" method="POST" style="display:inline;">
                                 <input type="hidden" name="req_id" value="<?= $request['req_id'] ?>">
                                 <input type="hidden" name="status" value="InProgress">
-                                <button type="submit" class="btn accept">Accept</button>
+                                <input type="hidden" name="cus_id" value="<?= $request['cus_id'] ?>">
+                                <input type="hidden" id="advance_payment_<?= $request['req_id'] ?>"
+                                       name="advance_payment"
+                                       value="<?= Application::$app->session->get("advance_payment_$request[req_id]") ?>">
+                                <?php
+                                $isViewed = Application::$app->session->get("viewed_request_$request[req_id]");
+                                $acceptDisabled = !$isViewed ? 'disabled' : '';
+                                ?>
+                                <button type="submit" class="btn accept"
+                                        id="accept-btn-<?= $request['req_id'] ?>" <?= $acceptDisabled ?> >Accept
+                                </button>
                             </form>
                             <form action="/technician-requests-update" method="POST" style="display:inline;">
                                 <input type="hidden" name="req_id" value="<?= $request['req_id'] ?>">
                                 <input type="hidden" name="status" value="Rejected">
                                 <button type="submit" class="btn reject">Reject</button>
                             </form>
-                            <span><button class="view-request" onclick="viewRequest(<?= $request['cus_id'] ?>)">View Request</button></span>
+                            <span><button class="view-request"
+                                          onclick="viewRequest(<?= $request['cus_id'] ?>, <?= $request['req_id'] ?>)">View Request</button></span>
                         <?php else: ?>
 
                             <?php if ($request['status'] == 'InProgress'): ?>
