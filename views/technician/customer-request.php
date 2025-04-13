@@ -26,6 +26,8 @@ include_once 'components/sidebar.php';
 include_once 'components/header.php';
 ?>
 
+<?php $req_id = $_GET['req_id'] ?? null; ?>
+
 <div id="map" style="width: 100%; height: 75vh;">
     <!-- map goes here -->
 </div>
@@ -60,6 +62,9 @@ include_once 'components/header.php';
         <button id="cancelSignOut" class="btn">No</button>
     </div>
 </div>
+<script>
+    const requestId = <?= json_encode($req_id) ?>; // id of the request made by customer to tech
+</script>
 <!--    Icons-->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

@@ -190,10 +190,16 @@ class TechnicianController extends Controller
 
     public function updateRequestStatus($request)
     {
-        $reqId = $request->getBody()['req_id'] ?? null;
-        $status = $request->getBody()['status'] ?? null;
-        if ($reqId && $status && in_array($status, ['InProgress', 'Rejected'])) {
-            $updated = TechnicianRequest::updateStatus($reqId, $status);
+        $body = $request->getBody();
+
+        $cus_id = $body['cus_id'];
+        $req_id = $body['req_id'];
+        $status = $body['status'];
+        $advance_payment = $body['advance_payment'];
+        $tech_id = Application::$app->session->get('technician');
+
+        if ($req_id && $status && in_array($status, ['InProgress', 'Rejected'])) {
+            $updated = TechnicianRequest::updateStatus($req_id, $status);
             if ($updated) {
                 $_SESSION['success'] = "Request updated successfully!";
             } else {
@@ -202,6 +208,24 @@ class TechnicianController extends Controller
         } else {
             $_SESSION['error'] = "Invalid request.";
         }
+
+        // Validate advance_payment
+        if (empty($advance_payment) || !is_numeric($advance_payment)) {
+            Application::$app->session->setFlash('Accept-before-view-error', "Please view the request first");
+            Application::$app->response->redirect('/technician-requests');
+            return;
+        }
+
+        if ($status === 'InProgress') {
+            $sql = 'INSERT INTO cus_tech_adv_payment (cus_id, tech_id, amount, req_id) VALUES (:cus_id, :tech_id, :amount, :req_id)';
+            $stmt = Application::$app->db->prepare($sql);
+            $stmt->bindValue(':cus_id', $cus_id);
+            $stmt->bindValue(':tech_id', $tech_id);
+            $stmt->bindValue(':amount', $advance_payment);
+            $stmt->bindValue(':req_id', $req_id);
+            $stmt->execute();
+        }
+
         Application::$app->response->redirect('/technician-requests');
     }
 
@@ -390,6 +414,33 @@ class TechnicianController extends Controller
         curl_close($curl);
 
         return $response; // JSON response from Routes API
+
+    }
+
+    public function storeAdvancePayment(Request $request)
+    {
+        $body = json_decode(file_get_contents('php://input'), true);
+        $req_id = $body['req_id'];
+        $advance_payment = $body['advance_payment'];
+
+        Application::$app->session->set("advance_payment_$req_id", $advance_payment);
+        Application::$app->response->setStatusCode(200);
+        return json_encode(['success' => true]);
+    }
+
+    public function markRequestViewed(Request $request)
+    {
+        $body = json_decode(file_get_contents('php://input'), true);
+        $req_id = $body['req_id'];
+
+        if ($req_id) {
+            Application::$app->session->set("viewed_request_$req_id", true);
+            Application::$app->response->setStatusCode(200);
+            echo json_encode(['success' => true]);
+        } else {
+            Application::$app->response->setStatusCode(400);
+            echo json_encode(['success' => false]);
+        }
 
     }
 }
