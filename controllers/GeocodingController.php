@@ -9,7 +9,7 @@ class GeocodingController extends Controller
 
     public function getLatLngFromAddress($address)
     {
-        $API_KEY = "AIzaSyAp2lOYaWEfsNp-yZCWSpkRa3y2vf6b5yo";
+        $API_KEY = $_ENV['API_KEY'];
         $geocodingUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" . urlencode($address) . "&key=$API_KEY";
 
         $response = file_get_contents($geocodingUrl);

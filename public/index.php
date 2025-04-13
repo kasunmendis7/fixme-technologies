@@ -64,7 +64,8 @@ $app->router->get('/customer-request/{id}', [TechnicianController::class, 'viewC
 $app->router->post('/technician-payment-method', [TechnicianController::class, 'technicianPaymentMethod']);
 $app->router->get('/get-technician-payment-methods', [TechnicianController::class, 'getTechnicianPaymentMethods']);
 $app->router->post('/delete-technician-payment-method/{id}', [TechnicianController::class, 'deleteTechnicianPaymentMethod']);
-
+$app->router->get('/get-origin-destination', [TechnicianController::class, 'getOriginDestination']);
+$app->router->post('/get-route', [TechnicianController::class, 'getRoute']);
 
 /* Routes related to the Post */
 $app->router->get('/technician-create-post', [TechnicianController::class, 'technicianCreatePost']);

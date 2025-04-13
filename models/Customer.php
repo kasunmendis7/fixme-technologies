@@ -54,7 +54,7 @@ class Customer extends DbModel
             $customerLat = $data['latitude'];
             $customerLng = $data['longitude'];
 
-            $API_KEY = "AIzaSyAp2lOYaWEfsNp-yZCWSpkRa3y2vf6b5yo";
+            $API_KEY = $_ENV['API_KEY'];
 
             $destinations = array_map(function ($technician) {
                 return $technician['latitude'] . ',' . $technician['longitude'];
@@ -126,7 +126,7 @@ class Customer extends DbModel
             $customerLat = $data['latitude'];
             $customerLng = $data['longitude'];
 
-            $API_KEY = "AIzaSyAp2lOYaWEfsNp-yZCWSpkRa3y2vf6b5yo";
+            $API_KEY = $_ENV['API_KEY'];
 
             $destinations = array_map(function ($serviceCenter) {
                 return $serviceCenter['latitude'] . ',' . $serviceCenter['longitude'];
@@ -208,6 +208,17 @@ class Customer extends DbModel
         $stmt = self::prepare($sql);
         $primaryKey = Application::$app->session->get('customer');
         $stmt->bindValue(':cus_id', $primaryKey);
+        $stmt->execute();
+
+        $data = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return json_encode($data);
+    }
+
+    public function getCustomerLocationUsingId($id)
+    {
+        $sql = "SELECT latitude, longitude FROM customer WHERE cus_id = :cus_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':cus_id', $id);
         $stmt->execute();
 
         $data = $stmt->fetch(\PDO::FETCH_ASSOC);
