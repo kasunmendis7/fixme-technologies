@@ -56,6 +56,17 @@ class Technician extends DbModel
         }
     }
 
+    public function getTechnicianLocationUsingId($id)
+    {
+        $sql = "SELECT latitude, longitude FROM technician WHERE tech_id = :tech_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':tech_id', $id);
+        $stmt->execute();
+
+        $data = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return json_encode($data);
+    }
+
     public function techniciansGeocoding()
     {
         $sql = "SELECT tech_id, fname, lname, latitude, longitude, profile_picture, address FROM technician WHERE latitude IS NOT NULL AND longitude IS NOT NULL";
