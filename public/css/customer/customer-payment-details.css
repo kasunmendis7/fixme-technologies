@@ -218,3 +218,138 @@ body {
 .payment-form button:hover {
     background: #15549b;
 }
+
+/* Global styles for dark theme */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #0f172a; /* Dark Blue for full page */
+    color: #f8fafc; /* Text color */
+    margin: 0;
+    padding: 0;
+}
+
+/* Form container styling */
+#payment-form {
+    max-width: 400px;
+    margin: 30px auto;
+    background: #1e293b; /* Slightly lighter dark blue for contrast */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#payment-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #94a3b8; /* Lighter text for labels */
+}
+
+#payment-form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    background: #0f172a; /* Dark input background */
+    border: 1px solid #334155; /* Border giving subtle highlights */
+    border-radius: 5px;
+    font-size: 14px;
+    color: #e2e8f0; /* Light gray input text */
+    transition: border-color 0.3s ease;
+}
+
+#payment-form input:focus {
+    outline: none;
+    border-color: #2563eb; /* Blue border on focus */
+}
+
+/* Button styling */
+#payment-form button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #2563eb; /* Bright blue button */
+    color: #f8fafc; /* White text */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#payment-form button:hover {
+    background-color: #1d4ed8; /* Darker blue on hover */
+}
+
+/* Add a title styling */
+#payment-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #f1f5f9; /* Light title color */
+    font-weight: bold;
+}
+
+#payment-methods-container {
+    margin: 30px auto;
+    max-width: 800px;
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#payment-methods-container h2 {
+    text-align: center;
+    color: #f8fafc;
+    margin-bottom: 20px;
+}
+
+#payment-methods-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+}
+
+#payment-methods-table th,
+#payment-methods-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #334155;
+    color: #f1f5f9;
+}
+
+#payment-methods-table th {
+    background: #2563eb;
+    color: #f8fafc;
+}
+
+#payment-methods-table tr:hover {
+    background: #334155;
+}
+
+#payment-methods-table button {
+    background-color: #2563eb;
+    color: #f8fafc;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#payment-methods-table button:hover {
+    background-color: #15549b;
+}
+
+
+/* Add responsive design */
+@media (max-width: 768px) {
+    #payment-form {
+        padding: 15px;
+        font-size: 14px;
+    }
+
+    #payment-form input,
+    #payment-form button {
+        font-size: 13px;
+        padding: 10px;
+    }
+}

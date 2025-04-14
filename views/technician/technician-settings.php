@@ -35,7 +35,7 @@ include_once 'components/header.php';
     <a href="/technician-payment-details">
         <div class="card">
             <div>
-                <div class="cardName">Payment Details</div>
+                <div class="cardName">Bank Details</div>
             </div>
             <div class="iconBx">
                 <ion-icon name="card-outline"></ion-icon>

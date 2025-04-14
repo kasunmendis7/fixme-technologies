@@ -18,16 +18,16 @@ use app\core\Application;
                 <ion-icon name="search-outline"></ion-icon>
             </label>
         </div>
+        <div class="user-account">
+            <h6 class="user-name">
+                <?php
+                $username = strtoupper(Application::$app->serviceCenter->{'name'});
+                echo $username;
+                ?>
+            </h6>
 
-        <h6 class="user-name">
-            <?php
-            $username = strtoupper(Application::$app->serviceCenter->{'name'});
-            echo $username;
-            ?>
-        </h6>
-
-        <div class="user">
-            <img src="/assets/select-user-service-centre.png" alt="">
+            <div class="user">
+                <img src="/assets/select-user-service-centre.png" alt="">
+            </div>
         </div>
-
     </div>

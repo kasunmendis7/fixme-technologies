@@ -47,25 +47,16 @@
     
 
 
-    <div class="cust-tech-container">
-        <p>Here are the service centers</p>
-        <div class="tech-container row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="technicians-list">
-            <?php
-            $customer = new Customer();
-            $serviceCenters = $customer->getAllServiceCentersSortedByDistance();
-
-            print_r($serviceCenters);
-
-            if (!class_exists('Customer')) {
-                echo "Customer class not found!";
-            }
-
-
-            if (empty($serviceCenters)) {
-                echo '<div class="col"><div class="alert alert-danger">No service centers found</div></div>';
-            } else {
-                foreach ($serviceCenters as $serviceCenter) {
-                    echo '<div class="col service-center-card" data-name="' . strtolower($serviceCenter['name']) . '">
+<div class="cust-tech-container">
+    <div class="tech-container row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="technicians-list">
+        <?php
+        $customer = new Customer();
+        $serviceCenters = $customer->getAllServiceCentersSortedByDistance();
+        if ($serviceCenters['status'] === 'success' && empty($serviceCenters['data'])) {
+            echo '<h2>No Service Centers found !</h2>';
+        } elseif ($serviceCenters['status'] === 'success' && !empty($serviceCenters['data'])) {
+            foreach ($serviceCenters['data'] as $serviceCenter) {
+                echo '<div class="col service-center-card" data-name="' . strtolower($serviceCenter['name']) . '">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">' . htmlspecialchars($serviceCenter['name']) . '</h5>
@@ -80,11 +71,13 @@
                         </div>
                     </div>
                 </div>';
-                }
-            }
-            ?>
-        </div>
+        }
+    } elseif ($serviceCenters['status'] === 'error') {
+        echo '<h2>An Unexpected error occured while fetching Service Centers</h2>';
+    }
+        ?>
     </div>
+</div>
 
 
 

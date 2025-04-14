@@ -71,3 +71,47 @@
 .category-list li a:hover {
     text-decoration: underline;
 }
+
+.marketplace-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.categories-sidebar {
+    width: 250px;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.categories-title {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.categories-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.categories-list:hover {
+    color: #007bff;
+}
+
+.category-link {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 8px 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    transition: color 0.3s ease;
+
+}
+
+.category-link:hover {
+    color: #007bff;
+}

@@ -1,6 +1,7 @@
 <?php
 
 namespace app\controllers;
+
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
@@ -54,7 +55,7 @@ class ProductController extends Controller
 
             'model' => $productModel,
 //             'products' => $productModels
-             // Pass the products to the view
+            // Pass the products to the view
         ]);
     }
 
@@ -78,6 +79,15 @@ class ProductController extends Controller
         ]);
     }
 
+    public function viewMarketplace()
+    {
+        $productModels = (new Product)->getAllProducts(); // Fetch all products from the database
+        $this->setLayout('auth'); // Set layout if needed
+        return $this->render('/customer/service-center-market', [
+            'products' => $productModels // Pass products to the view
+        ]);
+    }
+
     public function update(Request $request)
     {
         $productModel = new Product();
@@ -86,7 +96,7 @@ class ProductController extends Controller
             Application::$app->session->setFlash('error', 'Please log in to update a product.');
             Application::$app->response->redirect('/service-centre-login');
         }
-        if ($request->isGet()){
+        if ($request->isGet()) {
             $product_id = $request->getBody()['product_id'] ?? null;
 
             if ($product_id) {
@@ -97,8 +107,7 @@ class ProductController extends Controller
                         'product' => $product
                     ]);
                 }
-            }
-            else {
+            } else {
                 Application::$app->session->setFlash('error', 'invalid product id.');
                 Application::$app->response->redirect('/service-centre-login');
             }
@@ -112,7 +121,7 @@ class ProductController extends Controller
                 $productModel->media = $_FILES['media']['name'];
                 move_uploaded_file($_FILES['media']['tmp_name'], 'assets/uploads/' . $productModel->media);
             }
-            if ($productModel->editProduct()){
+            if ($productModel->editProduct()) {
                 Application::$app->session->setFlash('success', 'Product updated successfully.');
                 Application::$app->response->redirect('/service-center-create-product');
                 return;
@@ -121,22 +130,41 @@ class ProductController extends Controller
 
     }
 
-    public function delete(Request $request){
+    public function delete(Request $request)
+    {
         $product_id = $request->getBody()['product_id'];
         $ser_cen_id = Application::$app->session->get('serviceCenter');
 
-        if ((new Product())->deleteProduct($product_id, $ser_cen_id)){
+        if ((new Product())->deleteProduct($product_id, $ser_cen_id)) {
             Application::$app->session->setFlash('success', 'Product deleted successfully.');
-        }
-        else {
+        } else {
             Application::$app->session->setFlash('error', 'Failed to delete product.');
         }
         Application::$app->response->redirect('/service-center-create-product');
     }
 
 
+    public function filterProductByCategory(Request $request, Response $response)
+    {
+        //get category by the params 
+
+        $category = $_GET['category'] ?? 'all';
+
+        if ($category === 'all') {
+            $products = (new Product())->getAllProducts();
+        } else {
+            $products = (new Product())->getProductsByCategory($category);
+        }
+
+
+        if ($products) {
+            $this->setLayout('auth');
+            return $this->render('service-centre/market-place-home', [
+                'products' => $products,
+            ]);
+        }
+    }
+
 }
-
-
 
 ?>
