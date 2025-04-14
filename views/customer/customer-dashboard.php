@@ -39,7 +39,7 @@ include_once 'components/header.php';
     <div class="card">
         <div>
             <div class="numbers">65</div>
-            <div class="cardName">Total Repairs</div>
+            <div class="cardName">Advance Payments</div>
         </div>
 
         <div class="iconBx">
@@ -87,7 +87,6 @@ include_once 'components/header.php';
     <div class="recentRequests">
         <div class="cardHeader">
             <h2>Recent Requests</h2>
-            <a href="#" class="btn">View All</a>
         </div>
 
         <table>

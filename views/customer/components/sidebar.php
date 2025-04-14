@@ -71,6 +71,16 @@
 
 
             <li>
+                <a href="/service-center-marketplace">
+                    <span class="icon">
+                        <ion-icon name="storefront-outline"></ion-icon>
+                    </span>
+                    <span class="title">Market</span>
+                </a>
+            </li>
+
+
+            <li>
                 <a href="/customer-settings">
                     <span class="icon">
                         <ion-icon name="settings-outline"></ion-icon>
