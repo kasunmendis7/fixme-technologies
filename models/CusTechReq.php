@@ -71,6 +71,15 @@ class CusTechReq extends DbModel
         }
     }
 
+    public function deleteCusTechReqUsingReqId($req_id)
+    {
+        $sql = "DELETE FROM cus_tech_req WHERE req_id = :req_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':req_id', $req_id);
+        $stmt->execute();
+        Application::$app->response->setStatusCode(200);
+    }
+
     public function getAllRequests($cusId)
     {
         $sql = "SELECT ctr.tech_id AS tech_id, ctr.cus_id AS cus_id, tech.fname AS fname, tech.lname AS lname, ctr.status AS status FROM technician AS tech, cus_tech_req AS ctr WHERE ctr.tech_id = tech.tech_id AND ctr.cus_id = :cus_id";

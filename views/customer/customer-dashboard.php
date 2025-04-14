@@ -36,7 +36,7 @@ include_once 'components/header.php';
     </div>
 <?php endif; ?>
 <div class="cardBox">
-    <div class="card">
+    <div class="card" onclick="getAdvancePayments(<?php echo Application::$app->session->get('customer') ?>)">
         <div>
             <div class="numbers">65</div>
             <div class="cardName">Advance Payments</div>
