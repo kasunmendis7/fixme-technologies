@@ -403,6 +403,8 @@ class TechnicianController extends Controller
         ]);
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($routeRequest));
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
 
         $response = curl_exec($curl);
 

@@ -348,4 +348,76 @@ class CustomerController extends Controller
         (new CusTechReq())->deleteCusTechReqUsingReqId($req_id);
         Application::$app->response->redirect('/customer-advance-payments');
     }
+
+    public function payHerePaymentProcess()
+    {
+        header('Content-type: application/json');
+
+        try {
+            $jsonData = file_get_contents('php://input');
+            $data = json_decode($jsonData, true);
+
+            $customerId = $data['cus_id'];
+            $technicianId = $data['tech_id'];
+
+            if (!$customerId || !$technicianId) {
+                Application::$app->response->setStatusCode(400);
+                return json_encode(['success' => false, 'error' => 'Missing the required parameter customerId, technicianId']);
+                exit;
+            }
+
+            $cusReq = new CusTechReq();
+            $reqId = $cusReq->getRequestId($customerId, $technicianId);
+            $order_id = $reqId;
+
+            $cusAdvPay = new CusTechAdvPayment();
+            $advancePayment = $cusAdvPay->getAdvancePayment($reqId);
+            $amount = $advancePayment['amount'];
+
+            $custInfo = new Customer();
+            $customer = $custInfo->findById($customerId);
+            $fname = $customer['fname'];
+            $lname = $customer['lname'];
+            $email = $customer['email'];
+            $phone_no = $customer['phone_no'];
+            $address = $customer['address'];
+
+            $merchant_id = $_ENV['MERCHANT_ID'];
+            $merchant_secret = $_ENV['MERCHANT_SECRET'];
+            $currency = "LKR";
+
+            $hash = strtoupper(
+                md5(
+                    $merchant_id .
+                    $order_id .
+                    number_format($amount, 2, '.', '') .
+                    $currency .
+                    strtoupper(md5($merchant_secret))
+                )
+            );
+
+            $array = [];
+            $array["items"] = "Technician Advance Payment";
+            $array["first_name"] = $fname;
+            $array["last_name"] = $lname;
+            $array["email"] = $email;
+            $array["phone"] = $phone_no;
+            $array["address"] = $address;
+//            $array["city"] = "Colombo";
+            $array["country"] = "Sri Lanka";
+            $array["amount"] = $amount;
+            $array["merchant_id"] = $merchant_id;
+            $array["order_id"] = $order_id;
+            $array["currency"] = $currency;
+            $array["hash"] = $hash;
+
+            $jsonObject = json_encode($array);
+
+            echo $jsonObject;
+        } catch (\Exception $e) {
+            Application::$app->response->setStatusCode(500);
+            echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+        }
+    }
+    
 }

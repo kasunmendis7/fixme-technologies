@@ -96,6 +96,7 @@ include_once 'components/header.php';
                 <td>Price</td>
                 <td>Payment</td>
                 <td></td>
+                <td></td>
                 <td>Status</td>
             </tr>
             </thead>
@@ -113,6 +114,12 @@ include_once 'components/header.php';
 
                 if ($request['status'] == 'pending') {
                     echo '<td><span><button type="submit" class="cancel-btn" onclick="cancelReq(' . $request['cus_id'] . ',' . $request['tech_id'] . ' )">Cancel</button></span></td>';
+                } else {
+                    echo '<td></td>';
+                }
+
+                if ($request['status'] == 'InProgress') {
+                    echo '<td><span><button type="submit" class="advance-payment-btn" onclick="paymentGateWay(' . $request['cus_id'] . ',' . $request['tech_id'] . ');">Pay Advance</button></span></td>';
                 } else {
                     echo '<td></td>';
                 }
@@ -170,6 +177,7 @@ include_once 'components/header.php';
 <script src="/js/customer/customer-dashboard.js"></script>
 <script src="/js/customer/customer-home.js"></script>
 <script src="/js/customer/overlay.js"></script>
+<script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
 </body>
 
 </html>
