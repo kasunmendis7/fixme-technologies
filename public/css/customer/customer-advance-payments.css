@@ -1,0 +1,83 @@
+/* Advance Payments Section */
+.advancePayments {
+    margin: 20px 0;
+}
+
+.heading {
+    color: #0A1223;
+}
+
+.modern-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.modern-table th,
+.modern-table td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.modern-table th {
+    background: #f4f4f4;
+    font-weight: bold;
+}
+
+.modern-table tbody tr:nth-child(odd) {
+    background: #f9f9f9;
+}
+
+.modern-table tbody tr:nth-child(even) {
+    background: #f4f4f4;
+}
+
+.modern-table tbody tr:hover {
+    background: #ececec;
+}
+
+.pay-now-btn {
+    padding: 8px 15px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.pay-now-btn:hover {
+    background-color: #45a049;
+}
+
+.pay-now-btn:active {
+    transform: scale(0.98);
+}
+
+/* Reject Button */
+.reject-btn {
+    padding: 8px 15px;
+    margin-left: 10px;
+    background-color: #f44336; /* Red for destructive action */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+}
+
+.reject-btn:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+}
+
+.reject-btn:active {
+    transform: scale(0.98); /* Button press effect */
+}
