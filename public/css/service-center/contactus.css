@@ -18,7 +18,6 @@
 
 
 .contact-us-container {
-    position: absolute;
     width: 100%;
     max-width: 900px;
     padding: 40px;
@@ -28,7 +27,10 @@
     background-color: var(--white-color);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     margin-top: 100px;
-    margin-left: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-items: center;
 }
 
 .contact-us-left {

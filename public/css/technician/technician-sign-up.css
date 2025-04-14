@@ -160,12 +160,21 @@
     transition: background 0.3s;
 }
 
-.admin-signup-form .log-in a {
+.admin-signup-form log {
     text-align: center;
     font-size: 0.8rem;
     color: #5db8f5;
     text-decoration: none;
     margin-top: 1rem;
+}
+
+.log-in a {
+    text-decoration: none;
+    color: #5db8f5;
+}
+
+.log-in a:hover {
+    text-decoration: none;
 }
 
 

@@ -160,6 +160,15 @@
     transition: background 0.3s;
 }
 
+.log-in a {
+    text-decoration: none;
+    color: #5db8f5;
+}
+
+.input-element h6 {
+    margin-top: 0.5rem;
+}
+
 @media screen and (max-width: 768px) {
     .container {
         grid-template-columns: 1fr;

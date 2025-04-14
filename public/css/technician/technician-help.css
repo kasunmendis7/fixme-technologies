@@ -231,7 +231,6 @@ body {
 .help-header {
     display: flex;
     flex-direction: column;
-    text-align: center;
     margin: 2.5rem;
     color: #234e52;
 }
@@ -245,13 +244,15 @@ body {
     font-size: 2.5rem;
     font-weight: bold;
     color: #319795;
+    text-align: center;
 }
 
 .help-subtitle {
-    font-size: 1rem;
+    font-size: 1.25rem;
     color: #4a5568;
     font-weight: 300;
     padding: 2.5rem;
+    text-align: left;
 }
 
 .image-wrapper img {
@@ -323,4 +324,10 @@ body {
     margin-left: 350px;
     color: var(--white);
     font-size: 0.9rem;
+}
+
+.user-account {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }

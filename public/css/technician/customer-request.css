@@ -1,0 +1,44 @@
+#map {
+    border: 2px solid #gray;
+    border-radius: 10px;
+    margin: 20px auto;
+    width: 90%;
+    height: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#travel-mode {
+    margin-left: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #333;
+    border-radius: 5px;
+}
+
+/* Styles for the travel info box */
+#travel-info {
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+}
+
+#travel-info > div {
+    text-align: center;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    min-width: 300px;
+}
+
+#travel-info h2 {
+    font-size: 1.25em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+#travel-info p {
+    font-size: 1em;
+    color: #555;
+    margin: 5px 0;
+}

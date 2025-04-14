@@ -30,24 +30,6 @@
                     <span class="title">Map</span>
                 </a>
             </li>
-            <!--            <li>-->
-            <!--                <a href="/service-center-community">-->
-            <!--                        <span class="icon">-->
-            <!--                           <ion-icon name="images-outline"></ion-icon>-->
-            <!--                        </span>-->
-            <!--                    <span class="title">Community</span>-->
-            <!--                </a>-->
-            <!--            </li>-->
-
-
-            <li>
-                <a href="/service-center-messages">
-                        <span class="icon">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
-                        </span>
-                    <span class="title">Messages</span>
-                </a>
-            </li>
 
             <li>
 
