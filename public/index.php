@@ -92,6 +92,7 @@ $app->router->get('/check-out-page', [ServiceCentreController::class, 'checkOutP
 $app->router->get('/card-details', [ServiceCentreController::class, 'cardDetails']);
 $app->router->get('/service-centre-map', [ServiceCentreController::class, 'serviceCentreMap']);
 $app->router->get('/service-center-payment-details', [ServiceCentreController::class, 'serviceCenterPaymentDetails']);
+$app->router->get('/service-center-list', [ServiceCentreController::class, 'getAllServiceCenters']);
 
 
 /* Routes related to the product (service center) */
