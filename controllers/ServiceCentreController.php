@@ -147,4 +147,16 @@ class ServiceCentreController extends Controller
         return $this->render('service-centre/service-center-payment-details');
     }
 
+    //api to list all service centers
+    public function getAllServiceCenters()
+    {
+        $serviceCenter = new ServiceCenter();
+        $service_centers = $serviceCenter->getAllServiceCenters();
+        if ($service_centers) {
+            return $this->render('service-centre/service-centers', [
+                'service_centers' => $service_centers,
+            ]);
+        }
+    }
+
 }
