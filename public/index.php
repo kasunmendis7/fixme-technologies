@@ -144,6 +144,8 @@ $app->router->get('/customer-payment-details', [CustomerController::class, 'cust
 $app->router->post('/customer-payment-method', [CustomerController::class, 'customerPaymentMethod']);
 $app->router->get('/get-customer-payment-methods', [CustomerController::class, 'getCustomerPaymentMethods']);
 $app->router->post('/delete-customer-payment-method/{id}', [CustomerController::class, 'deleteCustomerPaymentMethod']);
+$app->router->get('/customer-advance-payments', [CustomerController::class, 'customerAdvancePayments']);
+$app->router->post('/reject-advance-payment/{id}', [CustomerController::class, 'rejectAdvPaymentUsingReqId']);
 
 
 /* Admin Routes */
