@@ -11,6 +11,7 @@
         public string $description = '';
         public float $price;
         public string $media = '';
+        public string $category;
         public ?string $created_at = null;
         public ?string $updated_at = null;
 
@@ -21,7 +22,7 @@
 
         public function attributes(): array
         {
-            return ['ser_cen_id', 'description', 'price', 'media'];
+            return ['ser_cen_id', 'description', 'price', 'media', 'category'];
         }
         public function primaryKey(): string
         {
@@ -101,7 +102,7 @@
         {
             $sql = "
         UPDATE product
-        SET description = :description, price = :price, media = CASE WHEN :media = '' THEN media ELSE :media END, updated_at = NOW()
+        SET description = :description, price = :price, category = :category, media = CASE WHEN :media = '' THEN media ELSE :media END, updated_at = NOW()
         WHERE product_id = :product_id AND ser_cen_id = :ser_cen_id
     ";
 
@@ -111,6 +112,7 @@
             $stmt->bindValue(':media', $this->media);
             $stmt->bindValue(':product_id', $this->product_id);
             $stmt->bindValue(':ser_cen_id', $this->ser_cen_id);
+            $stmt->bindValue(':category', $this->category);
 
             // Debugging: Check SQL and parameters
 //            var_dump([
@@ -162,6 +164,27 @@
             return [
 
             ];
+        }
+
+        public function getProductsByCategory(string $category) {
+            try {
+                
+                $sql = 'SELECT p.*, s.name AS seller_name
+                    FROM product p
+                    JOIN service_center s ON p.ser_cen_id = s.ser_cen_id
+                    WHERE p.category = :category
+                    ORDER BY p.created_at DESC';
+                
+                $stmt = self::prepare($sql);
+                $stmt->bindValue(':category', $category);
+                $stmt->execute();
+
+                return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+                
+            } catch (\Exception $e) {
+                error_log($e->getMessage());
+                return [];
+            }
         }
     }
 

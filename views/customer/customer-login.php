@@ -38,7 +38,6 @@ use app\core\Application;
         <div class="wrapper">
             <div class="title-1">
                 <h2>Login to your Account</h2>
-                <h5>Don't have an account? <a href="/customer-sign-up">Sign Up</a></h5>
             </div>
             <form action="" method="post" class="cust-signup-form">
                 <div class="input-element">
@@ -56,10 +55,6 @@ use app\core\Application;
                     <div class="invalid-feedback">
                         <?php echo $model->getFirstError('password') ?>
                     </div>
-                </div>
-                <div class="not-robot">
-                    <input type="checkbox" name="not-robot" id="not-robot">
-                    <label for="not-robot">I'm not a robot</label>
                 </div>
                 <div>
                     <button type="submit" class="btn">Log In</button>

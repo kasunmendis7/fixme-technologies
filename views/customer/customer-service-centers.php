@@ -44,8 +44,11 @@ include_once 'components/header.php';
         <?php
         $customer = new Customer();
         $serviceCenters = $customer->getAllServiceCentersSortedByDistance();
-        foreach ($serviceCenters as $serviceCenter) {
-            echo '<div class="col service-center-card" data-name="' . strtolower($serviceCenter['name']) . '">
+        if ($serviceCenters['status'] === 'success' && empty($serviceCenters['data'])) {
+            echo '<h2>No Service Centers found !</h2>';
+        } elseif ($serviceCenters['status'] === 'success' && !empty($serviceCenters['data'])) {
+            foreach ($serviceCenters['data'] as $serviceCenter) {
+                echo '<div class="col service-center-card" data-name="' . strtolower($serviceCenter['name']) . '">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">' . $serviceCenter['name'] . '</h5>
@@ -62,6 +65,9 @@ include_once 'components/header.php';
                         </div>
                     </div>
                 </div>';
+            }
+        } elseif ($serviceCenters['status'] === 'error') {
+            echo '<h2>An Unexpected error occured while fetching Service Centers</h2>';
         }
         ?>
     </div>

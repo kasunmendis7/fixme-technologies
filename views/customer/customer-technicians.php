@@ -41,8 +41,12 @@ include_once 'components/header.php';
         <?php
         $customer = new Customer();
         $technicians = $customer->getAllTechniciansSortedByDistance();
-        foreach ($technicians as $technician) {
-            echo '<div class="col technician-card" data-name="' . strtolower($technician['fname']) . '' . strtolower($technician['lname']) . '">
+
+        if ($technicians['status'] === 'success' && empty($technicians['data'])) {
+            echo '<h2>No Technicians found !</h2>';
+        } elseif ($technicians['status'] === 'success' && !empty($technicians['data'])) {
+            foreach ($technicians['data'] as $technician) {
+                echo '<div class="col technician-card" data-name="' . strtolower($technician['fname']) . '' . strtolower($technician['lname']) . '">
                     <div class="card">
                         <img src="' . $technician['profile_picture'] . '" class="card-img-top" alt="...">
                         <div class="card-body">
@@ -60,6 +64,9 @@ include_once 'components/header.php';
                         </div>
                     </div>
                 </div>';
+            }
+        } elseif ($technicians['status'] === 'error') {
+            echo '<h2>An Unexpected error occured while fetching Technicians</h2>';
         }
         ?>
     </div>

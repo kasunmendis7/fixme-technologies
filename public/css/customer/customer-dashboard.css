@@ -278,9 +278,9 @@ a {
     color: var(--white);
 }
 
-/* ================== Order Details List ============== */
+/* ================== Recent Requests List ============== */
 .details {
-    position: relative;
+    /*position: relative;*/
     width: 100%;
     padding: 20px;
     display: grid;
@@ -291,7 +291,7 @@ a {
 
 .details .recentRequests {
     position: relative;
-    display: grid;
+    /*display: grid;*/
     min-height: 500px;
     background: var(--white);
     padding: 20px;
@@ -303,6 +303,7 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    margin-bottom: 20px;
 }
 
 .cardHeader h2 {
@@ -344,7 +345,7 @@ a {
 }
 
 .details .recentRequests table tr td {
-    padding: 10px;
+    padding: 15px;
 }
 
 .details .recentRequests table tr td:last-child {
@@ -398,12 +399,15 @@ a {
 
 .recentTechnicians {
     position: relative;
-    display: grid;
     min-height: 500px;
     padding: 20px;
     background: var(--white);
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
     border-radius: 20px;
+}
+
+.recentTechnicians .cardHeader {
+    margin-bottom: 20px;
 }
 
 .recentTechnicians .imgBx {
@@ -559,4 +563,10 @@ a {
 .cancel-btn:hover {
     cursor: pointer;
     background-color: rgba(13, 110, 253, 0.84);
+}
+
+.user-account {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }

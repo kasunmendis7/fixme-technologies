@@ -9,7 +9,7 @@
     --white-color: #ffff;
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -18,7 +18,6 @@
 
 
 .contact-us-container {
-    position: absolute;
     width: 100%;
     max-width: 900px;
     padding: 40px;
@@ -28,17 +27,20 @@
     background-color: var(--white-color);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     margin-top: 100px;
-    margin-left: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-items: center;
 }
 
-.contact-us-left{
-    width:55%;
+.contact-us-left {
+    width: 55%;
 }
 
-.heading{
+.heading {
     font-size: 38px;
     font-weight: 600;
-    line-height:1;
+    line-height: 1;
     color: #000000;
 }
 
@@ -48,16 +50,17 @@
     margin-top: 10px;
 }
 
-form{
-    margin-top:20px;
+form {
+    margin-top: 20px;
 }
 
-.contact-us-input-box{
+.contact-us-input-box {
     position: relative;
     margin-bottom: 20px;
 }
+
 .contact-us-input-box input,
-.contact-us-input-box textarea{
+.contact-us-input-box textarea {
     width: 100%;
     padding: 10px;
     font-size: 16px;
@@ -70,17 +73,18 @@ form{
 
 
 .contact-us-input-box input::placeholder,
-.contact-us-input-box textarea::placeholder{
+.contact-us-input-box textarea::placeholder {
     color: var(--text-color);
     opacity: 0.5;
-    font-size:12px;
+    font-size: 12px;
 }
-.contact-us-input-box textarea{
+
+.contact-us-input-box textarea {
     resize: none;
     height: 150px;
 }
 
-.contact-us-btn{
+.contact-us-btn {
     width: 100%;
     display: inline-block;
     padding: 10px 20px;
@@ -94,17 +98,17 @@ form{
     border-radius: 5px;
 }
 
-.contact-us-btn:hover{
+.contact-us-btn:hover {
     background-color: #4b52d8;
 }
 
-.contact-us-right{
-    width:45%;
+.contact-us-right {
+    width: 45%;
     justify-content: center;
 
 }
 
-.contact-us-illustration{
+.contact-us-illustration {
     display: flex;
     width: 100%;
     margin: 0 auto;

@@ -10,7 +10,7 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="/css/customer/customer-dashboard.css">
-    <link rel="stylesheet" href="/css/customer/customer-help.css">
+    <link rel="stylesheet" href="/css/technician/technician-help.css">
     <link rel="stylesheet" href="/css/customer/overlay.css">
 </head>
 
@@ -25,7 +25,10 @@ include_once 'components/header.php';
         <h2 class="help-title">Get in Touch with Us</h2>
         <div class="content-wrapper">
             <div class="text-wrapper">
-                <p class="help-subtitle">We are always eager to connect and assist with any queries or concerns you might have. Our dedicated team is here to provide support and ensure your experience with us is seamless and satisfying. Feel free to reach out using the contact information provided below, and we will respond promptly.</p>
+                <p class="help-subtitle">We are always eager to connect and assist with any queries or concerns you
+                    might have. Our dedicated team is here to provide support and ensure your experience with us is
+                    seamless and satisfying. Feel free to reach out using the contact information provided below, and we
+                    will respond promptly.</p>
             </div>
             <div class="image-wrapper">
                 <img src="assets/cusSup.ico" alt="Customer Support Image">
@@ -36,13 +39,18 @@ include_once 'components/header.php';
         <div class="help-contact-card">
             <div class="help-icon">📞</div>
             <div class="help-title">Talk to us</div>
-            <p class="help-description">Sometimes you need a little help from your friend or a Trip support rep. Don't worry...we're here for you.</p>
+            <p class="help-description">If you are having trouble finding the right automobile service center, or need
+                help
+                with booking an appointment, just give us a call. We are here to help you to find the best service
+                center
+                for your vehicle.</p>
             <p class="help-contact-info">0710154855</p>
         </div>
         <div class="help-contact-card">
             <div class="help-icon">💬</div>
             <div class="help-title">Send an inquiry</div>
-            <p class="help-description">Direct any difficulties you encounter within our platform. Also, suggestions are always welcome.</p>
+            <p class="help-description">Direct any difficulties you encounter within our platform. Also, suggestions are
+                always welcome.</p>
             <p class="help-contact-info">fixme@gmail.com</p>
         </div>
     </div>

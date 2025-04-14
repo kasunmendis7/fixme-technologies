@@ -17,15 +17,6 @@ class Technician extends DbModel
     public string $password = '';
     public string $confirmPassword = '';
 
-    public function findById($id)
-    {
-        $sql = "SELECT * FROM technician WHERE tech_id = :tech_id";
-        $stmt = self::prepare($sql);
-        $stmt->bindValue(':tech_id', $id);
-        $stmt->execute();
-        return $stmt->fetch(\PDO::FETCH_ASSOC);
-    }
-
     public function tableName(): string
     {
         return 'technician';
@@ -63,6 +54,17 @@ class Technician extends DbModel
             $stmt->bindValue(':tech_id', $technician['tech_id']);
             $stmt->execute();
         }
+    }
+
+    public function getTechnicianLocationUsingId($id)
+    {
+        $sql = "SELECT latitude, longitude FROM technician WHERE tech_id = :tech_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':tech_id', $id);
+        $stmt->execute();
+
+        $data = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return json_encode($data);
     }
 
     public function techniciansGeocoding()
@@ -125,5 +127,14 @@ class Technician extends DbModel
             'email',
             'password',
         ];
+    }
+
+    public function findById($id)
+    {
+        $sql = "SELECT * FROM technician WHERE tech_id = :tech_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':tech_id', $id);
+        $stmt->execute();
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 }

@@ -19,6 +19,10 @@ use app\core\Application;
     <link rel="stylesheet" href="/css/customer/overlay.css">
     <link rel="stylesheet" href="/css/customer/flash-messages.css">
     <link rel="stylesheet" href="/css/customer/technician-profile.css">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" crossorigin="anonymous"/>
+    <!-- adding the css styling -->
+    <link rel="stylesheet" href="/css/customer/reviews.css">
 </head>
 
 <body>
@@ -43,7 +47,10 @@ include_once 'components/header.php';
                 <span class="status-dot"></span>
                 <span>Available</span>
             </div>
-            <button class="message-btn">Message</button>
+            <button class="message-btn"
+                    onclick="viewUser( <?php echo $technician['tech_id'] ?> )">
+                Message
+            </button>
             <button class="message-btn">Call</button>
             <button class="message-btn"
                     onclick="sendRequest( <?php echo $technician['tech_id'] . ', ' . Application::$app->session->get('customer') ?> )"
@@ -67,7 +74,7 @@ include_once 'components/header.php';
 
 <nav class="tabs">
     <button class="tab active">Feed</button>
-    <button class="tab">Ratings & Reviews</button>
+    <button class="tab" onclick="scrollToSection('ratings-reviews-section');">Ratings & Reviews</button>
 </nav>
 
 <main class="content">
@@ -92,6 +99,9 @@ include_once 'components/header.php';
     </div>
 </main>
 
+<?php
+include_once 'components/technician-reviews.php';
+?>
 
 <!--<main class="content">-->
 <!--    <div class="cards">-->

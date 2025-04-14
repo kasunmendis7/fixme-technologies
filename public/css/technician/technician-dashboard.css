@@ -266,9 +266,9 @@ body {
     color: var(--white);
 }
 
-/* ================== Order Details List ============== */
+/* ================== Recent Requests List ============== */
 .details {
-    position: relative;
+    /*position: relative;*/
     width: 100%;
     padding: 20px;
     display: grid;
@@ -279,7 +279,7 @@ body {
 
 .details .recentOrders {
     position: relative;
-    display: grid;
+    /*display: grid;*/
     min-height: 500px;
     background: var(--white);
     padding: 20px;
@@ -291,6 +291,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    margin-bottom: 20px;
 }
 
 .cardHeader h2 {
@@ -332,7 +333,7 @@ body {
 }
 
 .details .recentOrders table tr td {
-    padding: 10px;
+    padding: 15px;
 }
 
 .details .recentOrders table tr td:last-child {
@@ -347,7 +348,7 @@ body {
     text-align: center;
 }
 
-.status.delivered {
+.status.completed {
     padding: 2px 4px;
     background: #8de02c;
     color: var(--white);
@@ -357,7 +358,7 @@ body {
 }
 
 .status.pending {
-    padding: 2px 4px;
+    padding: .5rem 1rem;
     background: #e9b10a;
     color: var(--white);
     border-radius: 4px;
@@ -365,8 +366,8 @@ body {
     font-weight: 500;
 }
 
-.status.return {
-    padding: 2px 4px;
+.status.rejected {
+    padding: .5rem 1rem;
     background: #f00;
     color: var(--white);
     border-radius: 4px;
@@ -374,8 +375,8 @@ body {
     font-weight: 500;
 }
 
-.status.inProgress {
-    padding: 2px 4px;
+.status.inprogress {
+    padding: .5rem 1rem;
     background: #1795ce;
     color: var(--white);
     border-radius: 4px;
@@ -385,12 +386,15 @@ body {
 
 .recentCustomers {
     position: relative;
-    display: grid;
     min-height: 500px;
     padding: 20px;
     background: var(--white);
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
     border-radius: 20px;
+}
+
+.recentTechnicians .cardHeader {
+    margin-bottom: 20px;
 }
 
 .recentCustomers .imgBx {
@@ -432,14 +436,6 @@ body {
 
 .recentCustomers table tr:hover td h4 span {
     color: var(--white);
-}
-
-/* User name */
-.user-name {
-    position: relative;
-    margin-left: 350px;
-    color: var(--white);
-    font-size: 0.9rem;
 }
 
 /* ====================== Responsive Design ========================== */
@@ -515,4 +511,32 @@ body {
         right: 0;
         left: initial;
     }
+}
+
+/* User name */
+.user-name {
+    position: relative;
+    margin-left: 300px;
+    color: var(--white);
+    font-size: 0.9rem;
+}
+
+.cancel-btn {
+    background-color: #0d6efd;
+    border: none;
+    border-radius: 1rem;
+    color: #FFFFFF;
+    padding: .5rem 1rem;
+    margin: 0;
+}
+
+.cancel-btn:hover {
+    cursor: pointer;
+    background-color: rgba(13, 110, 253, 0.84);
+}
+
+.user-account {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
