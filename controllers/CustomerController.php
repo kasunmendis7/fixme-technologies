@@ -8,6 +8,7 @@ use app\core\Request;
 use app\core\Response;
 use app\models\Chat;
 use app\models\Comment;
+use app\models\CusTechAdvPayment;
 use app\models\Customer;
 use app\models\Post;
 use app\models\ServiceCenter;
@@ -317,5 +318,34 @@ class CustomerController extends Controller
             http_response_code(500);
             echo json_encode(['success' => false, 'message' => $e->getMessage()]);
         }
+    }
+
+    public function getCustomerAdvancePayments()
+    {
+        try {
+            $cus_id = Application::$app->session->get('customer');
+            $advPayModel = new CusTechAdvPayment();
+            $data = $advPayModel->getPendingAdvancePayments($cus_id);
+            return $data;
+
+        } catch (\Exception $e) {
+            http_response_code(500);
+        }
+    }
+
+    public function customerAdvancePayments()
+    {
+        $adv_payments = self::getCustomerAdvancePayments();
+
+        $this->setLayout('auth');
+        return $this->render('/customer/customer-advance-payments', ['adv_payments' => $adv_payments]);
+    }
+
+    public function rejectAdvPaymentUsingReqId($req_id)
+    {
+        $req_id = intval($req_id[0]);
+        (new CusTechAdvPayment())->deleteAdvPaymentUsingReqId($req_id);
+        (new CusTechReq())->deleteCusTechReqUsingReqId($req_id);
+        Application::$app->response->redirect('/customer-advance-payments');
     }
 }
