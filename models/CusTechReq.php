@@ -92,9 +92,10 @@ class CusTechReq extends DbModel
 
     public function getAllTechnicianRequests($techId)
     {
-        $sql = "SELECT ctr.cus_id AS cus_id, ctr.tech_id AS tech_id, cus.fname AS fname, cus.lname AS lname, ctr.status AS status 
+        $sql = "SELECT ctr.cus_id AS cus_id, ctr.tech_id AS tech_id, cus.fname AS fname, cus.lname AS lname, ctr.status AS status, ctr.req_id AS req_id, ctap.amount AS amount, ctap.done AS done 
             FROM customer AS cus
             INNER JOIN cus_tech_req AS ctr ON ctr.cus_id = cus.cus_id 
+            LEFT JOIN cus_tech_adv_payment AS ctap ON ctr.req_id = ctap.req_id
             WHERE ctr.tech_id = :tech_id
             ORDER BY ctr.req_id DESC";
         $stmt = self::prepare($sql);
@@ -127,7 +128,7 @@ class CusTechReq extends DbModel
 
     public function getTechnicianTotalRepairs($techId)
     {
-        $sql = "SELECT COUNT(*) AS total_repairs FROM cus_tech_req WHERE tech_id = :tech_id AND status = 'pending'";
+        $sql = "SELECT COUNT(*) AS total_repairs FROM cus_tech_req WHERE tech_id = :tech_id AND status = 'pending' OR status = 'completed' OR status = 'InProgress'";
         $stmt = self::prepare($sql);
         $stmt->bindValue(':tech_id', $techId, \PDO::PARAM_INT); // Added explicit parameter type
         $stmt->execute();
@@ -144,6 +145,17 @@ class CusTechReq extends DbModel
         $stmt->execute();
         $requestId = $stmt->fetch(\PDO::FETCH_ASSOC);
         return $requestId['req_id'];
+    }
+
+    public function getTechnicianRejectedRepairs($tech_id)
+    {
+        $sql = "SELECT COUNT(*) AS total_repairs FROM cus_tech_req WHERE tech_id = :tech_id AND status = 'Rejected'";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':tech_id', $tech_id, \PDO::PARAM_INT); // Added explicit parameter type
+        $stmt->execute();
+        $totalTechnicianRepairs = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $totalTechnicianRepairs['total_repairs'] ?? 0;
+
     }
 
     public function attributes(): array
