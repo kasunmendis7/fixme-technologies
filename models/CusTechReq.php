@@ -82,7 +82,7 @@ class CusTechReq extends DbModel
 
     public function getAllRequests($cusId)
     {
-        $sql = "SELECT ctr.tech_id AS tech_id, ctr.cus_id AS cus_id, tech.fname AS fname, tech.lname AS lname, ctr.status AS status FROM technician AS tech, cus_tech_req AS ctr WHERE ctr.tech_id = tech.tech_id AND ctr.cus_id = :cus_id";
+        $sql = "SELECT ctr.req_id AS req_id, ctr.tech_id AS tech_id, ctr.cus_id AS cus_id, tech.fname AS fname, tech.lname AS lname, ctr.status AS status, ctap.amount AS amount, ctap.done AS done FROM technician AS tech, cus_tech_req AS ctr LEFT JOIN cus_tech_adv_payment AS ctap ON ctr.req_id = ctap.req_id WHERE ctr.tech_id = tech.tech_id AND ctr.cus_id = :cus_id";
         $stmt = self::prepare($sql);
         $stmt->bindValue(':cus_id', $cusId);
         $stmt->execute();

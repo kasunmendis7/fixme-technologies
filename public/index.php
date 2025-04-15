@@ -254,7 +254,7 @@ $app->router->post('/service-center-help/send-email', [ContactUsController::clas
 
 /* Routes related to the PayHere Payment gateway */
 $app->router->post('/payhere-payment', [CustomerController::class, 'payHerePaymentProcess']);
-$app->router->post('/payhere-notification', [CustomerController::class, 'payhereNotification']);
+$app->router->post('/update-payment-status', [CustomerController::class, 'updatePaymentStatus']);
 
 /* Run the application */
 $app->run();
