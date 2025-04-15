@@ -583,3 +583,11 @@ a {
     cursor: pointer;
     background-color: rgba(17, 205, 44, 0.84);
 }
+
+.payment-status {
+    background-color: #036113;
+    border: none;
+    border-radius: 1rem;
+    color: #FFFFFF;
+    padding: .5rem 1rem;
+}

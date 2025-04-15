@@ -419,5 +419,25 @@ class CustomerController extends Controller
             echo json_encode(['success' => false, 'error' => $e->getMessage()]);
         }
     }
-    
+
+    public function updatePaymentStatus()
+    {
+        header('Content-type: application/json');
+
+        try {
+            $jsonData = file_get_contents('php://input');
+            $data = json_decode($jsonData, true);
+
+            $requestId = $data['req_id'];
+            $paymentModel = new CusTechAdvPayment();
+            $paymentModel->updatePaymentStatus($requestId);
+
+            echo json_encode(['success' => true]);
+        } catch (\Exception $e) {
+            Application::$app->response->setStatusCode(500);
+            echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+        }
+
+    }
+
 }
