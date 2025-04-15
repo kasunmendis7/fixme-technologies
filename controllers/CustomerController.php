@@ -420,24 +420,82 @@ class CustomerController extends Controller
         }
     }
 
-    public function updatePaymentStatus()
+//    public function updatePaymentStatus()
+//    {
+//        header('Content-type: application/json');
+//
+//        try {
+//            $jsonData = file_get_contents('php://input');
+//            $data = json_decode($jsonData, true);
+//
+//            $requestId = $data['req_id'];
+//            $paymentModel = new CusTechAdvPayment();
+//            $paymentModel->updatePaymentStatus($requestId);
+//
+//            echo json_encode(['success' => true]);
+//        } catch (\Exception $e) {
+//            Application::$app->response->setStatusCode(500);
+//            echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+//        }
+//
+//    }
+
+    public function paymentResponse()
     {
-        header('Content-type: application/json');
+        // Get payment notification data from PayHere
+        $merchant_id = $_POST['merchant_id'] ?? '';
+        $order_id = $_POST['order_id'] ?? '';
+        $payhere_amount = $_POST['payhere_amount'] ?? '';
+        $payhere_currency = $_POST['payhere_currency'] ?? '';
+        $status_code = $_POST['status_code'] ?? '';
+        $md5sig = $_POST['md5sig'] ?? '';
 
-        try {
-            $jsonData = file_get_contents('php://input');
-            $data = json_decode($jsonData, true);
+        // Log the received data for debugging
+        error_log("PayHere Notification Received: " . json_encode($_POST));
 
-            $requestId = $data['req_id'];
-            $paymentModel = new CusTechAdvPayment();
-            $paymentModel->updatePaymentStatus($requestId);
+        // Your merchant secret from PayHere dashboard (should be in environment variables)
+        $merchant_secret = $_ENV['MERCHANT_SECRET'];
 
-            echo json_encode(['success' => true]);
-        } catch (\Exception $e) {
-            Application::$app->response->setStatusCode(500);
-            echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+        // Generate the local MD5 signature for verification
+        $local_md5sig = strtoupper(
+            md5(
+                $merchant_id .
+                $order_id .
+                $payhere_amount .
+                $payhere_currency .
+                $status_code .
+                strtoupper(md5($merchant_secret))
+            )
+        );
+
+        // Verify the signature and update the database
+        if ($local_md5sig === $md5sig) {
+            // The notification is authentic, now check the status code
+            if ($status_code == 2) {
+                // Payment successful, update the database
+                $paymentModel = new CusTechAdvPayment();
+                $success = $paymentModel->updatePaymentStatus($order_id);
+
+                if ($success) {
+                    error_log("Payment record updated successfully: OrderID=" . $order_id);
+                } else {
+                    error_log("Error updating payment record for OrderID=" . $order_id);
+                }
+            } else {
+                // Payment not successful (pending, canceled, failed, or chargedback)
+                error_log("Payment not successful. Status code: " . $status_code);
+                // Keep the payment status as false (default)
+            }
+        } else {
+            // MD5 signature verification failed, possible security breach
+            error_log("MD5 signature verification failed! Possible security breach.");
         }
 
+        // Return 200 OK to acknowledge receipt
+        http_response_code(200);
+        // No view is needed since this is a server-to-server callback
+        exit;
     }
+
 
 }

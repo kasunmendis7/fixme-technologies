@@ -110,29 +110,44 @@ include_once 'components/header.php';
             $ctr = new CusTechReq();
             $requests = $ctr->getAllRequests(Application::$app->session->get('customer'));
             foreach ($requests as $request) {
-                echo
-                    '<tr>
-                    <td>' . $request['fname'] . ' ' . $request['lname'] . '</td> 
-                    <td>Rs. ' . (is_null($request['amount']) ? '0.00' : number_format($request['amount'], 2)) . '</td>
-                    <td>Due</td>';
+                echo '<tr>
+                <td>' . $request['fname'] . ' ' . $request['lname'] . '</td>
+                <td>Rs. ' . (is_null($request['amount']) ? '0.00' : number_format($request['amount'], 2)) . '</td>';
 
+                echo '<td>';
                 if ($request['status'] == 'pending') {
-                    echo '<td><span><button type="submit" class="cancel-btn" onclick="cancelReq(' . $request['cus_id'] . ',' . $request['tech_id'] . ' )">Cancel</button></span></td>';
+                    echo '<span class="payment-due">Payment Due !</span>';
                 } else {
                     if ($request['done'] == 'true') {
-                        echo '<td><span class="payment-status">Advance Paid ✔</span></td>';
+                        echo '<span class="payment-status">Advance Paid ✔</span>';
                     } else {
-                        echo '<td></td>';
+                        echo '<span class="payment-rejected">-</span>';
                     }
                 }
+                echo '</td>';
 
-                echo '
-                    <td> <span class="status ' . strtolower($request['status']) . '">' . ucfirst($request['status']) . '</span></td>
-                </tr>';
+                // Additional action cell: show cancel button if request is pending
+                echo '<td>';
+                if ($request['status'] == 'pending') {
+                    echo '<span>
+                      <button type="submit" class="cancel-btn" onclick="cancelReq(' . $request['cus_id'] . ',' . $request['tech_id'] . ')">
+                          Cancel
+                      </button>
+                  </span>';
+                }
+                echo '</td>';
+
+                // Status cell
+                echo '<td>
+                <span class="status ' . strtolower($request['status']) . '">
+                    ' . ucfirst($request['status']) . '
+                </span>
+              </td>
+             </tr>';
             }
-            /* status: pending , InProgress, rejected, completed */
             ?>
             </tbody>
+
         </table>
     </div>
 
