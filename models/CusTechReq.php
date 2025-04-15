@@ -135,6 +135,17 @@ class CusTechReq extends DbModel
         return $totalTechnicianRepairs['total_repairs'] ?? 0; // Ensuring a default value is returned
     }
 
+    public function getRequestId($cusId, $techId)
+    {
+        $sql = "SELECT req_id FROM cus_tech_req WHERE cus_id = :cus_id AND tech_id = :tech_id ORDER BY time DESC LIMIT 1";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':cus_id', $cusId);
+        $stmt->bindValue(':tech_id', $techId);
+        $stmt->execute();
+        $requestId = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $requestId['req_id'];
+    }
+
     public function attributes(): array
     {
         return [

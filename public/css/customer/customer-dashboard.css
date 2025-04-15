@@ -570,3 +570,16 @@ a {
     align-items: center;
     gap: 10px;
 }
+
+.advance-payment-btn {
+    background-color: #0dfd35;
+    border: none;
+    border-radius: 1rem;
+    color: #FFFFFF;
+    padding: .5rem 1rem;
+}
+
+.advance-payment-btn:hover {
+    cursor: pointer;
+    background-color: rgba(17, 205, 44, 0.84);
+}

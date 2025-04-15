@@ -252,6 +252,10 @@ $app->router->post('/service-center-profile/fetch-reviews', [ServiceCenterReview
 $app->router->post('/technician-help/send-email', [ContactUsController::class, 'sendEmail']);
 $app->router->post('/service-center-help/send-email', [ContactUsController::class, 'sendEmail']);
 
+/* Routes related to the PayHere Payment gateway */
+$app->router->post('/payhere-payment', [CustomerController::class, 'payHerePaymentProcess']);
+$app->router->post('/payhere-notification', [CustomerController::class, 'payhereNotification']);
+
 /* Run the application */
 $app->run();
 

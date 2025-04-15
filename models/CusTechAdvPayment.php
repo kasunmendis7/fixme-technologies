@@ -39,6 +39,16 @@ class CusTechAdvPayment extends DbModel
 
     }
 
+    public function getAdvancePayment($req_id)
+    {
+        $sql = "SELECT * FROM cus_tech_adv_payment WHERE req_id = :req_id";
+        $stmt = Application::$app->db->prepare($sql);
+        $stmt->bindValue(':req_id', $req_id);
+        $stmt->execute();
+        $payment = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $payment;
+    }
+
     public function attributes(): array
     {
         return [
