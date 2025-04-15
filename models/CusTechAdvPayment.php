@@ -67,6 +67,17 @@ class CusTechAdvPayment extends DbModel
         return $count;
     }
 
+    public function getTotalEarning($tech_id)
+    {
+        $sql = "SELECT SUM(amount) AS total FROM cus_tech_adv_payment WHERE tech_id = :tech_id AND done = 'true'";
+        $stmt = Application::$app->db->prepare($sql);
+        $stmt->bindValue(':tech_id', $tech_id);
+        $stmt->execute();
+        $total = $stmt->fetchColumn();
+        return $total;
+
+    }
+
     public function attributes(): array
     {
         return [

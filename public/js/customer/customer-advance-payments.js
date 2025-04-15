@@ -51,7 +51,7 @@ async function paymentGateWay(cusId, techId) {
             console.log("Payment completed. OrderID:" + orderId);
             // Show a success message
             //alert("Payment successful!");
-            updatePaymentStatus(orderId);
+            //updatePaymentStatus(orderId);
             // Reload the page to update the payment status display
             window.location.reload();
         };
@@ -72,7 +72,7 @@ async function paymentGateWay(cusId, techId) {
             merchant_id: "1230101",               // Replace with your Merchant ID
             return_url: "http://localhost:8080/customer-dashboard",// Important
             cancel_url: "http://localhost:8080/customer-dashboard",// Important
-            notify_url: "http://localhost:8080/payhere-payment-response",
+            notify_url: "https://www.domain.com/payhere-payment-response", // This needs to be updated accordingly
             order_id: object["order_id"],  // Replace with generated order id from backend
             items: object["items"],        // Replace with generated item name from backend
             amount: object["amount"],      // Replace with generated amount from backend
@@ -100,29 +100,29 @@ async function paymentGateWay(cusId, techId) {
     }
 }
 
-async function updatePaymentStatus(orderId) {
-    payload = {
-        req_id: orderId,
-    };
-
-    try {
-        const response = await fetch('http://localhost:8080/update-payment-status', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(payload)
-        });
-
-        if (response.ok) {
-            const result = await response.json();
-            console.log('Response: ', result);
-        } else {
-            const error = await response.json();
-            console.error('Error: ', error);
-        }
-    } catch (e) {
-        alert('An error occurred while updating the payment status');
-        console.error('Error: ', e);
-    }
-}
+// async function updatePaymentStatus(orderId) {
+//     payload = {
+//         req_id: orderId,
+//     };
+//
+//     try {
+//         const response = await fetch('http://localhost:8080/update-payment-status', {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             },
+//             body: JSON.stringify(payload)
+//         });
+//
+//         if (response.ok) {
+//             const result = await response.json();
+//             console.log('Response: ', result);
+//         } else {
+//             const error = await response.json();
+//             console.error('Error: ', error);
+//         }
+//     } catch (e) {
+//         alert('An error occurred while updating the payment status');
+//         console.error('Error: ', e);
+//     }
+// }
