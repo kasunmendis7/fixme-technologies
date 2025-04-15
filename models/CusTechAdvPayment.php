@@ -20,7 +20,7 @@ class CusTechAdvPayment extends DbModel
 
     public function getPendingAdvancePayments($cusId)
     {
-        $sql = "SELECT ctap.pin AS pin, CONCAT(t.fname, ' ', t.lname) AS name, ctap.amount AS amount, ctap.req_id AS req_id FROM cus_tech_adv_payment ctap JOIN technician t ON ctap.tech_id = t.tech_id WHERE cus_id = :cus_id AND done = 'false'";
+        $sql = "SELECT ctap.pin AS pin, ctap.cus_id AS cus_id, ctap.tech_id AS tech_id, CONCAT(t.fname, ' ', t.lname) AS name, ctap.amount AS amount, ctap.req_id AS req_id, ctap.done AS done FROM cus_tech_adv_payment ctap JOIN technician t ON ctap.tech_id = t.tech_id WHERE cus_id = :cus_id AND done = 'false'";
         $stmt = Application::$app->db->prepare($sql);
         $stmt->bindValue(':cus_id', $cusId);
         $stmt->execute();
@@ -47,6 +47,24 @@ class CusTechAdvPayment extends DbModel
         $stmt->execute();
         $payment = $stmt->fetch(\PDO::FETCH_ASSOC);
         return $payment;
+    }
+
+    public function updatePaymentStatus($order_id)
+    {
+        $sql = "UPDATE cus_tech_adv_payment SET done = 'true' WHERE req_id = :req_id";
+        $stmt = Application::$app->db->prepare($sql);
+        $stmt->bindValue(':req_id', $order_id);
+        $stmt->execute();
+    }
+
+    public function countAdvancePayment($cus_id)
+    {
+        $sql = "SELECT COUNT(*) FROM cus_tech_adv_payment WHERE cus_id = :cus_id AND done = 'false'";
+        $stmt = Application::$app->db->prepare($sql);
+        $stmt->bindValue(':cus_id', $cus_id);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+        return $count;
     }
 
     public function attributes(): array

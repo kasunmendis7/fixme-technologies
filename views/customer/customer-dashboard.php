@@ -2,6 +2,7 @@
 
 use app\core\Application;
 use app\models\CusTechReq;
+use app\models\CusTechAdvPayment;
 
 ?>
 
@@ -38,7 +39,11 @@ include_once 'components/header.php';
 <div class="cardBox">
     <div class="card" onclick="getAdvancePayments(<?php echo Application::$app->session->get('customer') ?>)">
         <div>
-            <div class="numbers">65</div>
+            <?php
+            $ctap = new CusTechAdvPayment();
+            $advancePaymentCount = $ctap->countAdvancePayment(Application::$app->session->get('customer'));
+            ?>
+            <div class="numbers"><?php echo $advancePaymentCount ?></div>
             <div class="cardName">Advance Payments</div>
         </div>
 
@@ -96,7 +101,6 @@ include_once 'components/header.php';
                 <td>Price</td>
                 <td>Payment</td>
                 <td></td>
-                <td></td>
                 <td>Status</td>
             </tr>
             </thead>
@@ -109,26 +113,24 @@ include_once 'components/header.php';
                 echo
                     '<tr>
                     <td>' . $request['fname'] . ' ' . $request['lname'] . '</td> 
-                    <td>Rs. 500</td> 
+                    <td>Rs. ' . (is_null($request['amount']) ? '0.00' : number_format($request['amount'], 2)) . '</td>
                     <td>Due</td>';
 
                 if ($request['status'] == 'pending') {
                     echo '<td><span><button type="submit" class="cancel-btn" onclick="cancelReq(' . $request['cus_id'] . ',' . $request['tech_id'] . ' )">Cancel</button></span></td>';
                 } else {
-                    echo '<td></td>';
-                }
-
-                if ($request['status'] == 'InProgress') {
-                    echo '<td><span><button type="submit" class="advance-payment-btn" onclick="paymentGateWay(' . $request['cus_id'] . ',' . $request['tech_id'] . ');">Pay Advance</button></span></td>';
-                } else {
-                    echo '<td></td>';
+                    if ($request['done'] == 'true') {
+                        echo '<td><span class="payment-status">Advance Paid ✔</span></td>';
+                    } else {
+                        echo '<td></td>';
+                    }
                 }
 
                 echo '
                     <td> <span class="status ' . strtolower($request['status']) . '">' . ucfirst($request['status']) . '</span></td>
                 </tr>';
             }
-            /* status: pending , in Progress, rejected, completed */
+            /* status: pending , InProgress, rejected, completed */
             ?>
             </tbody>
         </table>
@@ -177,7 +179,6 @@ include_once 'components/header.php';
 <script src="/js/customer/customer-dashboard.js"></script>
 <script src="/js/customer/customer-home.js"></script>
 <script src="/js/customer/overlay.js"></script>
-<script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
 </body>
 
 </html>
