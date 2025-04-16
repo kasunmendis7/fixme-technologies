@@ -5,6 +5,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use app\controllers\AppoinmentController;
 use app\controllers\AuthController;
 use app\controllers\CartController;
+use app\controllers\NotificationController;
 use app\core\Application;
 use app\controllers\SiteController;
 use app\controllers\CustomerController;
@@ -112,6 +113,7 @@ $app->router->post('/book-appointment', [AppoinmentController::class, 'book']);
 $app->router->post('/change-appointment-status', [AppoinmentController::class, 'updateAppointmentStatus']);
 $app->router->post('/delete-appointment', [AppoinmentController::class, 'deleteAppointment']);
 $app->router->post('/fetch-appointment-dates', [AppoinmentController::class, 'fetchAppointmentDates']);
+$app->router->get('/get-notifications-for-service-center', [NotificationController::class, 'getNotificationsForServiceCenter']);
 
 
 
