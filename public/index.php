@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+use app\controllers\AppoinmentController;
 use app\controllers\AuthController;
 use app\controllers\CartController;
 use app\core\Application;
@@ -92,7 +93,7 @@ $app->router->post('/post-unlike', [PostController::class, 'unlike']);
 
 /* Service Center Routes */
 $app->router->get('/service-centre-landing', [ServiceCentreController::class, 'serviceCentreLanding']);
-$app->router->get('/service-centre-dashboard', [ServiceCentreController::class, 'serviceCentreDashboard']);
+$app->router->get('/service-centre-dashboard', [AppoinmentController::class, 'loadAppointmentDetailsForServiceCenter']);
 $app->router->get('/service-centre-settings', [ServiceCentreController::class, 'serviceCentreSettings']);
 $app->router->get('/service-centre-profile', [ServiceCentreController::class, 'serviceCentreProfile']);
 $app->router->post('/update-service-centre-profile', [ServiceCentreController::class, 'updateServiceCenter']);
@@ -107,6 +108,11 @@ $app->router->get('/service-center-profile/{id}', [ServiceCentreController::clas
 $app->router->get('/view-cart', [CartController::class, 'viewCart']);
 $app->router->post('/remove-from-cart', [CartController::class, 'removeItemsFromCart']);
 $app->router->get('/service-center-list', [ServiceCentreController::class, 'getAllServiceCenters']);
+$app->router->post('/book-appointment', [AppoinmentController::class, 'book']);
+$app->router->post('/change-appointment-status', [AppoinmentController::class, 'updateAppointmentStatus']);
+$app->router->post('/delete-appointment', [AppoinmentController::class, 'deleteAppointment']);
+$app->router->post('/fetch-appointment-dates', [AppoinmentController::class, 'fetchAppointmentDates']);
+
 
 
 /* Routes related to the product (service center) */
@@ -146,7 +152,7 @@ $app->router->get('/get-customer-payment-methods', [CustomerController::class, '
 $app->router->post('/delete-customer-payment-method/{id}', [CustomerController::class, 'deleteCustomerPaymentMethod']);
 $app->router->get('/customer-advance-payments', [CustomerController::class, 'customerAdvancePayments']);
 $app->router->post('/reject-advance-payment/{id}', [CustomerController::class, 'rejectAdvPaymentUsingReqId']);
-
+$app->router->get('/get-appointments', [AppoinmentController::class, 'loadAppointmentDetails']);
 
 /* Admin Routes */
 $app->router->get('/admin-dashboard', [AdminController::class, 'adminDashboard']);
