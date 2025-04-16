@@ -52,6 +52,26 @@ include_once 'components/header.php';
             </div>
         </div>
     </a>
+    <a href="/technician-active-contracts">
+        <div class="card">
+            <div>
+                <div class="cardName">Active Contracts</div>
+            </div>
+            <div class="iconBx">
+                <ion-icon name="contract-outline"></ion-icon>
+            </div>
+        </div>
+    </a>
+    <a href="/technician-ended-contracts">
+        <div class="card">
+            <div>
+                <div class="cardName">Finished Contracts</div>
+            </div>
+            <div class="iconBx">
+                <ion-icon name="checkmark-done-outline"></ion-icon>
+            </div>
+        </div>
+    </a>
 </div>
 
 <!-- Overlay for the confirmation message -->
