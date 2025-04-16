@@ -17,6 +17,8 @@ use app\core\Application;
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="/css/customer/customer-dashboard.css">
     <link rel="stylesheet" href="/css/service-center/add-products.css">
+    <link rel="stylesheet" href="/css/service-center/notification.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>

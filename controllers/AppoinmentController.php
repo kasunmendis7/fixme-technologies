@@ -6,6 +6,8 @@ use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
+use app\models\Customer;
+use app\models\Notification;
 use app\models\Post;
 use app\models\Appointment;
 use app\models\ServiceCenter;
@@ -23,8 +25,9 @@ class AppoinmentController extends Controller
             return;
         }
 
-
-
+        $customer = new Customer();
+        $customerData = $customer->findById($cus_id);
+        
         if ($request->isPost()) {
             $appointment->loadData($request->getBody());
             $appointment->service_center_id = $request->getBody()['service_center_id'];
@@ -32,6 +35,12 @@ class AppoinmentController extends Controller
 
             if ($appointment->isSlotAvailable()) {
                 if ($appointment->save() && $appointment->validate()) {
+                    $notifi = new Notification();
+                    $notifi->createNotification([
+                        'customer_id' => $cus_id,
+                        'service_center_id' => $appointment->service_center_id,
+                        'message' => 'New appointment booked by customer with ID: ' . $cus_id .' and name ' . $customerData['fname'] . ' and phone no is ' . $customerData['phone_no'] . ' on ' . $appointment->appointment_date . ' at ' . $appointment->appointment_time
+                    ]);
                     Application::$app->session->setFlash('success', 'Appointment booked successfully.');
                     Application::$app->response->redirect('/customer-dashboard');
                 } else {

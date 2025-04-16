@@ -18,6 +18,9 @@ use app\core\Application;
                 <ion-icon name="search-outline"></ion-icon>
             </label>
         </div>
+        <?php
+            include_once __DIR__ . '/notification.php';
+        ?>
         <div class="user-account">
             <h6 class="user-name">
                 <?php

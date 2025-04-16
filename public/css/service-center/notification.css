@@ -1,0 +1,167 @@
+/* External CSS or <style> section */
+.notification-container {
+    position: relative;
+    display: inline-block;
+}
+
+.notification-bell {
+    position: relative;
+    cursor: pointer;
+    font-size: 24px;
+    color: #fff;
+}
+
+.notification-count {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background: red;
+    color: white;
+    font-size: 12px;
+    padding: 2px 5px;
+    border-radius: 50%;
+    display: none;
+}
+
+.notification-dropdown {
+    display: none;
+    position: absolute;
+    top: 35px;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    width: 300px;
+    max-height: 300px;
+    overflow-y: auto;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 999;
+}
+
+.notification-dropdown ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+}
+
+.notification-dropdown ul li {
+    padding: 8px 10px;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 14px;
+    color: #333;
+}
+
+.notification-dropdown ul li:last-child {
+    border-bottom: none;
+}
+
+.notification-dropdown {
+    display: none;
+    position: absolute;
+    top: 130%;
+    right: 0;
+    width: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+}
+
+.notification-dropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.notification-dropdown li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+}
+
+.notification-dropdown li.unseen::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    transform: translateY(-50%);
+}
+
+.notification-dropdown .mark-btn {
+    float: right;
+    font-size: 11px;
+    padding: 2px 6px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.notification-dropdown .mark-btn:hover {
+    background-color: #0056b3;
+}
+
+.notification-header {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#clearAllBtn {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+#clearAllBtn:hover {
+    text-decoration: underline;
+}
+
+.notification-dropdown li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    position: relative; /* This ensures the ::before dot is positioned relative to each <li> */
+}
+
+.notification-dropdown li.unseen::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background-color: blue;
+    border-radius: 50%;
+    position: absolute;
+    top: 6px;     /* Adjust as needed */
+    right: 8px;   /* Places the dot on the top-right */
+}
+
+.notification-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.notification-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid #ccc;
+    display: none;
+    width: 250px;
+    z-index: 1000;
+}
+
+.notification-bell {
+    cursor: pointer;
+}
