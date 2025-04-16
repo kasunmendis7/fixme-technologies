@@ -33,6 +33,11 @@ class Request
 
     public function getBody()
     {
+        if ($this->isJson()) {
+            $rawInput = file_get_contents('php://input');
+            return json_decode($rawInput, true) ?? [];
+        }
+        
         $body = [];
         if ($this->method() === 'get') {
             foreach ($_GET as $key => $value) {
@@ -46,4 +51,10 @@ class Request
         }
         return $body;
     }
+
+    public function isJson()
+    {
+        return isset($_SERVER['CONTENT_TYPE']) && strpos($_SERVER['CONTENT_TYPE'], 'application/json') !== false;
+    }
+
 }
