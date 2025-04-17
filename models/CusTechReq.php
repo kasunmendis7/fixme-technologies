@@ -158,6 +158,25 @@ class CusTechReq extends DbModel
 
     }
 
+    public function countTotalRequests()
+    {
+        $sql = "SELECT COUNT(*) as total_requests FROM cus_tech_req";
+        $stmt = self::prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $result['total_requests'] ?? 0;
+    }
+
+    public function countPendingTotalRequests()
+    {
+        $sql = "SELECT COUNT(*) as total_requests FROM cus_tech_req WHERE status = 'pending'";
+        $stmt = self::prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $result['total_requests'] ?? 0;
+
+    }
+
     public function attributes(): array
     {
         return [

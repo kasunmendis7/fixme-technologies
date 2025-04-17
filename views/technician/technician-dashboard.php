@@ -124,7 +124,7 @@ include_once 'components/header.php';
                     echo '<span class="payment-due">Payment Due !</span>';
                 } else {
                     if ($request['done'] == 'true') {
-                        echo '<span class="payment-status">Advance Paid ✔</span>';
+                        echo '<span class="payment-status">Advance Received ✔</span>';
                     } else {
                         echo '<span class="payment-rejected">-</span>';
                     }

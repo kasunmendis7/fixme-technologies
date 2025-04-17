@@ -65,19 +65,10 @@ use app\core\Application;
                         <?php echo $model->getFirstError('password') ?>
                     </div>
                 </div>
-                <div class="remember-me">
-                    <input type="checkbox" name="remember-me" id="remember-me">
-                    <label for="remember-me">Remember me</label>
-                </div>
                 <div>
                     <button type="submit" class="btn">Log in</button>
                 </div>
-                <div class="forgot-password">
-                    <a href="#">Forgot password?</a>
-                </div>
-                <div class="sign-up">
-                    <h6>Don't have an account? <a href="/technician-sign-up">Sign up</a></h6>
-                </div>
+
             </form>
         </div>
     </div>

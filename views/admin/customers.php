@@ -26,7 +26,7 @@ include_once 'components/header.php';
                 <th>Phone Number</th>
                 <th>Address</th>
                 <th>Registered Date</th>
-                <th>Actions</th>
+
             </tr>
             </thead>
             <tbody id="table-body">
@@ -40,9 +40,6 @@ include_once 'components/header.php';
                         <td><?= htmlspecialchars($customer['phone_no']) ?></td>
                         <td><?= htmlspecialchars($customer['address']) ?></td>
                         <td><?= htmlspecialchars($customer['reg_date']) ?></td>
-                        <td>
-                            <button class="delete-btn">Delete</button>
-                        </td>
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
