@@ -1,6 +1,10 @@
 <?php
 
+/* Includes Composer's autoloader, which automatically loads classes from the vendor directory */
+/* This enables you to use classes via use statements instead of manually including every file */
 require_once __DIR__ . '/../vendor/autoload.php';
+
+/* Import the classes that will be used later without writing their full namespaces */
 
 use app\controllers\AuthController;
 use app\controllers\CartController;
@@ -18,12 +22,12 @@ use app\controllers\TechnicianReviewController;
 use app\controllers\ServiceCenterReviewController;
 use app\controllers\ContactUsController;
 
-/* load environment variables */
-
+/* Load environment variables */
+/* Using vulcas/phpdotenv package to load sensitive data from .env file */
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
-/* database configuration */
+/* Database configuration */
 $config = [
     'technicianClass' => \app\models\Technician::class,
     'customerClass' => \app\models\Customer::class,
@@ -36,6 +40,8 @@ $config = [
     ]
 ];
 
+/* dirname(__DIR__) passes the root directory of your project(one level above /public) as the base path */
+/* $config passes all environment and class configuration data to Application class */
 $app = new Application(dirname(__DIR__), $config);
 
 /* Home Route */
