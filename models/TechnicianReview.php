@@ -60,6 +60,15 @@ class TechnicianReview extends DbModel
         return $result['total_reviews'] ?? 0;
     }
 
+    public function countTotalTechnicianReviews()
+    {
+        $sql = "SELECT COUNT(*) as total_reviews FROM technician_reviews";
+        $stmt = (new TechnicianReview())->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $result['total_reviews'] ?? 0;
+
+    }
 
     public function primaryKey(): string
     {
