@@ -60,6 +60,16 @@ class ServiceCenterReview extends DbModel
         return $result['total_reviews'] ?? 0;
     }
 
+    public function countTotalServiceCenterReviews()
+    {
+        $sql = "SELECT COUNT(*) as total_reviews FROM ser_cen_reviews";
+        $stmt = (new ServiceCenterReview())->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $result['total_reviews'] ?? 0;
+
+    }
+
     public function primaryKey(): string
     {
         return 'review_id';
