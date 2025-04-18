@@ -78,6 +78,16 @@ class CusTechAdvPayment extends DbModel
 
     }
 
+    public function getTotalAdvancePaymentRevenue()
+    {
+        $sql = "SELECT SUM(amount) AS total FROM cus_tech_adv_payment WHERE done = 'true'";
+        $stmt = Application::$app->db->prepare($sql);
+        $stmt->execute();
+        $total = $stmt->fetchColumn();
+        return $total;
+
+    }
+
     public function attributes(): array
     {
         return [

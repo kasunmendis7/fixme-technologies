@@ -117,7 +117,7 @@ class CusTechReq extends DbModel
 
     public function getRecentCustomers($techId)
     {
-        $sql = "SELECT cus.fname AS fname, cus.lname AS lname, cus.profile_picture AS profile_picture FROM customer AS cus, cus_tech_req AS ctr WHERE cus.cus_id = ctr.cus_id AND ctr.tech_id = :tech_id AND ctr.status = 'pending'";
+        $sql = "SELECT cus.fname AS fname, cus.lname AS lname, cus.profile_picture AS profile_picture FROM customer AS cus, cus_tech_req AS ctr WHERE cus.cus_id = ctr.cus_id AND ctr.tech_id = :tech_id AND (ctr.status = 'pending' OR ctr.status = 'InProgress') ORDER BY ctr.req_id DESC";
         /* Reminder : change ctr.status = 'completed' after implementing the completed status */
         $stmt = self::prepare($sql);
         $stmt->bindValue(':tech_id', $techId);
@@ -128,9 +128,9 @@ class CusTechReq extends DbModel
 
     public function getTechnicianTotalRepairs($techId)
     {
-        $sql = "SELECT COUNT(*) AS total_repairs FROM cus_tech_req WHERE tech_id = :tech_id AND status = 'pending' OR status = 'completed' OR status = 'InProgress'";
+        $sql = "SELECT COUNT(*) AS total_repairs FROM cus_tech_req WHERE tech_id = :tech_id";
         $stmt = self::prepare($sql);
-        $stmt->bindValue(':tech_id', $techId, \PDO::PARAM_INT); // Added explicit parameter type
+        $stmt->bindValue(':tech_id', $techId);
         $stmt->execute();
         $totalTechnicianRepairs = $stmt->fetch(\PDO::FETCH_ASSOC);
         return $totalTechnicianRepairs['total_repairs'] ?? 0; // Ensuring a default value is returned
@@ -155,6 +155,25 @@ class CusTechReq extends DbModel
         $stmt->execute();
         $totalTechnicianRepairs = $stmt->fetch(\PDO::FETCH_ASSOC);
         return $totalTechnicianRepairs['total_repairs'] ?? 0;
+
+    }
+
+    public function countTotalRequests()
+    {
+        $sql = "SELECT COUNT(*) as total_requests FROM cus_tech_req";
+        $stmt = self::prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $result['total_requests'] ?? 0;
+    }
+
+    public function countPendingTotalRequests()
+    {
+        $sql = "SELECT COUNT(*) as total_requests FROM cus_tech_req WHERE status = 'pending'";
+        $stmt = self::prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $result['total_requests'] ?? 0;
 
     }
 
