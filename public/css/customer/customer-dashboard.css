@@ -376,7 +376,6 @@ a {
     border-radius: 4px;
     font-size: 14px;
     font-weight: 500;
-    border-radius: 1rem;
 }
 
 .status.rejected {
@@ -552,7 +551,7 @@ a {
 }
 
 .cancel-btn {
-    background-color: #0d6efd;
+    background-color: #f00;
     border: none;
     border-radius: 1rem;
     color: #FFFFFF;
@@ -562,7 +561,7 @@ a {
 
 .cancel-btn:hover {
     cursor: pointer;
-    background-color: rgba(13, 110, 253, 0.84);
+    background-color: #ff3737;
 }
 
 .user-account {
