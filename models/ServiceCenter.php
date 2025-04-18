@@ -74,6 +74,15 @@ class ServiceCenter extends DbModel
         }
     }
 
+    public function getServiceCenterLatLng($id)
+    {
+        $sql = "SELECT latitude, longitude FROM service_center WHERE ser_cen_id = :ser_cen_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':ser_cen_id', $id);
+        $stmt->execute();
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
     public function serviceCentresGeocoding()
     {
         $sql = "SELECT ser_cen_id, name, latitude, longitude, address FROM service_center WHERE latitude IS NOT NULL AND longitude IS NOT NULL";
