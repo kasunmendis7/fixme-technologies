@@ -10,3 +10,8 @@ document.querySelectorAll('.tab').forEach(tab => {
 async function sendRequest(serviceCenterId, customerId) {
     console.log(`${serviceCenterId}, ${customerId}`);
 }
+
+async function getDirections(serviceCenterId, customerId) {
+    console.log(`${serviceCenterId}, ${customerId}`);
+    window.location.href = `/get-service-center-directions/${serviceCenterId}`;
+}

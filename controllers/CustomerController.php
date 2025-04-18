@@ -497,5 +497,18 @@ class CustomerController extends Controller
         exit;
     }
 
+    public function getServiceCenterDirections($id)
+    {
+        $ser_cen_id = intval($id[0]);
+        $ser_cen_location = (new ServiceCenter())->getServiceCenterLatLng($ser_cen_id);
+        $cus_location = json_decode((new Customer())->getCustomerLocationUsingId(Application::$app->session->get('customer')));
+
+        $data = ["service_center_loc" => $ser_cen_location, "customer_loc" => $cus_location];
+
+        $this->setLayout('auth');
+        return $this->render('/customer/service-center-directions', ["locations" => $data]);
+
+    }
+
 
 }
