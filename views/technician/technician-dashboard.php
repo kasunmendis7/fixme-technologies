@@ -56,8 +56,7 @@ include_once 'components/header.php';
         </div>
 
         <div class="iconBx">
-            <ion-icon name="trophy-outline"></ion-icon>
-
+            <ion-icon name="close-circle-outline"></ion-icon>
         </div>
     </div>
 
