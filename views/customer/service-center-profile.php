@@ -47,8 +47,7 @@ include_once 'components/header.php';
                 <span class="status-dot"></span>
                 <span>Available</span>
             </div>
-            <button class="message-btn">Message</button>
-            <button class="message-btn">Call</button>
+            <button class="message-btn">Directions</button>
             <button class="message-btn"
                     onclick="sendRequest( <?php echo $serviceCenter['ser_cen_id'] . ', ' . Application::$app->session->get('customer') ?> )"
             >
