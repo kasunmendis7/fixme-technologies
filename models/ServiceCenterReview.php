@@ -70,6 +70,23 @@ class ServiceCenterReview extends DbModel
 
     }
 
+    public function getTopRatedServiceCenters()
+    {
+        $sql = "SELECT 
+            s.ser_cen_id,
+            s.fname, s.lname, s.profile_picture,
+            SUM(r.user_rating) AS total_ratings
+        FROM service_center s
+        JOIN ser_cen_reviews r ON s.ser_cen_id = r.ser_cen_id
+        GROUP BY s.ser_cen_id
+        ORDER BY total_ratings DESC;
+        ";
+        $stmt = (new ServiceCenterReview())->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+    }
+
     public function primaryKey(): string
     {
         return 'review_id';
