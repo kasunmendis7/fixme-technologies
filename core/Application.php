@@ -109,7 +109,7 @@ class Application
     public static function isGuestCustomer()
     {
         /* If the customer is not logged in, return true */
-        return !self::$app->customer;
+        return !(self::$app->session->get('customer'));
     }
 
     /* Run the application */
@@ -123,7 +123,7 @@ class Application
     public static function isGuestTechnician()
     {
         /* If the technician is not logged in, return true */
-        return !self::$app->technician;
+        return !(self::$app->session->get('technician'));
     }
 
     /* Login technician */
@@ -150,7 +150,7 @@ class Application
     public static function isGuestServiceCenter()
     {
         /* If the service center is not logged in, return true */
-        return !self::$app->serviceCenter;
+        return !(self::$app->session->get('serviceCenter'));
     }
 
     /* Login service center */

@@ -13,7 +13,7 @@ signOutBtn.addEventListener("click", (e) => {
 // Hide the overlay and proceed with sign-out when "Yes" is clicked
 confirmSignOut.addEventListener("click", () => {
     // Add your sign-out logic here, such as redirecting to a logout route
-    window.location.href = "/"; // Replace with your logout path
+    window.location.href = "/customer-logout"; // Replace with your logout path
 });
 
 // Hide the overlay when "No" is clicked
