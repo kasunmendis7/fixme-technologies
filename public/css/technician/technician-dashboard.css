@@ -64,7 +64,13 @@ body {
 
 .navigation ul li:nth-child(1) {
     margin-bottom: 40px;
-    pointer-events: none;
+    /*pointer-events: none;*/
+}
+
+.navigation ul li:nth-child(1) a:hover {
+    border-radius: 0;
+    background-color: var(--blue);
+    color: #d1d0d0;
 }
 
 .navigation ul li a {
@@ -118,6 +124,20 @@ body {
     pointer-events: none;
 }
 
+.navigation ul li:nth-child(1):hover a::before,
+.navigation ul li.hovered a::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: -50px;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 35px 35px 0 10px var(--blue);
+    pointer-events: none;
+}
+
 .navigation ul li:hover a::after,
 .navigation ul li.hovered a::after {
     content: "";
@@ -129,6 +149,20 @@ body {
     background-color: transparent;
     border-radius: 50%;
     box-shadow: 35px -35px 0 10px var(--white);
+    pointer-events: none;
+}
+
+.navigation ul li:nth-child(1):hover a::after,
+.navigation ul li.hovered a::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -50px;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 35px -35px 0 10px var(--blue);
     pointer-events: none;
 }
 
