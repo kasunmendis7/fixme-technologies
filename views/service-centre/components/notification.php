@@ -1,13 +1,17 @@
 <div class="notification-wrapper" id="notificationWrapper">
-  <div class="notification-bell" id="notificationBell">
-    <i class="fa fa-bell"></i>
-    <span class="notification-count" id="notificationCount">3</span>
-  </div>
-  <div class="notification-dropdown" id="notificationDropdown">
-    <ul id="notificationList">
-      <li>No new notifications</li>
-    </ul>
-  </div>
+    <div class="notification-bell" id="notificationBell">
+        <i class="fa fa-bell"></i>
+        <span class="notification-count" id="notificationCount">3</span>
+    </div>
+
+    <div class="notification-dropdown" id="notificationDropdown">
+        <button id="clearAllBtn" style="margin: 5px 10px; padding: 5px 10px; background: #ff4d4d; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            Clear All
+        </button>
+        <ul id="notificationList">
+            <li>No new notifications</li>
+        </ul>
+    </div>
 </div>
 
 
@@ -16,33 +20,28 @@
     document.addEventListener('DOMContentLoaded', () => {
         const list = document.getElementById('notificationList');
         const count = document.getElementById('notificationCount');
-
         const wrapper = document.getElementById('notificationWrapper');
         const dropdown = document.getElementById('notificationDropdown');
 
-        fetch('/get-notifications-for-service-center') // Adjust the path as needed
-            .then(res => res.text())  // Get raw response text
+        fetch('/get-notifications-for-service-center') // Update this path if needed
+            .then(res => res.text())
             .then(text => {
                 console.log("RAW response text:", text);
 
                 try {
-                    // If the response has 'data' prefix, remove it
                     const cleaned = text.trim().replace(/^data/, '');
-
-                    // Parse the cleaned response
                     const data = JSON.parse(cleaned);
                     console.log("Parsed JSON:", data);
 
-                    // Check if the response is an array and render notifications
                     if (Array.isArray(data) && data.length > 0) {
                         count.textContent = data.length;
                         count.style.display = 'inline-block';
-                        list.innerHTML = '';  // Clear previous notifications
+                        list.innerHTML = '';
                         data.forEach(notification => {
                             const li = document.createElement('li');
                             li.textContent = notification.message;
+                            li.setAttribute('data-id', notification.id);
 
-                            // Add 'unseen' class if it's not read
                             if (!notification.is_read) {
                                 li.classList.add('unseen');
                             }
@@ -63,28 +62,6 @@
                 list.innerHTML = '<li>Error loading notifications</li>';
             });
 
-        // Optional: Toggle dropdown on hover
-        // const bell = document.getElementById('notificationBell');
-        // const dropdown = document.getElementById('notificationDropdown');
-
-        // bell.addEventListener('mouseenter', () => {
-        //     dropdown.style.display = 'block';
-        // });
-
-        // bell.addEventListener('mouseleave', () => {
-        //     setTimeout(() => {
-        //         dropdown.style.display = 'none';
-        //     }, 300);
-        // });
-
-        // dropdown.addEventListener('mouseenter', () => {
-        //     dropdown.style.display = 'block';
-        // });
-
-        // dropdown.addEventListener('mouseleave', () => {
-        //     dropdown.style.display = 'none';
-        // });
-
         let hideTimeout;
 
         wrapper.addEventListener('mouseenter', () => {
@@ -98,7 +75,6 @@
             }, 300);
         });
     });
-
 </script>
 
 <script>
@@ -106,7 +82,7 @@
         const list = document.getElementById('notificationList');
         const clearBtn = document.getElementById('clearAllBtn');
 
-        // Attach mark-as-seen button dynamically after notifications load
+        // Mutation observer to dynamically add mark-as-seen buttons
         const observer = new MutationObserver(() => {
             document.querySelectorAll('#notificationList li').forEach(li => {
                 if (!li.querySelector('.mark-btn') && !li.classList.contains('no-action')) {
@@ -115,9 +91,13 @@
                     btn.className = 'mark-btn';
                     btn.onclick = () => {
                         const id = li.getAttribute('data-id');
-                        fetch(`/mark-notification-as-seen?id=${id}`, { method: 'POST' })
-                            .then(res => res.ok && li.classList.remove('unseen'))
-                            .then(() => btn.remove());
+                        fetch(`/mark-notification-as-seen/${id}`, { method: 'POST' })
+                            .then(res => {
+                                if (res.ok) {
+                                    li.classList.remove('unseen');
+                                    btn.remove();
+                                }
+                            });
                     };
                     li.appendChild(btn);
                 }
@@ -127,13 +107,17 @@
         observer.observe(list, { childList: true, subtree: true });
 
         // Clear all notifications
-        clearBtn.addEventListener('click', () => {
-            fetch('/clear-notifications', { method: 'POST' })
-                .then(res => res.ok && (list.innerHTML = '<li class="no-action">No new notifications</li>'))
-                .then(() => {
-                    const count = document.getElementById('notificationCount');
-                    count.style.display = 'none';
-                });
-        });
+        if (clearBtn) {
+            clearBtn.addEventListener('click', () => {
+                fetch('/clear-notifications-for-service-center', { method: 'POST' })
+                    .then(res => {
+                        if (res.ok) {
+                            list.innerHTML = '<li class="no-action">No new notifications</li>';
+                            const count = document.getElementById('notificationCount');
+                            count.style.display = 'none';
+                        }
+                    });
+            });
+        }
     });
 </script>

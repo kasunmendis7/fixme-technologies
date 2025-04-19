@@ -123,7 +123,7 @@ class Appointment extends DbModel
         $stmt->execute();
         $appointment_date = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         return $appointment_date;
-    } 
+    }
 
     //function to delete the appointment
     public function deleteAppointment($appointment_id)
@@ -138,6 +138,23 @@ class Appointment extends DbModel
             return false;
         }
     }
+
+    //function to get recent customers that book an appointment 
+    public function getRecentCustomers($service_center_id)
+    {
+        $sql = "SELECT c.fname, c.phone_no, c.profile_picture, a.appointment_date, a.appointment_time, a.appointment_id
+                FROM appointments a
+                JOIN customer c ON a.customer_id = c.cus_id
+                WHERE a.service_center_id = :service_center_id
+                ORDER BY a.appointment_date DESC, a.appointment_time DESC
+                LIMIT 5";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':service_center_id', $service_center_id);
+        $stmt->execute();
+        $recentCustomers = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $recentCustomers;
+    }
+
 
 
 

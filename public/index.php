@@ -114,7 +114,9 @@ $app->router->post('/change-appointment-status', [AppoinmentController::class, '
 $app->router->post('/delete-appointment', [AppoinmentController::class, 'deleteAppointment']);
 $app->router->post('/fetch-appointment-dates', [AppoinmentController::class, 'fetchAppointmentDates']);
 $app->router->get('/get-notifications-for-service-center', [NotificationController::class, 'getNotificationsForServiceCenter']);
-
+$app->router->post('/mark-notification-as-seen/{id}', [NotificationController::class, 'markAsRead']);
+$app->router->post('/clear-notifications-for-service-center', [NotificationController::class, 'deleteNotificationForServiceCenter']);
+// $app->router->get('/service-centre-dashboard', [AppoinmentController::class, 'recentCustomers']);
 
 
 /* Routes related to the product (service center) */
@@ -128,6 +130,7 @@ $app->router->post('/service-center-update-product', [ProductController::class, 
 $app->router->post('/service-center-delete-product', [ProductController::class, 'delete']);
 $app->router->get('/get-product-by-category', [ProductController::class, 'filterProductByCategory']);
 $app->router->post('/add-to-cart', [CartController::class, 'addToCartController']);
+$app->router->get('/cart-item-count', [CartController::class, 'getCartItemCount']);
 
 /* Customer Routes */
 $app->router->get('/customer-dashboard', [CustomerController::class, 'customerDashboard']);

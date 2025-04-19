@@ -34,7 +34,7 @@ class Notification extends DbModel
     }
     public function updateRules(): array
     {
-        return[];
+        return [];
     }
 
     //function to create a notification
@@ -68,8 +68,8 @@ class Notification extends DbModel
         $stmt->bindValue(':service_center_id', $service_center_id);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
-    } 
-    
+    }
+
 
     //function to mark notification as read
     public function markAsRead($notification_id)
@@ -82,14 +82,15 @@ class Notification extends DbModel
     }
 
     //function to delete read messages
-    public function deleteReadMessages()
+    public function deleteReadMessagesForServiceCenter($service_center_id)
     {
-        $sql = "DELETE FROM notifications WHERE is_read = 1";
+        $sql = "DELETE FROM notifications WHERE is_read = 1 AND service_center_id = :service_center_id";
         $stmt = self::prepare($sql);
+        $stmt->bindValue(':service_center_id', $service_center_id);
         $stmt->execute();
         return $stmt->rowCount() > 0;
     }
 
 }
 
-?>data
+?>
