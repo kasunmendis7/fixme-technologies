@@ -151,6 +151,7 @@ $app->router->get('/get-customer-payment-methods', [CustomerController::class, '
 $app->router->post('/delete-customer-payment-method/{id}', [CustomerController::class, 'deleteCustomerPaymentMethod']);
 $app->router->get('/customer-advance-payments', [CustomerController::class, 'customerAdvancePayments']);
 $app->router->post('/reject-advance-payment/{id}', [CustomerController::class, 'rejectAdvPaymentUsingReqId']);
+$app->router->get('/get-service-center-directions/{id}', [CustomerController::class, 'getServiceCenterDirections']);
 
 
 /* Admin Routes */
