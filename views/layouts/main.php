@@ -46,7 +46,7 @@ use app\core\Application;
             <li><a href="/about-us" class="nav-link px-2">About</a></li>
         </ul>
 
-        <?php if (Application::isGuestTechnician() || Application::isGuestCustomer() || Application::isGuestServiceCenter()): ?>
+        <?php if (Application::isGuestTechnician() && Application::isGuestCustomer() && Application::isGuestServiceCenter()): ?>
             <div class="col-md-3 text-center">
                 <button type="button" class="btn btn-outline-primary me-2"><a class="text-decoration-none"
                                                                               href="/select-user-login">Login</a>
@@ -56,7 +56,20 @@ use app\core\Application;
             </div>
         <?php else: ?>
             <div class="col-md-3 text-center">
-
+                <?php if (Application::$app->session->get('customer')): ?>
+                    <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none"
+                                                                             href="/customer-dashboard">Dashboard</a>
+                    </button>
+                <?php elseif (Application::$app->session->get('technician')): ?>
+                    <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none"
+                                                                             href="/technician-dashboard">Dashboard</a>
+                    </button>
+                <?php elseif (Application::$app->session->get('serviceCenter')): ?>
+                    <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none"
+                                                                             href="/service-centre-dashboard">Dashboard</a>
+                    </button>
+                <?php else: ?>
+                <?php endif; ?>
             </div>
         <?php endif; ?>
     </header>
