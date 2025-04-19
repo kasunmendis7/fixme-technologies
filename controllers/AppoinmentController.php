@@ -90,9 +90,12 @@ class AppoinmentController extends Controller
         $appointment = new Appointment();
         $appointments = $appointment->loadAppointmentsForServiceCenter($ser_cen_id);
 
+        $recentCustomers = $appointment->getRecentCustomers($ser_cen_id);
+
         $this->setLayout('auth');
         return $this->render('/service-centre/service-centre-dashboard', [
-            'appointments' => $appointments
+            'appointments' => $appointments,
+            'recentCustomers' => $recentCustomers,
         ]);
     }
 
@@ -170,6 +173,24 @@ class AppoinmentController extends Controller
         }   
         http_response_code(405);
         echo json_encode(['error' => 'Method not allowed.']);
+    }
+
+    //function to controll recent customers 
+    public function recentCustomers(Request $request, Response $response)
+    {
+        $ser_cen_id = Application::$app->session->get('serviceCenter');
+        if (!$ser_cen_id) {
+            Application::$app->session->setFlash('error', 'Please logged in first');
+            $response->redirect('/service-centre-login');
+        }
+        $appointment = new Appointment();
+        $recentCustomers = $appointment->getRecentCustomers($ser_cen_id);
+        if(!empty($recentCustomers)) {
+            $this->setLayout('auth');
+            return $this->render('/service-centre/components/recent-customers', [
+                'recentCustomers' => $recentCustomers,
+            ]);
+        }
     }
 
 }

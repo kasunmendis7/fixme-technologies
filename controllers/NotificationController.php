@@ -54,5 +54,53 @@ class NotificationController extends Controller
         exit;
     }
 
+    //function mark as read 
+    public function markAsRead($id)
+    {
+        // If $id is an array, extract the first value
+        if (is_array($id)) {
+            $id = $id[0]; // Get the first element in the array
+        }
+
+        // Log the corrected value
+        error_log('Notification ID received: ' . var_export($id, true));
+
+        $notification = new Notification();
+        $res = $notification->markAsRead($id);
+
+        if ($res) {
+            http_response_code(200);
+            header('Content-Type: application/json');
+            echo json_encode(['status' => 'success', 'message' => 'Marked as read']);
+            Application::$app->session->setFlash('success', 'Marked as read');
+        } else {
+            http_response_code(500);
+            header('Content-Type: application/json');
+            echo json_encode(['status' => 'error', 'message' => 'Failed to mark as read']);
+        }
+    }
+
+
+    public function deleteNotificationForServiceCenter(Request $request)
+    {
+        $ser_cen_id = Application::$app->session->get('serviceCenter');
+        if (!$ser_cen_id) {
+            http_response_code(401);
+            header('Content-Type: application/json');
+            echo json_encode(['error' => 'Not logged in']);
+            exit;
+        }
+        $notification = new Notification();
+        $res = $notification->deleteReadMessagesForServiceCenter($ser_cen_id);
+        if ($res) {
+            http_response_code(200);
+            header('Content-Type: application/json');
+            echo json_encode(['status' => 'success', 'message' => 'Deleted successfully']);
+        } else {
+            http_response_code(500);
+            header('Content-Type: application/json');
+            echo json_encode(['status' => 'error', 'message' => 'Failed to delete']);
+        }
+    }
 
 }

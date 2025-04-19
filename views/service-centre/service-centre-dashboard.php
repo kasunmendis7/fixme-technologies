@@ -228,85 +228,9 @@ use app\models\ServiceCenterReview;
         </div>
 
         <!-- ================= New Customers ================ -->
-        <div class="recentCustomers">
-            <div class="cardHeader">
-                <h2>Recent Customers</h2>
-            </div>
-
-            <table>
-                <tr>
-                    <td width="60px">
-                        <div class="imgBx"><img src="assets/technician-dashboard/customer02.jpg" alt=""></div>
-                    </td>
-                    <td>
-                        <h4>Kasun<br> <span>Panadura</span></h4>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td width="60px">
-                        <div class="imgBx"><img src="assets/technician-dashboard/customer04.jpg" alt=""></div>
-                    </td>
-                    <td>
-                        <h4>Mario<br> <span>Negombo</span></h4>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td width="60px">
-                        <div class="imgBx"><img src="assets/technician-dashboard/customer01.jpg" alt=""></div>
-                    </td>
-                    <td>
-                        <h4>Abisheke <br> <span>Hambanthota</span></h4>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td width="60px">
-                        <div class="imgBx"><img src="assets/technician-dashboard/customer03.jpg" alt=""></div>
-                    </td>
-                    <td>
-                        <h4>Nimal<br> <span>Jaffna</span></h4>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td width="60px">
-                        <div class="imgBx"><img src="assets/technician-dashboard/customer02.jpg" alt=""></div>
-                    </td>
-                    <td>
-                        <h4>Tithira <br> <span>Havelock</span></h4>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td width="60px">
-                        <div class="imgBx"><img src="assets/technician-dashboard/customer01.jpg" alt=""></div>
-                    </td>
-                    <td>
-                        <h4>Pasan <br> <span>Kaluthara</span></h4>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td width="60px">
-                        <div class="imgBx"><img src="assets/technician-dashboard/customer01.jpg" alt=""></div>
-                    </td>
-                    <td>
-                        <h4>Sahan <br> <span>Galle</span></h4>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td width="60px">
-                        <div class="imgBx"><img src="assets/technician-dashboard/customer02.jpg" alt=""></div>
-                    </td>
-                    <td>
-                        <h4>Amit <br> <span>India</span></h4>
-                    </td>
-                </tr>
-            </table>
-        </div>
+        <?php
+            include_once 'components/recent-customers.php'
+        ?>
     </div>
     </div>
     </div>
