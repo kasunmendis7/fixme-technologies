@@ -45,6 +45,11 @@ class Request
     /* This function returns sanitized input data depending on the request method */
     public function getBody()
     {
+        if ($this->isJson()) {
+            $rawInput = file_get_contents('php://input');
+            return json_decode($rawInput, true) ?? [];
+        }
+        
         $body = [];
         /*If it's a GET request, loops through all GET parameters
            Uses filter_input() to sanitize each value */
@@ -63,4 +68,10 @@ class Request
         /* Returns the cleaned input data as an associative array */
         return $body;
     }
+
+    public function isJson()
+    {
+        return isset($_SERVER['CONTENT_TYPE']) && strpos($_SERVER['CONTENT_TYPE'], 'application/json') !== false;
+    }
+
 }

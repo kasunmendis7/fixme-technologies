@@ -144,26 +144,28 @@ class ProductController extends Controller
     }
 
 
-    public function filterProductByCategory(Request $request, Response $response)
-    {
-        //get category by the params 
+    // public function filterProductByCategory(Request $request, Response $response)
+    // {
+    //     //get category by the params 
 
-        $category = $_GET['category'] ?? 'all';
+    //     $category = $_GET['category'] ?? 'all';
 
-        if ($category === 'all') {
-            $products = (new Product())->getAllProducts();
-        } else {
-            $products = (new Product())->getProductsByCategory($category);
-        }
+    //     if ($category === 'all') {
+    //         $products = (new Product())->getAllProducts();
+    //     } else {
+    //         $products = (new Product())->getProductsByCategory($category);
+    //     }
 
 
-        if ($products) {
-            $this->setLayout('auth');
-            return $this->render('service-centre/market-place-home', [
-                'products' => $products,
-            ]);
-        }
-    }
+    //     if ($products) {
+    //         $this->setLayout('auth');
+    //         return $this->render('service-centre/market-place-home', [
+    //             'products' => $products,
+    //         ]);
+    //     }
+    // }
+
+    
 
 }
 

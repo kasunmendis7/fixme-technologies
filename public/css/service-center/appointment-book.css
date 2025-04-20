@@ -1,0 +1,50 @@
+.appointment-form {
+    max-width: 500px;
+    margin: 20px auto;
+    background: #f9f9f9;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.booking-heading {
+    text-align: center; /* Centers the text horizontally */
+    margin-top: 20px; /* Optional: Adds some space at the top */
+    margin-bottom: 20px; /* Optional: Adds some space at the bottom */
+    font-size: 2rem; /* Optional: Adjust the font size as needed */
+}
+
+.appointment-form label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+    color: #333;
+}
+
+.appointment-form input,
+.appointment-form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.appointment-form button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.appointment-form button:hover {
+    background-color: #0056b3;
+}

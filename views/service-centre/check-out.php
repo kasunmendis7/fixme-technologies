@@ -1,5 +1,4 @@
 <style>
-
     /** {*/
     /*    box-sizing: border-box;*/
     /*    margin: 0;*/
@@ -19,7 +18,7 @@
             height: 5%;
             margin-bottom: 30px;
 
-            > h3 {
+            >h3 {
                 font-size: 60px;
                 color: black;
                 text-transform: uppercase;
@@ -76,7 +75,7 @@
                             line-height: 10px;
                         }
 
-                        > div {
+                        >div {
                             position: relative;
 
                             span.fa {
@@ -199,7 +198,8 @@
                         }
                     }
 
-                    .checkout-shipping, .checkout-total {
+                    .checkout-shipping,
+                    .checkout-total {
                         display: flex;
                         font-size: 16px;
                         padding: 5px 0px;
@@ -267,7 +267,6 @@
             }
         }
     }
-
 </style>
 
 <header>
@@ -324,7 +323,7 @@
                     <div>
                         <span class="fa fa-globe"></span>
                         <input type="text" name="checkout-country" id="checkout-country" placeholder="Your country..."
-                               list="country-list">
+                            list="country-list">
                         <datalist id="country-list">
                             <option value="India"></option>
                             <option value="USA"></option>
@@ -339,7 +338,7 @@
                     <div>
                         <span class="fa fa-archive"></span>
                         <input type="numeric" name="checkout-postal" id="checkout-postal"
-                               placeholder="Your postal code...">
+                            placeholder="Your postal code...">
                     </div>
                 </div>
             </div>
@@ -358,31 +357,46 @@
     <section class="checkout-details">
         <div class="checkout-details-inner">
             <div class="checkout-lists">
-                <div class="card">
-                    <div class="card-image"><img
-                                src="https://media.wuerth.com/source/eshop/stmedia/0100/images/std.lang.all/resolutions/category/576px/34254125.jpg"
-                                alt=""></div>
-                    <div class="card-details">
-                        <div class="card-name">Hydraulic Jack</div>
-                        <div class="card-price">Rs. 4000 <span>Rs. 4500</span></div>
-                        <div class="card-wheel">
-                            <button>-</button>
-                            <span>1</span>
-                            <button>+</button>
+                <?php
+                $total = 0;
+                $shipping = 19.00;
+                foreach ($cartItems as $item):
+                    $price = $item['discount_price'] ?? $item['price'];
+                    $subtotal = $price * $item['quantity'];
+                    $total += $subtotal;
+                    ?>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="/assets/uploads/<?= $item['media'] ?>" alt="">
+                        </div>
+                        <div class="card-details">
+                            <div class="card-name"><?= htmlspecialchars($item['description']) ?></div>
+                            <div class="card-price">
+                                Rs. <?= number_format($price, 2) ?>
+                                <?php if ($item['discount_price']): ?>
+                                    <span>Rs. <?= number_format($item['price'], 2) ?></span>
+                                <?php endif; ?>
+                            </div>
+                            <div class="card-wheel">
+                                <!-- <button>-</button> -->
+                                <span style="align-items: center; margin-left: 50%;"><?= $item['quantity'] ?></span>
+                                <!-- <button>+</button> -->
+                            </div>
                         </div>
                     </div>
-                </div>
-                
+                <?php endforeach; ?>
             </div>
+
             <div class="checkout-shipping">
                 <h6>Shipping</h6>
-                <p>$19</p>
+                <p>Rs. <?= number_format($shipping, 2) ?></p>
             </div>
             <div class="checkout-total">
                 <h6>Total</h6>
-                <p>$148.98</p>
+                <p>Rs. <?= number_format($total + $shipping, 2) ?></p>
             </div>
         </div>
     </section>
+
 
 </main>

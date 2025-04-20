@@ -50,6 +50,16 @@ class AuthController extends Controller
         if ($request->isPost()) {
             $loginForm->loadData($request->getBody());
             if ($loginForm->validate() && $loginForm->login()) {
+
+                //login for marketplace 
+                $body = $request->getBody();
+                $redirectedUrl = $body['redirectAfterLogin'] ?? null;
+
+                if($redirectedUrl) {
+                    $response->redirect($redirectedUrl);
+                    return;
+                }
+
                 $response->redirect('/customer-dashboard'); // later will change this to customer dashboard
                 $customer = new Customer();
                 $customer->customerAddressGeocoding();

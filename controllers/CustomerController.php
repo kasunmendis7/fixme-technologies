@@ -21,9 +21,23 @@ class CustomerController extends Controller
 
     public function customerDashboard()
     {
+        $cus_id = Application::$app->session->get('customer');
+
+        if (!$cus_id) {
+            Application::$app->session->setFlash('error', 'Please log in first.');
+            Application::$app->response->redirect('/customer-login');
+            return;
+        }
+
+        $appointment = new \app\models\Appointment();
+        $appointments = $appointment->loadAppointmentsForCustomer($cus_id);
+
         $this->setLayout('auth');
-        return $this->render('/customer/customer-dashboard');
+        return $this->render('/customer/customer-dashboard', [
+            'appointments' => $appointments
+        ]);
     }
+
 
     public function customerSettings()
     {
