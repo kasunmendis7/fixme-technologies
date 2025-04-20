@@ -74,7 +74,7 @@ class ServiceCenterReview extends DbModel
     {
         $sql = "SELECT 
             s.ser_cen_id,
-            s.fname, s.lname, s.profile_picture,
+            s.name,
             SUM(r.user_rating) AS total_ratings
         FROM service_center s
         JOIN ser_cen_reviews r ON s.ser_cen_id = r.ser_cen_id
