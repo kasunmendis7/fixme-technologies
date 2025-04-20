@@ -75,6 +75,7 @@ include_once 'components/header.php';
             ?>
             <div class="numbers" id="total_review"><?php echo $totalReviews ?></div>
             <div class="cardName">Total Reviews</div>
+
         </div>
 
         <div class="iconBx">
@@ -260,8 +261,7 @@ include_once 'components/header.php';
     include_once 'components/recent-customers.php'
     ?>
 </div>
-</div>
-</div>
+
 
 <div id="signOutOverlay" class="overlay">
     <div class="overlay-content">
@@ -273,7 +273,7 @@ include_once 'components/header.php';
 <!--    Icons-->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-<script src="/js/customer/overlay.js"></script>
+<script src="/js/service-center/overlay.js"></script>
 </body>
 
 </html>
