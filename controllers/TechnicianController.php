@@ -5,6 +5,7 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Controller;
+use app\core\middlewares\AuthMiddleware;
 use app\core\Request;
 use app\core\Response;
 use app\models\Customer;
@@ -17,6 +18,10 @@ use app\models\TechnicianPaymentMethod;
 
 class TechnicianController extends Controller
 {
+    public function __construct()
+    {
+        $this->registerMiddleware(new AuthMiddleware());
+    }
 
     public function technicianLanding()
     {
