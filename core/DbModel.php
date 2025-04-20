@@ -4,6 +4,7 @@ namespace app\core;
 
 abstract class DbModel extends Model
 {
+    /* These methods must be implemented by any subclass  */
     abstract public function tableName(): string;
 
     abstract public function attributes(): array;
@@ -17,7 +18,7 @@ abstract class DbModel extends Model
     //     $this->db = Application::$app->db;
     // }
 
-
+    /* This function is used to insert data into the database */
     public function save()
     {
 
@@ -35,7 +36,7 @@ abstract class DbModel extends Model
         return true;
     }
 
-
+    /* This function is used to find a record in the database */
     public function findOne($where) // ['email' => 'lastboss@gmail.com', 'fname' => 'mario']
     {
         /* since tableName() is abstract we can't use self::tableName. when use static::tableName() we use the tablename of the class from which findOne() is called */
@@ -53,6 +54,7 @@ abstract class DbModel extends Model
         // what fetchObject does is that it fetches the object of the class from which findOne() is called
     }
 
+    /* This is a helper method to prepare SQL statements using the application's PDO connection */
     public function prepare($sql)
     {
         return Application::$app->db->pdo->prepare($sql);

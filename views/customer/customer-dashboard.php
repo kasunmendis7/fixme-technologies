@@ -160,12 +160,14 @@ include_once 'components/header.php';
                 echo '<td>';
                 if ($request['status'] == 'pending') {
                     echo '<span class="payment-due">Payment Due !</span>';
-                } else {
+                } else if ($request['status'] == 'InProgress') {
                     if ($request['done'] == 'true') {
                         echo '<span class="payment-status">Advance Paid ✔</span>';
                     } else {
-                        echo '<span class="payment-rejected">-</span>';
+                        echo '<span class="pay-now-btn"><a href="/customer-advance-payments">Pay Now</a></span>';
                     }
+                } else {
+                    echo '<span class="payment-rejected">-</span>';
                 }
                 echo '</td>';
 

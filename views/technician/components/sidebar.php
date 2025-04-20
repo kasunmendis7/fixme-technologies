@@ -21,14 +21,6 @@
                 </a>
             </li>
             <li>
-                <a href="/technician-map">
-                        <span class="icon">
-                            <ion-icon name="location-outline"></ion-icon>
-                        </span>
-                    <span class="title">Map</span>
-                </a>
-            </li>
-            <li>
                 <a href="/technician-requests">
                         <span class="icon">
                             <ion-icon name="radio-outline"></ion-icon>
