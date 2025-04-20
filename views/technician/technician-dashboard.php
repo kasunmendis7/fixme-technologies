@@ -1,5 +1,6 @@
 <?php
 
+// Import necessary classes from app's core and models
 use app\core\Application;
 use app\models\CusTechReq;
 use app\models\TechnicianReview;
@@ -15,19 +16,23 @@ use app\models\CusTechAdvPayment;
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Technician Dashboard</title>
+    <!--    Techncian Dashboard stylings -->
     <link rel="stylesheet" href="/css/technician/technician-dashboard.css">
     <link rel="stylesheet" href="/css/technician/overlay.css">
 
 </head>
 <body>
+<!-- Including the header and sidebar components-->
 <?php
 include_once 'components/sidebar.php';
 include_once 'components/header.php';
 ?>
-<!-- JavaScript Files -->
+<!-- Technician Dashboard JavaScript Files -->
 <script src="/js/technician/technician-home.js"></script>
+
 <!-- ======================= Cards ================== -->
 <div class="cardBox">
+    <!-- Total Requests Card -->
     <div class="card">
         <div>
             <?php
@@ -39,12 +44,12 @@ include_once 'components/header.php';
             </div>
             <div class="cardName">Total Requests</div>
         </div>
-
         <div class="iconBx">
             <ion-icon name="cog-outline"></ion-icon>
         </div>
     </div>
 
+    <!-- Total Rejected Requests Card -->
     <div class="card">
         <div>
             <?php
@@ -54,12 +59,12 @@ include_once 'components/header.php';
             <div class="numbers"><?php echo $totalTechnicianRepairs ?></div>
             <div class="cardName">Total Rejected</div>
         </div>
-
         <div class="iconBx">
             <ion-icon name="close-circle-outline"></ion-icon>
         </div>
     </div>
 
+    <!-- Total Reviews Card -->
     <div class="card">
         <div>
             <?php
@@ -69,12 +74,12 @@ include_once 'components/header.php';
             <div class="numbers" id="total_review"><?php echo $totalReviews ?></div>
             <div class="cardName">Total Reviews</div>
         </div>
-
         <div class="iconBx">
             <ion-icon name="star-outline"></ion-icon>
         </div>
     </div>
 
+    <!-- Total Earnings Card -->
     <div class="card">
         <div>
             <?php
@@ -91,11 +96,11 @@ include_once 'components/header.php';
     </div>
 </div>
 
-<!-- ================ Order Details List ================= -->
+<!-- ================ Request's Details List ================= -->
 <div class="details">
     <div class="recentOrders">
         <div class="cardHeader">
-            <h2>Recent Orders</h2>
+            <h2>Recent Requests</h2>
         </div>
 
         <table>
@@ -117,7 +122,7 @@ include_once 'components/header.php';
                 <td>' . $request['fname'] . ' ' . $request['lname'] . '</td>
                 <td>Rs. ' . (is_null($request['amount']) ? '0.00' : number_format($request['amount'], 2)) . '</td>';
 
-                // Payment status column: display "Due" for pending requests or if advance is not paid.
+                // Payment status column: display "Due" for pending requests
                 echo '<td>';
                 if ($request['status'] == 'pending') {
                     echo '<span class="payment-due">Payment Due !</span>';
@@ -142,7 +147,7 @@ include_once 'components/header.php';
         </table>
     </div>
 
-    <!-- ================= New Customers ================ -->
+    <!-- ================= Recent Customers Section ================ -->
     <div class="recentCustomers">
         <div class="cardHeader">
             <h2>Recent Customers</h2>
