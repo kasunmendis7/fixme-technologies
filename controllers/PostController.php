@@ -5,6 +5,7 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Controller;
+use app\core\middlewares\AuthMiddleware;
 use app\core\Response;
 use app\models\Like;
 use app\models\Post;
@@ -13,6 +14,12 @@ use app\core\Request;
 
 class PostController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->registerMiddleware(new AuthMiddleware());
+    }
+
     /* Create method of a post */
     public function create(Request $request)
     {

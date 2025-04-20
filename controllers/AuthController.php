@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Controller;
+use app\core\middlewares\AuthMiddleware;
 use app\core\Request;
 use app\core\Response;
 use app\models\Admin;
@@ -21,6 +22,7 @@ use app\models\TechnicianLogin;
 
 class AuthController extends Controller
 {
+
     /* customer sign up method */
     public function customerSignUp(Request $request)
     {
