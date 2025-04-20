@@ -5,8 +5,10 @@ namespace app\core;
 class Controller
 {
 
+    /* This is a property that sets the default layout file to use when rendering views */
     public string $layout = 'main';
 
+    /* Allows controllers to change the layout dynamically */
     public function setLayout($layout)
     {
         $this->layout = $layout;
