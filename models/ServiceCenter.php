@@ -131,6 +131,14 @@ class ServiceCenter extends DbModel
         ];
     }
 
+    //api to list all service centers 
+    public function getAllServiceCenters()
+    {
+        $sql = "SELECT * FROM service_center";
+        $stmt = self::prepare($sql);
+        return $stmt->execute();
+    }
+
     public function attributes(): array
     {
         return [

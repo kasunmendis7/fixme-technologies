@@ -200,7 +200,7 @@ use app\core\Application;
             <h2>Cart Summary</h2>
             <p>Total Items: <?php echo $totalItems; ?></p>
             <p>Total Cost: Rs. <?php echo $totalCost; ?></p>
-            <button class="checkout-btn" onclick="window.location.href='/checkout'">Proceed to Checkout</button>
+            <button class="checkout-btn" onclick="window.location.href='/check-out-page'">Proceed to Checkout</button>
         </div>
     <?php endif; ?>
 </div>

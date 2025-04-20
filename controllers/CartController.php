@@ -82,4 +82,22 @@
             }
         }
 
+        //api to get cart items count 
+        public function getCartItemCount() {
+            $cus_id = Application::$app->session->get('customer');
+            if (!$cus_id) {
+                Application::$app->response->redirect('/customer-login');
+                echo json_encode(['count' => 0]);
+                return;
+            }
+            $cart = new Cart();
+            $items = $cart->getCartItems($cus_id);
+            $totalCount = 0;
+            foreach ($items as $item) {
+                $totalCount += $item['quantity'];
+            }
+            header('Content-Type: application/json');
+            echo json_encode(['count' => $totalCount]);
+        }
+
     }
