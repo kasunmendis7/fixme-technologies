@@ -241,4 +241,93 @@ body {
     align-self: end;
 }
 
+/* Container for service center cards */
+.tech-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+/* Each card container */
+.service-center-card {
+    flex: 1 1 300px;
+    max-width: 320px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Card style */
+.service-center-card .card {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 20px;
+}
+
+/* Hover effect */
+.service-center-card:hover {
+    transform: translateY(-10px);
+}
+
+/* Title styles */
+.service-center-card .card-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+/* Distance + Duration */
+.service-center-card .distance {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-bottom: 0.3rem;
+}
+
+/* Rating styles */
+.service-center-card .rating {
+    font-weight: 500;
+    color: #f39c12;
+    margin: 0.5rem 0;
+}
+
+/* Category tag */
+.service-center-card .service-category {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #3498db;
+    margin: 0.5rem 0;
+}
+
+/* Description */
+.service-center-card .card-text {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+/* View Profile button */
+.service-center-card .btn-primary {
+    background-color: #1abc9c;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.service-center-card .btn-primary:hover {
+    background-color: #16a085;
+}
+
+/* Ionicons styling */
+.service-center-card ion-icon {
+    vertical-align: middle;
+    margin-right: 4px;
+    font-size: 18px;
+}
 

@@ -6,6 +6,8 @@ use app\core\Application;
 use app\core\Controller;
 use app\core\middlewares\AuthMiddleware;
 use app\core\Request;
+use app\models\cart;
+use app\models\Customer;
 use app\models\Post;
 use app\models\ServiceCenter;
 use app\models\Technician;
@@ -102,8 +104,22 @@ class ServiceCentreController extends Controller
 
     public function checkOutPage()
     {
+        $cus_id = Application::$app->session->get('customer');
+        if (!$cus_id) {
+            Application::$app->session->setFlash('error', 'Please log in to view the checkout page.');
+            Application::$app->response->redirect('/customer-login');
+        }
+        $customer = (new Customer())->findById($cus_id);
+        $cart_id = $customer['cart_id'];
+        $cart = new Cart();
+        $cartItems = $cart->getCartItemsWithDetails($cart_id);
+
+        error_log("Cart Items:" . print_r($cartItems, true)); // Log the cart items for debugging
+
         $this->setLayout('auth');
-        return $this->render('service-centre/check-out-page');
+        return $this->render('service-centre/check-out-page', [
+            'cartItems' => $cartItems,
+        ]);
     }
 
     public function cardDetails()
@@ -157,6 +173,18 @@ class ServiceCentreController extends Controller
     {
         $this->setLayout('auth');
         return $this->render('service-centre/service-center-payment-details');
+    }
+
+    //api to list all service centers
+    public function getAllServiceCenters()
+    {
+        $serviceCenter = new ServiceCenter();
+        $service_centers = $serviceCenter->getAllServiceCenters();
+        if ($service_centers) {
+            return $this->render('service-centre/service-centers', [
+                'service_centers' => $service_centers,
+            ]);
+        }
     }
 
 }

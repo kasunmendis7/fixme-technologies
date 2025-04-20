@@ -104,6 +104,21 @@
             return $stmt->execute([$cart_id, $product_id]);
         }
 
+        //function to get cart items with details 
+        public function getCartItemsWithDetails($cart_id) 
+        {
+            $sql = "SELECT p.description, p.price, p.media, ci.quantity
+                    FROM cart_items ci
+                    JOIN product p ON ci.product_id = p.product_id
+                    WHERE ci.cart_id = :cart_id";
+            $stmt = self::prepare($sql);
+            $stmt->bindValue(':cart_id', $cart_id);
+            $stmt->execute();
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        }
+
+
+
         public function rules(): array
         {
             return [

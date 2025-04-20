@@ -1,0 +1,93 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+}
+
+.customers-container {
+    padding: 20px;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 40px;
+
+}
+
+.table th, .table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #fbf7f7;
+}
+
+.table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+.button {
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.button.dark {
+    background-color: #333;
+    color: white;
+}
+
+.button.failure {
+    background-color: #e3342f;
+    color: white;
+}
+
+.button.gray {
+    background-color: #d1d5db;
+    color: black;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.table th:first-child,
+.table td:first-child {
+    border-top-left-radius: 12px; /* Rounded top-left corner */
+}
+
+.table th:last-child,
+.table td:last-child {
+    border-top-right-radius: 12px; /* Rounded top-right corner */
+}
+
+.table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 12px; /* Rounded bottom-left corner */
+}
+
+.table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 12px; /* Rounded bottom-right corner */
+}

@@ -17,6 +17,8 @@ use app\core\Application;
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="/css/customer/customer-dashboard.css">
     <link rel="stylesheet" href="/css/service-center/add-products.css">
+    <link rel="stylesheet" href="/css/service-center/notification.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
@@ -47,8 +49,8 @@ include_once 'components/header.php';
         <label for="media">Upload Media:</label>
         <input type="file" id="media" name="media" accept="image/*,video/*" required>
 
-        <label for="category">Category:</label>
-        <select class="category-select" name="category" id="category" required>
+        <!-- <label for="category">Category:</label> -->
+        <!-- <select class="category-select" name="category" id="category" required>
             <option value="">Select a category</option>
             <option value="Tools">Tools</option>
             <option value="Engine & Transmission">Engine & Transmission</option>
@@ -60,7 +62,7 @@ include_once 'components/header.php';
             <option value="Fluids & Maintenance">Fluids & Maintenance</option>
             <option value="Performance & Upgrades">Performance & Upgrades</option>
             <option value="Safety & Security">Safety & Security</option>
-        </select>
+        </select> -->
 
         <button type="submit">Add Product</button>
     </form>

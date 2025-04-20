@@ -160,6 +160,27 @@ class AdminController extends Controller
 
     }
 
+    public function serviceCentre()
+    {
+        // Fetch all service centre records
+        $serviceCentres = Admin::findAllServiceCentres();
+        // Render the all the customer in the database
+        $this->setLayout('auth');
+        return $this->render('/admin/service-centers', ['serviceCentres' => $serviceCentres]);
+
+    }
+
+    public function technicianBankAccounts()
+    {
+        // Fetch all technicians bank account records
+        $admin = new Admin();
+        $bankAccounts = $admin->fetchTechnicianBankAccounts();
+        // Render the all the customer in the database
+        $this->setLayout('auth');
+        return $this->render('/admin/technician-bank-accounts', ['bankAccounts' => $bankAccounts]);
+
+    }
+
     public function deleteCustomer(Request $request)
     {
         // Decode JSON payload manually since getBody() does not handle JSON
