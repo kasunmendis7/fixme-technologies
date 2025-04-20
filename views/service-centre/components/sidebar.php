@@ -60,7 +60,7 @@
             </li>
 
             <li>
-                <a href="/service-center-logout" id="signOutBtn">
+                <a href="#" id="signOutBtn">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>
