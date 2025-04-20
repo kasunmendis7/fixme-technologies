@@ -75,7 +75,6 @@ class CusTechAdvPayment extends DbModel
         $stmt->execute();
         $total = $stmt->fetchColumn();
         return $total;
-
     }
 
     public function getTotalAdvancePaymentRevenue()
@@ -86,6 +85,16 @@ class CusTechAdvPayment extends DbModel
         $total = $stmt->fetchColumn();
         return $total;
 
+    }
+
+    public function getTotalPendingAdvancePayment($tech_id)
+    {
+        $sql = "SELECT SUM(amount) AS total FROM cus_tech_adv_payment WHERE tech_id = :tech_id AND done = 'false'";
+        $stmt = Application::$app->db->prepare($sql);
+        $stmt->bindValue(':tech_id', $tech_id);
+        $stmt->execute();
+        $pending = $stmt->fetchColumn();
+        return $pending;
     }
 
     public function attributes(): array

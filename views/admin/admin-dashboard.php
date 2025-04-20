@@ -23,7 +23,6 @@ use app\models\CusTechReq;
             href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap"
             rel="stylesheet"
     />
-    <link rel="stylesheet" href="/css/admin/chart.css"/>
 </head>
 <body>
 <?php
@@ -146,7 +145,6 @@ include_once 'components/header.php';
     <table>
         <thead>
         <tr>
-            <td></td>
             <td>Name</td>
             <td>Total Reviews</td>
         </tr>
@@ -160,11 +158,8 @@ include_once 'components/header.php';
             echo
                 '
                         <tr>
-                            <td>    
-                                <div class="imgBx"><img src="' . $recentServiceCenter['profile_picture'] . '" alt="Service Center profile-pic"></div>
-                            </td>
                             <td>
-                                <h4>' . $recentServiceCenter['fname'] . ' ' . $recentServiceCenter['lname'] . '</h4>
+                                <h4>' . $recentServiceCenter['name'] . '</h4>
                             </td>
                             <td>
                                 <h4>' . $recentServiceCenter['total_ratings'] . ' 
