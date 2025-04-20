@@ -2,6 +2,8 @@
 
 namespace app\core;
 
+use app\core\exception\NotFoundException;
+
 class  Router
 {
     protected array $routes = [];
@@ -63,9 +65,8 @@ class  Router
             /* If a dynamic route was matched, call the callback function with the extracted params */
             if ($callback === false) {
                 /* If the callback is false, it means the route handler was not found */
-                $this->response->setStatusCode(404);
                 /* Render the 404 view */
-                return $this->renderView('_404');
+                throw new NotFoundException();
             }
             /* If the callback is a string, it means it's a view name */
             if (is_string($callback)) {
@@ -75,9 +76,17 @@ class  Router
             /* If the callback is an array, it means it's a controller action */
             if (is_array($callback)) {
                 /* Create a new controller instance */
-                Application::$app->controller = new $callback[0]();
+//                Application::$app->controller = new $callback[0]();
                 /* Set the controller as the current controller */
-                $callback[0] = Application::$app->controller;
+//                $callback[0] = Application::$app->controller;
+                $controller = new $callback[0]();
+                Application::$app->controller = $controller;
+                $controller->action = $callback[1];
+                $callback[0] = $controller;
+
+                foreach ($controller->getMiddlewares() as $middleware) {
+                    $middleware->execute();
+                }
             }
             /* In dynamic url's pass the extracted params as the parameters of the callback function */
             return call_user_func($callback, $this->request->params ?? [], $this->response);
@@ -87,9 +96,8 @@ class  Router
         /* If no matching route was found, return false */
         if ($callback === false) {
             /* If the callback is false, it means the route handler was not found */
-            $this->response->setStatusCode(404);
-            /* Render the 404 view */
-            return $this->renderView('_404');
+//            return $this->renderView('_error');
+            throw new NotFoundException();
         }
         /* If the callback is a string, it means it's a view name */
         if (is_string($callback)) {
@@ -98,8 +106,20 @@ class  Router
         }
         /* If the callback is an array, it means it's a controller action */
         if (is_array($callback)) {
-            Application::$app->controller = new $callback[0]();
-            $callback[0] = Application::$app->controller;
+
+            /** @var \app\core\Controller $controller */
+//            Application::$app->controller = new $callback[0]();
+//            $callback[0] = Application::$app->controller;
+
+            $controller = new $callback[0]();
+            Application::$app->controller = $controller;
+            $controller->action = $callback[1];
+            $callback[0] = $controller;
+
+            foreach ($controller->getMiddlewares() as $middleware) {
+                $middleware->execute();
+            }
+
         }
         /* Call the callback function with the request and response objects */
         return call_user_func($callback, $this->request, $this->response);

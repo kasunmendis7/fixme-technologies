@@ -22,7 +22,7 @@ class Application
     public Session $session; /* Session class handles session management(session data) */
     public Database $db; /* Custom class for DB connection and queries */
     public ?DbModel $technician;
-    public Controller $controller;
+    public ?Controller $controller = null;
     public ?DbModel $customer;
     public ?DbModel $serviceCenter;
 
@@ -116,7 +116,12 @@ class Application
     public function run()
     {
         /* Resolve the request and return the response */
-        echo $this->router->resolve();
+        try {
+            echo $this->router->resolve();
+        } catch (\Exception $e) {
+            $this->response->setStatusCode($e->getCode());
+            echo $this->router->renderView('_error', ['exception' => $e]);
+        }
     }
 
     /* Check if the technician is logged in */
