@@ -1,5 +1,6 @@
 <?php
 
+use app\core\Application;
 use app\models\CusTechAdvPayment;
 use app\models\TechnicianReview;
 use app\models\ServiceCenterReview;
@@ -22,7 +23,6 @@ use app\models\CusTechReq;
             href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap"
             rel="stylesheet"
     />
-    <link rel="stylesheet" href="/css/admin/chart.css"/>
 </head>
 <body>
 <?php
@@ -94,32 +94,84 @@ include_once 'components/header.php';
         </div>
     </div>
 </div>
-
-<div class="MainChart">
-
-    <div class="Chart">
-        <h1>Earnings(Past 12 Months)</h1>
-        <div>
-            <canvas id="lineChart"></canvas>
-        </div>
+<!-- ================= Top Rated Technicians ================ -->
+<div class="topRatedTechnicians">
+    <div class="cardHeader">
+        <h2>Top Rated Technicians</h2>
     </div>
 
-    <div class="Chart doughnut-chart">
-        <h1>Employees</h1>
-        <div>
-            <canvas id="doughnut"></canvas>
-        </div>
-    </div>
+    <table>
+        <thead>
+        <tr>
+            <td></td>
+            <td>Name</td>
+            <td>Total Reviews</td>
+        </tr>
+        </thead>
 
-
+        <tbody>
+        <?php
+        $ctr = new TechnicianReview();
+        $recentTechnicians = $ctr->getTopRatedTechnicians();
+        foreach ($recentTechnicians as $recentTechnician) {
+            echo
+                '
+                        <tr>
+                            <td>
+                                <div class="imgBx"><img src="' . $recentTechnician['profile_picture'] . '" alt="Technician profile-pic"></div>
+                            </td>
+                            <td>
+                                <h4>' . $recentTechnician['fname'] . ' ' . $recentTechnician['lname'] . '</h4>
+                            </td>
+                            <td>
+                                <h4>' . $recentTechnician['total_ratings'] . ' 
+                                    <ion-icon name="star-outline"></ion-icon>\'s
+                                </h4>
+                            </td>
+                        </tr>
+                    ';
+        }
+        ?>
+        </tbody>
+    </table>
 </div>
 
+<!-- ================= Top Rated Service Centers ================ -->
+<div class="topRatedServiceCenters">
+    <div class="cardHeader">
+        <h2>Top Rated Service Centers</h2>
+    </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="/js/admin/main.js"></script>
-<script src="/js/admin/chart.js"></script>
-<script src="/js/admin/linegraph.js"></script>
+    <table>
+        <thead>
+        <tr>
+            <td>Name</td>
+            <td>Total Reviews</td>
+        </tr>
+        </thead>
 
+        <tbody>
+        <?php
+        $scr = new ServiceCenterReview();
+        $recentServiceCenters = $scr->getTopRatedServiceCenters();
+        foreach ($recentServiceCenters as $recentServiceCenter) {
+            echo
+                '
+                        <tr>
+                            <td>
+                                <h4>' . $recentServiceCenter['name'] . '</h4>
+                            </td>
+                            <td>
+                                <h4>' . $recentServiceCenter['total_ratings'] . ' 
+                                    <ion-icon name="star-outline"></ion-icon>\'s
+                                </h4>
+                            </td>
+                        </tr>
+                    ';
+        }
+        ?>
+        </tbody>
+    </table>
 </div>
 
 <!--    Icons-->

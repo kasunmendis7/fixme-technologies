@@ -6,8 +6,12 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 /* Import the classes that will be used later without writing their full namespaces */
 
+/* Import the classes that will be used later without writing their full namespaces */
+
+use app\controllers\AppoinmentController;
 use app\controllers\AuthController;
 use app\controllers\CartController;
+use app\controllers\NotificationController;
 use app\core\Application;
 use app\controllers\SiteController;
 use app\controllers\CustomerController;
@@ -98,7 +102,7 @@ $app->router->post('/post-unlike', [PostController::class, 'unlike']);
 
 /* Service Center Routes */
 $app->router->get('/service-centre-landing', [ServiceCentreController::class, 'serviceCentreLanding']);
-$app->router->get('/service-centre-dashboard', [ServiceCentreController::class, 'serviceCentreDashboard']);
+$app->router->get('/service-centre-dashboard', [AppoinmentController::class, 'loadAppointmentDetailsForServiceCenter']);
 $app->router->get('/service-centre-settings', [ServiceCentreController::class, 'serviceCentreSettings']);
 $app->router->get('/service-centre-profile', [ServiceCentreController::class, 'serviceCentreProfile']);
 $app->router->post('/update-service-centre-profile', [ServiceCentreController::class, 'updateServiceCenter']);
@@ -112,6 +116,15 @@ $app->router->get('/service-center-payment-details', [ServiceCentreController::c
 $app->router->get('/service-center-profile/{id}', [ServiceCentreController::class, 'viewServiceCenterProfile']);
 $app->router->get('/view-cart', [CartController::class, 'viewCart']);
 $app->router->post('/remove-from-cart', [CartController::class, 'removeItemsFromCart']);
+$app->router->get('/service-center-list', [ServiceCentreController::class, 'getAllServiceCenters']);
+$app->router->post('/book-appointment', [AppoinmentController::class, 'book']);
+$app->router->post('/change-appointment-status', [AppoinmentController::class, 'updateAppointmentStatus']);
+$app->router->post('/delete-appointment', [AppoinmentController::class, 'deleteAppointment']);
+$app->router->post('/fetch-appointment-dates', [AppoinmentController::class, 'fetchAppointmentDates']);
+$app->router->get('/get-notifications-for-service-center', [NotificationController::class, 'getNotificationsForServiceCenter']);
+$app->router->post('/mark-notification-as-seen/{id}', [NotificationController::class, 'markAsRead']);
+$app->router->post('/clear-notifications-for-service-center', [NotificationController::class, 'deleteNotificationForServiceCenter']);
+// $app->router->get('/service-centre-dashboard', [AppoinmentController::class, 'recentCustomers']);
 
 
 /* Routes related to the product (service center) */
@@ -125,6 +138,7 @@ $app->router->post('/service-center-update-product', [ProductController::class, 
 $app->router->post('/service-center-delete-product', [ProductController::class, 'delete']);
 $app->router->get('/get-product-by-category', [ProductController::class, 'filterProductByCategory']);
 $app->router->post('/add-to-cart', [CartController::class, 'addToCartController']);
+$app->router->get('/cart-item-count', [CartController::class, 'getCartItemCount']);
 
 /* Customer Routes */
 $app->router->get('/customer-dashboard', [CustomerController::class, 'customerDashboard']);
@@ -153,15 +167,18 @@ $app->router->get('/customer-advance-payments', [CustomerController::class, 'cus
 $app->router->post('/reject-advance-payment/{id}', [CustomerController::class, 'rejectAdvPaymentUsingReqId']);
 $app->router->get('/get-service-center-directions/{id}', [CustomerController::class, 'getServiceCenterDirections']);
 
+$app->router->get('/get-appointments', [AppoinmentController::class, 'loadAppointmentDetails']);
 
 /* Admin Routes */
 $app->router->get('/admin-dashboard', [AdminController::class, 'adminDashboard']);
 $app->router->get('/customers', [AdminController::class, 'customers']);
 $app->router->get('/technicians', [AdminController::class, 'technicians']);
+$app->router->get('/service-centers', [AdminController::class, 'serviceCentre']);
 $app->router->post('/admin/delete-technician', [AdminController::class, 'deleteTechnician']);
 $app->router->get('/admin-settings', [AdminController::class, 'adminSettings']);
 $app->router->get('/admin-profile', [AdminController::class, 'adminProfile']);
 $app->router->post('/update-admin-profile', [AdminController::class, 'updateAdminProfile']);
+$app->router->get('/technician-bank-accounts', [AdminController::class, 'technicianBankAccounts']);
 
 /* Admin Routes */
 $app->router->get('/admin-services', [AdminController::class, 'manageServices']);

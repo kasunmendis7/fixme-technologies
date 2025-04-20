@@ -13,11 +13,8 @@ use app\core\Application;
         </div>
 
         <div class="search">
-            <label>
-                <input type="text" placeholder="Search here">
-                <ion-icon name="search-outline"></ion-icon>
-            </label>
         </div>
+
         <div class="user-account">
             <h6 class="user-name">
                 <?php
@@ -26,8 +23,8 @@ use app\core\Application;
                 ?>
             </h6>
 
-            <div class="user">
-                <img src="/assets/select-user-service-centre.png" alt="">
-            </div>
+            <?php
+            include_once __DIR__ . '/notification.php';
+            ?>
         </div>
     </div>

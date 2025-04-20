@@ -1,13 +1,11 @@
 <?php
 
-namespace app\controllers;
-
-use app\core\Application;
-use app\core\Controller;
-use app\core\middlewares\AuthMiddleware;
-use app\core\Request;
-use app\core\Response;
-use app\models\cart;
+    namespace app\controllers;
+    use app\core\Application;
+    use app\core\Controller;
+    use app\core\Request;
+    use app\core\Response;
+    use app\models\cart;
 
 class CartController extends Controller
 {
@@ -94,4 +92,22 @@ class CartController extends Controller
         }
     }
 
-}
+        //api to get cart items count
+        public function getCartItemCount() {
+            $cus_id = Application::$app->session->get('customer');
+            if (!$cus_id) {
+                Application::$app->response->redirect('/customer-login');
+                echo json_encode(['count' => 0]);
+                return;
+            }
+            $cart = new Cart();
+            $items = $cart->getCartItems($cus_id);
+            $totalCount = 0;
+            foreach ($items as $item) {
+                $totalCount += $item['quantity'];
+            }
+            header('Content-Type: application/json');
+            echo json_encode(['count' => $totalCount]);
+        }
+
+    }

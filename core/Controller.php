@@ -7,6 +7,7 @@ use app\core\middlewares\BaseMiddleware;
 class Controller
 {
 
+    /* This is a property that sets the default layout file to use when rendering views */
     public string $layout = 'main';
     public string $action = '';
 
@@ -15,6 +16,7 @@ class Controller
      */
     protected array $middlewares = [];
 
+    /* Allows controllers to change the layout dynamically */
     public function setLayout($layout)
     {
         $this->layout = $layout;

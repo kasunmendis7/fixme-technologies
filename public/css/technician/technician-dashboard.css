@@ -18,35 +18,35 @@
 }
 
 body {
-    min-height: 100vh;
-    overflow-x: hidden;
+    min-height: 100vh; /* 100% of the viewport height */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 .container {
-    position: relative;
-    width: 100%;
+    position: relative; /* Relative to its normal position */
+    width: 100%; /* Full width */
 }
 
 /* =============== Navigation ================ */
 .navigation {
-    position: fixed;
-    width: 300px;
-    height: 100%;
-    background: var(--blue);
-    border-left: 10px solid var(--blue);
-    transition: 0.5s;
-    overflow: hidden;
+    position: fixed; /* Fixed position */
+    width: 300px; /* Fixed width */
+    height: 100%; /* Full height */
+    background: var(--blue); /* Background color */
+    border-left: 10px solid var(--blue); /* Left border */
+    transition: 0.5s; /* Transition effect */
+    overflow: hidden; /* Hide overflow */
 }
 
 .navigation.active {
-    width: 80px;
+    width: 80px; /* Reduced width */
 }
 
 .navigation ul {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+    position: absolute; /* Absolute position */
+    top: 0; /* Top position */
+    left: 0; /* Left position */
+    width: 100%; /* Full width */
 }
 
 .navigation ul li {
