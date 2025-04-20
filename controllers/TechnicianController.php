@@ -295,9 +295,7 @@ class TechnicianController extends Controller
         exit;
     }
 
-    /**
-     * Get all bank accounts for the logged-in technician
-     */
+
     public function getTechnicianPaymentMethods()
     {
         try {
@@ -315,11 +313,7 @@ class TechnicianController extends Controller
         }
     }
 
-    /**
-     * Delete a specific bank account
-     *
-     * @param array $id Bank account ID
-     */
+
     public function deleteTechnicianPaymentMethod($id)
     {
         try {
