@@ -173,10 +173,12 @@ $app->router->get('/get-appointments', [AppoinmentController::class, 'loadAppoin
 $app->router->get('/admin-dashboard', [AdminController::class, 'adminDashboard']);
 $app->router->get('/customers', [AdminController::class, 'customers']);
 $app->router->get('/technicians', [AdminController::class, 'technicians']);
+$app->router->get('/service-centers', [AdminController::class, 'serviceCentre']);
 $app->router->post('/admin/delete-technician', [AdminController::class, 'deleteTechnician']);
 $app->router->get('/admin-settings', [AdminController::class, 'adminSettings']);
 $app->router->get('/admin-profile', [AdminController::class, 'adminProfile']);
 $app->router->post('/update-admin-profile', [AdminController::class, 'updateAdminProfile']);
+$app->router->get('/technician-bank-accounts', [AdminController::class, 'technicianBankAccounts']);
 
 /* Admin Routes */
 $app->router->get('/admin-services', [AdminController::class, 'manageServices']);
