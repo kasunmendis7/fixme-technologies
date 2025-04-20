@@ -31,7 +31,7 @@ use app\models\ServiceCenterReview;
     <div class="cardBox">
         <div class="card">
             <div>
-                <div class="numbers">65</div>
+                <div class="numbers"><?php echo htmlspecialchars($totalCompleted); ?></div>
                 <div class="cardName">Total Repairs</div>
             </div>
 
@@ -40,9 +40,24 @@ use app\models\ServiceCenterReview;
             </div>
         </div>
 
+        <?php
+            $level = 0;
+            if ($totalCompleted >= 10 && $totalCompleted < 20) {
+                $level = 1;
+            } elseif ($totalCompleted >= 20 && $totalCompleted < 30) {
+                $level = 2;
+            } elseif ($totalCompleted >= 30 && $totalCompleted < 40) {
+                $level = 3;
+            } elseif ($totalCompleted >= 40 && $totalCompleted < 50) {
+                $level = 4;
+            } elseif ($totalCompleted >= 50) {
+                $level = 5;
+            }
+        ?>
+
         <div class="card">
             <div>
-                <div class="numbers">2</div>
+                <div class="numbers"><?= $level ?></div>
                 <div class="cardName">Level</div>
             </div>
 
@@ -67,7 +82,7 @@ use app\models\ServiceCenterReview;
             </div>
         </div>
 
-        <div class="card">
+        <!-- <div class="card">
             <div>
                 <div class="numbers">Rs. 7,842</div>
                 <div class="cardName">Earning</div>
@@ -76,7 +91,7 @@ use app\models\ServiceCenterReview;
             <div class="iconBx">
                 <ion-icon name="cash-outline"></ion-icon>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <!-- appointment details -->
@@ -157,25 +172,28 @@ use app\models\ServiceCenterReview;
                 <h2>Recent Orders</h2>
                 <a href="#" class="btn">View All</a>
             </div>
-
+            <?php if($completedAppointments): ?>
             <table>
                 <thead>
                     <tr>
                         <td>Name</td>
-                        <td>Price</td>
-                        <td>Payment</td>
+                        <td>Date</td>
+                        <td>Time</td>
                         <td>Status</td>
                     </tr>
-                </thead>
+                </thead> 
+
+                <?php foreach($completedAppointments as $compeletedAppointment):  ?>
 
                 <tbody>
+
                     <tr>
-                        <td>Kasun Mendis</td>
-                        <td>Rs. 620</td>
-                        <td>Due</td>
-                        <td><span class="status inProgress">In Progress</span></td>
+                        <td><?= htmlspecialchars($compeletedAppointment['fname'])?> <?= htmlspecialchars($compeletedAppointment['lname']) ?> </td>
+                        <td><?= htmlspecialchars($compeletedAppointment['appointment_date'])  ?></td>
+                        <td><?= htmlspecialchars($compeletedAppointment['appointment_time'])  ?></td>
+                        <td><span class="status inProgress"><?= htmlspecialchars($compeletedAppointment['status']) ?></span></td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td>Sheane Mario</td>
                         <td>Rs. 1200</td>
                         <td>Paid</td>
@@ -222,15 +240,21 @@ use app\models\ServiceCenterReview;
                         <td>Rs. 1200</td>
                         <td>-</td>
                         <td><span class="status return">Cancelled</span></td>
-                    </tr>
+                    </tr> -->
                 </tbody>
+                <?php endforeach; ?>
             </table>
+            <?php else: ?>
+            <div class="no-orders">
+                <p>No completed appointments found.</p>
+            </div>
+            <?php endif; ?>
         </div>
 
         <!-- ================= New Customers ================ -->
         <?php
-            include_once 'components/recent-customers.php'
-        ?>
+        include_once 'components/recent-customers.php'
+            ?>
     </div>
     </div>
     </div>

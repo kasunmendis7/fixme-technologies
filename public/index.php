@@ -1,6 +1,12 @@
 <?php
 
+/* Includes Composer's autoloader, which automatically loads classes from the vendor directory */
+/* This enables you to use classes via use statements instead of manually including every file */
 require_once __DIR__ . '/../vendor/autoload.php';
+
+/* Import the classes that will be used later without writing their full namespaces */
+
+/* Import the classes that will be used later without writing their full namespaces */
 
 use app\controllers\AppoinmentController;
 use app\controllers\AuthController;
@@ -20,12 +26,12 @@ use app\controllers\TechnicianReviewController;
 use app\controllers\ServiceCenterReviewController;
 use app\controllers\ContactUsController;
 
-/* load environment variables */
-
+/* Load environment variables */
+/* Using vulcas/phpdotenv package to load sensitive data from .env file */
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
-/* database configuration */
+/* Database configuration */
 $config = [
     'technicianClass' => \app\models\Technician::class,
     'customerClass' => \app\models\Customer::class,
@@ -38,6 +44,8 @@ $config = [
     ]
 ];
 
+/* dirname(__DIR__) passes the root directory of your project(one level above /public) as the base path */
+/* $config passes all environment and class configuration data to Application class */
 $app = new Application(dirname(__DIR__), $config);
 
 /* Home Route */
@@ -157,6 +165,8 @@ $app->router->get('/get-customer-payment-methods', [CustomerController::class, '
 $app->router->post('/delete-customer-payment-method/{id}', [CustomerController::class, 'deleteCustomerPaymentMethod']);
 $app->router->get('/customer-advance-payments', [CustomerController::class, 'customerAdvancePayments']);
 $app->router->post('/reject-advance-payment/{id}', [CustomerController::class, 'rejectAdvPaymentUsingReqId']);
+$app->router->get('/get-service-center-directions/{id}', [CustomerController::class, 'getServiceCenterDirections']);
+
 $app->router->get('/get-appointments', [AppoinmentController::class, 'loadAppointmentDetails']);
 
 /* Admin Routes */
@@ -263,6 +273,12 @@ $app->router->post('/service-center-profile/fetch-reviews', [ServiceCenterReview
 /* Routes related to the contact us form */
 $app->router->post('/technician-help/send-email', [ContactUsController::class, 'sendEmail']);
 $app->router->post('/service-center-help/send-email', [ContactUsController::class, 'sendEmail']);
+
+/* Routes related to the PayHere Payment gateway */
+$app->router->post('/payhere-payment', [CustomerController::class, 'payHerePaymentProcess']);
+//$app->router->post('/update-payment-status', [CustomerController::class, 'updatePaymentStatus']);
+$app->router->post('/payhere-payment-response', [CustomerController::class, 'paymentResponse']);
+$app->router->get('/get-payhere-details', [CustomerController::class, 'getPayHereDetails']);
 
 /* Run the application */
 $app->run();

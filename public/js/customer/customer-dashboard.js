@@ -34,3 +34,4 @@ async function cancelReq(cusId, techId) {
 async function getAdvancePayments(cusId) {
     window.location.href = `/customer-advance-payments`;
 }
+

@@ -2,6 +2,7 @@
 
 use app\core\Application;
 use app\models\CusTechReq;
+use app\models\CusTechAdvPayment;
 
 ?>
 
@@ -21,27 +22,31 @@ use app\models\CusTechReq;
 </head>
 
 <body>
-    <?php
-    include_once 'components/sidebar.php';
-    include_once 'components/header.php';
-    ?>
-    <!-- ======================= Cards ================== -->
-    <?php if (Application::$app->session->getFlash('deleteCusTechReq-success')): ?>
-        <div class="alert alert-success">
-            <?php echo Application::$app->session->getFlash('deleteCusTechReq-success') ?>
+<?php
+include_once 'components/sidebar.php';
+include_once 'components/header.php';
+?>
+<!-- ======================= Cards ================== -->
+<?php if (Application::$app->session->getFlash('deleteCusTechReq-success')): ?>
+    <div class="alert alert-success">
+        <?php echo Application::$app->session->getFlash('deleteCusTechReq-success') ?>
+    </div>
+<?php endif; ?>
+<?php if (Application::$app->session->getFlash('deleteCusTechReq-error')): ?>
+    <div class="alert alert-error">
+        <?php echo Application::$app->session->getFlash('deleteCusTechReq-error') ?>
+    </div>
+<?php endif; ?>
+<div class="cardBox">
+    <div class="card" onclick="getAdvancePayments(<?php echo Application::$app->session->get('customer') ?>)">
+        <div>
+            <?php
+            $ctap = new CusTechAdvPayment();
+            $advancePaymentCount = $ctap->countAdvancePayment(Application::$app->session->get('customer'));
+            ?>
+            <div class="numbers"><?php echo $advancePaymentCount ?></div>
+            <div class="cardName">Advance Payments</div>
         </div>
-    <?php endif; ?>
-    <?php if (Application::$app->session->getFlash('deleteCusTechReq-error')): ?>
-        <div class="alert alert-error">
-            <?php echo Application::$app->session->getFlash('deleteCusTechReq-error') ?>
-        </div>
-    <?php endif; ?>
-    <div class="cardBox">
-        <div class="card" onclick="getAdvancePayments(<?php echo Application::$app->session->get('customer') ?>)">
-            <div>
-                <div class="numbers">65</div>
-                <div class="cardName">Advance Payments</div>
-            </div>
 
             <div class="iconBx">
                 <ion-icon name="cog-outline"></ion-icon>
@@ -143,32 +148,51 @@ use app\models\CusTechReq;
                     </tr>
                 </thead>
 
-                <tbody>
-                    <?php
-                    $ctr = new CusTechReq();
-                    $requests = $ctr->getAllRequests(Application::$app->session->get('customer'));
-                    foreach ($requests as $request) {
-                        echo
-                            '<tr>
-                    <td>' . $request['fname'] . ' ' . $request['lname'] . '</td> 
-                    <td>Rs. 500</td> 
-                    <td>Due</td>';
+            <tbody>
+            <?php
+            $ctr = new CusTechReq();
+            $requests = $ctr->getAllRequests(Application::$app->session->get('customer'));
+            foreach ($requests as $request) {
+                echo '<tr>
+                <td>' . $request['fname'] . ' ' . $request['lname'] . '</td>
+                <td>Rs. ' . (is_null($request['amount']) ? '0.00' : number_format($request['amount'], 2)) . '</td>';
 
-                        if ($request['status'] == 'pending') {
-                            echo '<td><span><button type="submit" class="cancel-btn" onclick="cancelReq(' . $request['cus_id'] . ',' . $request['tech_id'] . ' )">Cancel</button></span></td>';
-                        } else {
-                            echo '<td></td>';
-                        }
-
-                        echo '
-                    <td> <span class="status ' . strtolower($request['status']) . '">' . ucfirst($request['status']) . '</span></td>
-                </tr>';
+                echo '<td>';
+                if ($request['status'] == 'pending') {
+                    echo '<span class="payment-due">Payment Due !</span>';
+                } else {
+                    if ($request['done'] == 'true') {
+                        echo '<span class="payment-status">Advance Paid ✔</span>';
+                    } else {
+                        echo '<span class="payment-rejected">-</span>';
                     }
-                    /* status: pending , in Progress, rejected, completed */
-                    ?>
-                </tbody>
-            </table>
-        </div>
+                }
+                echo '</td>';
+
+                // Additional action cell: show cancel button if request is pending
+                echo '<td>';
+                if ($request['status'] == 'pending') {
+                    echo '<span>
+                      <button type="submit" class="cancel-btn" onclick="cancelReq(' . $request['cus_id'] . ',' . $request['tech_id'] . ')">
+                          Cancel
+                      </button>
+                  </span>';
+                }
+                echo '</td>';
+
+                // Status cell
+                echo '<td>
+                <span class="status ' . strtolower($request['status']) . '">
+                    ' . ucfirst($request['status']) . '
+                </span>
+              </td>
+             </tr>';
+            }
+            ?>
+            </tbody>
+
+        </table>
+    </div>
 
         <!-- ================= Recent Technicians ================ -->
         <div class="recentTechnicians">

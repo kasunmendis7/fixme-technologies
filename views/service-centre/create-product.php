@@ -49,8 +49,8 @@ include_once 'components/header.php';
         <label for="media">Upload Media:</label>
         <input type="file" id="media" name="media" accept="image/*,video/*" required>
 
-        <label for="category">Category:</label>
-        <select class="category-select" name="category" id="category" required>
+        <!-- <label for="category">Category:</label> -->
+        <!-- <select class="category-select" name="category" id="category" required>
             <option value="">Select a category</option>
             <option value="Tools">Tools</option>
             <option value="Engine & Transmission">Engine & Transmission</option>
@@ -62,7 +62,7 @@ include_once 'components/header.php';
             <option value="Fluids & Maintenance">Fluids & Maintenance</option>
             <option value="Performance & Upgrades">Performance & Upgrades</option>
             <option value="Safety & Security">Safety & Security</option>
-        </select>
+        </select> -->
 
         <button type="submit">Add Product</button>
     </form>
