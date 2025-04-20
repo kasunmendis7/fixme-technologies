@@ -376,7 +376,6 @@ a {
     border-radius: 4px;
     font-size: 14px;
     font-weight: 500;
-    border-radius: 1rem;
 }
 
 .status.rejected {
@@ -552,7 +551,7 @@ a {
 }
 
 .cancel-btn {
-    background-color: #0d6efd;
+    background-color: #f00;
     border: none;
     border-radius: 1rem;
     color: #FFFFFF;
@@ -562,11 +561,40 @@ a {
 
 .cancel-btn:hover {
     cursor: pointer;
-    background-color: rgba(13, 110, 253, 0.84);
+    background-color: #ff3737;
 }
 
 .user-account {
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.advance-payment-btn {
+    background-color: #0dfd35;
+    border: none;
+    border-radius: 1rem;
+    color: #FFFFFF;
+    padding: .5rem 1rem;
+}
+
+.advance-payment-btn:hover {
+    cursor: pointer;
+    background-color: rgba(17, 205, 44, 0.84);
+}
+
+.payment-status {
+    background-color: #036113;
+    border: none;
+    border-radius: 1rem;
+    color: #FFFFFF;
+    padding: .5rem 1rem;
+}
+
+.payment-due {
+    background: #e9b10a;
+    border: none;
+    border-radius: 1rem;
+    color: #FFFFFF;
+    padding: .5rem 1rem;
 }

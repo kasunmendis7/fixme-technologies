@@ -82,7 +82,7 @@ class CusTechReq extends DbModel
 
     public function getAllRequests($cusId)
     {
-        $sql = "SELECT ctr.tech_id AS tech_id, ctr.cus_id AS cus_id, tech.fname AS fname, tech.lname AS lname, ctr.status AS status FROM technician AS tech, cus_tech_req AS ctr WHERE ctr.tech_id = tech.tech_id AND ctr.cus_id = :cus_id";
+        $sql = "SELECT ctr.req_id AS req_id, ctr.tech_id AS tech_id, ctr.cus_id AS cus_id, tech.fname AS fname, tech.lname AS lname, ctr.status AS status, ctap.amount AS amount, ctap.done AS done FROM technician AS tech, cus_tech_req AS ctr LEFT JOIN cus_tech_adv_payment AS ctap ON ctr.req_id = ctap.req_id WHERE ctr.tech_id = tech.tech_id AND ctr.cus_id = :cus_id";
         $stmt = self::prepare($sql);
         $stmt->bindValue(':cus_id', $cusId);
         $stmt->execute();
@@ -92,9 +92,10 @@ class CusTechReq extends DbModel
 
     public function getAllTechnicianRequests($techId)
     {
-        $sql = "SELECT ctr.cus_id AS cus_id, ctr.tech_id AS tech_id, cus.fname AS fname, cus.lname AS lname, ctr.status AS status 
+        $sql = "SELECT ctr.cus_id AS cus_id, ctr.tech_id AS tech_id, cus.fname AS fname, cus.lname AS lname, ctr.status AS status, ctr.req_id AS req_id, ctap.amount AS amount, ctap.done AS done 
             FROM customer AS cus
             INNER JOIN cus_tech_req AS ctr ON ctr.cus_id = cus.cus_id 
+            LEFT JOIN cus_tech_adv_payment AS ctap ON ctr.req_id = ctap.req_id
             WHERE ctr.tech_id = :tech_id
             ORDER BY ctr.req_id DESC";
         $stmt = self::prepare($sql);
@@ -116,7 +117,7 @@ class CusTechReq extends DbModel
 
     public function getRecentCustomers($techId)
     {
-        $sql = "SELECT cus.fname AS fname, cus.lname AS lname, cus.profile_picture AS profile_picture FROM customer AS cus, cus_tech_req AS ctr WHERE cus.cus_id = ctr.cus_id AND ctr.tech_id = :tech_id AND ctr.status = 'pending'";
+        $sql = "SELECT cus.fname AS fname, cus.lname AS lname, cus.profile_picture AS profile_picture FROM customer AS cus, cus_tech_req AS ctr WHERE cus.cus_id = ctr.cus_id AND ctr.tech_id = :tech_id AND (ctr.status = 'pending' OR ctr.status = 'InProgress') ORDER BY ctr.req_id DESC";
         /* Reminder : change ctr.status = 'completed' after implementing the completed status */
         $stmt = self::prepare($sql);
         $stmt->bindValue(':tech_id', $techId);
@@ -127,12 +128,53 @@ class CusTechReq extends DbModel
 
     public function getTechnicianTotalRepairs($techId)
     {
-        $sql = "SELECT COUNT(*) AS total_repairs FROM cus_tech_req WHERE tech_id = :tech_id AND status = 'pending'";
+        $sql = "SELECT COUNT(*) AS total_repairs FROM cus_tech_req WHERE tech_id = :tech_id";
         $stmt = self::prepare($sql);
-        $stmt->bindValue(':tech_id', $techId, \PDO::PARAM_INT); // Added explicit parameter type
+        $stmt->bindValue(':tech_id', $techId);
         $stmt->execute();
         $totalTechnicianRepairs = $stmt->fetch(\PDO::FETCH_ASSOC);
         return $totalTechnicianRepairs['total_repairs'] ?? 0; // Ensuring a default value is returned
+    }
+
+    public function getRequestId($cusId, $techId)
+    {
+        $sql = "SELECT req_id FROM cus_tech_req WHERE cus_id = :cus_id AND tech_id = :tech_id ORDER BY time DESC LIMIT 1";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':cus_id', $cusId);
+        $stmt->bindValue(':tech_id', $techId);
+        $stmt->execute();
+        $requestId = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $requestId['req_id'];
+    }
+
+    public function getTechnicianRejectedRepairs($tech_id)
+    {
+        $sql = "SELECT COUNT(*) AS total_repairs FROM cus_tech_req WHERE tech_id = :tech_id AND status = 'Rejected'";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':tech_id', $tech_id, \PDO::PARAM_INT); // Added explicit parameter type
+        $stmt->execute();
+        $totalTechnicianRepairs = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $totalTechnicianRepairs['total_repairs'] ?? 0;
+
+    }
+
+    public function countTotalRequests()
+    {
+        $sql = "SELECT COUNT(*) as total_requests FROM cus_tech_req";
+        $stmt = self::prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $result['total_requests'] ?? 0;
+    }
+
+    public function countPendingTotalRequests()
+    {
+        $sql = "SELECT COUNT(*) as total_requests FROM cus_tech_req WHERE status = 'pending'";
+        $stmt = self::prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $result['total_requests'] ?? 0;
+
     }
 
     public function attributes(): array

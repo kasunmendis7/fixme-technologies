@@ -231,3 +231,7 @@ use app\core\Application;
         </div>
     </div>
 </section>
+
+<script>
+    localStorage.removeItem('visitedRoutes');
+</script>

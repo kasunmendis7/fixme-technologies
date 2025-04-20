@@ -84,6 +84,7 @@ use app\core\Application;
                     }
                     if (!empty($username)) {
                         echo '<span style="font-size: 16px; font-weight: 500; color: #fff;">' . htmlspecialchars($username) . '</span>';
+                        echo '<button onclick="window.location.href=\'/customer-logout\'" style="padding: 8px 16px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px;">Logout</button>';
                     }
                 } else {
                     echo '<button onclick="window.location.href=\'/customer-login\'" style="padding: 8px 16px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px;">Login</button>';

@@ -540,3 +540,19 @@ body {
     align-items: center;
     gap: 10px;
 }
+
+.payment-status {
+    background-color: #036113;
+    border: none;
+    border-radius: 1rem;
+    color: #FFFFFF;
+    padding: .5rem 1rem;
+}
+
+.payment-due {
+    background: #e9b10a;
+    border: none;
+    border-radius: 1rem;
+    color: #FFFFFF;
+    padding: .5rem 1rem;
+}

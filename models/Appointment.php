@@ -156,6 +156,33 @@ class Appointment extends DbModel
     }
 
 
+    //function to get total count of completed appointments 
+    public function getTotalCompletedAppointments($service_center_id)
+    {
+        $sql = "SELECT COUNT(*) AS total_completed_appointments
+                FROM appointments
+                WHERE service_center_id = :service_center_id AND status = 'Confirmed'";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':service_center_id', $service_center_id);
+        $stmt->execute();
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $result['total_completed_appointments'];
+    }
+
+    //function to get completed appointment detials 
+    public function getCompletedAppointmentDetails($service_center_id)
+    {
+        $sql = "SELECT a.*, c.fname, c.lname, c.phone_no
+                FROM appointments a
+                JOIN customer c ON a.customer_id = c.cus_id
+                WHERE a.service_center_id = :service_center_id AND a.status = 'Confirmed'";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':service_center_id', $service_center_id);
+        $stmt->execute();
+        $completedAppointments = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $completedAppointments;
+    }
+
 
 
     //save function

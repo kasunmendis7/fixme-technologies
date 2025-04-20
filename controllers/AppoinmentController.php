@@ -89,13 +89,18 @@ class AppoinmentController extends Controller
         }
         $appointment = new Appointment();
         $appointments = $appointment->loadAppointmentsForServiceCenter($ser_cen_id);
-
+        $totalCompleted = $appointment->getTotalCompletedAppointments($ser_cen_id);
         $recentCustomers = $appointment->getRecentCustomers($ser_cen_id);
+        $completedAppointments = $appointment->getCompletedAppointmentDetails($ser_cen_id);
+
+        error_log('Total Completed: ' . print_r($totalCompleted, true));
 
         $this->setLayout('auth');
         return $this->render('/service-centre/service-centre-dashboard', [
             'appointments' => $appointments,
             'recentCustomers' => $recentCustomers,
+            'totalCompleted' => $totalCompleted,
+            'completedAppointments' => $completedAppointments,
         ]);
     }
 

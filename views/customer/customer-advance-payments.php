@@ -50,7 +50,8 @@ include_once 'components/header.php';
                         <td><?= $payment['name'] ?></td>
                         <td><?= number_format($payment['amount'], 2) ?></td>
                         <td>
-                            <button class="pay-now-btn" onclick="payNow(<?= $payment['pin'] ?>)">
+                            <button class="pay-now-btn"
+                                    onclick="paymentGateWay(<?= $payment['cus_id'] ?>,<?= $payment['tech_id'] ?>);">
                                 Pay Now
                             </button>
                             <button class="reject-btn" onclick="rejectPayment(<?= $payment['req_id'] ?>)">
@@ -83,6 +84,7 @@ include_once 'components/header.php';
 <script src="/js/customer/customer-advance-payments.js"></script>
 <script src="/js/customer/customer-home.js"></script>
 <script src="/js/customer/overlay.js"></script>
+<script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
 </body>
 
 </html>
