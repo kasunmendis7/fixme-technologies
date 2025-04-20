@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\core\Controller;
+use app\core\middlewares\AuthMiddleware;
 use app\models\TechnicianReview;
 use app\core\Request;
 use app\core\Response;
@@ -10,6 +11,11 @@ use app\models\Technician;
 
 class TechnicianReviewController extends Controller
 {
+    public function __construct()
+    {
+        $this->registerMiddleware(new AuthMiddleware());
+    }
+
     public function submit(Request $request, Response $response)
     {
         if ($request->isPost()) {

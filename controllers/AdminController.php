@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Controller;
+use app\core\middlewares\AuthMiddleware;
 use app\core\Request;
 use app\models\Admin;
 use app\models\Customer;
@@ -12,6 +13,11 @@ use app\models\Technician;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->registerMiddleware(new AuthMiddleware());
+    }
+
     public function adminDashboard()
     {
         $this->setLayout('auth');

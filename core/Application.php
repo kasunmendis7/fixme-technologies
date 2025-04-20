@@ -116,7 +116,12 @@ class Application
     public function run()
     {
         /* Resolve the request and return the response */
-        echo $this->router->resolve();
+        try {
+            echo $this->router->resolve();
+        } catch (\Exception $e) {
+            $this->response->setStatusCode($e->getCode());
+            echo $this->router->renderView('_error', ['exception' => $e]);
+        }
     }
 
     /* Check if the technician is logged in */
