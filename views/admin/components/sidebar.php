@@ -36,14 +36,21 @@
                     <span class="title">Technicians</span>
                 </a>
             </li>
-            
+            <li>
+                <a href="/service-centers">
+                        <span class="icon">
+                           <ion-icon name="business-outline"></ion-icon>
+                        </span>
+                    <span class="title">Service Centers</span>
+                </a>
+            </li>
 
             <li>
-                <a href="/admin-reports">
+                <a href="/technician-bank-accounts">
                         <span class="icon">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
+                            <ion-icon name="cash-outline"></ion-icon>
                         </span>
-                    <span class="title">Reports</span>
+                    <span class="title">Technician Bank Accounts</span>
                 </a>
             </li>
 

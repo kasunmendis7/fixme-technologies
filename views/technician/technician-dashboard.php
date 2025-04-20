@@ -84,7 +84,8 @@ include_once 'components/header.php';
         <div>
             <?php
             $ctap = new CusTechAdvPayment();
-            $earning = $ctap->getTotalEarning(Application::$app->session->get('technician'));
+            $revenue = $ctap->getTotalEarning(Application::$app->session->get('technician'));
+            $earning = number_format($revenue * (95 / 100), 2, '.', ',');
             ?>
             <div class="numbers">Rs. <?php echo $earning ?></div>
             <div class="cardName">Total Earnings</div>

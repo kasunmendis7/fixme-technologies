@@ -24,7 +24,8 @@ body {
 }
 
 .table th {
-    background-color: #f8f5f5;
+    background-color: #010336;
+    color: white;
 }
 
 .table tbody tr:hover {

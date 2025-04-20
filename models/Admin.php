@@ -97,6 +97,14 @@ class Admin extends DbModel
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public static function findAllServiceCentres()
+    {
+        $sql = "SELECT ser_cen_id, name, email, phone_no, address, reg_date FROM service_center";
+        $statement = (new Admin)->prepare($sql);
+        $statement->execute();
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
     public static function deleteCustomerById($cus_id)
     {
         $db = Application::$app->db; // Ensure this points to the correct Database instance
@@ -138,7 +146,16 @@ class Admin extends DbModel
         $stmt = self::prepare($sql);
         $stmt->execute();
         return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
 
+    public function fetchTechnicianBankAccounts()
+    {
+        $sql = "SELECT tech_payment_opt.*, technician.fname, technician.lname 
+                FROM tech_payment_opt 
+                JOIN technician ON tech_payment_opt.tech_id = technician.tech_id";
+        $stmt = self::prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
 }
