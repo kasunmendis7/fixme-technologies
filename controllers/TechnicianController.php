@@ -9,6 +9,7 @@ use app\core\middlewares\AuthMiddleware;
 use app\core\middlewares\RoleMiddleware;
 use app\core\Request;
 use app\core\Response;
+use app\models\CusTechContract;
 use app\models\Customer;
 use app\models\Post;
 use app\models\ServiceCenterReview;
@@ -448,8 +449,10 @@ class TechnicianController extends Controller
 
     public function technicianActiveContracts()
     {
+        $technicianActContracts = (new CusTechContract())->getContractsUsingTechId();
+
         $this->setLayout('auth');
-        return $this->render('/technician/technician-active-contracts');
+        return $this->render('/technician/technician-active-contracts', ['activeContracts' => $technicianActContracts]);
 
     }
 
@@ -458,6 +461,55 @@ class TechnicianController extends Controller
         $this->setLayout('auth');
         return $this->render('/technician/technician-finished-contracts');
 
+    }
+
+    public function verifyStartPin(Request $request)
+    {
+        $body = $request->getBody();
+        $contract_id = $body['contract_id'];
+        $pin = $body['pin'];
+
+        $contractModal = new CusTechContract();
+        $start_pin = $contractModal->getStartPin($contract_id);
+
+        if ($start_pin === $pin) {
+            $contractModal->updateStatusToOngoing($contract_id);
+            Application::$app->response->redirect("/technician-active-contract-details/$contract_id");
+            return json_encode(['success' => true, 'message' => 'Contract is now ongoing']);
+        } else {
+            Application::$app->response->redirect("/technician-active-contract-details/$contract_id");
+            return json_encode(['success' => false, 'message' => 'Invalid pin']);
+        }
+    }
+
+    public function technicianActiveContractDetails($contract_id)
+    {
+        $contract_id = intval($contract_id[0]);
+        $contractModel = new CusTechContract();
+        $contract = $contractModel->getContractUsingContractId($contract_id);
+
+        $this->setLayout('auth');
+        return $this->render('/technician/technician-active-contract-details', ['contract' => $contract]);
+
+    }
+
+    public function technicianFinishContract(Request $request)
+    {
+        $body = $request->getBody();
+        $contract_id = $body['contract_id'];
+        $pin = $body['finish_pin'];
+
+        $contractModal = new CusTechContract();
+        $finish_pin = $contractModal->getFinishPin($contract_id);
+        if ($finish_pin === $pin) {
+            $contractModal->updateStatusToFinished($contract_id);
+            $contractModal->finishContract($contract_id);
+            Application::$app->response->redirect("/technician-active-contract-details/$contract_id");
+            return json_encode(['success' => true, 'message' => 'Contract is now ongoing']);
+        } else {
+            Application::$app->response->redirect("/technician-active-contract-details/$contract_id");
+            return json_encode(['success' => false, 'message' => 'Invalid pin']);
+        }
     }
 }
 

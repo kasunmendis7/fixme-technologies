@@ -11,6 +11,7 @@ use app\core\Response;
 use app\models\Chat;
 use app\models\Comment;
 use app\models\CusTechAdvPayment;
+use app\models\CusTechContract;
 use app\models\Customer;
 use app\models\Post;
 use app\models\ServiceCenter;
@@ -532,8 +533,10 @@ class CustomerController extends Controller
 
     public function customerActiveContracts()
     {
+        $customerActContracts = (new CusTechContract())->getContractsUsingCusId();
+
         $this->setLayout('auth');
-        return $this->render('/customer/customer-active-contracts');
+        return $this->render('/customer/customer-active-contracts', ['activeContracts' => $customerActContracts]);
 
     }
 
@@ -542,6 +545,35 @@ class CustomerController extends Controller
         $this->setLayout('auth');
         return $this->render('/customer/customer-finished-contracts');
 
+    }
+
+    public function customerActiveContractDetails($contract_id)
+    {
+        $contract_id = intval($contract_id[0]);
+        $contractModel = new CusTechContract();
+        $start_pin = $contractModel->getStartPin($contract_id);
+        if ($start_pin == null) {
+            $start_pin = $contractModel->generateStartPin($contract_id);
+        }
+        $contract_det = $contractModel->getContractUsingContractId($contract_id);
+
+        $this->setLayout('auth');
+        return $this->render('/customer/customer-active-contract-details', ['contract' => $contract_det]);
+    }
+
+    public function customerFinishContract($contract_id)
+    {
+        $contract_id = intval($contract_id[0]);
+        $contractModel = new CusTechContract();
+        $finish_pin = $contractModel->getFinishPin($contract_id);
+        if ($finish_pin == null) {
+            $finish_pin = $contractModel->generateFinishPin($contract_id);
+        }
+        $contract_det = $contractModel->getContractUsingContractId($contract_id);
+        $contractModel->updateStatusToFinished($contract_id);
+
+        $this->setLayout('auth');
+        return $this->render('/customer/customer-active-contract-details', ['contract' => $contract_det]);
     }
 
 }
