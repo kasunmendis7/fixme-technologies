@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Customer Settings</title>
+    <title>Technician Settings</title>
     <link rel="stylesheet" href="/css/customer/customer-dashboard.css">
     <link rel="stylesheet" href="/css/technician/technician-settings.css">
     <link rel="stylesheet" href="/css/technician/overlay.css">
@@ -62,7 +62,7 @@ include_once 'components/header.php';
             </div>
         </div>
     </a>
-    <a href="/technician-ended-contracts">
+    <a href="/technician-finished-contracts">
         <div class="card">
             <div>
                 <div class="cardName">Finished Contracts</div>
