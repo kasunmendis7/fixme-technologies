@@ -72,6 +72,16 @@ include_once 'components/header.php';
             </div>
         </div>
     </a>
+    <a href="/technician-specialization">
+        <div class="card">
+            <div>
+                <div class="cardName">Update Specializations</div>
+            </div>
+            <div class="iconBx">
+                <ion-icon name="hammer-outline"></ion-icon>
+            </div>
+        </div>
+    </a>
 </div>
 
 <!-- Overlay for the confirmation message -->
