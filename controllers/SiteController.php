@@ -8,6 +8,7 @@ use app\models\CusTechAdvPayment;
 use app\models\CusTechContract;
 use app\models\CusTechReq;
 use app\models\Customer;
+use app\models\Product;
 use app\models\ServiceCenter;
 use app\models\Technician;
 
@@ -65,6 +66,27 @@ class SiteController extends Controller
     {
         $this->setLayout('main');
         return $this->render('/about-us');
+    }
+
+    public function technicianLanding()
+    {
+        $this->setLayout('auth');
+        return $this->render('/technician/technician-landing');
+    }
+
+    public function serviceCentreLanding()
+    {
+        $this->setLayout('auth');
+        return $this->render('/service-centre-landing');
+    }
+
+    public function homeMarketplace()
+    {
+        $productModels = (new Product)->getAllProducts(); // Fetch all products from the database
+        $this->setLayout('auth'); // Set layout if needed
+        return $this->render('/service-centre/market-place-home', [
+            'products' => $productModels // Pass products to the view
+        ]);
     }
 
     public function payHerePaymentProcess()

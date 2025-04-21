@@ -19,11 +19,6 @@ class ServiceCentreController extends Controller
         $this->registerMiddleware(new AuthMiddleware());
     }
 
-    public function serviceCentreLanding()
-    {
-        $this->setLayout('auth');
-        return $this->render('/service-centre-landing');
-    }
 
     public function serviceCentreDashboard()
     {

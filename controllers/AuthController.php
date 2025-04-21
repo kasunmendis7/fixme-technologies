@@ -12,7 +12,7 @@ use app\models\AdminLogin;
 use app\models\Customer;
 use app\models\CustomerLoginForm;
 
-//use app\core\Response;
+
 use app\models\CustomerRegisterModel;
 use app\models\ServiceCenter;
 use app\models\ServiceCenterLogin;
@@ -57,7 +57,7 @@ class AuthController extends Controller
                 $body = $request->getBody();
                 $redirectedUrl = $body['redirectAfterLogin'] ?? null;
 
-                if($redirectedUrl) {
+                if ($redirectedUrl) {
                     $response->redirect($redirectedUrl);
                     return;
                 }
@@ -174,7 +174,7 @@ class AuthController extends Controller
     public function serviceCenterLogout(Request $request, Response $response)
     {
         Application::$app->logoutServiceCenter();
-        $response->redirect('/service-centre-landing');
+        $response->redirect('/');
     }
 
     /* admin login method */
