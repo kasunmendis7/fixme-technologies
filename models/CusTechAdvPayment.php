@@ -30,6 +30,16 @@ class CusTechAdvPayment extends DbModel
 
     }
 
+    public function getCusTechUsingReqId($req_id)
+    {
+        $sql = "SELECT cus_id, tech_id FROM cus_tech_adv_payment WHERE req_id = :req_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':req_id', $req_id);
+        $stmt->execute();
+        $cusTech = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $cusTech;
+    }
+
     public function deleteAdvPaymentUsingReqId($req_id)
     {
         $sql = "DELETE FROM cus_tech_adv_payment WHERE req_id = :req_id";
