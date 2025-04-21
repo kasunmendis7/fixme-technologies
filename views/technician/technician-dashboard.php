@@ -19,7 +19,7 @@ use app\models\CusTechAdvPayment;
     <!--    Techncian Dashboard stylings -->
     <link rel="stylesheet" href="/css/technician/technician-dashboard.css">
     <link rel="stylesheet" href="/css/technician/overlay.css">
-
+    <link rel="stylesheet" href="/css/technician/flash-messages.css">
 </head>
 <body>
 <!-- Including the header and sidebar components-->
@@ -29,7 +29,16 @@ include_once 'components/header.php';
 ?>
 <!-- Technician Dashboard JavaScript Files -->
 <script src="/js/technician/technician-home.js"></script>
-
+<?php if (Application::$app->session->getFlash('specialization-updated')): ?>
+    <div class="alert alert-success">
+        <?php echo Application::$app->session->getFlash('specialization-updated') ?>
+    </div>
+<?php endif; ?>
+<?php if (Application::$app->session->getFlash('specialization-error')): ?>
+    <div class="alert alert-error">
+        <?php echo Application::$app->session->getFlash('specialization-error') ?>
+    </div>
+<?php endif; ?>
 <!-- ======================= Cards ================== -->
 <div class="cardBox">
     <!-- Total Requests Card -->
