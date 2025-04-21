@@ -158,4 +158,13 @@ class Admin extends DbModel
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    //function to fetch all the service centers 
+    public function fetchServiceCenters()
+    {
+        $sql = "SELECT * FROM service_center";
+        $stmt = self::prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
 }
