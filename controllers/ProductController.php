@@ -76,15 +76,6 @@ class ProductController extends Controller
     }
 
 
-    public function index()
-    {
-        $productModels = (new Product)->getAllProducts(); // Fetch all products from the database
-        $this->setLayout('auth'); // Set layout if needed
-        return $this->render('/service-centre/market-place-home', [
-            'products' => $productModels // Pass products to the view
-        ]);
-    }
-
     public function viewMarketplace()
     {
         $productModels = (new Product)->getAllProducts(); // Fetch all products from the database
@@ -171,7 +162,6 @@ class ProductController extends Controller
     //     }
     // }
 
-    
 
 }
 
