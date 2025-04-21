@@ -78,6 +78,8 @@ $app->router->get('/get-origin-destination', [TechnicianController::class, 'getO
 $app->router->post('/get-route', [TechnicianController::class, 'getRoute']);
 $app->router->post('/store-advance-payment', [TechnicianController::class, 'storeAdvancePayment']);
 $app->router->post('/mark-request-viewed', [TechnicianController::class, 'markRequestViewed']);
+$app->router->get('/technician-active-contracts', [TechnicianController::class, 'technicianActiveContracts']);
+$app->router->get('/technician-finished-contracts', [TechnicianController::class, 'technicianFinishedContracts']);
 
 /* Routes related to the Post */
 $app->router->get('/technician-create-post', [TechnicianController::class, 'technicianCreatePost']);
@@ -166,6 +168,8 @@ $app->router->post('/delete-customer-payment-method/{id}', [CustomerController::
 $app->router->get('/customer-advance-payments', [CustomerController::class, 'customerAdvancePayments']);
 $app->router->post('/reject-advance-payment/{id}', [CustomerController::class, 'rejectAdvPaymentUsingReqId']);
 $app->router->get('/get-service-center-directions/{id}', [CustomerController::class, 'getServiceCenterDirections']);
+$app->router->get('/customer-active-contracts', [CustomerController::class, 'customerActiveContracts']);
+$app->router->get('/customer-finished-contracts', [CustomerController::class, 'customerFinishedContracts']);
 
 $app->router->get('/get-appointments', [AppoinmentController::class, 'loadAppointmentDetails']);
 

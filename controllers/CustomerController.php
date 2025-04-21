@@ -530,5 +530,18 @@ class CustomerController extends Controller
 
     }
 
+    public function customerActiveContracts()
+    {
+        $this->setLayout('auth');
+        return $this->render('/customer/customer-active-contracts');
+
+    }
+
+    public function customerFinishedContracts()
+    {
+        $this->setLayout('auth');
+        return $this->render('/customer/customer-finished-contracts');
+
+    }
 
 }

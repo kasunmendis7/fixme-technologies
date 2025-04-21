@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\models\CusTechAdvPayment;
+use app\models\CusTechContract;
 use app\models\CusTechReq;
 use app\models\Customer;
 use app\models\ServiceCenter;
@@ -172,6 +173,8 @@ class SiteController extends Controller
                 // Payment successful, update the database
                 $paymentModel = new CusTechAdvPayment();
                 $success = $paymentModel->updatePaymentStatus($order_id);
+                $cusTechContract = new CusTechContract();
+                $cusTechContract->createCusTechContractUsingReqId($order_id);
 
                 if ($success) {
                     error_log("Payment record updated successfully: OrderID=" . $order_id);
