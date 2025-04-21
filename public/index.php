@@ -80,6 +80,9 @@ $app->router->post('/store-advance-payment', [TechnicianController::class, 'stor
 $app->router->post('/mark-request-viewed', [TechnicianController::class, 'markRequestViewed']);
 $app->router->get('/technician-active-contracts', [TechnicianController::class, 'technicianActiveContracts']);
 $app->router->get('/technician-finished-contracts', [TechnicianController::class, 'technicianFinishedContracts']);
+$app->router->post('/technician-contract-verify-start-pin', [TechnicianController::class, 'verifyStartPin']);
+$app->router->get('/technician-active-contract-details/{id}', [TechnicianController::class, 'technicianActiveContractDetails']);
+$app->router->post('/technician-finish-contract', [TechnicianController::class, 'technicianFinishContract']);
 
 /* Routes related to the Post */
 $app->router->get('/technician-create-post', [TechnicianController::class, 'technicianCreatePost']);
@@ -170,6 +173,8 @@ $app->router->post('/reject-advance-payment/{id}', [CustomerController::class, '
 $app->router->get('/get-service-center-directions/{id}', [CustomerController::class, 'getServiceCenterDirections']);
 $app->router->get('/customer-active-contracts', [CustomerController::class, 'customerActiveContracts']);
 $app->router->get('/customer-finished-contracts', [CustomerController::class, 'customerFinishedContracts']);
+$app->router->get('/customer-active-contract-details/{id}', [CustomerController::class, 'customerActiveContractDetails']);
+$app->router->get('/customer-finish-contract/{id}', [CustomerController::class, 'customerFinishContract']);
 
 $app->router->get('/get-appointments', [AppoinmentController::class, 'loadAppointmentDetails']);
 
