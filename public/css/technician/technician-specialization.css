@@ -18,39 +18,36 @@
 }
 
 body {
-    min-height: 100vh;
-    overflow-x: hidden;
-}
-
-a {
-    text-decoration: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh; /* 100% of the viewport height */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 .container {
-    position: relative;
-    width: 100%;
+    position: relative; /* Relative to its normal position */
+    width: 100%; /* Full width */
 }
 
 /* =============== Navigation ================ */
 .navigation {
-    position: fixed;
-    width: 300px;
-    height: 100%;
-    background: var(--blue);
-    border-left: 10px solid var(--blue);
-    transition: 0.5s;
-    overflow: hidden;
+    position: fixed; /* Fixed position */
+    width: 300px; /* Fixed width */
+    height: 100%; /* Full height */
+    background: var(--blue); /* Background color */
+    border-left: 10px solid var(--blue); /* Left border */
+    transition: 0.5s; /* Transition effect */
+    overflow: hidden; /* Hide overflow */
 }
 
 .navigation.active {
-    width: 80px;
+    width: 80px; /* Reduced width */
 }
 
 .navigation ul {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+    position: absolute; /* Absolute position */
+    top: 0; /* Top position */
+    left: 0; /* Left position */
+    width: 100%; /* Full width */
 }
 
 .navigation ul li {
@@ -66,7 +63,6 @@ a {
     background-color: var(--white);
 }
 
-/* hiiii*/
 .navigation ul li:nth-child(1) {
     margin-bottom: 40px;
     /*pointer-events: none;*/
@@ -80,7 +76,6 @@ a {
 
 .navigation ul li a {
     position: relative;
-    display: block;
     width: 100%;
     display: flex;
     text-decoration: none;
@@ -256,13 +251,6 @@ a {
     object-fit: cover;
 }
 
-.user-name {
-    position: relative;
-    padding: 0 10px;
-    color: var(--white);
-    font-size: 0.9rem;
-}
-
 /* ======================= Cards ====================== */
 .cardBox {
     position: relative;
@@ -324,7 +312,7 @@ a {
     /* margin-top: 10px; */
 }
 
-.details .recentRequests {
+.details .recentOrders {
     position: relative;
     /*display: grid;*/
     min-height: 500px;
@@ -365,38 +353,38 @@ a {
     font-weight: 600;
 }
 
-.details .recentRequests table tr {
+.details .recentOrders table tr {
     color: var(--black1);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.details .recentRequests table tr:last-child {
+.details .recentOrders table tr:last-child {
     border-bottom: none;
 }
 
-.details .recentRequests table tbody tr:hover {
+.details .recentOrders table tbody tr:hover {
     background: var(--blue);
     color: var(--white);
 }
 
-.details .recentRequests table tr td {
+.details .recentOrders table tr td {
     padding: 15px;
 }
 
-.details .recentRequests table tr td:last-child {
+.details .recentOrders table tr td:last-child {
     text-align: end;
 }
 
-.details .recentRequests table tr td:nth-child(2) {
+.details .recentOrders table tr td:nth-child(2) {
     text-align: end;
 }
 
-.details .recentRequests table tr td:nth-child(3) {
+.details .recentOrders table tr td:nth-child(3) {
     text-align: center;
 }
 
 .status.completed {
-    padding: .5rem 1rem;
+    padding: 2px 4px;
     background: #8de02c;
     color: var(--white);
     border-radius: 4px;
@@ -431,7 +419,7 @@ a {
     font-weight: 500;
 }
 
-.recentTechnicians {
+.recentCustomers {
     position: relative;
     min-height: 500px;
     padding: 20px;
@@ -444,7 +432,7 @@ a {
     margin-bottom: 20px;
 }
 
-.recentTechnicians .imgBx {
+.recentCustomers .imgBx {
     position: relative;
     width: 40px;
     height: 40px;
@@ -452,7 +440,7 @@ a {
     overflow: hidden;
 }
 
-.recentTechnicians .imgBx img {
+.recentCustomers .imgBx img {
     position: absolute;
     top: 0;
     left: 0;
@@ -461,45 +449,28 @@ a {
     object-fit: cover;
 }
 
-.recentTechnicians table tr td {
+.recentCustomers table tr td {
     padding: 12px 10px;
 }
 
-.recentTechnicians table tr td h4 {
+.recentCustomers table tr td h4 {
     font-size: 16px;
     font-weight: 500;
     line-height: 1.2rem;
 }
 
-.recentTechnicians table tr td h4 span {
+.recentCustomers table tr td h4 span {
     font-size: 14px;
     color: var(--black2);
 }
 
-.recentTechnicians table tr:hover {
+.recentCustomers table tr:hover {
     background: var(--blue);
     color: var(--white);
 }
 
-.recentTechnicians table tr:hover td h4 span {
+.recentCustomers table tr:hover td h4 span {
     color: var(--white);
-}
-
-.alert {
-    position: relative;
-    padding: 1rem 1.25rem;
-    border: 1px solid transparent;
-    border-radius: 0.25rem;
-}
-
-.alert-success {
-    color: #155724;
-    background-color: #d4edda;
-    border-color: #c3e6cb;
-}
-
-.wrapper {
-    margin: 1rem;
 }
 
 /* ====================== Responsive Design ========================== */
@@ -532,7 +503,7 @@ a {
         grid-template-columns: 1fr;
     }
 
-    .recentRequests {
+    .recentOrders {
         overflow-x: auto;
     }
 
@@ -586,7 +557,7 @@ a {
 }
 
 .cancel-btn {
-    background-color: #f00;
+    background-color: #0d6efd;
     border: none;
     border-radius: 1rem;
     color: #FFFFFF;
@@ -596,26 +567,13 @@ a {
 
 .cancel-btn:hover {
     cursor: pointer;
-    background-color: #ff3737;
+    background-color: rgba(13, 110, 253, 0.84);
 }
 
 .user-account {
     display: flex;
     align-items: center;
     gap: 10px;
-}
-
-.advance-payment-btn {
-    background-color: #0dfd35;
-    border: none;
-    border-radius: 1rem;
-    color: #FFFFFF;
-    padding: .5rem 1rem;
-}
-
-.advance-payment-btn:hover {
-    cursor: pointer;
-    background-color: rgba(17, 205, 44, 0.84);
 }
 
 .payment-status {
@@ -634,24 +592,97 @@ a {
     padding: .5rem 1rem;
 }
 
-.pay-now-btn {
-    padding: 8px 15px;
-    background-color: #4caf50;
-    color: white;
+/* technician-specialization */
+
+form {
+    background: #ffffff;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+}
+
+fieldset {
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+legend {
+    font-weight: bold;
+    color: #34495e;
+    padding: 0 0.5rem;
+    font-size: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.6rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    margin-right: 0.6rem;
+    transform: scale(1.1);
+}
+
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #111577;
+    color: #fff;
+    font-size: 1.1rem;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 0.9rem;
-    font-weight: bold;
-}
-
-.pay-now-btn a {
-    text-decoration: none;
-    color: white;
-}
-
-.pay-now-btn:hover {
-    background-color: #45a049;
     transition: background-color 0.3s ease;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+button[type="submit"]:hover {
+    background-color: #010336;
+    transition: background-color 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+
+    form {
+        padding: 1.5rem;
+    }
+
+    label {
+        font-size: 0.95rem;
+    }
+
+    button[type="submit"] {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    form {
+        padding: 1rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    legend {
+        font-size: 1rem;
+    }
+
+    label {
+        font-size: 0.9rem;
+    }
 }

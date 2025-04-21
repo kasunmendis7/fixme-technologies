@@ -5,6 +5,7 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Controller;
+use app\core\middlewares\AuthMiddleware;
 use app\core\Request;
 use app\core\Response;
 use app\models\Customer;
@@ -14,15 +15,15 @@ use app\models\Technician;
 use app\models\TechnicianRequest;
 use app\models\Chat;
 use app\models\TechnicianPaymentMethod;
+use app\models\TechSpec;
 
 class TechnicianController extends Controller
 {
-
-    public function technicianLanding()
+    public function __construct()
     {
-        $this->setLayout('auth');
-        return $this->render('/technician/technician-landing');
+        $this->registerMiddleware(new AuthMiddleware());
     }
+
 
     public function technicianHome()
     {
@@ -32,8 +33,14 @@ class TechnicianController extends Controller
 
     public function technicianDashboard()
     {
-        $this->setLayout('auth');
-        return $this->render('/technician/technician-dashboard');
+        $techSpecModel = new TechSpec();
+        $hasUpdatedSpecs = $techSpecModel->checkTechnicianSpecs(Application::$app->session->get('technician'));
+        if ($hasUpdatedSpecs['total_specs'] == 0) {
+            Application::$app->response->redirect('/technician-specialization');
+        } else {
+            $this->setLayout('auth');
+            return $this->render('/technician/technician-dashboard');
+        }
     }
 
     public function technicianMap()
@@ -295,9 +302,7 @@ class TechnicianController extends Controller
         exit;
     }
 
-    /**
-     * Get all bank accounts for the logged-in technician
-     */
+
     public function getTechnicianPaymentMethods()
     {
         try {
@@ -315,11 +320,7 @@ class TechnicianController extends Controller
         }
     }
 
-    /**
-     * Delete a specific bank account
-     *
-     * @param array $id Bank account ID
-     */
+
     public function deleteTechnicianPaymentMethod($id)
     {
         try {
@@ -445,5 +446,37 @@ class TechnicianController extends Controller
         }
 
     }
+
+    public function technicianSpecialization()
+    {
+        $loggedInTechnicianId = Application::$app->session->get('technician');
+        $technicianSpecCatModel = new TechSpec();
+        $specializations = $technicianSpecCatModel->fetchTechnicianSpecialization();
+
+        $this->setLayout('auth');
+        return $this->render('/technician/technician-specialization', [
+            'specializations' => $specializations,
+            'technicianId' => $loggedInTechnicianId
+        ]);
+    }
+
+    public function updateSpecialization(Request $request, Response $response)
+    {
+        $body = $request->getBody();
+
+        // Assuming form sends 'tech_id' and an array 'specializations[]' (checkbox values)
+        $model = new TechSpec();
+        $model->tech_id = Application::$app->session->get('technician');
+        $model->tech_spec_cat_ids = $_POST['specializations'] ?? [];
+
+        if ($model->saveMultiple()) {
+            Application::$app->session->setFlash('specialization-updated', 'Specializations saved successfully!');
+            $response->redirect('/technician-dashboard');
+        } else {
+            Application::$app->session->setFlash('specialization-error', 'Something went wrong.');
+            $response->redirect('/technician-specialization');
+        }
+    }
+
 }
 

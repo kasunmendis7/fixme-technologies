@@ -1,7 +1,7 @@
 /* Section title */
 .appointments-section h2 {
     text-align: center;
-    color: #2f3640;
+    color: #010336;
     margin-bottom: 20px;
     font-size: 28px;
     font-weight: bold;
@@ -21,7 +21,7 @@
 
 /* Table head */
 .appointments-table thead {
-    background-color: #2f3640;
+    background-color: #010336;
     color: #ffffff;
 }
 
@@ -55,12 +55,12 @@
 
 .appointments-table select:focus {
     outline: none;
-    border-color: #2f3640;
+    border-color: #010336;
 }
 
 /* Button styling */
 .appointments-table button {
-    background-color: #2f3640;
+    background-color: #010336;
     color: #fff;
     border: none;
     padding: 8px 14px;
@@ -71,7 +71,7 @@
 }
 
 .appointments-table button:hover {
-    background-color: #4b4f57;
+    background-color: #010336;
 }
 
 /* Responsive word wrapping */

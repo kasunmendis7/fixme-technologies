@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Controller;
+use app\core\middlewares\AuthMiddleware;
 use app\core\Request;
 use app\models\Admin;
 use app\models\Customer;
@@ -12,6 +13,11 @@ use app\models\Technician;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->registerMiddleware(new AuthMiddleware());
+    }
+
     public function adminDashboard()
     {
         $this->setLayout('auth');
@@ -151,6 +157,27 @@ class AdminController extends Controller
         // Render the all the customer in the database
         $this->setLayout('auth');
         return $this->render('/admin/technicians', ['technicians' => $technicians]);
+
+    }
+
+    public function serviceCentre()
+    {
+        // Fetch all service centre records
+        $serviceCentres = Admin::findAllServiceCentres();
+        // Render the all the customer in the database
+        $this->setLayout('auth');
+        return $this->render('/admin/service-centers', ['serviceCentres' => $serviceCentres]);
+
+    }
+
+    public function technicianBankAccounts()
+    {
+        // Fetch all technicians bank account records
+        $admin = new Admin();
+        $bankAccounts = $admin->fetchTechnicianBankAccounts();
+        // Render the all the customer in the database
+        $this->setLayout('auth');
+        return $this->render('/admin/technician-bank-accounts', ['bankAccounts' => $bankAccounts]);
 
     }
 

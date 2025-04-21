@@ -18,35 +18,35 @@
 }
 
 body {
-    min-height: 100vh;
-    overflow-x: hidden;
+    min-height: 100vh; /* 100% of the viewport height */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 .container {
-    position: relative;
-    width: 100%;
+    position: relative; /* Relative to its normal position */
+    width: 100%; /* Full width */
 }
 
 /* =============== Navigation ================ */
 .navigation {
-    position: fixed;
-    width: 300px;
-    height: 100%;
-    background: var(--blue);
-    border-left: 10px solid var(--blue);
-    transition: 0.5s;
-    overflow: hidden;
+    position: fixed; /* Fixed position */
+    width: 300px; /* Fixed width */
+    height: 100%; /* Full height */
+    background: var(--blue); /* Background color */
+    border-left: 10px solid var(--blue); /* Left border */
+    transition: 0.5s; /* Transition effect */
+    overflow: hidden; /* Hide overflow */
 }
 
 .navigation.active {
-    width: 80px;
+    width: 80px; /* Reduced width */
 }
 
 .navigation ul {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+    position: absolute; /* Absolute position */
+    top: 0; /* Top position */
+    left: 0; /* Left position */
+    width: 100%; /* Full width */
 }
 
 .navigation ul li {
@@ -64,7 +64,13 @@ body {
 
 .navigation ul li:nth-child(1) {
     margin-bottom: 40px;
-    pointer-events: none;
+    /*pointer-events: none;*/
+}
+
+.navigation ul li:nth-child(1) a:hover {
+    border-radius: 0;
+    background-color: var(--blue);
+    color: #d1d0d0;
 }
 
 .navigation ul li a {
@@ -118,6 +124,20 @@ body {
     pointer-events: none;
 }
 
+.navigation ul li:nth-child(1):hover a::before,
+.navigation ul li.hovered a::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: -50px;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 35px 35px 0 10px var(--blue);
+    pointer-events: none;
+}
+
 .navigation ul li:hover a::after,
 .navigation ul li.hovered a::after {
     content: "";
@@ -129,6 +149,20 @@ body {
     background-color: transparent;
     border-radius: 50%;
     box-shadow: 35px -35px 0 10px var(--white);
+    pointer-events: none;
+}
+
+.navigation ul li:nth-child(1):hover a::after,
+.navigation ul li.hovered a::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -50px;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 35px -35px 0 10px var(--blue);
     pointer-events: none;
 }
 
