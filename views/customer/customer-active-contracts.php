@@ -2,6 +2,10 @@
 
 use app\core\Application;
 
+/**
+ * @var $activeContracts
+ */
+
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +19,8 @@ use app\core\Application;
     <title>Customer Active Contracts</title>
     <link rel="stylesheet" href="/css/customer/customer-dashboard.css">
     <link rel="stylesheet" href="/css/customer/overlay.css">
-    <link rel="stylesheet" href="/css/customer/flash-messages.css">
+    <link rel="stylesheet" href="/css/customer/customer-active-contracts.css"
+    ">
 </head>
 
 <body>
@@ -24,6 +29,46 @@ include_once 'components/sidebar.php';
 include_once 'components/header.php';
 ?>
 
+<div class="details">
+    <div class="activeContracts">
+        <div class="cardHeader">
+            <h2 class="heading">Active Contracts</h2>
+        </div>
+
+        <table class="modern-table active-contracts-table">
+            <thead>
+            <tr>
+                <th>Contract ID</th>
+                <th>Technician Image</th>
+                <th>Technician Name</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php if (!empty($activeContracts)): ?>
+                <?php foreach ($activeContracts as $contract): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($contract['contract_id']) ?></td>
+                        <td>
+                            <img src="<?= htmlspecialchars($contract['profile_picture']) ?>" alt="Techinician Image"
+                                 class="customer-image"/>
+                        </td>
+                        <td><?= htmlspecialchars($contract['technician_name']) ?></td>
+                        <td>
+                            <a href="/customer-active-contract-details/<?= $contract['contract_id'] ?>"
+                               class="open-contract-btn">Open Contract</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="4" style="text-align: center;">No Active Contracts</td>
+                </tr>
+            <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 <!-- Overlay for the confirmation message -->
 <div id="signOutOverlay" class="overlay">

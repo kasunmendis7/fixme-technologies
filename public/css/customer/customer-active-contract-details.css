@@ -1,0 +1,179 @@
+/* Overall Page Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.contract-page {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contract-header {
+    text-align: center;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #eee;
+}
+
+.contract-header h2 {
+    font-size: 1.8rem;
+    color: #333;
+}
+
+/* Timeline Styles */
+.timeline {
+    position: relative;
+    margin: 2rem 0;
+    padding: 2rem 0;
+}
+
+.timeline-step {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+
+.timeline-step:last-child {
+    margin-bottom: 0;
+}
+
+.step-marker {
+    flex: 0 0 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    position: relative;
+    z-index: 2;
+    transition: background-color 0.3s ease;
+}
+
+.step-marker::after {
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    width: 4px;
+    height: calc(100% - 40px);
+    background-color: #ddd;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.timeline-step:last-child .step-marker::after {
+    content: none;
+}
+
+.step-content {
+    flex: 1;
+    padding-left: 1.5rem;
+}
+
+.step-content h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.step-content p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #666;
+}
+
+.step-content strong.pin {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+    color: #333;
+    background-color: #eee;
+    padding: 0.3rem 0.6rem;
+    border-radius: 5px;
+}
+
+/* Active or Completed Steps */
+.timeline-step.active .step-marker,
+.timeline-step.completed .step-marker {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.timeline-step.active .step-content h3,
+.timeline-step.completed .step-content h3 {
+    color: #007bff;
+}
+
+.timeline-step.completed .step-marker::after {
+    background-color: #007bff;
+}
+
+/* Button Styles */
+.action-button {
+    background-color: #28a745;
+    color: #fff;
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.action-button:hover {
+    background-color: #218838;
+}
+
+.finished-text {
+    font-size: 1rem;
+    color: #28a745;
+    font-weight: bold;
+}
+
+/* Styling for the finish PIN display */
+.final-pin-text {
+    font-size: 1.2rem;
+    color: #007bff;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+.success-message {
+    font-size: 1rem;
+    color: #28a745;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .step-content h3 {
+        font-size: 1rem;
+    }
+
+    .timeline-step {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .step-marker {
+        margin-bottom: 1rem;
+    }
+
+    .step-content {
+        padding-left: 0;
+    }
+}
