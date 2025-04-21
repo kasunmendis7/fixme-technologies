@@ -11,7 +11,9 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use app\controllers\AppoinmentController;
 use app\controllers\AuthController;
 use app\controllers\CartController;
+use app\controllers\CheckoutInfoController;
 use app\controllers\NotificationController;
+use app\controllers\PaymentController;
 use app\core\Application;
 use app\controllers\SiteController;
 use app\controllers\CustomerController;
@@ -139,6 +141,7 @@ $app->router->post('/service-center-delete-product', [ProductController::class, 
 $app->router->get('/get-product-by-category', [ProductController::class, 'filterProductByCategory']);
 $app->router->post('/add-to-cart', [CartController::class, 'addToCartController']);
 $app->router->get('/cart-item-count', [CartController::class, 'getCartItemCount']);
+$app->router->post('/checkout-save', [CheckoutInfoController::class, 'saveCheckout']);
 
 /* Customer Routes */
 $app->router->get('/customer-dashboard', [CustomerController::class, 'customerDashboard']);
@@ -279,6 +282,9 @@ $app->router->post('/payhere-payment', [CustomerController::class, 'payHerePayme
 //$app->router->post('/update-payment-status', [CustomerController::class, 'updatePaymentStatus']);
 $app->router->post('/payhere-payment-response', [CustomerController::class, 'paymentResponse']);
 $app->router->get('/get-payhere-details', [CustomerController::class, 'getPayHereDetails']);
+//marketplace payment 
+$app->router->post('/marketplace-payment', [PaymentController::class, 'marketPlacePaymentProcess']);
+// $app->router->get('/check-out-page', [PaymentController::class, 'marketPlacePaymentProcess']);
 
 /* Run the application */
 $app->run();
