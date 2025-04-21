@@ -6,6 +6,7 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\core\middlewares\AuthMiddleware;
+use app\core\middlewares\RoleMiddleware;
 use app\core\Request;
 use app\core\Response;
 use app\models\Customer;
@@ -20,7 +21,7 @@ class TechnicianController extends Controller
 {
     public function __construct()
     {
-        $this->registerMiddleware(new AuthMiddleware());
+        $this->registerMiddleware(new RoleMiddleware(['technician']));
     }
 
     public function technicianLanding()
