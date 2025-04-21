@@ -445,5 +445,19 @@ class TechnicianController extends Controller
         }
 
     }
+
+    public function technicianActiveContracts()
+    {
+        $this->setLayout('auth');
+        return $this->render('/technician/technician-active-contracts');
+
+    }
+
+    public function technicianFinishedContracts()
+    {
+        $this->setLayout('auth');
+        return $this->render('/technician/technician-finished-contracts');
+
+    }
 }
 
