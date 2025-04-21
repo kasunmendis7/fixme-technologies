@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Controller;
+use app\core\middlewares\AuthMiddleware;
 use app\core\Request;
 use app\core\Response;
 use app\models\Chat;
@@ -18,6 +19,10 @@ use app\models\CustomerPaymentMethod;
 
 class CustomerController extends Controller
 {
+    public function __construct()
+    {
+        $this->registerMiddleware(new AuthMiddleware());
+    }
 
     public function customerDashboard()
     {

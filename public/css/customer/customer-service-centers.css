@@ -269,7 +269,6 @@ body {
 /* Hover effect */
 .service-center-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
 }
 
 /* Title styles */

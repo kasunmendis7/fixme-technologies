@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Controller;
+use app\core\middlewares\AuthMiddleware;
 use app\core\Request;
 use app\models\Chat;
 use app\models\Customer;
@@ -11,6 +12,11 @@ use app\models\Technician;
 
 class ChatController extends Controller
 {
+    public function __construct()
+    {
+        $this->registerMiddleware(new AuthMiddleware());
+    }
+
     public function loadCustomerList()
     {
         $tech_id = Application::$app->session->get('technician');

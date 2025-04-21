@@ -4,12 +4,18 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Controller;
+use app\core\middlewares\AuthMiddleware;
 use app\core\Request;
 use app\core\Response;
 use app\models\Product;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->registerMiddleware(new AuthMiddleware());
+    }
+
     public function create(Request $request)
     {
         $productModel = new Product();
@@ -69,15 +75,6 @@ class ProductController extends Controller
         ]);
     }
 
-
-    public function index()
-    {
-        $productModels = (new Product)->getAllProducts(); // Fetch all products from the database
-        $this->setLayout('auth'); // Set layout if needed
-        return $this->render('/service-centre/market-place-home', [
-            'products' => $productModels // Pass products to the view
-        ]);
-    }
 
     public function viewMarketplace()
     {
@@ -165,7 +162,6 @@ class ProductController extends Controller
     //     }
     // }
 
-    
 
 }
 

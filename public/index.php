@@ -58,9 +58,11 @@ $app->router->get('/home-map', [SiteController::class, 'homeMap']);
 $app->router->get('/home-geolocation-technicians', [SiteController::class, 'homeGeolocationTechnicians']);
 $app->router->get('/home-geolocation-service-centres', [SiteController::class, 'homeGeolocationServiceCentres']);
 $app->router->get('/about-us', [SiteController::class, 'aboutUs']);
+$app->router->get('/technician-landing', [SiteController::class, 'technicianLanding']);
+$app->router->get('/service-centre-landing', [SiteController::class, 'serviceCentreLanding']);
+$app->router->get('/market-place-home', [SiteController::class, 'homeMarketplace']);
 
 /* Technician Routes */
-$app->router->get('/technician-landing', [TechnicianController::class, 'technicianLanding']);
 $app->router->get('/technician-home', [TechnicianController::class, 'technicianHome']);
 $app->router->get('/technician-dashboard', [TechnicianController::class, 'technicianDashboard']);
 $app->router->get('/technician-map', [TechnicianController::class, 'technicianMap']);
@@ -103,7 +105,6 @@ $app->router->post('/post-unlike', [PostController::class, 'unlike']);
 
 
 /* Service Center Routes */
-$app->router->get('/service-centre-landing', [ServiceCentreController::class, 'serviceCentreLanding']);
 $app->router->get('/service-centre-dashboard', [AppoinmentController::class, 'loadAppointmentDetailsForServiceCenter']);
 $app->router->get('/service-centre-settings', [ServiceCentreController::class, 'serviceCentreSettings']);
 $app->router->get('/service-centre-profile', [ServiceCentreController::class, 'serviceCentreProfile']);
@@ -132,7 +133,6 @@ $app->router->post('/clear-notifications-for-service-center', [NotificationContr
 /* Routes related to the product (service center) */
 $app->router->get('/service-center-create-product', [ServiceCentreController::class, 'serviceCenterCreateProduct']);
 $app->router->post('/service-center-create-product', [ProductController::class, 'create']);
-$app->router->get('/market-place-home', [ProductController::class, 'index']);
 $app->router->get('/service-center-create-product', [ProductController::class, 'filterProductsById']);
 $app->router->get('/service-center-update-product', [ProductController::class, 'update']);
 $app->router->get('/service-center-update-product', [ServiceCentreController::class, 'update']);
@@ -176,10 +176,12 @@ $app->router->get('/get-appointments', [AppoinmentController::class, 'loadAppoin
 $app->router->get('/admin-dashboard', [AdminController::class, 'adminDashboard']);
 $app->router->get('/customers', [AdminController::class, 'customers']);
 $app->router->get('/technicians', [AdminController::class, 'technicians']);
+$app->router->get('/service-centers', [AdminController::class, 'serviceCentre']);
 $app->router->post('/admin/delete-technician', [AdminController::class, 'deleteTechnician']);
 $app->router->get('/admin-settings', [AdminController::class, 'adminSettings']);
 $app->router->get('/admin-profile', [AdminController::class, 'adminProfile']);
 $app->router->post('/update-admin-profile', [AdminController::class, 'updateAdminProfile']);
+$app->router->get('/technician-bank-accounts', [AdminController::class, 'technicianBankAccounts']);
 
 /* Admin Routes */
 $app->router->get('/admin-services', [AdminController::class, 'manageServices']);
@@ -285,6 +287,10 @@ $app->router->get('/get-payhere-details', [CustomerController::class, 'getPayHer
 //marketplace payment 
 $app->router->post('/marketplace-payment', [PaymentController::class, 'marketPlacePaymentProcess']);
 // $app->router->get('/check-out-page', [PaymentController::class, 'marketPlacePaymentProcess']);
+
+/* Routes related to updating technician specializations */
+$app->router->get('/technician-specialization', [TechnicianController::class, 'technicianSpecialization']);
+$app->router->post('/technician-update-specialization', [TechnicianController::class, 'updateSpecialization']);
 
 /* Run the application */
 $app->run();

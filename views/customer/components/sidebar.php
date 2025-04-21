@@ -3,7 +3,7 @@
     <div class="navigation">
         <ul>
             <li>
-                <a href="#">
+                <a href="/">
                     <span class="icon">
                         <ion-icon name="construct-outline"></ion-icon>
                     </span>

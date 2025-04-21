@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Controller;
+use app\core\middlewares\AuthMiddleware;
 use app\core\Request;
 use app\models\cart;
 use app\models\Customer;
@@ -13,11 +14,11 @@ use app\models\Technician;
 
 class ServiceCentreController extends Controller
 {
-    public function serviceCentreLanding()
+    public function __construct()
     {
-        $this->setLayout('auth');
-        return $this->render('/service-centre-landing');
+        $this->registerMiddleware(new AuthMiddleware());
     }
+
 
     public function serviceCentreDashboard()
     {

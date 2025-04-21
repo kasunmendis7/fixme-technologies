@@ -70,6 +70,22 @@ class TechnicianReview extends DbModel
 
     }
 
+    public function getTopRatedTechnicians()
+    {
+        $sql = "SELECT 
+            t.tech_id,
+            t.fname, t.lname, t.profile_picture,
+            SUM(r.user_rating) AS total_ratings
+        FROM technician t
+        JOIN technician_reviews r ON t.tech_id = r.tech_id
+        GROUP BY t.tech_id
+        ORDER BY total_ratings DESC;
+";
+        $stmt = (new TechnicianReview())->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
     public function primaryKey(): string
     {
         return 'review_id';  // Assuming review_id is your primary key

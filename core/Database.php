@@ -6,6 +6,7 @@ class Database
 {
     public \PDO $pdo;
 
+    /* Initializes a PDO connection to the database using configuration settings */
     public function __construct(array $config)
     {
         $dsn = $config['dsn'] ?? '';
@@ -19,6 +20,7 @@ class Database
         }
     }
 
+    /* Applies new migration files (PHP scripts) that haven’t been executed yet */
     public function applyMigrations()
     {
         $this->createMigrationsTable();
@@ -53,6 +55,7 @@ class Database
         }
     }
 
+    /* Creates the migrations table in the database */
     public function createMigrationsTable()
     {
         $this->pdo->exec("CREATE TABLE IF NOT EXISTS migrations (
@@ -62,6 +65,7 @@ class Database
         ) ENGINE=INNODB;");
     }
 
+    /* Retrieves the list of applied migrations from the database */
     public function getAppliedMigrations()
     {
         $statement = $this->pdo->prepare("SELECT migration FROM migrations");
@@ -70,6 +74,7 @@ class Database
         return $statement->fetchAll(\PDO::FETCH_COLUMN);
     }
 
+    /* Saves the list of applied migrations to the database */
     public function saveMigrations(array $migrations)
     {
         $str = implode(",", array_map(fn($m) => "('$m')", $migrations));
@@ -79,11 +84,13 @@ class Database
         $statement->execute();
     }
 
+    /* This is a helper method to prepare SQL statements using the application's PDO connection */
     public function prepare($sql)
     {
         return $this->pdo->prepare($sql);
     }
 
+    /* Logs migration actions or messages to the console with a timestamp */
     protected function log($message)
     {
         echo '[' . date('Y-m-d H:i:s') . ']-' . $message . PHP_EOL;
