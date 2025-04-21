@@ -61,7 +61,7 @@ include_once 'components/header.php';
             </div>
         </div>
     </a>
-    <a href="/customer-ended-contracts">
+    <a href="/customer-finished-contracts">
         <div class="card">
             <div>
                 <div class="cardName">Finished Contracts</div>
