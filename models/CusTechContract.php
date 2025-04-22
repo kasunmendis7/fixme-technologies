@@ -122,9 +122,9 @@ class CusTechContract extends DbModel
         return $data['finish_pin'];
     }
 
-    public function getCusTechFromContract($contract_id)
+    public function getReqIdFromContract($contract_id)
     {
-        $sql = "SELECT cus_id, tech_id FROM cus_tech_contract WHERE contract_id = :contract_id";
+        $sql = "SELECT req_id FROM cus_tech_contract WHERE contract_id = :contract_id";
         $stmt = self::prepare($sql);
         $stmt->bindValue(':contract_id', $contract_id);
         $stmt->execute();
