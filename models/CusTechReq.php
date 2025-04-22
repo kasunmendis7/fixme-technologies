@@ -177,6 +177,14 @@ class CusTechReq extends DbModel
 
     }
 
+    public function updateStatusToComplete($req_id)
+    {
+        $sql = "UPDATE cus_tech_req SET status = 'completed' WHERE req_id = :req_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':req_id', $req_id);
+        $stmt->execute();
+    }
+
     public function attributes(): array
     {
         return [
