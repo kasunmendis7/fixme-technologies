@@ -56,7 +56,7 @@ include_once 'components/header.php';
                 <form action="#" class="typing-area"
                       autocomplete="off">
                     <input type="text" name="message" class="input-field" placeholder="Type a message here...">
-                    <button type="submit"
+                    <button type="submit" class="send-msg-btn"
                             onclick="sendMessage( <?php echo Application::$app->session->get('customer') ?> )">
                         <i class="fab fa-telegram-plane"></i></button>
                 </form>

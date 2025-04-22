@@ -173,3 +173,34 @@ document.addEventListener("DOMContentLoaded", function () {
 function scrollToSection(id) {
     document.getElementById(id).scrollIntoView({behavior: 'smooth'});
 }
+
+// Add this function to technician-reviews.js
+function checkReviewEligibility() {
+    // Extract technician ID from URL
+    const url = window.location.href;
+    const tech_id = url.split('/').pop();
+
+    var formData = new FormData();
+    formData.append('tech_id', tech_id);
+
+    fetch("http://localhost:8080/check-finished-contract", {
+        method: "POST",
+        body: formData
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.canReview) {
+                document.getElementById('add_review').style.display = 'block';
+            } else {
+                document.getElementById('add_review').style.display = 'none';
+                // Optionally add a message explaining why they can't review
+                const reviewSection = document.querySelector('.write_review_here');
+                reviewSection.insertAdjacentHTML('afterend',
+                    '<p class="review-notice">You can only review technicians after completing a service with them.</p>');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+// Call this function when the page loads, add it right before or after load_rating_data()
+checkReviewEligibility();

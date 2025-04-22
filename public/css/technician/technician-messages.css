@@ -557,7 +557,7 @@ body {
 }
 
 .chat-box {
-    height: 77vh;
+    height: 100vh;
     overflow-y: auto;
     background: #f7f7f7;
     padding: 10px 30px 20px 30px;
@@ -657,9 +657,27 @@ body {
     height: 45px;
 }
 
-.message-area {
+.wrapper .message-area {
     display: flex;
     flex-direction: column;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.wrapper .message-area .send-msg-btn {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+.wrapper .message-area .send-msg-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Responsive Styling */
