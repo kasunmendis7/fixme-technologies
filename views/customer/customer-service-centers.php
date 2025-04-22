@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Find service center</title>
     <link rel="stylesheet" href="/css/customer/customer-dashboard.css">
@@ -16,36 +16,33 @@
 </head>
 
 <body>
-    <?php
+<?php
 
-    use app\core\Application;
-    use app\models\Customer;
+use app\core\Application;
+use app\models\Customer;
 
-    include_once 'components/sidebar.php';
-    include_once 'components/header.php';
-    ?>
+include_once 'components/sidebar.php';
+include_once 'components/header.php';
+?>
 
-    <div class="search-container">
-        <h2 class="search-title">Search Service center</h2>
-        <div class="search-options">
-            <button class="option-button active">Service center Only</button>
-        </div>
-
-        <form class="search-form" onsubmit="event.preventDefault();">
-            <div class="input-group">
-                <label><span><ion-icon name="person"></ion-icon></span> Service center Name</label>
-                <input type="text" id="service-center-search" placeholder="Amila Sugathsiri">
-            </div>
-        </form>
+<div class="search-container">
+    <h2 class="search-title">Search Service center</h2>
+    <div class="search-options">
+        <button class="option-button active">Service center Only</button>
     </div>
 
-    <?php
-    // import service-center-card.php
-    include_once '../service-centre/service-center-card.php';
-    ?>
+    <form class="search-form" onsubmit="event.preventDefault();">
+        <div class="input-group">
+            <label><span><ion-icon name="person"></ion-icon></span> Service center Name</label>
+            <input type="text" id="service-center-search" placeholder="Amila Sugathsiri">
+        </div>
+    </form>
+</div>
 
-    
-
+<!--    --><?php
+//    // import service-center-card.php
+//    include_once '../service-centre/service-center-card.php';
+//    ?>
 
 <div class="cust-tech-container">
     <div class="tech-container row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="technicians-list">
@@ -71,30 +68,29 @@
                         </div>
                     </div>
                 </div>';
+            }
+        } elseif ($serviceCenters['status'] === 'error') {
+            echo '<h2>An Unexpected error occured while fetching Service Centers</h2>';
         }
-    } elseif ($serviceCenters['status'] === 'error') {
-        echo '<h2>An Unexpected error occured while fetching Service Centers</h2>';
-    }
         ?>
     </div>
 </div>
 
 
-
-    <!-- Overlay for the confirmation message -->
-    <div id="signOutOverlay" class="overlay">
-        <div class="overlay-content">
-            <p>Are you sure you want to sign out?</p>
-            <button id="confirmSignOut" class="btn"><a href="/customer-logout"></a> Yes</button>
-            <button id="cancelSignOut" class="btn">No</button>
-        </div>
+<!-- Overlay for the confirmation message -->
+<div id="signOutOverlay" class="overlay">
+    <div class="overlay-content">
+        <p>Are you sure you want to sign out?</p>
+        <button id="confirmSignOut" class="btn"><a href="/customer-logout"></a> Yes</button>
+        <button id="cancelSignOut" class="btn">No</button>
     </div>
-    <!--    Icons-->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="/js/customer/customer-service-centers.js"></script>
-    <script src="/js/customer/customer-home.js"></script>
-    <script src="/js/customer/overlay.js"></script>
+</div>
+<!--    Icons-->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="/js/customer/customer-service-centers.js"></script>
+<script src="/js/customer/customer-home.js"></script>
+<script src="/js/customer/overlay.js"></script>
 </body>
 
 </html>
