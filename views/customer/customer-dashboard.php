@@ -12,7 +12,7 @@ use app\models\CusTechAdvPayment;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Customer Dashboard</title>
     <link rel="stylesheet" href="/css/customer/customer-dashboard.css">
@@ -48,105 +48,104 @@ include_once 'components/header.php';
             <div class="cardName">Advance Payments</div>
         </div>
 
-            <div class="iconBx">
-                <ion-icon name="cog-outline"></ion-icon>
-            </div>
-        </div>
-
-        <div class="card">
-            <div>
-                <div class="numbers">2</div>
-                <div class="cardName">Level</div>
-            </div>
-
-            <div class="iconBx">
-                <ion-icon name="trophy-outline"></ion-icon>
-
-            </div>
-        </div>
-
-        <div class="card">
-            <div>
-                <div class="numbers">20</div>
-                <div class="cardName">Total Reviews</div>
-            </div>
-
-            <div class="iconBx">
-                <ion-icon name="star-outline"></ion-icon>
-            </div>
-        </div>
-
-        <div class="card">
-            <div>
-                <div class="numbers">Rs. 7,842</div>
-                <div class="cardName">Payments</div>
-            </div>
-
-            <div class="iconBx">
-                <ion-icon name="cash-outline"></ion-icon>
-            </div>
+        <div class="iconBx">
+            <ion-icon name="cog-outline"></ion-icon>
         </div>
     </div>
 
-    <!-- appointment lists -->
-    <!-- <?php
-    include_once '../service-centre/appointment-details.php';
-    ?> -->
+    <div class="card">
+        <div>
+            <div class="numbers">2</div>
+            <div class="cardName">Level</div>
+        </div>
 
-    <h2 class="appointment-header">Appointments</h2>
+        <div class="iconBx">
+            <ion-icon name="trophy-outline"></ion-icon>
 
-    <div class="customer-appointments-section">
-
-
-        <?php if (isset($appointments) && is_array($appointments) && count($appointments) > 0): ?>
-            <table class="customer-appointments-table">
-                <thead>
-                    <tr>
-                        <th>Service Center Name</th>
-                        <th>Phone no</th>
-                        <th>Vehicle</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($appointments as $appointment): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($appointment['service_center_name']) ?></td>
-                            <td><?= htmlspecialchars($appointment['service_center_phone_no']) ?></td>
-                            <td><?= htmlspecialchars($appointment['vehicle_details']) ?></td>
-                            <td><?= htmlspecialchars($appointment['appointment_date']) ?></td>
-                            <td><?= htmlspecialchars($appointment['appointment_time']) ?></td>
-                            <td><?= htmlspecialchars($appointment['status']) ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        <?php else: ?>
-            <p>No appointments found.</p>
-        <?php endif; ?>
+        </div>
     </div>
 
+    <div class="card">
+        <div>
+            <div class="numbers">20</div>
+            <div class="cardName">Total Reviews</div>
+        </div>
+
+        <div class="iconBx">
+            <ion-icon name="star-outline"></ion-icon>
+        </div>
+    </div>
+
+    <div class="card">
+        <div>
+            <div class="numbers">Rs. 7,842</div>
+            <div class="cardName">Payments</div>
+        </div>
+
+        <div class="iconBx">
+            <ion-icon name="cash-outline"></ion-icon>
+        </div>
+    </div>
+</div>
+
+<!-- appointment lists -->
+<!--
+include_once '../service-centre/appointment-details.php';
+?> -->
+
+<h2 class="appointment-header">Appointments</h2>
+
+<div class="customer-appointments-section">
 
 
-    <!-- ================ Request Details List ================= -->
-    <div class="details">
-        <div class="recentRequests">
-            <div class="cardHeader">
-                <h2>Recent Requests</h2>
-            </div>
+    <?php if (isset($appointments) && is_array($appointments) && count($appointments) > 0): ?>
+        <table class="customer-appointments-table">
+            <thead>
+            <tr>
+                <th>Service Center Name</th>
+                <th>Phone no</th>
+                <th>Vehicle</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($appointments as $appointment): ?>
+                <tr>
+                    <td><?= htmlspecialchars($appointment['service_center_name']) ?></td>
+                    <td><?= htmlspecialchars($appointment['service_center_phone_no']) ?></td>
+                    <td><?= htmlspecialchars($appointment['vehicle_details']) ?></td>
+                    <td><?= htmlspecialchars($appointment['appointment_date']) ?></td>
+                    <td><?= htmlspecialchars($appointment['appointment_time']) ?></td>
+                    <td><?= htmlspecialchars($appointment['status']) ?></td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php else: ?>
+        <p>No appointments found.</p>
+    <?php endif; ?>
+</div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <td>Name</td>
-                        <td>Price</td>
-                        <td>Payment</td>
-                        <td></td>
-                        <td>Status</td>
-                    </tr>
-                </thead>
+
+<!-- ================ Request Details List ================= -->
+<div class="details">
+    <div class="recentRequests">
+        <div class="cardHeader">
+            <h2>Recent Requests</h2>
+        </div>
+
+        <table>
+            <thead>
+            <tr>
+                <td>Name</td>
+                <td>Price</td>
+                <td>Payment</td>
+                <td></td>
+                <td>Status</td>
+            </tr>
+            </thead>
 
             <tbody>
             <?php
@@ -196,19 +195,19 @@ include_once 'components/header.php';
         </table>
     </div>
 
-        <!-- ================= Recent Technicians ================ -->
-        <div class="recentTechnicians">
-            <div class="cardHeader">
-                <h2>Recent Technicians</h2>
-            </div>
+    <!-- ================= Recent Technicians ================ -->
+    <div class="recentTechnicians">
+        <div class="cardHeader">
+            <h2>Recent Technicians</h2>
+        </div>
 
-            <table>
-                <?php
-                $ctr = new CusTechReq();
-                $recentTechnicians = $ctr->getRecentTechnicians(Application::$app->session->get('customer'));
-                foreach ($recentTechnicians as $recentTechnician) {
-                    echo
-                        '
+        <table>
+            <?php
+            $ctr = new CusTechReq();
+            $recentTechnicians = $ctr->getRecentTechnicians(Application::$app->session->get('customer'));
+            foreach ($recentTechnicians as $recentTechnician) {
+                echo
+                    '
                         <tr>
                             <td>
                                 <div class="imgBx"><img src="' . $recentTechnician['profile_picture'] . '" alt="Technician profile-pic"></div>
@@ -218,27 +217,27 @@ include_once 'components/header.php';
                             </td>
                         </tr>
                     ';
-                }
-                ?>
+            }
+            ?>
 
-            </table>
-        </div>
+        </table>
     </div>
+</div>
 
-    <!-- Overlay for the confirmation message -->
-    <div id="signOutOverlay" class="overlay">
-        <div class="overlay-content">
-            <p>Are you sure you want to sign out?</p>
-            <button id="confirmSignOut" class="btn"><a href="/customer-logout"></a> Yes</button>
-            <button id="cancelSignOut" class="btn">No</button>
-        </div>
+<!-- Overlay for the confirmation message -->
+<div id="signOutOverlay" class="overlay">
+    <div class="overlay-content">
+        <p>Are you sure you want to sign out?</p>
+        <button id="confirmSignOut" class="btn"><a href="/customer-logout"></a> Yes</button>
+        <button id="cancelSignOut" class="btn">No</button>
     </div>
-    <!--    Icons-->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="/js/customer/customer-dashboard.js"></script>
-    <script src="/js/customer/customer-home.js"></script>
-    <script src="/js/customer/overlay.js"></script>
+</div>
+<!--    Icons-->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="/js/customer/customer-dashboard.js"></script>
+<script src="/js/customer/customer-home.js"></script>
+<script src="/js/customer/overlay.js"></script>
 </body>
 
 </html>

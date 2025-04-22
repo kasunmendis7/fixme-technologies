@@ -15,6 +15,7 @@ use app\models\CusTechContract;
 use app\models\Customer;
 use app\models\Post;
 use app\models\ServiceCenter;
+use app\models\ServiceCenterReview;
 use app\models\Technician;
 use app\models\CusTechReq;
 use app\models\CustomerPaymentMethod;
@@ -574,6 +575,27 @@ class CustomerController extends Controller
 
         $this->setLayout('auth');
         return $this->render('/customer/customer-active-contract-details', ['contract' => $contract_det]);
+    }
+
+    public function viewTechnicianProfile($id)
+    {
+        // echo json_encode($id);
+        // $id is an array, we need only the first element of that array
+        $technician = (new Technician())->findById(intval($id[0]));
+        $this->setLayout('auth');
+        if (!$technician) {
+            return $this->render('_404');
+        }
+        // show($technician['fname']);
+        $postModel = new Post();
+        $posts = $postModel->getPostsByTechnicianId(intval($id[0]));
+
+        $reviewModel = new ServiceCenterReview();
+
+        return $this->render('/customer/technician-profile', [
+            'technician' => $technician,
+            'posts' => $posts
+        ]);
     }
 
 }
