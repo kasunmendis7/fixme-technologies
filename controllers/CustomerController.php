@@ -543,8 +543,10 @@ class CustomerController extends Controller
 
     public function customerFinishedContracts()
     {
+        $customerFinContracts = (new CusTechContract())->getFinishedContractsUsingCusId();
+
         $this->setLayout('auth');
-        return $this->render('/customer/customer-finished-contracts');
+        return $this->render('/customer/customer-finished-contracts', ['finishedContracts' => $customerFinContracts]);
 
     }
 
@@ -575,6 +577,50 @@ class CustomerController extends Controller
 
         $this->setLayout('auth');
         return $this->render('/customer/customer-active-contract-details', ['contract' => $contract_det]);
+    }
+
+    public function customerFinishedContractDetails($contract_id)
+    {
+        $contract_id = intval($contract_id[0]);
+        $contractModel = new CusTechContract();
+        $cusTech = $contractModel->getCusTechDet($contract_id);
+        $cus_id = $cusTech['cus_id'];
+        $tech_id = $cusTech['tech_id'];
+        $customer = (new Customer())->findById($cus_id);
+        $technician = (new Technician())->findById($tech_id);
+        $contractDet = $contractModel->findByid($contract_id);
+
+        $customer_name = $customer['fname'] . ' ' . $customer['lname'];
+        $technician_name = $technician['fname'] . ' ' . $technician['lname'];
+        $customer_email = $customer['email'];
+        $technician_email = $technician['email'];
+        $customer_phone = $customer['phone_no'];
+        $technician_phone = $technician['phone_no'];
+        $profile_picture = $technician['profile_picture'];
+        $start_time = $contractDet['start_time'];
+        $end_time = $contractDet['end_time'];
+        $service_charge = '20%';
+        $additional_cost = '0.00';
+        $total_cost = '200.00';
+
+        $contract = [
+            'customer_name' => $customer_name,
+            'customer_email' => $customer_email,
+            'customer_phone' => $customer_phone,
+            'technician_name' => $technician_name,
+            'technician_email' => $technician_email,
+            'technician_phone' => $technician_phone,
+            'profile_picture' => $profile_picture,
+            'start_time' => $start_time,
+            'end_time' => $end_time,
+            'contract_id' => $contract_id,
+            'service_charge' => $service_charge,
+            'additional_costs' => $additional_cost,
+            'total_cost' => $total_cost,
+        ];
+
+        $this->setLayout('auth');
+        return $this->render('/customer/customer-finished-contract-details', ['contract' => $contract]);
     }
 
     public function viewTechnicianProfile($id)
