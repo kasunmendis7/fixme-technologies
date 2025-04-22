@@ -446,8 +446,10 @@ class TechnicianController extends Controller
 
     public function technicianFinishedContracts()
     {
+        $technicianFinContracts = (new CusTechContract())->getFinishedContractsUsingTechId();
+
         $this->setLayout('auth');
-        return $this->render('/technician/technician-finished-contracts');
+        return $this->render('/technician/technician-finished-contracts', ['finishedContracts' => $technicianFinContracts]);
 
     }
 
