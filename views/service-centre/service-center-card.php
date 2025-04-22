@@ -1,3 +1,7 @@
+<?php
+/** @var $serviceCenter */
+?>
+
 <div class="col service-center-card" data-name="<?= strtolower($serviceCenter['name']) ?>">
     <div class="card">
         <div class="card-body">

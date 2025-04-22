@@ -175,6 +175,7 @@ $app->router->get('/customer-active-contracts', [CustomerController::class, 'cus
 $app->router->get('/customer-finished-contracts', [CustomerController::class, 'customerFinishedContracts']);
 $app->router->get('/customer-active-contract-details/{id}', [CustomerController::class, 'customerActiveContractDetails']);
 $app->router->get('/customer-finish-contract/{id}', [CustomerController::class, 'customerFinishContract']);
+$app->router->get('/customer-finished-contract-details/{id}', [CustomerController::class, 'customerFinishedContractDetails']);
 
 $app->router->get('/get-appointments', [AppoinmentController::class, 'loadAppointmentDetails']);
 

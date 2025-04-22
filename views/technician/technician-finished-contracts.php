@@ -1,5 +1,7 @@
 <?php
 
+/** @var $finishedContracts */
+
 ?>
 
 <!DOCTYPE html>
@@ -11,6 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Technician Finished Contracts</title>
     <link rel="stylesheet" href="/css/technician/technician-dashboard.css">
+    <link rel="stylesheet" href="/css/technician/technician-finished-contracts.css">
     <link rel="stylesheet" href="/css/technician/overlay.css">
 
 </head>
@@ -19,6 +22,49 @@
 include_once 'components/sidebar.php';
 include_once 'components/header.php';
 ?>
+
+
+<div class="details">
+    <div class="activeContracts">
+        <div class="cardHeader">
+            <h2 class="heading">Finished Contracts</h2>
+        </div>
+
+        <table class="modern-table active-contracts-table">
+            <thead>
+            <tr>
+                <th>Contract ID</th>
+                <th>Customer Image</th>
+                <th>Customer Name</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php if (!empty($finishedContracts)): ?>
+                <?php foreach ($finishedContracts as $contract): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($contract['contract_id']) ?></td>
+                        <td>
+                            <img src="<?= htmlspecialchars($contract['profile_picture']) ?>" alt="Techinician Image"
+                                 class="customer-image"/>
+                        </td>
+                        <td><?= htmlspecialchars($contract['customer_name']) ?></td>
+                        <td>
+                            <a href="/technician-finished-contract-details/<?= $contract['contract_id'] ?>"
+                               class="open-contract-btn">View Contract</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="4" style="text-align: center;">No Finished Contracts</td>
+                </tr>
+            <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 <!-- Overlay for the confirmation message -->
 <div id="signOutOverlay" class="overlay">
     <div class="overlay-content">
