@@ -9,3 +9,11 @@ function finishContract(contractId) {
     window.location.href = `/customer-finish-contract/${contractId}`;
     window.location.reload();
 }
+
+function viewProfile(technicianId) {
+    /* Redirect to the technician profile page */
+    window.location.href = `/technician-profile/${technicianId}`;
+
+    document.getElementById('ratings-reviews-section').scrollIntoView({behavior: 'smooth'});
+    
+}

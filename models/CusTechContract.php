@@ -122,6 +122,20 @@ class CusTechContract extends DbModel
         return $data['finish_pin'];
     }
 
+    public function hasFinishedContracts($cus_id, $tech_id)
+    {
+        $sql = "SELECT COUNT(*) as count FROM cus_tech_contract 
+                WHERE cus_id = :cus_id AND tech_id = :tech_id AND status = 'finished'";
+
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':cus_id', $cus_id);
+        $stmt->bindValue(':tech_id', $tech_id);
+        $stmt->execute();
+
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $result;
+
+
     public function getReqIdFromContract($contract_id)
     {
         $sql = "SELECT req_id FROM cus_tech_contract WHERE contract_id = :contract_id";
@@ -130,6 +144,7 @@ class CusTechContract extends DbModel
         $stmt->execute();
         $data = $stmt->fetch(\PDO::FETCH_ASSOC);
         return $data;
+
     }
 
     public function tableName(): string
