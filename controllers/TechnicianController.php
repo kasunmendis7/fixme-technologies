@@ -170,26 +170,6 @@ class TechnicianController extends Controller
         return $this->render('/technician/technician-edit-post', ['post' => $post]);
     }
 
-    public function viewTechnicianProfile($id)
-    {
-        // echo json_encode($id);
-        // $id is an array, we need only the first element of that array
-        $technician = (new Technician())->findById(intval($id[0]));
-        $this->setLayout('auth');
-        if (!$technician) {
-            return $this->render('_404');
-        }
-        // show($technician['fname']);
-        $postModel = new Post();
-        $posts = $postModel->getPostsByTechnicianId(intval($id[0]));
-
-        $reviewModel = new ServiceCenterReview();
-
-        return $this->render('/customer/technician-profile', [
-            'technician' => $technician,
-            'posts' => $posts
-        ]);
-    }
 
     public function viewRequests()
     {

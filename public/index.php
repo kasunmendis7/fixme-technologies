@@ -157,7 +157,7 @@ $app->router->get('/customer-map', [CustomerController::class, 'customerMap']);
 $app->router->get('/geolocation-technicians', [CustomerController::class, 'getTechnicianGeocoding']);
 $app->router->get('/geolocation-service-centres', [CustomerController::class, 'getServiceCentresGeocoding']);
 $app->router->get('/customer-location', [CustomerController::class, 'customerLocation']);
-$app->router->get('/technician-profile/{id}', [TechnicianController::class, 'viewTechnicianProfile']);
+$app->router->get('/technician-profile/{id}', [CustomerController::class, 'viewTechnicianProfile']);
 $app->router->post('/cus-tech-req', [CustomerController::class, 'cusTechReq']);
 $app->router->post('/delete-cus-tech-req', [CustomerController::class, 'deleteCusTechReq']);
 $app->router->get('/customer-messages', [CustomerController::class, 'customerMessages']);
