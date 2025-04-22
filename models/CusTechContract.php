@@ -13,12 +13,12 @@ class CusTechContract extends DbModel
         $cusTech = $ctAdvModel->getCusTechUsingReqId($req_id);
         $cus_id = $cusTech['cus_id'];
         $tech_id = $cusTech['tech_id'];
-        $sql = "INSERT INTO cus_tech_contract(cus_id, tech_id) VALUES(:cus_id, :tech_id)";
+        $sql = "INSERT INTO cus_tech_contract(cus_id, tech_id, req_id) VALUES(:cus_id, :tech_id, :req_id)";
         $stmt = self::prepare($sql);
         $stmt->bindValue(':cus_id', $cus_id);
         $stmt->bindValue(':tech_id', $tech_id);
+        $stmt->bindValue(':req_id', $req_id);
         $stmt->execute();
-
     }
 
     /** this is used from the customer point of view to list all active contracts  */
@@ -120,6 +120,16 @@ class CusTechContract extends DbModel
         $stmt->execute();
         $data = $stmt->fetch(\PDO::FETCH_ASSOC);
         return $data['finish_pin'];
+    }
+
+    public function getCusTechFromContract($contract_id)
+    {
+        $sql = "SELECT cus_id, tech_id FROM cus_tech_contract WHERE contract_id = :contract_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':contract_id', $contract_id);
+        $stmt->execute();
+        $data = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $data;
     }
 
     public function tableName(): string
