@@ -10,6 +10,7 @@ use app\core\middlewares\RoleMiddleware;
 use app\core\Request;
 use app\core\Response;
 use app\models\CusTechContract;
+use app\models\CusTechReq;
 use app\models\Customer;
 use app\models\Post;
 use app\models\ServiceCenterReview;
@@ -491,8 +492,11 @@ class TechnicianController extends Controller
         if ($finish_pin === $pin) {
             $contractModal->updateStatusToFinished($contract_id);
             $contractModal->finishContract($contract_id);
+            $req = $contractModal->getReqIdFromContract($contract_id);
+            $req_id = $req['req_id'];
+            (new CusTechReq())->updateStatusToComplete($req_id);
             Application::$app->response->redirect("/technician-active-contract-details/$contract_id");
-            return json_encode(['success' => true, 'message' => 'Contract is now ongoing']);
+            return json_encode(['success' => true, 'message' => 'Contract is now finished']);
         } else {
             Application::$app->response->redirect("/technician-active-contract-details/$contract_id");
             return json_encode(['success' => false, 'message' => 'Invalid pin']);
