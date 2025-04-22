@@ -280,6 +280,7 @@ $app->router->post('/technician-profile/submit-rating', [TechnicianReviewControl
 $app->router->post('/technician-profile/fetch-reviews', [TechnicianReviewController::class, 'fetch']);
 $app->router->post('/service-center-profile/submit-rating', [ServiceCenterReviewController::class, 'submit']);
 $app->router->post('/service-center-profile/fetch-reviews', [ServiceCenterReviewController::class, 'fetch']);
+$app->router->post('/check-finished-contract', [TechnicianReviewController::class, 'checkFinishedContract']);
 
 /* Routes related to the contact us form */
 $app->router->post('/technician-help/send-email', [ContactUsController::class, 'sendEmail']);

@@ -3,7 +3,6 @@
 use app\core\Application;
 
 ?>
-<body>
 <div class="container" id="ratings-reviews-section">
     <div class="card">
         <div class="card-header">Ratings & Reviews
@@ -63,8 +62,11 @@ use app\core\Application;
                     </div>
                 </div>
                 <div class="col-sm-4 text-center">
-                    <h3 class="write_review_here">Write Review Here</h3>
-                    <button type="button" id="add_review" class="btn btn-primary">Review</button>
+                    <h3 class="write_review_here"></h3>
+                    <button type="button" id="add_review" class="btn btn-primary"
+                            style="display: none; margin-left: 8rem;">Write a
+                        Review
+                    </button>
                 </div>
             </div>
         </div>
@@ -100,4 +102,3 @@ use app\core\Application;
 </div>
 
 <script src="/js/customer/technician-reviews.js"></script>
-</body>
