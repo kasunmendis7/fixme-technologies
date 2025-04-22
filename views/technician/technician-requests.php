@@ -79,8 +79,10 @@ include_once 'components/header.php';
 
                             <?php if ($request['status'] == 'InProgress'): ?>
                                 <span><button class="view-request" onclick="viewRequest(<?= $request['cus_id'] ?>)">View Request</button></span>
-                            <?php else: ?>
-                                <span>Request Rejected</span>
+                            <?php elseif ($request['status'] == 'completed'): ?>
+                                <span>Request completed</span>
+                            <?php elseif ($request['status'] == 'Rejected'): ?>
+                                <span>Request rejected</span>
                             <?php endif; ?>
                         <?php endif; ?>
                     </td>

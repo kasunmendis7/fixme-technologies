@@ -24,6 +24,8 @@ class RoleMiddleware extends BaseMiddleware
             $userRole = 'technician';
         } else if (Application::$app->session->get('serviceCenter')) {
             $userRole = 'serviceCenter';
+        } else if (Application::$app->session->get('admin')) {
+            $userRole = 'admin';
         }
         if (!in_array($userRole, $this->roles)) {
             throw new ForbiddenException();
