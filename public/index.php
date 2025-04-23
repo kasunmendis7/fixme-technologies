@@ -82,6 +82,13 @@ $app->router->get('/get-origin-destination', [TechnicianController::class, 'getO
 $app->router->post('/get-route', [TechnicianController::class, 'getRoute']);
 $app->router->post('/store-advance-payment', [TechnicianController::class, 'storeAdvancePayment']);
 $app->router->post('/mark-request-viewed', [TechnicianController::class, 'markRequestViewed']);
+$app->router->get('/technician-active-contracts', [TechnicianController::class, 'technicianActiveContracts']);
+$app->router->get('/technician-finished-contracts', [TechnicianController::class, 'technicianFinishedContracts']);
+$app->router->post('/technician-contract-verify-start-pin', [TechnicianController::class, 'verifyStartPin']);
+$app->router->get('/technician-active-contract-details/{id}', [TechnicianController::class, 'technicianActiveContractDetails']);
+$app->router->post('/technician-finish-contract', [TechnicianController::class, 'technicianFinishContract']);
+$app->router->get('/technician-finished-contract-details/{id}', [TechnicianController::class, 'technicianFinishedContractDetails']);
+$app->router->get('/technician-download-invoice/{id}', [TechnicianController::class, 'downloadTechnicianInvoice']);
 
 /* Routes related to the Post */
 $app->router->get('/technician-create-post', [TechnicianController::class, 'technicianCreatePost']);
@@ -155,7 +162,7 @@ $app->router->get('/customer-map', [CustomerController::class, 'customerMap']);
 $app->router->get('/geolocation-technicians', [CustomerController::class, 'getTechnicianGeocoding']);
 $app->router->get('/geolocation-service-centres', [CustomerController::class, 'getServiceCentresGeocoding']);
 $app->router->get('/customer-location', [CustomerController::class, 'customerLocation']);
-$app->router->get('/technician-profile/{id}', [TechnicianController::class, 'viewTechnicianProfile']);
+$app->router->get('/technician-profile/{id}', [CustomerController::class, 'viewTechnicianProfile']);
 $app->router->post('/cus-tech-req', [CustomerController::class, 'cusTechReq']);
 $app->router->post('/delete-cus-tech-req', [CustomerController::class, 'deleteCusTechReq']);
 $app->router->get('/customer-messages', [CustomerController::class, 'customerMessages']);
@@ -169,6 +176,12 @@ $app->router->post('/delete-customer-payment-method/{id}', [CustomerController::
 $app->router->get('/customer-advance-payments', [CustomerController::class, 'customerAdvancePayments']);
 $app->router->post('/reject-advance-payment/{id}', [CustomerController::class, 'rejectAdvPaymentUsingReqId']);
 $app->router->get('/get-service-center-directions/{id}', [CustomerController::class, 'getServiceCenterDirections']);
+$app->router->get('/customer-active-contracts', [CustomerController::class, 'customerActiveContracts']);
+$app->router->get('/customer-finished-contracts', [CustomerController::class, 'customerFinishedContracts']);
+$app->router->get('/customer-active-contract-details/{id}', [CustomerController::class, 'customerActiveContractDetails']);
+$app->router->get('/customer-finish-contract/{id}', [CustomerController::class, 'customerFinishContract']);
+$app->router->get('/customer-finished-contract-details/{id}', [CustomerController::class, 'customerFinishedContractDetails']);
+$app->router->get('/customer-download-invoice/{id}', [CustomerController::class, 'downloadCustomerInvoice']);
 
 $app->router->get('/get-appointments', [AppoinmentController::class, 'loadAppointmentDetails']);
 
@@ -274,15 +287,16 @@ $app->router->post('/technician-profile/submit-rating', [TechnicianReviewControl
 $app->router->post('/technician-profile/fetch-reviews', [TechnicianReviewController::class, 'fetch']);
 $app->router->post('/service-center-profile/submit-rating', [ServiceCenterReviewController::class, 'submit']);
 $app->router->post('/service-center-profile/fetch-reviews', [ServiceCenterReviewController::class, 'fetch']);
+$app->router->post('/check-finished-contract', [TechnicianReviewController::class, 'checkFinishedContract']);
 
 /* Routes related to the contact us form */
 $app->router->post('/technician-help/send-email', [ContactUsController::class, 'sendEmail']);
 $app->router->post('/service-center-help/send-email', [ContactUsController::class, 'sendEmail']);
 
 /* Routes related to the PayHere Payment gateway */
-$app->router->post('/payhere-payment', [CustomerController::class, 'payHerePaymentProcess']);
+$app->router->post('/payhere-payment', [SiteController::class, 'payHerePaymentProcess']);
 //$app->router->post('/update-payment-status', [CustomerController::class, 'updatePaymentStatus']);
-$app->router->post('/payhere-payment-response', [CustomerController::class, 'paymentResponse']);
+$app->router->post('/payhere-payment-response', [SiteController::class, 'paymentResponse']);
 $app->router->get('/get-payhere-details', [CustomerController::class, 'getPayHereDetails']);
 //marketplace payment 
 $app->router->post('/marketplace-payment', [PaymentController::class, 'marketPlacePaymentProcess']);

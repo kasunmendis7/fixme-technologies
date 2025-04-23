@@ -59,7 +59,7 @@ class PostController extends Controller
     public function index()
     {
         // Fetch all the posts with likes along with the person's data
-        $posts = (new Post)->getAllPostsWithLikes(Application::$app->customer->cus_id);
+        $posts = (new Post)->getAllPostsWithLikes(Application::$app->technician->tech_id);
         // The reference operator(&) modifies the $post array directly during the loop
         foreach ($posts as &$post) {
             // Get all the comments relavent to the post

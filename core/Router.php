@@ -75,10 +75,7 @@ class  Router
             }
             /* If the callback is an array, it means it's a controller action */
             if (is_array($callback)) {
-                /* Create a new controller instance */
-//                Application::$app->controller = new $callback[0]();
-                /* Set the controller as the current controller */
-//                $callback[0] = Application::$app->controller;
+                /** @var \app\core\Controller $controller */
                 $controller = new $callback[0]();
                 Application::$app->controller = $controller;
                 $controller->action = $callback[1];
@@ -106,11 +103,7 @@ class  Router
         }
         /* If the callback is an array, it means it's a controller action */
         if (is_array($callback)) {
-
             /** @var \app\core\Controller $controller */
-//            Application::$app->controller = new $callback[0]();
-//            $callback[0] = Application::$app->controller;
-
             $controller = new $callback[0]();
             Application::$app->controller = $controller;
             $controller->action = $callback[1];

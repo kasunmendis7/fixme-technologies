@@ -2,12 +2,14 @@
 
 namespace app\controllers;
 
+use app\core\Application;
 use app\core\Controller;
 use app\core\middlewares\AuthMiddleware;
 use app\models\TechnicianReview;
 use app\core\Request;
 use app\core\Response;
 use app\models\Technician;
+use app\models\CusTechContract;
 
 class TechnicianReviewController extends Controller
 {
@@ -82,6 +84,24 @@ class TechnicianReviewController extends Controller
             );
 
             echo json_encode($stats);
+        }
+    }
+
+    public function checkFinishedContract(Request $request, Response $response)
+    {
+        if ($request->isPost()) {
+            $tech_id = $request->getBody()['tech_id'] ?? null;
+            $cus_id = Application::$app->session->get('customer');
+
+            if (!$tech_id || !$cus_id) {
+                echo json_encode(['canReview' => false]);
+                return;
+            }
+
+            $result = (new CusTechContract())->hasFinishedContracts($cus_id, $tech_id);
+            $canReview = ($result['count'] > 0);
+
+            echo json_encode(['canReview' => $canReview]);
         }
     }
 }

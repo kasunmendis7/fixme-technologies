@@ -5,23 +5,31 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\core\middlewares\AuthMiddleware;
+use app\core\middlewares\RoleMiddleware;
 use app\core\Request;
 use app\core\Response;
 use app\models\Chat;
 use app\models\Comment;
 use app\models\CusTechAdvPayment;
+use app\models\CusTechContract;
 use app\models\Customer;
 use app\models\Post;
 use app\models\ServiceCenter;
+use app\models\ServiceCenterReview;
 use app\models\Technician;
 use app\models\CusTechReq;
 use app\models\CustomerPaymentMethod;
+use app\models\TechnicianPaymentMethod;
+use app\models\TechnicianReview;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+
 
 class CustomerController extends Controller
 {
     public function __construct()
     {
-        $this->registerMiddleware(new AuthMiddleware());
+        $this->registerMiddleware(new RoleMiddleware(['customer']));
     }
 
     public function customerDashboard()
@@ -64,6 +72,7 @@ class CustomerController extends Controller
 
     public function customerTechnicians()
     {
+
         $this->setLayout('auth');
         return $this->render('/customer/customer-technicians');
     }
@@ -261,14 +270,32 @@ class CustomerController extends Controller
 
     public function customerTransactions()
     {
+        $ctap = new CusTechAdvPayment();
+        $revenue = $ctap->getCustomerTotalPayment(Application::$app->session->get('customer'));
+        $totalPending = $ctap->getCustomerPendingAdvancePayment(Application::$app->session->get('customer'));
+        $transactions = $ctap->getAllCustomerTransactions(Application::$app->session->get('customer'));
+
         $this->setLayout('auth');
-        return $this->render('/customer/customer-transactions');
+        return $this->render('/customer/customer-transactions', [
+            'revenue' => $revenue,
+            'totalPending' => $totalPending,
+            'transactions' => $transactions
+        ]);
     }
 
     public function customerPaymentDetails()
     {
+        $ctap = new CusTechAdvPayment();
+        $revenue = $ctap->getTotalEarning(Application::$app->session->get('technician'));
+        $totalPending = $ctap->getTotalPendingAdvancePayment(Application::$app->session->get('technician'));
+        $transactions = $ctap->getAllTransactions(Application::$app->session->get('technician'));
+
         $this->setLayout('auth');
-        return $this->render('/customer/customer-payment-details');
+        return $this->render('/customer/customer-payment-details', [
+            'revenue' => $revenue,
+            'totalPending' => $totalPending,
+            'transactions' => $transactions
+        ]);
     }
 
     public function customerPaymentMethod()
@@ -529,5 +556,197 @@ class CustomerController extends Controller
 
     }
 
+    public function customerActiveContracts()
+    {
+        $customerActContracts = (new CusTechContract())->getContractsUsingCusId();
+
+        $this->setLayout('auth');
+        return $this->render('/customer/customer-active-contracts', ['activeContracts' => $customerActContracts]);
+
+    }
+
+    public function customerFinishedContracts()
+    {
+        $customerFinContracts = (new CusTechContract())->getFinishedContractsUsingCusId();
+
+        $this->setLayout('auth');
+        return $this->render('/customer/customer-finished-contracts', ['finishedContracts' => $customerFinContracts]);
+
+    }
+
+    public function customerActiveContractDetails($contract_id)
+    {
+        $contract_id = intval($contract_id[0]);
+        $contractModel = new CusTechContract();
+        $start_pin = $contractModel->getStartPin($contract_id);
+        if ($start_pin == null) {
+            $start_pin = $contractModel->generateStartPin($contract_id);
+        }
+        $contract_det = $contractModel->getContractUsingContractId($contract_id);
+
+        $this->setLayout('auth');
+        return $this->render('/customer/customer-active-contract-details', ['contract' => $contract_det]);
+    }
+
+    public function customerFinishContract($contract_id)
+    {
+        $contract_id = intval($contract_id[0]);
+        $contractModel = new CusTechContract();
+        $finish_pin = $contractModel->getFinishPin($contract_id);
+        if ($finish_pin == null) {
+            $finish_pin = $contractModel->generateFinishPin($contract_id);
+        }
+        $contract_det = $contractModel->getContractUsingContractId($contract_id);
+        $contractModel->updateStatusToFinished($contract_id);
+
+        $this->setLayout('auth');
+        return $this->render('/customer/customer-active-contract-details', ['contract' => $contract_det]);
+    }
+
+    public function customerFinishedContractDetails($contract_id)
+    {
+        $contract_id = intval($contract_id[0]);
+        $contractModel = new CusTechContract();
+        $cusTech = $contractModel->getCusTechDet($contract_id);
+        $cus_id = $cusTech['cus_id'];
+        $tech_id = $cusTech['tech_id'];
+        $customer = (new Customer())->findById($cus_id);
+        $technician = (new Technician())->findById($tech_id);
+        $contractDet = $contractModel->findByid($contract_id);
+
+        $customer_name = $customer['fname'] . ' ' . $customer['lname'];
+        $technician_name = $technician['fname'] . ' ' . $technician['lname'];
+        $customer_email = $customer['email'];
+        $technician_email = $technician['email'];
+        $customer_phone = $customer['phone_no'];
+        $technician_phone = $technician['phone_no'];
+        $profile_picture = $technician['profile_picture'];
+        $start_time = $contractDet['start_time'];
+        $end_time = $contractDet['end_time'];
+        $service_charge = '20%';
+        $additional_cost = '0.00';
+        $total_cost = '200.00';
+
+        $contract = [
+            'customer_name' => $customer_name,
+            'customer_email' => $customer_email,
+            'customer_phone' => $customer_phone,
+            'technician_name' => $technician_name,
+            'technician_email' => $technician_email,
+            'technician_phone' => $technician_phone,
+            'profile_picture' => $profile_picture,
+            'start_time' => $start_time,
+            'end_time' => $end_time,
+            'contract_id' => $contract_id,
+            'service_charge' => $service_charge,
+            'additional_costs' => $additional_cost,
+            'total_cost' => $total_cost,
+        ];
+
+        $this->setLayout('auth');
+        return $this->render('/customer/customer-finished-contract-details', ['contract' => $contract]);
+    }
+
+    public function viewTechnicianProfile($id)
+    {
+        // echo json_encode($id);
+        // $id is an array, we need only the first element of that array
+        $technician = (new Technician())->findById(intval($id[0]));
+        $this->setLayout('auth');
+        if (!$technician) {
+            return $this->render('_404');
+        }
+        // show($technician['fname']);
+        $postModel = new Post();
+        $posts = $postModel->getPostsByTechnicianId(intval($id[0]));
+
+        $reviewModel = new ServiceCenterReview();
+
+        return $this->render('/customer/technician-profile', [
+            'technician' => $technician,
+            'posts' => $posts
+        ]);
+    }
+
+    public function downloadCustomerInvoice($contract_id)
+    {
+        $contract_id = intval($contract_id[0]);
+        $contractModel = new CusTechContract();
+        $cusTech = $contractModel->getCusTechDet($contract_id);
+        $cus_id = $cusTech['cus_id'];
+        $tech_id = $cusTech['tech_id'];
+        $customer = (new Customer())->findById($cus_id);
+        $technician = (new Technician())->findById($tech_id);
+        $contractDet = $contractModel->findByid($contract_id);
+        $request_id = $contractDet['req_id'];
+
+        $advancedPaymentModel = new CusTechAdvPayment();
+        $advancePayment = $advancedPaymentModel->getAdvancePayment($request_id);
+
+        $techBankAcc = new TechnicianPaymentMethod();
+        $techBankDetails = $techBankAcc->getTechBankDetails($tech_id);
+
+        $cusPayOptModel = new CustomerPaymentMethod();
+        $cusPayOptDetails = $cusPayOptModel->getCardDetails($cus_id);
+
+        $customer_name = $customer['fname'] . ' ' . $customer['lname'];
+        $technician_name = $technician['fname'] . ' ' . $technician['lname'];
+        $customer_email = $customer['email'];
+        $technician_email = $technician['email'];
+        $customer_phone = $customer['phone_no'];
+        $technician_phone = $technician['phone_no'];
+        $profile_picture = $technician['profile_picture'];
+        $start_time = $contractDet['start_time'];
+        $end_time = $contractDet['end_time'];
+        $customer_payment = $advancePayment['amount'];
+        $service_charge = $advancePayment['amount'] * 0.2;
+        $additional_cost = '0.00';
+        $total_cost = $advancePayment['amount'];
+        $bank_account_num = $techBankDetails['bank_acc_num'] ?: '';
+        $bank_name = $techBankDetails['bank_acc_name'] ?: '';
+        $bank_branch = $techBankDetails['bank_acc_branch'] ?: '';
+        $card_num = $cusPayOptDetails['last_four'] ?: '';
+
+        $contract = [
+            'customer_name' => $customer_name,
+            'customer_email' => $customer_email,
+            'customer_phone' => $customer_phone,
+            'technician_name' => $technician_name,
+            'technician_email' => $technician_email,
+            'technician_phone' => $technician_phone,
+            'profile_picture' => $profile_picture,
+            'start_time' => $start_time,
+            'end_time' => $end_time,
+            'contract_id' => $contract_id,
+            'customer_payment' => $customer_payment,
+            'service_charge' => $service_charge,
+            'additional_costs' => $additional_cost,
+            'total_cost' => $total_cost,
+            'bank_account_num' => $bank_account_num,
+            'bank_name' => $bank_name,
+            'bank_branch' => $bank_branch,
+            'card_num' => $card_num
+        ];
+
+        // Create PDF using dompdf
+        $options = new Options();
+        $dompdf = new Dompdf($options);
+
+        // Get the HTML content from the view
+        ob_start();
+        require_once __DIR__ . '/../views/customer/customer-download-invoice.php';
+        $html = ob_get_clean();
+
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+
+        // Generate filename
+        $filename = "customer-invoice-{$contract_id}.pdf";
+
+        // Stream the file
+        $dompdf->stream($filename, ["Attachment" => true]);
+        exit();
+    }
 
 }

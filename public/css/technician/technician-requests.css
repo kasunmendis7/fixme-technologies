@@ -294,8 +294,8 @@ body {
     text-align: center;
 }
 
-.status .completed {
-    padding: 2px 4px;
+.status.completed {
+    padding: .5rem 1rem;
     background: #8de02c;
     color: var(--white);
     border-radius: 4px;

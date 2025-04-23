@@ -1,0 +1,115 @@
+/* Main Container */
+.invoice-container {
+    font-family: 'Arial', sans-serif;
+    margin: 2rem auto;
+    max-width: 800px;
+    border: 1px solid #ddd;
+    padding: 2rem;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0px 7px 14px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Section */
+.invoice-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.invoice-header h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.invoice-header p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* Invoice Details */
+.invoice-details {
+    margin-bottom: 2rem;
+}
+
+.invoice-section {
+    margin-bottom: 1.5rem;
+}
+
+.invoice-section h2 {
+    font-size: 1.5rem;
+    color: #007bff;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #007bff;
+    display: inline-block;
+}
+
+/* Technician Image */
+.technician-image {
+    margin-top: 0.5rem;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+}
+
+/* Pricing Summary Table */
+.invoice-summary h2 {
+    font-size: 1.5rem;
+    color: #007bff;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #007bff;
+    display: inline-block;
+}
+
+.invoice-summary table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+.invoice-summary th, .invoice-summary td {
+    text-align: left;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+}
+
+.invoice-summary th {
+    background: #007bff;
+    color: #fff;
+    font-weight: bold;
+}
+
+.invoice-summary tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+/* Footer */
+.invoice-footer {
+    text-align: center;
+    border-top: 1px solid #ddd;
+    padding-top: 1.5rem;
+    margin-top: 2rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.download-invoice-btn {
+    background-color: #4285f4;
+    border: none;
+    color: white;
+    padding: 1rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.download-invoice-btn:hover {
+    background-color: #3574b3;
+}

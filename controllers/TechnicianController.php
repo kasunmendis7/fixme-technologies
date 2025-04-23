@@ -6,8 +6,12 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\core\middlewares\AuthMiddleware;
+use app\core\middlewares\RoleMiddleware;
 use app\core\Request;
 use app\core\Response;
+use app\models\CusTechAdvPayment;
+use app\models\CusTechContract;
+use app\models\CusTechReq;
 use app\models\Customer;
 use app\models\Post;
 use app\models\ServiceCenterReview;
@@ -16,14 +20,21 @@ use app\models\TechnicianRequest;
 use app\models\Chat;
 use app\models\TechnicianPaymentMethod;
 use app\models\TechSpec;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class TechnicianController extends Controller
 {
     public function __construct()
     {
-        $this->registerMiddleware(new AuthMiddleware());
+        $this->registerMiddleware(new RoleMiddleware(['technician']));
     }
 
+    public function technicianLanding()
+    {
+        $this->setLayout('auth');
+        return $this->render('/technician/technician-landing');
+    }
 
     public function technicianHome()
     {
@@ -34,9 +45,14 @@ class TechnicianController extends Controller
     public function technicianDashboard()
     {
         $techSpecModel = new TechSpec();
+        $techPaymentMethod = new TechnicianPaymentMethod();
         $hasUpdatedSpecs = $techSpecModel->checkTechnicianSpecs(Application::$app->session->get('technician'));
+        $hasAddedPaymentMethod = $techPaymentMethod->checkTechnicianPaymentMethod(Application::$app->session->get('technician'));
         if ($hasUpdatedSpecs['total_specs'] == 0) {
             Application::$app->response->redirect('/technician-specialization');
+        } elseif ($hasAddedPaymentMethod['count'] == 0) {
+            Application::$app->session->setFlash('add-bank-account', 'Please add a Bank Account to Proceed!');
+            Application::$app->response->redirect('/technician-payment-details');
         } else {
             $this->setLayout('auth');
             return $this->render('/technician/technician-dashboard');
@@ -163,26 +179,6 @@ class TechnicianController extends Controller
         return $this->render('/technician/technician-edit-post', ['post' => $post]);
     }
 
-    public function viewTechnicianProfile($id)
-    {
-        // echo json_encode($id);
-        // $id is an array, we need only the first element of that array
-        $technician = (new Technician())->findById(intval($id[0]));
-        $this->setLayout('auth');
-        if (!$technician) {
-            return $this->render('_404');
-        }
-        // show($technician['fname']);
-        $postModel = new Post();
-        $posts = $postModel->getPostsByTechnicianId(intval($id[0]));
-
-        $reviewModel = new ServiceCenterReview();
-
-        return $this->render('/customer/technician-profile', [
-            'technician' => $technician,
-            'posts' => $posts
-        ]);
-    }
 
     public function viewRequests()
     {
@@ -191,8 +187,19 @@ class TechnicianController extends Controller
             Application::$app->response->redirect('/technician-login');
         }
         $requests = TechnicianRequest::getRequestsByTechnicianId($technicianId);
-        $this->setLayout('auth');
-        return $this->render('/technician/technician-requests', ['requests' => $requests]);
+        $techSpecModel = new TechSpec();
+        $techPaymentMethod = new TechnicianPaymentMethod();
+        $hasUpdatedSpecs = $techSpecModel->checkTechnicianSpecs(Application::$app->session->get('technician'));
+        $hasAddedPaymentMethod = $techPaymentMethod->checkTechnicianPaymentMethod(Application::$app->session->get('technician'));
+        if ($hasUpdatedSpecs['total_specs'] == 0) {
+            Application::$app->response->redirect('/technician-specialization');
+        } elseif ($hasAddedPaymentMethod['count'] == 0) {
+            Application::$app->session->setFlash('add-bank-account', 'Please add a Bank Account to Proceed!');
+            Application::$app->response->redirect('/technician-payment-details');
+        } else {
+            $this->setLayout('auth');
+            return $this->render('/technician/technician-requests', ['requests' => $requests]);
+        }
     }
 
     public function updateRequestStatus($request)
@@ -238,8 +245,17 @@ class TechnicianController extends Controller
 
     public function technicianTransactions()
     {
+        $ctap = new CusTechAdvPayment();
+        $revenue = $ctap->getTotalEarning(Application::$app->session->get('technician'));
+        $totalPending = $ctap->getTotalPendingAdvancePayment(Application::$app->session->get('technician'));
+        $transactions = $ctap->getAllTransactions(Application::$app->session->get('technician'));
+
         $this->setLayout('auth');
-        return $this->render('/technician/technician-transactions');
+        return $this->render('/technician/technician-transactions', [
+            'revenue' => $revenue,
+            'totalPending' => $totalPending,
+            'transactions' => $transactions
+        ]);
     }
 
     public function technicianPaymentDetails()
@@ -447,6 +463,76 @@ class TechnicianController extends Controller
 
     }
 
+    public function technicianActiveContracts()
+    {
+        $technicianActContracts = (new CusTechContract())->getContractsUsingTechId();
+
+        $this->setLayout('auth');
+        return $this->render('/technician/technician-active-contracts', ['activeContracts' => $technicianActContracts]);
+
+    }
+
+    public function technicianFinishedContracts()
+    {
+        $technicianFinContracts = (new CusTechContract())->getFinishedContractsUsingTechId();
+
+        $this->setLayout('auth');
+        return $this->render('/technician/technician-finished-contracts', ['finishedContracts' => $technicianFinContracts]);
+
+    }
+
+    public function verifyStartPin(Request $request)
+    {
+        $body = $request->getBody();
+        $contract_id = $body['contract_id'];
+        $pin = $body['pin'];
+
+        $contractModal = new CusTechContract();
+        $start_pin = $contractModal->getStartPin($contract_id);
+
+        if ($start_pin === $pin) {
+            $contractModal->updateStatusToOngoing($contract_id);
+            Application::$app->response->redirect("/technician-active-contract-details/$contract_id");
+            return json_encode(['success' => true, 'message' => 'Contract is now ongoing']);
+        } else {
+            Application::$app->response->redirect("/technician-active-contract-details/$contract_id");
+            return json_encode(['success' => false, 'message' => 'Invalid pin']);
+        }
+    }
+
+    public function technicianActiveContractDetails($contract_id)
+    {
+        $contract_id = intval($contract_id[0]);
+        $contractModel = new CusTechContract();
+        $contract = $contractModel->getContractUsingContractId($contract_id);
+
+        $this->setLayout('auth');
+        return $this->render('/technician/technician-active-contract-details', ['contract' => $contract]);
+
+    }
+
+    public function technicianFinishContract(Request $request)
+    {
+        $body = $request->getBody();
+        $contract_id = $body['contract_id'];
+        $pin = $body['finish_pin'];
+
+        $contractModal = new CusTechContract();
+        $finish_pin = $contractModal->getFinishPin($contract_id);
+        if ($finish_pin === $pin) {
+            $contractModal->updateStatusToFinished($contract_id);
+            $contractModal->finishContract($contract_id);
+            $req = $contractModal->getReqIdFromContract($contract_id);
+            $req_id = $req['req_id'];
+            (new CusTechReq())->updateStatusToComplete($req_id);
+            Application::$app->response->redirect("/technician-active-contract-details/$contract_id");
+            return json_encode(['success' => true, 'message' => 'Contract is now finished']);
+        } else {
+            Application::$app->response->redirect("/technician-active-contract-details/$contract_id");
+            return json_encode(['success' => false, 'message' => 'Invalid pin']);
+        }
+    }
+
     public function technicianSpecialization()
     {
         $loggedInTechnicianId = Application::$app->session->get('technician');
@@ -469,14 +555,159 @@ class TechnicianController extends Controller
         $model->tech_id = Application::$app->session->get('technician');
         $model->tech_spec_cat_ids = $_POST['specializations'] ?? [];
 
+        $techPaymentMethod = new TechnicianPaymentMethod();
+        $hasAddedPaymentMethod = $techPaymentMethod->checkTechnicianPaymentMethod(Application::$app->session->get('technician'));
+
+
         if ($model->saveMultiple()) {
             Application::$app->session->setFlash('specialization-updated', 'Specializations saved successfully!');
-            $response->redirect('/technician-dashboard');
+            if ($hasAddedPaymentMethod['count'] == 0) {
+                $response->redirect('/technician-payment-details');
+            } else {
+                $response->redirect('/technician-dashboard');
+            }
         } else {
             Application::$app->session->setFlash('specialization-error', 'Something went wrong.');
             $response->redirect('/technician-specialization');
         }
     }
+
+    public function technicianFinishedContractDetails($contract_id)
+    {
+        $contract_id = intval($contract_id[0]);
+        $contractModel = new CusTechContract();
+        $cusTech = $contractModel->getCusTechDet($contract_id);
+        $cus_id = $cusTech['cus_id'];
+        $tech_id = $cusTech['tech_id'];
+        $customer = (new Customer())->findById($cus_id);
+        $technician = (new Technician())->findById($tech_id);
+        $contractDet = $contractModel->findByid($contract_id);
+        $request_id = $contractDet['req_id'];
+
+        $advancedPaymentModel = new CusTechAdvPayment();
+        $advancePayment = $advancedPaymentModel->getAdvancePayment($request_id);
+
+        $techBankAcc = new TechnicianPaymentMethod();
+        $techBankDetails = $techBankAcc->getTechBankDetails($tech_id);
+
+        $customer_name = $customer['fname'] . ' ' . $customer['lname'];
+        $technician_name = $technician['fname'] . ' ' . $technician['lname'];
+        $customer_email = $customer['email'];
+        $technician_email = $technician['email'];
+        $customer_phone = $customer['phone_no'];
+        $technician_phone = $technician['phone_no'];
+        $profile_picture = $technician['profile_picture'];
+        $start_time = $contractDet['start_time'];
+        $end_time = $contractDet['end_time'];
+        $customer_payment = $advancePayment['amount'];
+        $service_charge = $advancePayment['amount'] * 0.2;
+        $additional_cost = '0.00';
+        $total_cost = $advancePayment['amount'] * 0.8;
+        $bank_account_num = $techBankDetails['bank_acc_num'] ?: '';
+        $bank_name = $techBankDetails['bank_acc_name'] ?: '';
+        $bank_branch = $techBankDetails['bank_acc_branch'] ?: '';
+
+        $contract = [
+            'customer_name' => $customer_name,
+            'customer_email' => $customer_email,
+            'customer_phone' => $customer_phone,
+            'technician_name' => $technician_name,
+            'technician_email' => $technician_email,
+            'technician_phone' => $technician_phone,
+            'profile_picture' => $profile_picture,
+            'start_time' => $start_time,
+            'end_time' => $end_time,
+            'contract_id' => $contract_id,
+            'customer_payment' => $customer_payment,
+            'service_charge' => $service_charge,
+            'additional_costs' => $additional_cost,
+            'total_cost' => $total_cost,
+            'bank_account_num' => $bank_account_num,
+            'bank_name' => $bank_name,
+            'bank_branch' => $bank_branch
+        ];
+
+        $this->setLayout('auth');
+        return $this->render('/technician/technician-finished-contract-details', ['contract' => $contract]);
+    }
+
+    public function downloadTechnicianInvoice($contract_id)
+    {
+        $contract_id = intval($contract_id[0]);
+        $contractModel = new CusTechContract();
+        $cusTech = $contractModel->getCusTechDet($contract_id);
+        $cus_id = $cusTech['cus_id'];
+        $tech_id = $cusTech['tech_id'];
+        $customer = (new Customer())->findById($cus_id);
+        $technician = (new Technician())->findById($tech_id);
+        $contractDet = $contractModel->findByid($contract_id);
+        $request_id = $contractDet['req_id'];
+
+        $advancedPaymentModel = new CusTechAdvPayment();
+        $advancePayment = $advancedPaymentModel->getAdvancePayment($request_id);
+
+        $techBankAcc = new TechnicianPaymentMethod();
+        $techBankDetails = $techBankAcc->getTechBankDetails($tech_id);
+
+
+        $customer_name = $customer['fname'] . ' ' . $customer['lname'];
+        $technician_name = $technician['fname'] . ' ' . $technician['lname'];
+        $customer_email = $customer['email'];
+        $technician_email = $technician['email'];
+        $customer_phone = $customer['phone_no'];
+        $technician_phone = $technician['phone_no'];
+        $profile_picture = $technician['profile_picture'];
+        $start_time = $contractDet['start_time'];
+        $end_time = $contractDet['end_time'];
+        $customer_payment = $advancePayment['amount'];
+        $service_charge = $advancePayment['amount'] * 0.2;
+        $additional_cost = '0.00';
+        $total_cost = $advancePayment['amount'] * 0.8;
+        $bank_account_num = $techBankDetails['bank_acc_num'] ?: '';
+        $bank_name = $techBankDetails['bank_acc_name'] ?: '';
+        $bank_branch = $techBankDetails['bank_acc_branch'] ?: '';
+
+        $contract = [
+            'customer_name' => $customer_name,
+            'customer_email' => $customer_email,
+            'customer_phone' => $customer_phone,
+            'technician_name' => $technician_name,
+            'technician_email' => $technician_email,
+            'technician_phone' => $technician_phone,
+            'profile_picture' => $profile_picture,
+            'start_time' => $start_time,
+            'end_time' => $end_time,
+            'contract_id' => $contract_id,
+            'customer_payment' => $customer_payment,
+            'service_charge' => $service_charge,
+            'additional_costs' => $additional_cost,
+            'total_cost' => $total_cost,
+            'bank_account_num' => $bank_account_num,
+            'bank_name' => $bank_name,
+            'bank_branch' => $bank_branch
+        ];
+
+        // Create PDF using dompdf
+        $options = new Options();
+        $dompdf = new Dompdf($options);
+
+        // Get the HTML content from the view
+        ob_start();
+        require_once __DIR__ . '/../views/technician/technician-download-invoice.php';
+        $html = ob_get_clean();
+
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+
+        // Generate filename
+        $filename = "technician-invoice-{$contract_id}.pdf";
+
+        // Stream the file
+        $dompdf->stream($filename, ["Attachment" => true]);
+        exit();
+    }
+
 
 }
 
