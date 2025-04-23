@@ -85,6 +85,8 @@ $app->router->get('/technician-finished-contracts', [TechnicianController::class
 $app->router->post('/technician-contract-verify-start-pin', [TechnicianController::class, 'verifyStartPin']);
 $app->router->get('/technician-active-contract-details/{id}', [TechnicianController::class, 'technicianActiveContractDetails']);
 $app->router->post('/technician-finish-contract', [TechnicianController::class, 'technicianFinishContract']);
+$app->router->get('/technician-finished-contract-details/{id}', [TechnicianController::class, 'technicianFinishedContractDetails']);
+$app->router->get('/technician-download-invoice/{id}', [TechnicianController::class, 'downloadTechnicianInvoice']);
 
 /* Routes related to the Post */
 $app->router->get('/technician-create-post', [TechnicianController::class, 'technicianCreatePost']);
@@ -176,7 +178,6 @@ $app->router->get('/customer-finished-contracts', [CustomerController::class, 'c
 $app->router->get('/customer-active-contract-details/{id}', [CustomerController::class, 'customerActiveContractDetails']);
 $app->router->get('/customer-finish-contract/{id}', [CustomerController::class, 'customerFinishContract']);
 $app->router->get('/customer-finished-contract-details/{id}', [CustomerController::class, 'customerFinishedContractDetails']);
-$app->router->get('/customer-download-invoice/{id}', [CustomerController::class, 'downloadCustomerInvoice']);
 
 $app->router->get('/get-appointments', [AppoinmentController::class, 'loadAppointmentDetails']);
 
