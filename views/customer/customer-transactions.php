@@ -3,6 +3,7 @@
 use app\core\Application;
 use app\models\CusTechReq;
 
+/** @var $revenue */
 ?>
 
 <!DOCTYPE html>
@@ -28,29 +29,29 @@ include_once 'components/header.php';
 <div class="container">
     <div class="header">
         <div class="header-item">
+            <?php
+            $paymentDone = number_format($revenue, 2, '.', ',');
+            ?>
             <div class="total-payments">
                 <p>Total Payments</p>
-                <h2>LKR 430.00</h2>
-                <small>as of 01-August 2024</small>
+                <h2>LKR <?php echo $paymentDone ?></h2>
+                <small>as of <?php echo date('d-F-Y') ?></small>
             </div>
         </div>
         <div class="header-item">
+            <?php
+            $paymentPending = number_format($totalPending, 2, '.', ',');
+            ?>
             <div class="pending-payments">
                 <p>Pending Payments</p>
-                <h2>LKR 100.00</h2>
-                <small>as of 01-August 2024</small>
+                <h2>LKR <?php echo $paymentPending ?></h2>
+                <small>as of <?php echo date('d-F-Y') ?></small>
             </div>
         </div>
     </div>
 
     <div class="payment-history">
         <h3>Payment History</h3>
-        <div class="tabs">
-            <button class="tab-button active">All</button>
-            <button class="tab-button">Complete</button>
-            <button class="tab-button">Pending</button>
-            <button class="tab-button">Rejected</button>
-        </div>
 
         <table>
             <thead>
@@ -58,69 +59,33 @@ include_once 'components/header.php';
                 <th>Order ID</th>
                 <th>Date</th>
                 <th>Amount</th>
-                <th>Payment Method</th>
                 <th>Status</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>#15267</td>
-                <td>Mar 1, 2023</td>
-                <td>LKR 100</td>
-                <td>1502******4832</td>
-                <td class="success">Success</td>
-            </tr>
-            <tr>
-                <td>#153587</td>
-                <td>Jan 26, 2023</td>
-                <td>LKR 300</td>
-                <td>1502******1132</td>
-                <td class="success">Success</td>
-            </tr>
-            <tr>
-                <td>#12436</td>
-                <td>Feb 12, 2023</td>
-                <td>LKR 100</td>
-                <td>1256******4832</td>
-                <td class="success">Success</td>
-            </tr>
-            <tr>
-                <td>#16879</td>
-                <td>Feb 12, 2023</td>
-                <td>LKR 500</td>
-                <td>1502******6789</td>
-                <td class="success">Success</td>
-            </tr>
-            <tr>
-                <td>#16378</td>
-                <td>Feb 28, 2023</td>
-                <td>LKR 500</td>
-                <td>1502******4832</td>
-                <td class="rejected">Rejected</td>
-            </tr>
-            <tr>
-                <td>#16609</td>
-                <td>March 13, 2023</td>
-                <td>LKR 100</td>
-                <td>1502******4832</td>
-                <td class="pending">Pending</td>
-            </tr>
-            <tr>
-                <td>#16907</td>
-                <td>March 18, 2023</td>
-                <td>LKR 100</td>
-                <td>1502******4832</td>
-                <td class="success">Success</td>
-            </tr>
+            <?php if (!empty($transactions)): ?>
+                <?php foreach ($transactions as $transaction): ?>
+                    <?php
+                    $status = strtolower($transaction['done']);
+                    $statusClass = $status === 'true' ? 'success' : ($status === 'false' ? 'pending' : 'pending');
+                    $formattedDate = date('M j, Y', strtotime($transaction['time']));
+                    ?>
+                    <tr>
+                        <td>#<?= htmlspecialchars($transaction['req_id']) ?></td>
+                        <td><?= $formattedDate ?></td>
+                        <td>LKR <?= number_format($transaction['amount'], 2, '.', ',') ?></td>
+                        <td class="<?= $statusClass ?>">
+                            <?= ucfirst($statusClass) ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="4" style="text-align:center;">No transactions found.</td>
+                </tr>
+            <?php endif; ?>
             </tbody>
         </table>
-
-        <div class="pagination">
-            <span>10 per page</span>
-            <div class="page-info">
-                <span>1 of 1 pages</span>
-            </div>
-        </div>
     </div>
 </div>
 <body>

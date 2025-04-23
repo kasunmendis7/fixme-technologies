@@ -86,6 +86,17 @@ class TechnicianReview extends DbModel
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function getAverageRatings($tech_id)
+    {
+        $sql = "SELECT AVG(user_rating) as average_rating FROM technician_reviews WHERE tech_id = :tech_id";
+        $stmt = (new TechnicianReview())->prepare($sql);
+        $stmt->bindValue(':tech_id', $tech_id);
+        $stmt->execute();
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $result['average_rating'] ?? 0;
+
+    }
+
     public function primaryKey(): string
     {
         return 'review_id';  // Assuming review_id is your primary key

@@ -29,9 +29,7 @@ include_once 'components/header.php';
     <div class="header">
         <div class="header-item">
             <?php
-            $ctap = new CusTechAdvPayment();
-            $revenue = $ctap->getTotalEarning(Application::$app->session->get('technician'));
-            $earning = number_format($revenue * (95 / 100), 2, '.', ',');
+            $earning = number_format($revenue * (80 / 100), 2, '.', ',');
             ?>
             <div class="total-payments">
                 <p>Total Earnings</p>
@@ -42,9 +40,7 @@ include_once 'components/header.php';
         </div>
         <div class="header-item">
             <?php
-            $ctap = new CusTechAdvPayment();
-            $totalPending = $ctap->getTotalPendingAdvancePayment(Application::$app->session->get('technician'));
-            $pending = number_format($totalPending * (95 / 100), 2, '.', ',');
+            $pending = number_format($totalPending * (80 / 100), 2, '.', ',');
             ?>
             <div class="pending-payments">
                 <p>Pending Payments</p>
@@ -56,13 +52,6 @@ include_once 'components/header.php';
 
     <div class="payment-history">
         <h3>Payment History</h3>
-        <div class="tabs">
-            <button class="tab-button active">All</button>
-            <button class="tab-button">Complete</button>
-            <button class="tab-button">Pending</button>
-            <button class="tab-button">Rejected</button>
-        </div>
-
         <table>
             <thead>
             <tr>
@@ -73,42 +62,27 @@ include_once 'components/header.php';
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>#15267</td>
-                <td>Mar 1, 2023</td>
-                <td>LKR 100</td>
-                <td class="success">Success</td>
-            </tr>
-            <tr>
-                <td>#153587</td>
-                <td>Jan 26, 2023</td>
-                <td>LKR 300</td>
-                <td class="success">Success</td>
-            </tr>
-            <tr>
-                <td>#12436</td>
-                <td>Feb 12, 2023</td>
-                <td>LKR 100</td>
-                <td class="success">Success</td>
-            </tr>
-            <tr>
-                <td>#16879</td>
-                <td>Feb 12, 2023</td>
-                <td>LKR 500</td>
-                <td class="success">Success</td>
-            </tr>
-            <tr>
-                <td>#16378</td>
-                <td>Feb 28, 2023</td>
-                <td>LKR 500</td>
-                <td class="rejected">Rejected</td>
-            </tr>
-            <tr>
-                <td>#16609</td>
-                <td>March 13, 2023</td>
-                <td>LKR 100</td>
-                <td class="pending">Pending</td>
-            </tr>
+            <?php if (!empty($transactions)): ?>
+                <?php foreach ($transactions as $transaction): ?>
+                    <?php
+                    $status = strtolower($transaction['done']);
+                    $statusClass = $status === 'true' ? 'success' : ($status === 'false' ? 'pending' : 'pending');
+                    $formattedDate = date('M j, Y', strtotime($transaction['time']));
+                    ?>
+                    <tr>
+                        <td>#<?= htmlspecialchars($transaction['req_id']) ?></td>
+                        <td><?= $formattedDate ?></td>
+                        <td>LKR <?= number_format($transaction['amount'], 2, '.', ',') ?></td>
+                        <td class="<?= $statusClass ?>">
+                            <?= ucfirst($statusClass) ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="4" style="text-align:center;">No transactions found.</td>
+                </tr>
+            <?php endif; ?>
             </tbody>
         </table>
     </div>
