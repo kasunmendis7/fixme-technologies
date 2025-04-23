@@ -117,6 +117,28 @@
             return $stmt->fetchAll(\PDO::FETCH_ASSOC);
         }
 
+        //function to get cart items with details by customer 
+        public function getCartItemsWithDetailsByCustomer($customer_id)
+        {
+            $sql = "SELECT p.ser_cen_id, ci.id AS cart_items_id,
+                    ci.quantity, p.product_id, p.description, p.price, c.fname, c.lname, c.phone_no
+                    FROM customer c
+                    INNER JOIN cart_items ci ON c.cart_id = ci.cart_id
+                    INNER JOIN product p ON ci.product_id = p.product_id
+                    WHERE c.cus_id = :customer_id";
+            $stmt = self::prepare($sql);
+            $stmt->bindValue(':customer_id', $customer_id);
+            $stmt->execute();
+            $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+            return $results;
+
+            // $groupedResults = [];
+            // foreach($results as $result) {
+            //     $scId = 
+            // }
+        }
+
         
 
         public function rules(): array
