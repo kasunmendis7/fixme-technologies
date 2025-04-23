@@ -20,6 +20,8 @@ use app\models\Technician;
 use app\models\CusTechReq;
 use app\models\CustomerPaymentMethod;
 use app\models\TechnicianPaymentMethod;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 
 class CustomerController extends Controller
