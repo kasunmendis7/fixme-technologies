@@ -1,0 +1,98 @@
+/* General styles */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+.details {
+    padding: 2rem;
+}
+
+.activeContracts {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+}
+
+.cardHeader {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.cardHeader .heading {
+    font-size: 1.8rem;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Table styles */
+table.active-contracts-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+table th,
+table td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+table th {
+    background-color: #f4f4f4;
+    color: #333;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+table tr:hover {
+    background-color: #f9f9f9;
+}
+
+table td {
+    font-size: 0.95rem;
+    color: #555;
+    vertical-align: middle;
+}
+
+/* Customer Image */
+table td img.customer-image {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #ddd;
+}
+
+/* Button styles */
+.open-contract-btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    color: #ffffff;
+    background-color: #007bff;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.open-contract-btn:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.open-contract-btn:active {
+    background-color: #004085;
+}
+
+.no-contracts-message {
+    text-align: center;
+    font-size: 1rem;
+    color: #666;
+    padding: 1rem;
+}

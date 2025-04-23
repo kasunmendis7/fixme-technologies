@@ -106,8 +106,7 @@ class CusTechReq extends DbModel
 
     public function getRecentTechnicians($cusId)
     {
-        $sql = "SELECT tech.fname AS fname, tech.lname AS lname, tech.profile_picture AS profile_picture FROM technician AS tech, cus_tech_req AS ctr WHERE tech.tech_id = ctr.tech_id AND ctr.cus_id = :cus_id AND ctr.status = 'pending'";
-        /* Reminder : change ctr.status = 'completed' after implementing the completed status */
+        $sql = "SELECT tech.fname AS fname, tech.lname AS lname, tech.profile_picture AS profile_picture FROM technician AS tech, cus_tech_req AS ctr WHERE tech.tech_id = ctr.tech_id AND ctr.cus_id = :cus_id AND ctr.status = 'completed'";
         $stmt = self::prepare($sql);
         $stmt->bindValue(':cus_id', $cusId);
         $stmt->execute();
@@ -175,6 +174,14 @@ class CusTechReq extends DbModel
         $result = $stmt->fetch(\PDO::FETCH_ASSOC);
         return $result['total_requests'] ?? 0;
 
+    }
+
+    public function updateStatusToComplete($req_id)
+    {
+        $sql = "UPDATE cus_tech_req SET status = 'completed' WHERE req_id = :req_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':req_id', $req_id);
+        $stmt->execute();
     }
 
     public function attributes(): array

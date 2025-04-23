@@ -70,9 +70,9 @@ async function paymentGateWay(cusId, techId) {
         const payment = {
             sandbox: true,
             merchant_id: "1230101",
-            return_url: "http://localhost:8080/customer-dashboard",
+            return_url: "http://localhost:8080/customer-active-contracts",
             cancel_url: "http://localhost:8080/customer-dashboard",
-            notify_url: "https://7e48-2407-c00-e004-4722-ad6c-3774-e660-19df.ngrok-free.app/payhere-payment-response", // This needs to be updated accordingly
+            notify_url: "https://25eb-2407-c00-6006-a1e7-107b-87ba-e472-9200.ngrok-free.app/payhere-payment-response", // This needs to be updated accordingly
             order_id: object["order_id"],
             items: object["items"],
             amount: object["amount"],

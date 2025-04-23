@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\core\middlewares\AuthMiddleware;
+use app\core\middlewares\RoleMiddleware;
 use app\core\Request;
 use app\models\Admin;
 use app\models\Customer;
@@ -15,7 +16,7 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        $this->registerMiddleware(new AuthMiddleware());
+        $this->registerMiddleware(new RoleMiddleware(['admin']));
     }
 
     public function adminDashboard()
