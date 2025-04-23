@@ -92,6 +92,7 @@ include_once 'components/header.php';
     <div class="invoice-footer">
         <p>If you have any questions or require assistance, please contact our customer support. Thank you for using our
             service!</p>
+        <button class="download-invoice-btn" onclick="downloadInvoice()">Download Invoice</button>
     </div>
 </div>
 
