@@ -92,6 +92,7 @@ include_once 'components/header.php';
     <div class="invoice-footer">
         <p>If you have any questions or require assistance, please contact our customer support. Thank you for using our
             service!</p>
+        <button class="btn" onclick="downloadInvoice()">Download Invoice</button>
     </div>
 </div>
 
@@ -107,6 +108,7 @@ include_once 'components/header.php';
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <script src="/js/customer/overlay.js"></script>
+<script src="/js/customer/customer-finished-contract-details.js"></script>
 </body>
 
 </html>
