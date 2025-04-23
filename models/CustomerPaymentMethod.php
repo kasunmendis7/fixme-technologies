@@ -34,7 +34,6 @@ class CustomerPaymentMethod extends DbModel
         $stmt = Application::$app->db->prepare($sql);
         $stmt->bindValue(':cus_id', $cusId);
         $stmt->execute();
-
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
@@ -45,6 +44,15 @@ class CustomerPaymentMethod extends DbModel
         $stmt->bindValue(':id', $id);
         $stmt->bindValue(':cus_id', $cusId);
         $stmt->execute();
+    }
+
+    public function getCardDetails($cusId)
+    {
+        $sql = "SELECT * FROM cus_payment_opt WHERE cus_id = :cus_id";
+        $stmt = Application::$app->db->prepare($sql);
+        $stmt->bindValue(':cus_id', $cusId);
+        $stmt->execute();
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
     public function rules(): array

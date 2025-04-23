@@ -693,7 +693,7 @@ class TechnicianController extends Controller
 
         // Get the HTML content from the view
         ob_start();
-        require_once __DIR__ . '/../views/customer/customer-download-invoice.php';
+        require_once __DIR__ . '/../views/technician/technician-download-invoice.php';
         $html = ob_get_clean();
 
         $dompdf->loadHtml($html);
@@ -701,7 +701,7 @@ class TechnicianController extends Controller
         $dompdf->render();
 
         // Generate filename
-        $filename = "invoice-{$contract_id}.pdf";
+        $filename = "technician-invoice-{$contract_id}.pdf";
 
         // Stream the file
         $dompdf->stream($filename, ["Attachment" => true]);
