@@ -245,8 +245,17 @@ class TechnicianController extends Controller
 
     public function technicianTransactions()
     {
+        $ctap = new CusTechAdvPayment();
+        $revenue = $ctap->getTotalEarning(Application::$app->session->get('technician'));
+        $totalPending = $ctap->getTotalPendingAdvancePayment(Application::$app->session->get('technician'));
+        $transactions = $ctap->getAllTransactions(Application::$app->session->get('technician'));
+
         $this->setLayout('auth');
-        return $this->render('/technician/technician-transactions');
+        return $this->render('/technician/technician-transactions', [
+            'revenue' => $revenue,
+            'totalPending' => $totalPending,
+            'transactions' => $transactions
+        ]);
     }
 
     public function technicianPaymentDetails()

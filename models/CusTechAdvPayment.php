@@ -87,6 +87,16 @@ class CusTechAdvPayment extends DbModel
         return $total;
     }
 
+    public function getAllTransactions($tech_id)
+    {
+        $sql = "SELECT * FROM cus_tech_adv_payment WHERE tech_id = :tech_id";
+        $stmt = Application::$app->db->prepare($sql);
+        $stmt->bindValue(':tech_id', $tech_id);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC); // Fetches all rows
+    }
+
+
     public function getTotalAdvancePaymentRevenue()
     {
         $sql = "SELECT SUM(amount) AS total FROM cus_tech_adv_payment WHERE done = 'true'";
