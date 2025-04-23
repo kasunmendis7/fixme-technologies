@@ -108,9 +108,7 @@ class TechnicianPaymentMethod extends DbModel
         $stmt = Application::$app->db->prepare($sql);
         $stmt->bindValue(':tech_id', $tech_id);
         $stmt->execute();
-        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
-        return $result['count'];
-
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
     /**
