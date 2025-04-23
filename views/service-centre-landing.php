@@ -259,23 +259,11 @@
     </div>
 </section>
 
-<section id="contact">
-    <div class="container">
-        <h2>Contact Us</h2>
-        <form>
-            <input type="text" placeholder="Name">
-            <input type="email" placeholder="Email Address">
-            <textarea placeholder="Your Message"></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-    </div>
-</section>
-
 <div class="container-f">
     <footer class="py-5">
         <div class="row">
             <div class="col-6 col-md-2 mb-3">
-                <h3 class="ml-3">FIXME</h3>
+                <h3 class="ml-3">FixMe</h3>
             </div>
             <div class="col-6 col-md-2 mb-3">
                 <h5>Company</h5>

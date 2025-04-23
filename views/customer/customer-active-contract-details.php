@@ -87,20 +87,21 @@ include_once 'components/header.php';
                 </div>
             </div>
         <?php endif; ?>
-
-        <!-- Overlay for the confirmation message -->
-        <div id="signOutOverlay" class="overlay">
-            <div class="overlay-content">
-                <p>Are you sure you want to sign out?</p>
-                <button id="confirmSignOut" class="btn"><a href="/customer-logout"></a> Yes</button>
-                <button id="cancelSignOut" class="btn">No</button>
-            </div>
-        </div>
-        <!--    Icons-->
-        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-        <script src="/js/customer/overlay.js"></script>
-        <script src="/js/customer/customer-active-contract-details.js"></script>
+    </div>
+</div>
+<!-- Overlay for the confirmation message -->
+<div id="signOutOverlay" class="overlay">
+    <div class="overlay-content">
+        <p>Are you sure you want to sign out?</p>
+        <button id="confirmSignOut" class="btn"><a href="/customer-logout"></a> Yes</button>
+        <button id="cancelSignOut" class="btn">No</button>
+    </div>
+</div>
+<!--    Icons-->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="/js/customer/overlay.js"></script>
+<script src="/js/customer/customer-active-contract-details.js"></script>
 </body>
 
 </html>
