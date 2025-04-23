@@ -668,6 +668,14 @@ class CustomerController extends Controller
         ]);
     }
 
+    public function getContractStatus($contract_id)
+    {
+        $contract_id = intval($contract_id[0]);
+        $contractModel = new CusTechContract();
+        $status = $contractModel->getContractStatus($contract_id);
+        echo json_encode($status);
+    }
+
     public function downloadCustomerInvoice($contract_id)
     {
         $contract_id = intval($contract_id[0]);

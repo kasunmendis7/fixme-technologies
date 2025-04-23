@@ -708,6 +708,30 @@ class TechnicianController extends Controller
         exit();
     }
 
+    public function technicianAvailability()
+    {
+        $technicianId = Application::$app->session->get('technician');
+        $status = (new Technician())->getAvailabilityStatus($technicianId);
+
+        $this->setLayout('auth');
+        return $this->render('/technician/technician-availability', ['status' => $status]);
+    }
+
+    public function updateTechnicianAvailability(Request $request)
+    {
+        $body = $request->getBody();
+        $status = $body['status'];
+        if ($status == 'available') {
+            $status = 'true';
+        } else {
+            $status = 'false';
+        }
+        $technicianId = Application::$app->session->get('technician');
+        (new Technician())->updateAvailability($technicianId, $status);
+        echo json_encode(['success' => true]);
+        Application::$app->response->redirect('/technician-availability');
+    }
+
 
 }
 

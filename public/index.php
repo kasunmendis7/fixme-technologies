@@ -87,6 +87,8 @@ $app->router->get('/technician-active-contract-details/{id}', [TechnicianControl
 $app->router->post('/technician-finish-contract', [TechnicianController::class, 'technicianFinishContract']);
 $app->router->get('/technician-finished-contract-details/{id}', [TechnicianController::class, 'technicianFinishedContractDetails']);
 $app->router->get('/technician-download-invoice/{id}', [TechnicianController::class, 'downloadTechnicianInvoice']);
+$app->router->get('/technician-availability', [TechnicianController::class, 'technicianAvailability']);
+$app->router->post('/technician-update-availability', [TechnicianController::class, 'updateTechnicianAvailability']);
 
 /* Routes related to the Post */
 $app->router->get('/technician-create-post', [TechnicianController::class, 'technicianCreatePost']);
