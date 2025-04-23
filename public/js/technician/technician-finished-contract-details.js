@@ -3,7 +3,7 @@ async function downloadInvoice() {
     const url = window.location.href;
 
     const contractId = url.split('/').pop(); // Extract contract ID from the current URL
-    const invoiceUrl = `${baseUrl}/customer-download-invoice/${contractId}`;
+    const invoiceUrl = `${baseUrl}/technician-download-invoice/${contractId}`;
 
     if (contractId) {
         window.location.href = invoiceUrl;
