@@ -93,6 +93,15 @@ class TechnicianPaymentMethod extends DbModel
         return (int)$stmt->fetchColumn() > 0;
     }
 
+    public function getTechBankDetails($tech_id)
+    {
+        $sql = "SELECT * FROM tech_payment_opt WHERE tech_id = :tech_id LIMIT 1";
+        $stmt = Application::$app->db->prepare($sql);
+        $stmt->bindValue(':tech_id', $tech_id);
+        $stmt->execute();
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
     /**
      * Rules for validation
      */
