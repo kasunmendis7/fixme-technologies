@@ -177,6 +177,7 @@ $app->router->get('/customer-active-contract-details/{id}', [CustomerController:
 $app->router->get('/customer-finish-contract/{id}', [CustomerController::class, 'customerFinishContract']);
 $app->router->get('/customer-finished-contract-details/{id}', [CustomerController::class, 'customerFinishedContractDetails']);
 $app->router->get('/customer-download-invoice/{id}', [CustomerController::class, 'downloadCustomerInvoice']);
+$app->router->get('/get-contract-status/{id}', [CustomerController::class, 'getContractStatus']);
 
 $app->router->get('/get-appointments', [AppoinmentController::class, 'loadAppointmentDetails']);
 
