@@ -1,3 +1,8 @@
+<?php
+
+use app\core\Application;
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +14,7 @@
     <link rel="stylesheet" href="/css/technician/technician-dashboard.css">
     <link rel="stylesheet" href="/css/technician/technician-payment-details.css">
     <link rel="stylesheet" href="/css/technician/overlay.css">
-
+    <link rel="stylesheet" href="/css/technician/flash-messages.css">
 </head>
 <body>
 <?php
@@ -18,7 +23,11 @@ include_once 'components/header.php';
 ?>
 <!-- JavaScript Files -->
 <script src="/js/technician/technician-home.js"></script>
-
+<?php if (Application::$app->session->getFlash('add-bank-account')): ?>
+    <div class="alert alert-error">
+        <?php echo Application::$app->session->getFlash('add-bank-account') ?>
+    </div>
+<?php endif; ?>
 <section class="section-2">
     <div class="payment-method">
         <h2>Add New Bank Account</h2>
@@ -51,7 +60,7 @@ include_once 'components/header.php';
             </div>
         </div>
     </div>
-    
+
 </section>
 
 <!-- Overlay for the confirmation message -->
