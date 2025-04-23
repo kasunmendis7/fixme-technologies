@@ -724,4 +724,11 @@ class CustomerController extends Controller
         $dompdf->stream($filename, ["Attachment" => true]);
         exit();
     }
+
+    public function getContractStatus($contract_id)
+    {
+        $contract_id = intval($contract_id[0]);
+        $status = (new CusTechContract())->getContractStatus($contract_id);
+        return json_encode($status);
+    }
 }
