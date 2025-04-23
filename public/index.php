@@ -286,7 +286,7 @@ $app->router->post('/payhere-payment-response', [CustomerController::class, 'pay
 $app->router->get('/get-payhere-details', [CustomerController::class, 'getPayHereDetails']);
 //marketplace payment 
 $app->router->post('/marketplace-payment', [PaymentController::class, 'marketPlacePaymentProcess']);
-// $app->router->get('/check-out-page', [PaymentController::class, 'marketPlacePaymentProcess']);
+$app->router->post('/marketplace-payment-response', [PaymentController::class, 'marketPlacePaymentResponse']);
 
 /* Routes related to updating technician specializations */
 $app->router->get('/technician-specialization', [TechnicianController::class, 'technicianSpecialization']);

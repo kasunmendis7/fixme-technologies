@@ -287,25 +287,60 @@ use app\core\Application;
                             alert("Error: " + error);
                         };
 
+                        var payment = {
+                            "sandbox": true,
+                            "merchant_id": "1229154",    // Replace your Merchant ID
+                            "return_url": "http://localhost:8080/",     // Important
+                            "cancel_url": "http://localhost:8080/",     // Important
+                            "notify_url": "https://e591-2402-4000-1324-56c6-c619-5239-8a0c-84d2.ngrok-free.app/marketplace-payment-response", 
+                            "order_id": data.order_id,
+                            "items": data.items,
+                            "amount": data.amount + 200,
+                            "currency": "LKR",
+                            "hash": data.hash, // *Replace with generated hash retrieved from backend
+                            "first_name": data.full_name,
+                            "last_name": "",
+                            "email": data.email,
+                            "phone": data.phone,
+                            "address": data.address,
+                            "city": data.city,
+                            "country": "Sri Lanka",
+                            "delivery_address": data.address,
+                            "delivery_city": data.city,
+                            "delivery_country": "Sri Lanka",
+                            "custom_1": data.customer_1,
+                            "custom_2": ""
+                        }
+
+                        console.log("payment detials, ", payment);
+
                         // Start the payment
-                        payhere.startPayment({
-                            sandbox: true, // Change to false for live
-                            merchant_id: data.merchant_id,
-                            return_url: "http://localhost:8080/",
-                            cancel_url: "http://localhost:8080/",
-                            notify_url: "https://5a8b-2a09-bac5-485f-1d05-00-2e4-9a.ngrok-free.app/payhere-payment-response", // Update if you use IPN
-                            order_id: data.order_id,
-                            items: data.items,
-                            amount: data.amount + 200,
-                            currency: data.currency,
-                            first_name: data.full_name,
-                            last_name: "", // Optional
-                            email: data.email,
-                            phone: data.phone,
-                            address: data.address,
-                            city: data.city,
-                            country: data.country
-                        });
+                        // payhere.startPayment({
+                        //     sandbox: true, // Change to false for live
+                        //     merchant_id: data.merchant_id,
+                        //     return_url: "http://localhost:8080/",
+                        //     cancel_url: "http://localhost:8080/",
+                        //     notify_url: "https://5a8b-2a09-bac5-485f-1d05-00-2e4-9a.ngrok-free.app/payhere-payment-response", // Update if you use IPN
+                        //     order_id: data.order_id,
+                        //     items: data.items,
+                        //     amount: data.amount + 200,
+                        //     currency: data.currency,
+                        //     hash: data.hash,
+                        //     first_name: data.full_name,
+                        //     last_name: "", // Optional
+                        //     email: data.email,
+                        //     phone: data.phone,
+                        //     address: data.address,
+                        //     city: data.city,
+                        //     country: data.country,
+                        //     delivery_address: data.address,
+                        //     delivery_city: data.city,
+                        //     delivery_country: "Sri Lanka",
+                        //     custom_1: "",
+                        //     custom_2: ""
+                        // });
+
+                        payhere.startPayment(payment);
                     })
                     .catch(error => {
                         console.error("Error initiating payment:", error);

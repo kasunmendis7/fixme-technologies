@@ -6,6 +6,7 @@
     use app\core\Request;
     use app\core\Response;
     use app\models\cart;
+    use app\core\middlewares\AuthMiddleware;
 
 class CartController extends Controller
 {
