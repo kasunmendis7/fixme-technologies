@@ -102,6 +102,15 @@ class TechnicianPaymentMethod extends DbModel
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
+    public function checkTechnicianPaymentMethod($tech_id)
+    {
+        $sql = "SELECT COUNT(*) as count FROM tech_payment_opt WHERE tech_id = :tech_id";
+        $stmt = Application::$app->db->prepare($sql);
+        $stmt->bindValue(':tech_id', $tech_id);
+        $stmt->execute();
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
     /**
      * Rules for validation
      */
