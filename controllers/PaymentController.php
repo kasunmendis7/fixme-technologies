@@ -83,7 +83,7 @@ class PaymentController extends Controller
     }
 
     //function to market place payment response 
-    public function marketPlacePaymentResponse(Request $request, Response $response)
+    public function marketPlacePaymentResponse()
     {
         error_log("Payment Response: " . print_r($_POST, true));
         // $cus_id = Application::$app->session->get('customer');
@@ -136,11 +136,12 @@ class PaymentController extends Controller
 
             $order = new MarketplaceOrder();
             $order->order_id = $order_id;
+            error_log("Order ID: " . print_r($order->order_id, true));
             $order->customer_id = $cus_id;
             $order->total_amount = $totalAmount;
             $order->status = 'completed';
-            $order->payed_at = date('Y-m-d H:i:s');
-            $order->save();
+            $order->paid_at = date('Y-m-d H:i:s');
+            $order->InsertForTable();
 
             // $order->save();
 
@@ -161,9 +162,9 @@ class PaymentController extends Controller
                 $scOrder->sub_total = $subTotal;
                 $scOrder->commission = $commission;
                 $scOrder->seller_earning = $earning;
-                $scOrder->save();
+                $scOrder->InsertForTable();
             }
-            // http_response_code(response_code: 200);
+            http_response_code(response_code: 200);
             exit;
         }
 
