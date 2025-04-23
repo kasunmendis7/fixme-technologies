@@ -251,30 +251,25 @@ use app\core\Application;
                 </div>
                 <div class="hr"></div>
                 <div class="invoice-head-bottom">
-                    <div class="invoice-head-bottom-left">
-                        <ul>
-                            <li class='text-bold'>Cardholder Details:</li>
-                            <li>Card Number:
-                                **** **** **** <?= htmlspecialchars($contract['card_num']) ?></li>
-                            <li>Cardholder Name:
-                                <?= htmlspecialchars($contract['customer_name']) ?></li>
-                            <li>Cardholder Phone:
-                                <?= htmlspecialchars($contract['customer_phone']) ?></li>
-                            <li>Cardholder Phone:
-                                <?= htmlspecialchars($contract['customer_email']) ?></li>
-                        </ul>
-                    </div>
-                    <!--                    <div class="invoice-head-bottom-right">-->
-                    <!--                        <ul class="text-end">-->
-                    <!--                            <li class='text-bold'>Receiver Details:</li>-->
-                    <!--                            <li>Acc No. : -->
-                    <?php //= htmlspecialchars($contract['bank_account_num'] ?? '') ?><!--</li>-->
-                    <!--                            <li>Acc Name :-->
-                    <?php //= htmlspecialchars($contract['bank_name'] ?? '') ?><!--</li>-->
-                    <!--                            <li>Acc Branch : -->
-                    <?php //= htmlspecialchars($contract['bank_branch'] ?? '') ?><!--</li>-->
+                    <!--                    <div class="invoice-head-bottom-left">-->
+                    <!--                        <ul>-->
+                    <!--                            <li class='text-bold'>Customer Details:</li>-->
+                    <!--                            <li>-->
+                    <?php //= htmlspecialchars($contract['customer_name']) ?><!--</li>-->
+                    <!--                            <li> -->
+                    <?php //= htmlspecialchars($contract['customer_phone']) ?><!--</li>-->
+                    <!--                            <li> -->
+                    <?php //= htmlspecialchars($contract['customer_email']) ?><!--</li>-->
                     <!--                        </ul>-->
                     <!--                    </div>-->
+                    <div class="invoice-head-bottom-right">
+                        <ul class="text-end">
+                            <li class='text-bold'>Receiver Details:</li>
+                            <li>Acc No. : <?= htmlspecialchars($contract['bank_account_num'] ?? '') ?></li>
+                            <li>Acc Name :<?= htmlspecialchars($contract['bank_name'] ?? '') ?></li>
+                            <li>Acc Branch : <?= htmlspecialchars($contract['bank_branch'] ?? '') ?></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="overflow-view">
@@ -289,16 +284,25 @@ use app\core\Application;
                         </thead>
                         <tbody>
                         <tr>
-                            <td>Total</td>
+                            <td>Payment</td>
                             <td>Total payment paid by the customer</td>
                             <td class="text-end">Rs. <?= htmlspecialchars($contract['customer_payment']) ?></td>
                         </tr>
+                        <tr>
+                            <td>Service Charge</td>
+                            <td>20% will be charged as the service charge</td>
+                            <td class="text-end invoice-body-bottom">
+                                - Rs.<?= htmlspecialchars($contract['service_charge']) ?>
+                            </td>
+                        </tr>
+
                         </tbody>
                     </table>
                     <div class="invoice-body-bottom">
                         <div class="invoice-body-info-item">
                             <div class="info-item-td text-end text-bold">Total:</div>
-                            <div class="info-item-td text-end"><?= htmlspecialchars($contract['total_cost']) ?></div>
+                            <div class="info-item-td text-end">
+                                Rs. <?= htmlspecialchars($contract['total_cost']) ?></div>
                         </div>
                     </div>
                 </div>
@@ -310,7 +314,5 @@ use app\core\Application;
         </div>
     </div>
 </div>
-
-<script src="script.js"></script>
 </body>
 </html>

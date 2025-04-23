@@ -51,6 +51,7 @@ class TechnicianController extends Controller
         if ($hasUpdatedSpecs['total_specs'] == 0) {
             Application::$app->response->redirect('/technician-specialization');
         } elseif ($hasAddedPaymentMethod['count'] == 0) {
+            Application::$app->session->setFlash('add-bank-account', 'Please add a Bank Account to Proceed!');
             Application::$app->response->redirect('/technician-payment-details');
         } else {
             $this->setLayout('auth');
@@ -186,8 +187,19 @@ class TechnicianController extends Controller
             Application::$app->response->redirect('/technician-login');
         }
         $requests = TechnicianRequest::getRequestsByTechnicianId($technicianId);
-        $this->setLayout('auth');
-        return $this->render('/technician/technician-requests', ['requests' => $requests]);
+        $techSpecModel = new TechSpec();
+        $techPaymentMethod = new TechnicianPaymentMethod();
+        $hasUpdatedSpecs = $techSpecModel->checkTechnicianSpecs(Application::$app->session->get('technician'));
+        $hasAddedPaymentMethod = $techPaymentMethod->checkTechnicianPaymentMethod(Application::$app->session->get('technician'));
+        if ($hasUpdatedSpecs['total_specs'] == 0) {
+            Application::$app->response->redirect('/technician-specialization');
+        } elseif ($hasAddedPaymentMethod['count'] == 0) {
+            Application::$app->session->setFlash('add-bank-account', 'Please add a Bank Account to Proceed!');
+            Application::$app->response->redirect('/technician-payment-details');
+        } else {
+            $this->setLayout('auth');
+            return $this->render('/technician/technician-requests', ['requests' => $requests]);
+        }
     }
 
     public function updateRequestStatus($request)
@@ -233,8 +245,17 @@ class TechnicianController extends Controller
 
     public function technicianTransactions()
     {
+        $ctap = new CusTechAdvPayment();
+        $revenue = $ctap->getTotalEarning(Application::$app->session->get('technician'));
+        $totalPending = $ctap->getTotalPendingAdvancePayment(Application::$app->session->get('technician'));
+        $transactions = $ctap->getAllTransactions(Application::$app->session->get('technician'));
+
         $this->setLayout('auth');
-        return $this->render('/technician/technician-transactions');
+        return $this->render('/technician/technician-transactions', [
+            'revenue' => $revenue,
+            'totalPending' => $totalPending,
+            'transactions' => $transactions
+        ]);
     }
 
     public function technicianPaymentDetails()
@@ -534,9 +555,17 @@ class TechnicianController extends Controller
         $model->tech_id = Application::$app->session->get('technician');
         $model->tech_spec_cat_ids = $_POST['specializations'] ?? [];
 
+        $techPaymentMethod = new TechnicianPaymentMethod();
+        $hasAddedPaymentMethod = $techPaymentMethod->checkTechnicianPaymentMethod(Application::$app->session->get('technician'));
+
+
         if ($model->saveMultiple()) {
             Application::$app->session->setFlash('specialization-updated', 'Specializations saved successfully!');
-            $response->redirect('/technician-payment-details');
+            if ($hasAddedPaymentMethod['count'] == 0) {
+                $response->redirect('/technician-payment-details');
+            } else {
+                $response->redirect('/technician-dashboard');
+            }
         } else {
             Application::$app->session->setFlash('specialization-error', 'Something went wrong.');
             $response->redirect('/technician-specialization');
@@ -664,7 +693,7 @@ class TechnicianController extends Controller
 
         // Get the HTML content from the view
         ob_start();
-        require_once __DIR__ . '/../views/customer/customer-download-invoice.php';
+        require_once __DIR__ . '/../views/technician/technician-download-invoice.php';
         $html = ob_get_clean();
 
         $dompdf->loadHtml($html);
@@ -672,7 +701,7 @@ class TechnicianController extends Controller
         $dompdf->render();
 
         // Generate filename
-        $filename = "invoice-{$contract_id}.pdf";
+        $filename = "technician-invoice-{$contract_id}.pdf";
 
         // Stream the file
         $dompdf->stream($filename, ["Attachment" => true]);
