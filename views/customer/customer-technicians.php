@@ -1,3 +1,10 @@
+<?php
+
+use app\core\Application;
+use app\models\Customer;
+use app\models\TechnicianReview;
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,10 +21,6 @@
 
 <body>
 <?php
-
-use app\core\Application;
-use app\models\Customer;
-
 include_once 'components/sidebar.php';
 include_once 'components/header.php';
 ?>
@@ -43,30 +46,41 @@ include_once 'components/header.php';
         $technicians = $customer->getAllTechniciansSortedByDistance();
 
         if ($technicians['status'] === 'success' && empty($technicians['data'])) {
-            echo '<h2>No Technicians found !</h2>';
+            echo '<h2>No Technicians found!</h2>';
         } elseif ($technicians['status'] === 'success' && !empty($technicians['data'])) {
             foreach ($technicians['data'] as $technician) {
+                $techReviewModel = new TechnicianReview();
+                $averageRatings = $techReviewModel->getAverageRatings($technician['tech_id']);
+
+                $starsHtml = '';
+                $roundedRating = round($averageRatings);
+                for ($i = 1; $i <= 5; $i++) {
+                    if ($i <= $roundedRating) {
+                        $starsHtml .= '<ion-icon name="star" style="color: Gold"></ion-icon>';
+                    } else {
+                        $starsHtml .= '<ion-icon name="star-outline"></ion-icon>';
+                    }
+                }
                 echo '<div class="col technician-card" data-name="' . strtolower($technician['fname']) . '' . strtolower($technician['lname']) . '">
-                    <div class="card">
-                        <img src="' . $technician['profile_picture'] . '" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">' . $technician['fname'] . ' ' . $technician['lname'] . '</h5>
-                            <h6 class="distance">' . $technician['distance'] . ' km Away</h6>
-                            <h6 class="distance">' . round($technician['duration']) . ' mins Away</h6>
-                            <h5 class="rating">Rating: 
-                            <span> 4.5</span>
-                            </h5>
-                            <h5 class="service-category">Motor Mechanic</h5>
-                            <ion-icon name="star" style="color: Gold"></ion-icon>
-                            <ion-icon name="star" style="color: Gold"></ion-icon>
-                            <p class="card-text">12 years expericenced motor mechanic worked for BMW.</p>
-                            <button type="button" class="btn btn-primary" onclick="viewProfile(' . $technician['tech_id'] . ')">View Profile</button>
-                        </div>
-                    </div>
-                </div>';
+            <div class="card">
+                <img src="' . $technician['profile_picture'] . '" class="card-img-top" alt="Profile picture">
+                <div class="card-body">
+                    <h5 class="card-title">' . $technician['fname'] . ' ' . $technician['lname'] . '</h5>
+                    <h6 class="distance">' . $technician['distance'] . ' km Away</h6>
+                    <h6 class="distance">' . round($technician['duration']) . ' mins Away</h6>
+                    <h5 class="rating">Rating: 
+                    <span>' . number_format($averageRatings, 1) . '</span>
+                    </h5>
+                    <h5 class="service-category">' . ($technician['category'] ?? 'Motor Mechanic') . '</h5>
+                    ' . $starsHtml . '
+                    <p class="card-text">' . ($technician['description'] ?? 'Experienced motor mechanic') . '</p>
+                    <button type="button" class="btn btn-primary" onclick="viewProfile(' . $technician['tech_id'] . ')">View Profile</button>
+                </div>
+            </div>
+        </div>';
             }
         } elseif ($technicians['status'] === 'error') {
-            echo '<h2>An Unexpected error occured while fetching Technicians</h2>';
+            echo '<h2>An Unexpected error occurred while fetching Technicians</h2>';
         }
         ?>
     </div>

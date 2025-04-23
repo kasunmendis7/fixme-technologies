@@ -94,3 +94,22 @@
     color: #666;
     font-size: 0.9rem;
 }
+
+.download-invoice-btn {
+    background-color: #4285f4;
+    border: none;
+    color: white;
+    padding: 1rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.download-invoice-btn:hover {
+    background-color: #3574b3;
+}

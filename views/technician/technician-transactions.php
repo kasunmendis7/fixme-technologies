@@ -29,7 +29,6 @@ include_once 'components/header.php';
     <div class="header">
         <div class="header-item">
             <?php
-
             $earning = number_format($revenue * (80 / 100), 2, '.', ',');
             ?>
             <div class="total-payments">
@@ -85,7 +84,6 @@ include_once 'components/header.php';
                 </tr>
             <?php endif; ?>
             </tbody>
-
         </table>
     </div>
 </div>

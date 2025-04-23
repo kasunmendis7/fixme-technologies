@@ -48,7 +48,7 @@ include_once 'components/header.php';
     <div class="payment-container">
         <div class="payment-card-1">
             <div class="img-box">
-                <img src="https://seeklogo.com/images/N/nations-trust-bank-logo-B7AF1BD370-seeklogo.com.png"
+                <img src="https://w7.pngwing.com/pngs/98/991/png-transparent-computer-icons-bank-icon-design-screenshot-bank-blue-angle-logo-thumbnail.png"
                      alt="Nations Trust">
             </div>
             <div class="number">
