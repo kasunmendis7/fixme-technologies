@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\core\DbModel;
+use PDO;
 
 class MarketplaceOrder extends DbModel
 {
@@ -51,6 +52,16 @@ class MarketplaceOrder extends DbModel
     
         return $result;
     }
+
+    //list order details occording to the customer id 
+    public function listOrderDetails($customer_id)
+    {
+        $sql = "SELECT * FROM marketplace_orders WHERE customer_id = :customer_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue('customer_id', $customer_id);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    } 
 
     public function rules(): array
     {

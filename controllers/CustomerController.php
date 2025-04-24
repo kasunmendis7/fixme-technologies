@@ -23,7 +23,7 @@ use app\models\TechnicianPaymentMethod;
 use app\models\TechnicianReview;
 use Dompdf\Dompdf;
 use Dompdf\Options;
-
+use app\models\cart;
 
 class CustomerController extends Controller
 {
@@ -543,6 +543,7 @@ class CustomerController extends Controller
         exit;
     }
 
+
     public function getServiceCenterDirections($id)
     {
         $ser_cen_id = intval($id[0]);
@@ -747,6 +748,39 @@ class CustomerController extends Controller
         // Stream the file
         $dompdf->stream($filename, ["Attachment" => true]);
         exit();
+    }
+
+    // add product to the cart
+    public function addToCartController(Request $request, Response $response)
+    {
+        $user_id = Application::$app->session->get('customer');
+
+        if (!$user_id) {
+            Application::$app->response->redirect('/customer-login');
+        }
+
+        $product_id = $request->getBody()['product_id'];
+        $quantity = $request->getBody()['quantity'] ?? 1;
+
+        if (!$product_id) {
+            Application::$app->session->setFlash('error', 'no id getting ');
+        }
+
+        $cart = new Cart();
+        if ($cart->addToCart($user_id, $product_id, $quantity)) {
+            Application::$app->session->setFlash('success', 'Product add to cart');
+            // http_response_code(200); // Set HTTP status code
+            // header('Content-Type: application/json'); // Set response header
+            // echo json_encode(['message' => 'Product added to cart']);
+            Application::$app->response->redirect('/service-center-marketplace');
+
+        } else {
+            Application::$app->session->setFlash('error', 'Prodcut add to cart fail');
+            // http_response_code(400); // Set HTTP status code
+            // header('Content-Type: application/json'); // Set response header
+            // echo json_encode(['message' => 'Failed to add product to cart']);
+            Application::$app->response->redirect('/service-center-marketplace');
+        }
     }
 
 }
