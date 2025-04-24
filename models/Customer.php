@@ -237,6 +237,9 @@ class Customer extends DbModel
         return $stmt->execute();
     }
 
+    //function to save checkout details 
+    
+
     public function findById($id)
     {
         $sql = "SELECT * FROM customer WHERE cus_id = :cus_id";

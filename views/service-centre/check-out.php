@@ -278,7 +278,7 @@
 <main>
 
     <section class="checkout-form">
-        <form action="#!" method="get">
+        <form action="/checkout-save" method="post">
             <h6>Contact information</h6>
             <div class="form-control">
                 <label for="checkout-email">E-mail</label>
@@ -318,7 +318,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="form-control">
+                <!-- <div class="form-control">
                     <label for="checkout-country">Country</label>
                     <div>
                         <span class="fa fa-globe"></span>
@@ -332,7 +332,7 @@
                             <option value="Egypt"></option>
                         </datalist>
                     </div>
-                </div>
+                </div> -->
                 <div class="form-control">
                     <label for="checkout-postal">Postal code</label>
                     <div>
@@ -342,14 +342,12 @@
                     </div>
                 </div>
             </div>
-            <div class="form-control checkbox-control">
+            <!-- <div class="form-control checkbox-control">
                 <input type="checkbox" name="checkout-checkbox" id="checkout-checkbox">
                 <label for="checkout-checkbox">Save this information for next time</label>
-            </div>
+            </div> -->
             <div class="form-control-btn">
-                <a href="/card-details">
-                    <button>Continue</button>
-                </a>
+                <button type="submit">Continue</button>
             </div>
         </form>
     </section>
@@ -359,7 +357,7 @@
             <div class="checkout-lists">
                 <?php
                 $total = 0;
-                $shipping = 19.00;
+                $shipping = 200.00;
                 foreach ($cartItems as $item):
                     $price = $item['discount_price'] ?? $item['price'];
                     $subtotal = $price * $item['quantity'];
