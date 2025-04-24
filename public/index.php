@@ -313,6 +313,10 @@ $app->router->post('/marketplace-payment-response', [PaymentController::class, '
 /* Routes related to updating technician specializations */
 $app->router->get('/technician-specialization', [TechnicianController::class, 'technicianSpecialization']);
 $app->router->post('/technician-update-specialization', [TechnicianController::class, 'updateSpecialization']);
+$app->router->get('/technician-vehicle', [TechnicianController::class, 'getVehicleType']);
+$app->router->post('/technician-update-vehicle', [TechnicianController::class, 'updateVehicleType']);
+$app->router->get('/technician-vehicle-issue', [TechnicianController::class, 'getSpecializedIssue']);
+$app->router->post('/technician-update-vehicle-issue', [TechnicianController::class, 'updateSpecializedIssue']);
 
 /* Run the application */
 $app->run();
