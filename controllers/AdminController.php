@@ -212,7 +212,6 @@ class AdminController extends Controller
         }
     }
 
-
     public function deleteTechnician(Request $request)
     {
         $data = json_decode(file_get_contents("php://input"), true);
@@ -233,6 +232,16 @@ class AdminController extends Controller
         }
     }
 
+    //function to fetch all the service centers 
+    public function fetchServiceCenters()
+    {
+        
+        $admin = new Admin();
+        $serviceCenters = $admin->fetchServiceCenters();
+        $this->setLayout('auth');
+        return $this->render('/admin/service-centers', ['serviceCenters' => $serviceCenters]);
+
+    }
 
 }
 
