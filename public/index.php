@@ -153,6 +153,7 @@ $app->router->post('/add-to-cart', [CartController::class, 'addToCartController'
 $app->router->post('/service-center-add-to-cart', [CustomerController::class, 'addToCartController']);
 $app->router->get('/cart-item-count', [CartController::class, 'getCartItemCount']);
 $app->router->post('/checkout-save', [CheckoutInfoController::class, 'saveCheckout']);
+$app->router->get('/get-invoice/{id}', [CustomerController::class, 'downloadScInvoice']);
 
 /* Customer Routes */
 $app->router->get('/customer-dashboard', [CustomerController::class, 'customerDashboard']);
