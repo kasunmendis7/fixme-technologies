@@ -278,7 +278,7 @@
 <main>
 
     <section class="checkout-form">
-        <form action="/checkout-save" id="myForm" method="post">
+        <form action="/checkout-save" method="post">
             <h6>Contact information</h6>
             <div class="form-control">
                 <label for="checkout-email">E-mail</label>
@@ -346,8 +346,8 @@
                 <input type="checkbox" name="checkout-checkbox" id="checkout-checkbox">
                 <label for="checkout-checkbox">Save this information for next time</label>
             </div> -->
-            <div class="form-control-btn" id="form-control-btn">
-                <button type="submit" id="submit-btn">Submit</button>
+            <div class="form-control-btn">
+                <button type="submit">Continue</button>
             </div>
         </form>
     </section>
@@ -398,12 +398,3 @@
 
 
 </main>
-
-
-<script>
-    document.getElementById("myForm").addEventListener("submit", function (e) {
-        const btn = document.getElementById("submit-btn");
-        btn.disabled = true;
-        btn.innerText = "Submitting...";
-    });
-</script>
