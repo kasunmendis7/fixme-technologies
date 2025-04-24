@@ -39,37 +39,6 @@ include_once 'components/header.php';
         <?php endif; ?>
     </div>
 </section>
-
-<!-- Main Content with Sidebar -->
-<section class="marketplace-container">
-    <!-- Categories Sidebar -->
-    <aside class="categories-sidebar">
-        <h3 class="categories-title">Product Categories</h3>
-        <ul class="categories-list">
-            <li><a href="/get-product-by-category?category=all" class="category-link" data-category="all">All</a></li>
-            <li><a href="/get-product-by-category?category=tools" class="category-link" data-category="tools">Tools</a>
-            </li>
-            <li><a href="/get-product-by-category?category=engine-transmission" class="category-link"
-                   data-category="engine-transmission">Engine & Transmission</a></li>
-            <li><a href="/get-product-by-category?category=brakes-suspension" class="category-link"
-                   data-category="brakes-suspension">Brakes & Suspension</a></li>
-            <li><a href="/get-product-by-category?category=electrical-electronics" class="category-link"
-                   data-category="electrical-electronics">Electrical & Electronics</a></li>
-            <li><a href="/get-product-by-category?category=body-parts-exterior" class="category-link"
-                   data-category="body-parts-exterior">Body Parts & Exterior</a></li>
-            <li><a href="/get-product-by-category?category=tires-wheels" class="category-link"
-                   data-category="tires-wheels">Tires & Wheels</a></li>
-            <li><a href="/get-product-by-category?category=interior-accessories" class="category-link"
-                   data-category="interior-accessories">Interior Accessories</a></li>
-            <li><a href="/get-product-by-category?category=fluids-maintenance" class="category-link"
-                   data-category="fluids-maintenance">Fluids & Maintenance</a></li>
-            <li><a href="/get-product-by-category?category=performance-upgrades" class="category-link"
-                   data-category="performance-upgrades">Performance & Upgrades</a></li>
-            <li><a href="/get-product-by-category?category=safety-security" class="category-link"
-                   data-category="safety-security">Safety & Security</a></li>
-        </ul>
-    </aside>
-
     <!-- Marketplace Products Section -->
     <div class="marketplace">
         <h1 class="marketplace-title">Available Products</h1>
@@ -89,7 +58,7 @@ include_once 'components/header.php';
                         </div>
                         <!-- <a href="/check-out-page" class="product-btn">View Details</a> -->
                         <!-- <button class="add-to-cart-btn" data-product-id="<?php echo $product['product_id']; ?>">Add to Cart</button> -->
-                        <form action="/add-to-cart" method="post">
+                        <form action="/service-center-add-to-cart" method="post">
                             <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
                             <button class="btn" style="color:black;" type="submit">Add to cart</button>
                         </form>
@@ -101,34 +70,8 @@ include_once 'components/header.php';
         </div>
     </div>
 </section>
-
-<!-- <script src="/js/service-center/filterProducts.js"></script> -->
-<!-- <script>
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".category-link").forEach(link => {
-        link.addEventListener("click", function (event) {
-            event.preventDefault(); // Prevent default anchor behavior
-
-            let category = this.getAttribute("data-category");
-
-            // Send an AJAX request to fetch filtered products
-            fetch(`/get-product-by-category?category=${category}`, {
-                method: "GET",
-                headers: {
-                    "X-Requested-With": "XMLHttpRequest"
-                }
-            })
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById("product-list").innerHTML = data; // Update the product list
-            })
-            .catch(error => console.error("Error:", error));
-        });
-    });
-});
-</script> -->
-
 <script src="/js/service-center/cart.js"></script>
+<script src="/js/service-center/product-count.js"></script>
 
 </body>
 </html>

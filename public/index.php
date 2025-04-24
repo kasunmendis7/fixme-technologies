@@ -136,6 +136,9 @@ $app->router->post('/fetch-appointment-dates', [AppoinmentController::class, 'fe
 $app->router->get('/get-notifications-for-service-center', [NotificationController::class, 'getNotificationsForServiceCenter']);
 $app->router->post('/mark-notification-as-seen/{id}', [NotificationController::class, 'markAsRead']);
 $app->router->post('/clear-notifications-for-service-center', [NotificationController::class, 'deleteNotificationForServiceCenter']);
+$app->router->get('/service-center-view-cart', [ServiceCentreController::class, 'viewServiceCenterCart']);
+$app->router->post('/remove-from-serv-cen-cart', [ServiceCentreController::class, 'removeServCenItemsFromCart']);
+$app->router->get('/service-center-check-out-page', [ServiceCentreController::class, 'servCenCheckOutPage']);
 // $app->router->get('/service-centre-dashboard', [AppoinmentController::class, 'recentCustomers']);
 
 
@@ -149,8 +152,10 @@ $app->router->post('/service-center-update-product', [ProductController::class, 
 $app->router->post('/service-center-delete-product', [ProductController::class, 'delete']);
 $app->router->get('/get-product-by-category', [ProductController::class, 'filterProductByCategory']);
 $app->router->post('/add-to-cart', [CartController::class, 'addToCartController']);
+$app->router->post('/service-center-add-to-cart', [CustomerController::class, 'addToCartController']);
 $app->router->get('/cart-item-count', [CartController::class, 'getCartItemCount']);
 $app->router->post('/checkout-save', [CheckoutInfoController::class, 'saveCheckout']);
+$app->router->get('/get-invoice/{id}', [CustomerController::class, 'downloadScInvoice']);
 
 /* Customer Routes */
 $app->router->get('/customer-dashboard', [CustomerController::class, 'customerDashboard']);
