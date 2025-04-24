@@ -209,35 +209,6 @@ a {
     color: var(--white);
 }
 
-.search {
-    position: relative;
-    width: 400px;
-    margin: 0 10px;
-}
-
-.search label {
-    position: relative;
-    width: 100%;
-}
-
-.search label input {
-    width: 100%;
-    height: 40px;
-    border-radius: 40px;
-    padding: 5px 20px;
-    padding-left: 35px;
-    font-size: 18px;
-    outline: none;
-    border: 1px solid var(--black2);
-}
-
-.search label ion-icon {
-    position: absolute;
-    top: 0;
-    left: 10px;
-    font-size: 1.2rem;
-}
-
 .user {
     position: relative;
     width: 40px;
@@ -245,6 +216,13 @@ a {
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
+}
+
+
+.user-account {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .user img {
@@ -257,11 +235,23 @@ a {
 }
 
 .user-name {
+    display: flex;
+    align-items: center; 
     position: relative;
     padding: 0 10px;
     color: var(--white);
-    font-size: 0.9rem;
+    font-size: 1rem;
+    gap: 10px;
 }
+
+
+
+.cart-icon {
+    font-size: 1.5rem; 
+    color: var(--white); 
+    vertical-align: middle; 
+}
+
 
 /* ======================= Cards ====================== */
 .cardBox {
@@ -599,11 +589,6 @@ a {
     background-color: #ff3737;
 }
 
-.user-account {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
 
 .advance-payment-btn {
     background-color: #0dfd35;

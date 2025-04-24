@@ -9,10 +9,12 @@ use app\core\middlewares\RoleMiddleware;
 use app\core\Request;
 use app\core\Response;
 use app\models\Chat;
+use app\models\CheckoutInfo;
 use app\models\Comment;
 use app\models\CusTechAdvPayment;
 use app\models\CusTechContract;
 use app\models\Customer;
+use app\models\MarketplaceOrder;
 use app\models\Post;
 use app\models\ServiceCenter;
 use app\models\ServiceCenterReview;
@@ -23,7 +25,7 @@ use app\models\TechnicianPaymentMethod;
 use app\models\TechnicianReview;
 use Dompdf\Dompdf;
 use Dompdf\Options;
-
+use app\models\cart;
 
 class CustomerController extends Controller
 {
@@ -449,7 +451,7 @@ class CustomerController extends Controller
             $array["email"] = $email;
             $array["phone"] = $phone_no;
             $array["address"] = $address;
-//            $array["city"] = "Colombo";
+            //            $array["city"] = "Colombo";
             $array["country"] = "Sri Lanka";
             $array["amount"] = $amount;
             $array["merchant_id"] = $merchant_id;
@@ -466,7 +468,7 @@ class CustomerController extends Controller
         }
     }
 
-//    public function updatePaymentStatus()
+    //    public function updatePaymentStatus()
 //    {
 //        header('Content-type: application/json');
 //
@@ -542,6 +544,7 @@ class CustomerController extends Controller
         // No view is needed since this is a server-to-server callback
         exit;
     }
+
 
     public function getServiceCenterDirections($id)
     {
@@ -757,4 +760,93 @@ class CustomerController extends Controller
         exit();
     }
 
+    // add product to the cart
+    public function addToCartController(Request $request, Response $response)
+    {
+        $user_id = Application::$app->session->get('customer');
+
+        if (!$user_id) {
+            Application::$app->response->redirect('/customer-login');
+        }
+
+        $product_id = $request->getBody()['product_id'];
+        $quantity = $request->getBody()['quantity'] ?? 1;
+
+        if (!$product_id) {
+            Application::$app->session->setFlash('error', 'no id getting ');
+        }
+
+        $cart = new Cart();
+        if ($cart->addToCart($user_id, $product_id, $quantity)) {
+            Application::$app->session->setFlash('success', 'Product add to cart');
+            // http_response_code(200); // Set HTTP status code
+            // header('Content-Type: application/json'); // Set response header
+            // echo json_encode(['message' => 'Product added to cart']);
+            Application::$app->response->redirect('/service-center-marketplace');
+
+        } else {
+            Application::$app->session->setFlash('error', 'Prodcut add to cart fail');
+            // http_response_code(400); // Set HTTP status code
+            // header('Content-Type: application/json'); // Set response header
+            // echo json_encode(['message' => 'Failed to add product to cart']);
+            Application::$app->response->redirect('/service-center-marketplace');
+        }
+    }
+
+    //function to controll invoice 
+    public function downloadScInvoice($order_id)
+    {
+        $order_id = intval($order_id[0] ?? 0);
+        $cus_id = Application::$app->session->get('customer');
+
+        if (!$cus_id) {
+            Application::$app->session->setFlash('error', 'Please log in first.');
+            Application::$app->response->redirect('/customer-login');
+            return;
+        }
+
+        $orderModel = new MarketplaceOrder();
+        $checkoutModel = new CheckoutInfo();
+        $cartModel = new Cart();
+
+        $orderDetails = $orderModel->listOrderDetails($order_id);
+        $checkoutInfo = $checkoutModel->listData($cus_id);
+        $cartItems = $cartModel->getCartItems($cus_id);
+
+        $total = 0;
+        foreach ($cartItems as $item) {
+            $total += $item['price'] * $item['quantity'];
+        }
+        $total = number_format($total, 2, '.', '');
+
+        // Make data available in view
+        $data = [
+            'order_id' => $order_id,
+            'customer_name' => $checkoutInfo['full_name'],
+            'orderDetails' => $orderDetails,
+            'checkoutInfo' => $checkoutInfo,
+            'cartItems' => $cartItems,
+            'total' => $total
+        ];
+
+        // Create PDF using dompdf
+        $options = new Options();
+        $options->set('defaultFont', 'DejaVu Sans'); // good for UTF-8
+        $dompdf = new Dompdf($options);
+
+        // Get HTML content from view
+        extract($data);
+        ob_start();
+        require_once __DIR__ . '/../views/service-centre/customer-download-invoice.php';
+        $html = ob_get_clean();
+
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+
+        // Stream file
+        $filename = "sc-invoice-{$order_id}.pdf";
+        $dompdf->stream($filename, ["Attachment" => true]);
+        exit();
+    }
 }

@@ -169,7 +169,13 @@ class PaymentController extends Controller
         }
 
 
+    }
 
+    //list payment details for the invoice
+    public function ListPaymentDetails(Request $request, Response $response)
+    {
+        $cus_id = Application::$app->session->get('customer');
+        
     }
 
 }
