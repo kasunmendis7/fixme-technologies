@@ -20,6 +20,7 @@ use app\models\TechnicianRequest;
 use app\models\Chat;
 use app\models\TechnicianPaymentMethod;
 use app\models\TechSpec;
+use app\models\Vehicle;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
@@ -46,10 +47,10 @@ class TechnicianController extends Controller
     {
         $techSpecModel = new TechSpec();
         $techPaymentMethod = new TechnicianPaymentMethod();
-        $hasUpdatedSpecs = $techSpecModel->checkTechnicianSpecs(Application::$app->session->get('technician'));
+        $hasUpdatedSpecs = $techSpecModel->checkTechnicianSpecVeh(Application::$app->session->get('technician'));
         $hasAddedPaymentMethod = $techPaymentMethod->checkTechnicianPaymentMethod(Application::$app->session->get('technician'));
         if ($hasUpdatedSpecs['total_specs'] == 0) {
-            Application::$app->response->redirect('/technician-specialization');
+            Application::$app->response->redirect('/technician-vehicle');
         } elseif ($hasAddedPaymentMethod['count'] == 0) {
             Application::$app->session->setFlash('add-bank-account', 'Please add a Bank Account to Proceed!');
             Application::$app->response->redirect('/technician-payment-details');
@@ -189,7 +190,7 @@ class TechnicianController extends Controller
         $requests = TechnicianRequest::getRequestsByTechnicianId($technicianId);
         $techSpecModel = new TechSpec();
         $techPaymentMethod = new TechnicianPaymentMethod();
-        $hasUpdatedSpecs = $techSpecModel->checkTechnicianSpecs(Application::$app->session->get('technician'));
+        $hasUpdatedSpecs = $techSpecModel->checkTechnicianSpecVeh(Application::$app->session->get('technician'));
         $hasAddedPaymentMethod = $techPaymentMethod->checkTechnicianPaymentMethod(Application::$app->session->get('technician'));
         if ($hasUpdatedSpecs['total_specs'] == 0) {
             Application::$app->response->redirect('/technician-specialization');
@@ -546,6 +547,45 @@ class TechnicianController extends Controller
         ]);
     }
 
+    public function getVehicleType()
+    {
+        $loggedInTechnicianId = Application::$app->session->get('technician');
+        $vehicleTypeModel = new Vehicle();
+        $vehicles = $vehicleTypeModel->fetchVehicleTypes();
+
+        $this->setLayout('auth');
+        return $this->render('/technician/technician-vehicle', [
+            'vehicles' => $vehicles,
+            'technicianId' => $loggedInTechnicianId
+        ]);
+    }
+
+    public function getSpecializedIssue(Request $request, Response $response)
+    {
+        // 1) Who’s logged in?
+        $technicianId = Application::$app->session->get('technician');
+
+        // 2) Get their vehicle IDs
+        $vehicleModel = new Vehicle();
+        $vehicleIds = $vehicleModel->getVehicleIdsByTechnician($technicianId);
+
+        // If they haven’t picked any vehicles yet, bounce them back
+        if (empty($vehicleIds)) {
+            Application::$app->session->setFlash('error', 'Please select at least one vehicle type first.');
+            return $response->redirect('/technician-vehicle');
+        }
+
+        // 3) Fetch all issues linked to those vehicle IDs
+        $issues = $vehicleModel->getIssuesByVehicleIds($vehicleIds);
+
+        // 4) Render
+        $this->setLayout('auth');
+        return $this->render('/technician/technician-vehicle-issue', [
+            'issues' => $issues,
+            'technicianId' => $technicianId,
+        ]);
+    }
+
     public function updateSpecialization(Request $request, Response $response)
     {
         $body = $request->getBody();
@@ -571,6 +611,51 @@ class TechnicianController extends Controller
             $response->redirect('/technician-specialization');
         }
     }
+
+
+    public function updateVehicleType(Request $request, Response $response)
+    {
+        $body = $request->getBody();
+
+        // Assuming form sends 'tech_id' and an array 'specializations[]' (checkbox values)
+        $model = new Vehicle();
+        $model->tech_id = Application::$app->session->get('technician');
+        $model->vehicle_ids = $_POST['vehicles'] ?? [];
+
+        $techPaymentMethod = new TechnicianPaymentMethod();
+        $hasAddedPaymentMethod = $techPaymentMethod->checkTechnicianPaymentMethod(Application::$app->session->get('technician'));
+
+
+        if ($model->saveVehicleTypes()) {
+            Application::$app->session->setFlash('specialization-updated', 'Specializations saved successfully!');
+            if ($hasAddedPaymentMethod['count'] == 0) {
+                $response->redirect('/technician-payment-details');
+            } else {
+                $response->redirect('/technician-vehicle-issue');
+            }
+        } else {
+            Application::$app->session->setFlash('specialization-error', 'Something went wrong.');
+            $response->redirect('/technician-vehicle');
+        }
+    }
+
+    public function updateSpecializedIssue(Request $request, Response $response)
+    {
+        $body = $request->getBody();
+        $model = new Vehicle();
+
+        $model->tech_id = Application::$app->session->get('technician');
+        $model->issue_ids = $_POST['issues'] ?? [];
+
+        if ($model->saveSpecializedIssues()) {
+            Application::$app->session->setFlash('issue-updated', 'Specialized issues saved successfully!');
+            $response->redirect('/technician-dashboard'); // Or wherever you want to send them next
+        } else {
+            Application::$app->session->setFlash('issue-error', 'Something went wrong while saving specialized issues.');
+            $response->redirect('/technician-vehicle-issue');
+        }
+    }
+
 
     public function technicianFinishedContractDetails($contract_id)
     {
