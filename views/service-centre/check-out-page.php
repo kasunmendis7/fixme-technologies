@@ -27,129 +27,327 @@ use app\core\Application;
     <script src="/js/service-center/marketplace-home.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script> -->
     <title>Market Place</title>
 </head>
 
 <body>
-<nav class="container">
+    <nav class="container">
 
-    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3">
-        <div class="col-md-3 mb-2 mb-md-0">
-            <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
-                <img class="logo-img" src="/assets/shopping-cart_market-place.png">
-            </a>
-        </div>
-
-
-        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
-            <li><a href="/service-centre-landing" class="nav-link px-2">Service Centre</a></li>
-            <li><a href="#" class="nav-link px-2">FAQs</a></li>
-            <li><a href="#" class="nav-link px-2">About</a></li>
-            <li><a href="#" class="nav-link px-2">
-                    <ion-icon name="cart-outline"></ion-icon>
-                </a></li>
-        </ul>
-
-        <!--        --><?php //if (Application::isGuestTechnician()): ?>
-        <!--            <div class="col-md-3 text-center">-->
-        <!--                <button type="button" class="btn btn-outline-primary me-2"><a class="text-decoration-none"-->
-        <!--                                                                              href="/select-user-login">Login</a>-->
-        <!--                </button>-->
-        <!--                <button type="button" class="btn btn-primary"><a class="text-decoration-none"-->
-        <!--                                                                 href="/select-user-sign-up">Sign Up</a></button>-->
-        <!--            </div>-->
-        <!--        --><?php //else: ?>
-        <!--            <div class="col-md-3 text-center">-->
-        <!---->
-        <!--            </div>-->
-        <!--        --><?php //endif; ?>
-        <form class="search-bar">
-            <input class="search-bar-enter" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn" type="submit">Search</button>
-        </form>
-    </header>
-</nav>
-
-<section>
-    <div class="flash-message">
-        <?php if (Application::$app->session->getFlash('success')): ?>
-            <div class="alert alert-success">
-                <?php echo Application::$app->session->getFlash('success') ?>
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3">
+            <div class="col-md-3 mb-2 mb-md-0">
+                <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+                    <img class="logo-img" src="/assets/shopping-cart_market-place.png">
+                </a>
             </div>
-        <?php endif; ?>
-    </div>
-</section>
 
-<?php
+
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
+                <li><a href="/service-centre-landing" class="nav-link px-2">Service Centre</a></li>
+                <li><a href="#" class="nav-link px-2">FAQs</a></li>
+                <li><a href="#" class="nav-link px-2">About</a></li>
+                <li><a href="#" class="nav-link px-2">
+                        <ion-icon name="cart-outline"></ion-icon>
+                    </a></li>
+            </ul>
+
+            <!--        --><?php //if (Application::isGuestTechnician()): ?>
+            <!--            <div class="col-md-3 text-center">-->
+            <!--                <button type="button" class="btn btn-outline-primary me-2"><a class="text-decoration-none"-->
+            <!--                                                                              href="/select-user-login">Login</a>-->
+            <!--                </button>-->
+            <!--                <button type="button" class="btn btn-primary"><a class="text-decoration-none"-->
+            <!--                                                                 href="/select-user-sign-up">Sign Up</a></button>-->
+            <!--            </div>-->
+            <!--        --><?php //else: ?>
+            <!--            <div class="col-md-3 text-center">-->
+            <!---->
+            <!--            </div>-->
+            <!--        --><?php //endif; ?>
+            <form class="search-bar">
+                <input class="search-bar-enter" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn" type="submit">Search</button>
+            </form>
+        </header>
+    </nav>
+
+    <section>
+        <div class="flash-message">
+            <?php if (Application::$app->session->getFlash('success')): ?>
+                <div class="alert alert-success">
+                    <?php echo Application::$app->session->getFlash('success') ?>
+                </div>
+            <?php endif; ?>
+        </div>
+    </section>
+
+    <?php
 
     include_once 'check-out.php';
 
-?>
+    ?>
+
+    <!-- create a pay button -->
+    <button type="submit" id="payhere-button">PayHere Pay</button>
 
 
 
-<div class="container-f">
-    <footer class="py-5">
-        <div class="row">
-            <div class="col-6 col-md-2 mb-3">
-                <h3 class="ml-3">FIXME</h3>
+    <div class="container-f">
+        <footer class="py-5">
+            <div class="row">
+                <div class="col-6 col-md-2 mb-3">
+                    <h3 class="ml-3">FIXME</h3>
+                </div>
+                <div class="col-6 col-md-2 mb-3">
+                    <h5>Company</h5>
+                    <ul class="nav-f flex-column">
+                        <li class="nav-item-f mb-2"><a href="#" class="nav-link-f p-0 text-body-secondary">About Us</a>
+                        </li>
+                        <li class="nav-item-f mb-2"><a href="#" class="nav-link-f p-0 text-body-secondary">Our
+                                Offerings</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-6 col-md-2 mb-3">
+                    <h5>Products</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item-f mb-2"><a href="#" class="nav-link-f p-0 text-body-secondary">Nearby
+                                Technicians</a></li>
+                        <li class="nav-item-f mb-2"><a href="#" class="nav-link-f p-0 text-body-secondary">Service
+                                Centers</a></li>
+                        <li class="nav-item-f mb-2"><a href="#" class="nav-link-f p-0 text-body-secondary">Service
+                                Center
+                                Marketplace</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-6 col-md-2 mb-3">
+                    <h5>Safety Measures</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item-f mb-2"><a href="#" class="nav-link-f p-0 text-body-secondary">Safety</a>
+                        </li>
+                        <li class="nav-item-f mb-2"><a href="#" class="nav-link-f p-0 text-body-secondary">Diversity and
+                                Inclusion</a></li>
+                    </ul>
+                </div>
+
             </div>
-            <div class="col-6 col-md-2 mb-3">
-                <h5>Company</h5>
-                <ul class="nav-f flex-column">
-                    <li class="nav-item-f mb-2"><a href="#" class="nav-link-f p-0 text-body-secondary">About Us</a></li>
-                    <li class="nav-item-f mb-2"><a href="#" class="nav-link-f p-0 text-body-secondary">Our Offerings</a>
-                    </li>
+
+            <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 mx-4 border-top">
+                <p>© 2024 Fixme Technologies Inc.</p>
+                <ul class="list-unstyled d-flex">
+                    <li class="ms-3"><a class="link-body-emphasis" href="#">
+                            <svg class="bi" width="24" height="24">
+                                <path
+                                    d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.284-.009-.425A6.683 6.683 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518A3.301 3.301 0 0 0 15.555 2a6.533 6.533 0 0 1-2.084.797 3.301 3.301 0 0 0-5.617 3.005A9.355 9.355 0 0 1 1.114 2.1a3.3 3.3 0 0 0 1.019 4.396A3.267 3.267 0 0 1 .64 6.575v.034a3.301 3.301 0 0 0 2.644 3.234 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.621-.059 3.305 3.305 0 0 0 3.067 2.281A6.588 6.588 0 0 1 0 13.027 9.286 9.286 0 0 0 5.031 15z" />
+                                <use xlink:href="#twitter"></use>
+                            </svg>
+                        </a></li>
+                    <li class="ms-3"><a class="link-body-emphasis" href="#">
+                            <svg class="bi" width="24" height="24">
+                                <path
+                                    d="M8 0C5.79 0 5.555.01 4.69.047a6.153 6.153 0 0 0-2.292.431 4.383 4.383 0 0 0-1.633 1.064A4.394 4.394 0 0 0 .048 4.69 6.154 6.154 0 0 0 0 6.977C0 7.445.002 7.805.005 8.128L.02 9.81v1.154c.003.352.006.729.006 1.104 0 .375-.003.752-.006 1.104v1.154c-.003.326-.005.687-.005 1.155 0 .642.027 1.192.125 1.684.099.492.264.939.518 1.33.22.333.514.616.87.857.33.226.706.41 1.12.556.466.166 1.065.239 1.747.263C5.805 16 6.287 16 8 16c1.713 0 2.195-.002 2.74-.014.682-.024 1.28-.097 1.746-.263a4.432 4.432 0 0 0 1.12-.556c.357-.241.65-.524.87-.857.253-.391.419-.838.518-1.33.098-.492.125-1.042.125-1.684 0-.469-.002-.83-.005-1.155v-1.154c-.003-.352-.006-.729-.006-1.104 0-.375.003-.752.006-1.104V9.81l.015-1.683c.003-.326.005-.687.005-1.155 0-.642-.027-1.192-.125-1.684a4.406 4.406 0 0 0-.518-1.33c-.22-.333-.514-.616-.87-.857a4.438 4.438 0 0 0-1.12-.556 6.163 6.163 0 0 0-1.746-.263C10.195.003 9.713.001 8 .001zm0 1.557c1.65 0 1.914.007 2.586.036.589.026 1.021.102 1.344.231.408.17.706.375.956.624.249.249.453.548.624.956.129.323.205.755.231 1.344.03.672.037.936.037 2.586 0 1.65-.007 1.914-.036 2.586-.026.589-.102 1.021-.231 1.344a2.764 2.764 0 0 1-.624.956 2.784 2.784 0 0 1-.956.624c-.323.129-.755.205-1.344.231-.672.03-.936.037-2.586.037-1.65 0-1.914-.007-2.586-.036-.589-.026-1.021-.102-1.344-.231a2.77 2.77 0 0 1-.956-.624 2.786 2.786 0 0 1-.624-.956c-.129-.323-.205-.755-.231-1.344-.03-.672-.037-.936-.037-2.586 0-1.65.007-1.914.036-2.586.026-.589.102-1.021.231-1.344.17-.408.375-.706.624-.956.249-.249.548-.453.956-.624.323-.129.755-.205 1.344-.231.672-.03.936-.037 2.586-.037zM8 3.292a4.706 4.706 0 1 0 0 9.411 4.706 4.706 0 0 0 0-9.411zm0 1.55a3.156 3.156 0 1 1 0 6.311 3.156 3.156 0 0 1 0-6.311zm4.566-.855a1.088 1.088 0 1 0 0 2.176 1.088 1.088 0 0 0 0-2.176z" />
+                                <use xlink:href="#instagram"></use>
+                            </svg>
+                        </a></li>
+                    <li class="ms-3"><a class="link-body-emphasis" href="#">
+                            <svg class="bi" width="24" height="24">
+                                <path
+                                    d="M8 0C3.582 0 0 3.582 0 8c0 4.07 3.065 7.428 7.032 7.931V10.14H5.037V8h1.995V6.392c0-1.973 1.21-3.05 2.963-3.05.84 0 1.562.063 1.77.09v2.053h-1.215c-.952 0-1.137.451-1.137 1.113V8h2.273l-.296 2.14H9.413v5.79C13.35 15.428 16 12.07 16 8c0-4.418-3.582-8-8-8z" />
+                                <use xlink:href="#facebook"></use>
+                            </svg>
+                        </a></li>
                 </ul>
             </div>
+        </footer>
+    </div>
+    <!-- <script src="/js/service-center/marketplace-payment.js"></script> -->
+    <!-- <script>
+    async function paymenteGateway() {
+    let baseUrl = window.location.origin;
+    let apiUrl = `${baseUrl}/marketplace-payment`;
 
-            <div class="col-6 col-md-2 mb-3">
-                <h5>Products</h5>
-                <ul class="nav flex-column">
-                    <li class="nav-item-f mb-2"><a href="#" class="nav-link-f p-0 text-body-secondary">Nearby
-                            Technicians</a></li>
-                    <li class="nav-item-f mb-2"><a href="#" class="nav-link-f p-0 text-body-secondary">Service
-                            Centers</a></li>
-                    <li class="nav-item-f mb-2"><a href="#" class="nav-link-f p-0 text-body-secondary">Service Center
-                            Marketplace</a></li>
-                </ul>
-            </div>
+    try {
+        
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
 
-            <div class="col-6 col-md-2 mb-3">
-                <h5>Safety Measures</h5>
-                <ul class="nav flex-column">
-                    <li class="nav-item-f mb-2"><a href="#" class="nav-link-f p-0 text-body-secondary">Safety</a></li>
-                    <li class="nav-item-f mb-2"><a href="#" class="nav-link-f p-0 text-body-secondary">Diversity and
-                            Inclusion</a></li>
-                </ul>
-            </div>
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
-        </div>
+        const paymentDetails = await response.json();
 
-        <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 mx-4 border-top">
-            <p>© 2024 Fixme Technologies Inc.</p>
-            <ul class="list-unstyled d-flex">
-                <li class="ms-3"><a class="link-body-emphasis" href="#">
-                        <svg class="bi" width="24" height="24">
-                            <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.284-.009-.425A6.683 6.683 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518A3.301 3.301 0 0 0 15.555 2a6.533 6.533 0 0 1-2.084.797 3.301 3.301 0 0 0-5.617 3.005A9.355 9.355 0 0 1 1.114 2.1a3.3 3.3 0 0 0 1.019 4.396A3.267 3.267 0 0 1 .64 6.575v.034a3.301 3.301 0 0 0 2.644 3.234 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.621-.059 3.305 3.305 0 0 0 3.067 2.281A6.588 6.588 0 0 1 0 13.027 9.286 9.286 0 0 0 5.031 15z"/>
-                            <use xlink:href="#twitter"></use>
-                        </svg>
-                    </a></li>
-                <li class="ms-3"><a class="link-body-emphasis" href="#">
-                        <svg class="bi" width="24" height="24">
-                            <path d="M8 0C5.79 0 5.555.01 4.69.047a6.153 6.153 0 0 0-2.292.431 4.383 4.383 0 0 0-1.633 1.064A4.394 4.394 0 0 0 .048 4.69 6.154 6.154 0 0 0 0 6.977C0 7.445.002 7.805.005 8.128L.02 9.81v1.154c.003.352.006.729.006 1.104 0 .375-.003.752-.006 1.104v1.154c-.003.326-.005.687-.005 1.155 0 .642.027 1.192.125 1.684.099.492.264.939.518 1.33.22.333.514.616.87.857.33.226.706.41 1.12.556.466.166 1.065.239 1.747.263C5.805 16 6.287 16 8 16c1.713 0 2.195-.002 2.74-.014.682-.024 1.28-.097 1.746-.263a4.432 4.432 0 0 0 1.12-.556c.357-.241.65-.524.87-.857.253-.391.419-.838.518-1.33.098-.492.125-1.042.125-1.684 0-.469-.002-.83-.005-1.155v-1.154c-.003-.352-.006-.729-.006-1.104 0-.375.003-.752.006-1.104V9.81l.015-1.683c.003-.326.005-.687.005-1.155 0-.642-.027-1.192-.125-1.684a4.406 4.406 0 0 0-.518-1.33c-.22-.333-.514-.616-.87-.857a4.438 4.438 0 0 0-1.12-.556 6.163 6.163 0 0 0-1.746-.263C10.195.003 9.713.001 8 .001zm0 1.557c1.65 0 1.914.007 2.586.036.589.026 1.021.102 1.344.231.408.17.706.375.956.624.249.249.453.548.624.956.129.323.205.755.231 1.344.03.672.037.936.037 2.586 0 1.65-.007 1.914-.036 2.586-.026.589-.102 1.021-.231 1.344a2.764 2.764 0 0 1-.624.956 2.784 2.784 0 0 1-.956.624c-.323.129-.755.205-1.344.231-.672.03-.936.037-2.586.037-1.65 0-1.914-.007-2.586-.036-.589-.026-1.021-.102-1.344-.231a2.77 2.77 0 0 1-.956-.624 2.786 2.786 0 0 1-.624-.956c-.129-.323-.205-.755-.231-1.344-.03-.672-.037-.936-.037-2.586 0-1.65.007-1.914.036-2.586.026-.589.102-1.021.231-1.344.17-.408.375-.706.624-.956.249-.249.548-.453.956-.624.323-.129.755-.205 1.344-.231.672-.03.936-.037 2.586-.037zM8 3.292a4.706 4.706 0 1 0 0 9.411 4.706 4.706 0 0 0 0-9.411zm0 1.55a3.156 3.156 0 1 1 0 6.311 3.156 3.156 0 0 1 0-6.311zm4.566-.855a1.088 1.088 0 1 0 0 2.176 1.088 1.088 0 0 0 0-2.176z"/>
-                            <use xlink:href="#instagram"></use>
-                        </svg>
-                    </a></li>
-                <li class="ms-3"><a class="link-body-emphasis" href="#">
-                        <svg class="bi" width="24" height="24">
-                            <path d="M8 0C3.582 0 0 3.582 0 8c0 4.07 3.065 7.428 7.032 7.931V10.14H5.037V8h1.995V6.392c0-1.973 1.21-3.05 2.963-3.05.84 0 1.562.063 1.77.09v2.053h-1.215c-.952 0-1.137.451-1.137 1.113V8h2.273l-.296 2.14H9.413v5.79C13.35 15.428 16 12.07 16 8c0-4.418-3.582-8-8-8z"/>
-                            <use xlink:href="#facebook"></use>
-                        </svg>
-                    </a></li>
-            </ul>
-        </div>
-    </footer>
-</div>
+        console.log("paymentDetails", paymentDetails);
+
+        if(paymentDetails.error) {
+            alert(paymentDetails.error);
+            return;
+        }
+
+        payhere.onCompleted = (orderId) => {
+            clgassic.log("Payment completed. OrderID:" + orderId);
+
+            window.location.href = '/market-place-home';
+        }
+
+        payhere.onDismissed = () => {
+            console.log("Payment dismissed");
+        }
+
+        payhere.onError = (error) => {
+            console.log("Error:" + error);
+        }
+
+        const payment = {
+            sandbox: true,
+            merchant_id: "1230101",
+            order_id: paymentDetails.order_id,
+            items: paymentDetails.items,
+            amount: paymentDetails.amount,
+            currency: paymentDetails.currency,
+            full_name: paymentDetails.full_name,
+            email: paymentDetails.email,
+            phone: paymentDetails.phone,
+            address: paymentDetails.address,
+            city: paymentDetails.city,
+            country: paymentDetails.country,
+            return_url: "http://localhost:8080/",
+            cancel_url: "http://localhost:8080/",
+            notify_url: "https://5a8b-2a09-bac5-485f-1d05-00-2e4-9a.ngrok-free.app/payhere-payment-response",
+            delivery_address: "",
+            delivery_city: "",
+            delivery_country: "",
+            custom_1: "",
+            custom_2: ""
+        }
+
+        // Initiate payment
+        document.getElementById('payhere-payment').onclick = function(e) {
+            e.preventDefault();
+            payhere.startPayment(payment);
+        }
+
+    } catch (error) {
+
+        console.error("Error processing payment:", error);
+        alert("An error occurred while processing the payment. Please try again.");
+        
+    }
+    
+}
+</script> -->
+
+    <!-- Include PayHere SDK -->
+    <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
+
+    <!-- JS for handling PayHere payment -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const payButton = document.getElementById('payhere-button');
+
+            if (!payButton) {
+                console.error("PayHere button not found!");
+                return;
+            }
+
+            payButton.addEventListener('click', function () {
+                fetch('/marketplace-payment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Failed to fetch payment data");
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log("Payment Data Received:", data);
+
+                        payhere.onCompleted = function onCompleted(orderId) {
+                            alert("Payment completed! OrderID: " + orderId);
+                            // You can redirect or show a success page here
+                        };
+
+                        payhere.onDismissed = function onDismissed() {
+                            alert("Payment dismissed.");
+                        };
+
+                        payhere.onError = function onError(error) {
+                            console.error("PayHere Error:", error);
+                            alert("Error: " + error);
+                        };
+
+                        var payment = {
+                            "sandbox": true,
+                            "merchant_id": "1229154",    // Replace your Merchant ID
+                            "return_url": "http://localhost:8080/",     // Important
+                            "cancel_url": "http://localhost:8080/",     // Important
+                            "notify_url": "https://e591-2402-4000-1324-56c6-c619-5239-8a0c-84d2.ngrok-free.app/marketplace-payment-response", 
+                            "order_id": data.order_id,
+                            "items": data.items,
+                            "amount": data.amount + 200,
+                            "currency": "LKR",
+                            "hash": data.hash, // *Replace with generated hash retrieved from backend
+                            "first_name": data.full_name,
+                            "last_name": "",
+                            "email": data.email,
+                            "phone": data.phone,
+                            "address": data.address,
+                            "city": data.city,
+                            "country": "Sri Lanka",
+                            "delivery_address": data.address,
+                            "delivery_city": data.city,
+                            "delivery_country": "Sri Lanka",
+                            "custom_1": data.customer_1,
+                            "custom_2": ""
+                        }
+
+                        console.log("payment detials, ", payment);
+
+                        // Start the payment
+                        // payhere.startPayment({
+                        //     sandbox: true, // Change to false for live
+                        //     merchant_id: data.merchant_id,
+                        //     return_url: "http://localhost:8080/",
+                        //     cancel_url: "http://localhost:8080/",
+                        //     notify_url: "https://5a8b-2a09-bac5-485f-1d05-00-2e4-9a.ngrok-free.app/payhere-payment-response", // Update if you use IPN
+                        //     order_id: data.order_id,
+                        //     items: data.items,
+                        //     amount: data.amount + 200,
+                        //     currency: data.currency,
+                        //     hash: data.hash,
+                        //     first_name: data.full_name,
+                        //     last_name: "", // Optional
+                        //     email: data.email,
+                        //     phone: data.phone,
+                        //     address: data.address,
+                        //     city: data.city,
+                        //     country: data.country,
+                        //     delivery_address: data.address,
+                        //     delivery_city: data.city,
+                        //     delivery_country: "Sri Lanka",
+                        //     custom_1: "",
+                        //     custom_2: ""
+                        // });
+
+                        payhere.startPayment(payment);
+                    })
+                    .catch(error => {
+                        console.error("Error initiating payment:", error);
+                        alert("Failed to initiate payment.");
+                    });
+            });
+        });
+    </script>
+
 </body>
