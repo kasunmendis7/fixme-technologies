@@ -24,9 +24,9 @@
             </li>
 
             <li>
-                <a href="/service-centre-dashboard">
+                <a href="/service-center-appointments">
                         <span class="icon">
-                            <ion-icon name="home-outline"></ion-icon>
+                            <ion-icon name="calendar-outline"></ion-icon>
                         </span>
                     <span class="title">Appointments</span>
                 </a>

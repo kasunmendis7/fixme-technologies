@@ -101,7 +101,6 @@ class AppoinmentController extends Controller
         $recentCustomers = $appointment->getRecentCustomers($ser_cen_id);
         $completedAppointments = $appointment->getCompletedAppointmentDetails($ser_cen_id);
 
-        error_log('Total Completed: ' . print_r($totalCompleted, true));
 
         $this->setLayout('auth');
         return $this->render('/service-centre/service-centre-dashboard', [
@@ -111,6 +110,26 @@ class AppoinmentController extends Controller
             'completedAppointments' => $completedAppointments,
         ]);
     }
+
+
+    public function loadAppointmentDetailsForTab()
+    {
+        $ser_cen_id = Application::$app->session->get('serviceCenter');
+        if(!$ser_cen_id) {
+            Application::$app->session->setFlash('error', "Please log in to view your appointments");
+            Application::$app->response->redirect('/service-centre-login');
+            return;
+        }
+        $appointment = new Appointment();
+        $appointments = $appointment->loadAppointmentsForServiceCenter($ser_cen_id);
+
+        $this->setLayout('auth');
+        return $this->render('/service-centre/service-center-appointment', [
+            'appointments' => $appointments,
+        ]);
+    }
+
+    
 
     //function to controll status of the appointment 
     public function updateAppointmentStatus(Request $request, Response $response)
