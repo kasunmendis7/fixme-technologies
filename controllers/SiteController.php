@@ -89,6 +89,7 @@ class SiteController extends Controller
         ]);
     }
 
+
     public function payHerePaymentProcess()
     {
         header('Content-type: application/json');

@@ -87,6 +87,17 @@ class ServiceCenterReview extends DbModel
 
     }
 
+    public function getAverageRatings($ser_cen_id)
+    {
+        $sql = "SELECT AVG(user_rating) as average_rating FROM ser_cen_reviews WHERE ser_cen_id = :ser_cen_id";
+        $stmt = (new ServiceCenterReview())->prepare($sql);
+        $stmt->bindValue(':ser_cen_id', $ser_cen_id);
+        $stmt->execute();
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $result['average_rating'] ?? 0;
+
+    }
+
     public function primaryKey(): string
     {
         return 'review_id';
