@@ -27,6 +27,7 @@ use app\controllers\ChatController;
 use app\controllers\TechnicianReviewController;
 use app\controllers\ServiceCenterReviewController;
 use app\controllers\ContactUsController;
+use app\controllers\VehicleIssueController;
 
 /* Load environment variables */
 /* Using vulcas/phpdotenv package to load sensitive data from .env file */
@@ -190,6 +191,8 @@ $app->router->get('/customer-finish-contract/{id}', [CustomerController::class, 
 $app->router->get('/customer-finished-contract-details/{id}', [CustomerController::class, 'customerFinishedContractDetails']);
 $app->router->get('/customer-download-invoice/{id}', [CustomerController::class, 'downloadCustomerInvoice']);
 $app->router->get('/get-contract-status/{id}', [CustomerController::class, 'getContractStatus']);
+$app->router->get('/get-vehicle-issues/{id}', [VehicleIssueController::class, 'getVehicleIssues']);
+$app->router->post('/customer-vehicle-issue-form', [CustomerController::class, 'recommendTechnicians']);
 
 $app->router->get('/get-appointments', [AppoinmentController::class, 'loadAppointmentDetails']);
 
