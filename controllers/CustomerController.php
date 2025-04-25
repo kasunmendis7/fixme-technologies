@@ -23,6 +23,8 @@ use app\models\CusTechReq;
 use app\models\CustomerPaymentMethod;
 use app\models\TechnicianPaymentMethod;
 use app\models\TechnicianReview;
+use app\models\TechSpecVeh;
+use app\models\Vehicle;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use app\models\cart;
@@ -266,8 +268,10 @@ class CustomerController extends Controller
 
     public function customerVehicleIssue()
     {
+        $vehicles = (new Vehicle())->fetchVehicleTypes();
+
         $this->setLayout('auth');
-        return $this->render('/customer/customer-vehicle-issue');
+        return $this->render('/customer/customer-vehicle-issue', ['vehicles' => $vehicles]);
     }
 
     public function customerTransactions()
@@ -848,5 +852,49 @@ class CustomerController extends Controller
         $filename = "sc-invoice-{$order_id}.pdf";
         $dompdf->stream($filename, ["Attachment" => true]);
         exit();
+    }
+
+    public function recommendTechnicians(Request $request)
+    {
+        $body = $request->getBody();
+
+        $customerVehicleTypeId = $body['vehicleType'];
+        $customerVehicleIssueId = $body['selectIssue'];
+        $nearestTechCare = $body['nearestTechnicianCare'];
+        $ratingCare = $body['ratingCare'];
+
+        $qualTechList = (new TechSpecVeh())->getTechsOnIssueAndVeh($customerVehicleTypeId, $customerVehicleIssueId);
+        $availableQualTechList = (new Technician())->filterAvailableTechs($qualTechList);
+
+        $techList = (new Customer())->getTechsSortedByDistance($availableQualTechList);
+
+        if ($techList != null) {
+            $min_distance = reset($techList)['distance'];
+            $max_distance = end($techList)['distance'];
+        }
+        $w1 = intval($ratingCare) * 0.2;
+        $w2 = intval($nearestTechCare) * 0.2;
+        $eps = 0.000000001;
+        /** eps = 1.0 x 10^(-9) */
+
+        if ($techList == null) {
+            $techList = [];
+        } else {
+            foreach ($techList as &$technician) {
+                $tech_rating = (new Technician())->getAvgRating($technician['tech_id']);
+                $r_norm = $tech_rating / 5;
+                $d_norm = 1 - ($technician['distance'] - $min_distance) / ($max_distance - $min_distance + $eps);
+                $technician['score'] = $w1 * intval($r_norm) + $w2 * intval($d_norm);
+                $technician['rating'] = $tech_rating;
+            }
+        }
+
+        usort($techList, function ($a, $b) {
+            return $b['score'] <=> $a['score'];
+        });
+
+
+        $this->setLayout('auth');
+        return $this->render('/customer/recommended-technicians', ['technicians' => $techList]);
     }
 }
