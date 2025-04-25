@@ -1,4 +1,7 @@
 <?php
+
+use app\models\ServiceCenterReview;
+
 ?>
 
 <!DOCTYPE html>
@@ -53,6 +56,18 @@ include_once 'components/header.php';
             echo '<h2>No Service Centers found !</h2>';
         } elseif ($serviceCenters['status'] === 'success' && !empty($serviceCenters['data'])) {
             foreach ($serviceCenters['data'] as $serviceCenter) {
+                $servReviewModel = new ServiceCenterReview();
+                $averageRatings = $servReviewModel->getAverageRatings($serviceCenter['ser_cen_id']);
+
+                $starsHtml = '';
+                $roundedRating = round($averageRatings);
+                for ($i = 1; $i <= 5; $i++) {
+                    if ($i <= $roundedRating) {
+                        $starsHtml .= '<ion-icon name="star" style="color: Gold"></ion-icon>';
+                    } else {
+                        $starsHtml .= '<ion-icon name="star-outline"></ion-icon>';
+                    }
+                }
                 echo '<div class="col service-center-card" data-name="' . strtolower($serviceCenter['name']) . '">
                     <div class="card">
                         <div class="card-body">
@@ -60,10 +75,8 @@ include_once 'components/header.php';
                             <h6 class="distance">' . htmlspecialchars($serviceCenter['distance']) . ' km Away</h6>
                             <h6 class="distance">' . round($serviceCenter['duration']) . ' mins Away</h6>
                             <h5 class="rating">Rating: <span>4.5</span></h5>
-                            <h5 class="service-category">Motor Mechanic</h5>
-                            <ion-icon name="star" style="color: Gold"></ion-icon>
-                            <ion-icon name="star" style="color: Gold"></ion-icon>
-                            <p class="card-text">12 years experienced motor mechanic worked for BMW.</p>
+                            <h5 class="service-category">Service Center</h5>
+                            ' . $starsHtml . '                           
                             <button type="button" class="btn btn-primary" onclick="viewProfile(' . $serviceCenter['ser_cen_id'] . ')">View Profile</button>
                         </div>
                     </div>
