@@ -24,6 +24,25 @@
             </li>
 
             <li>
+                <a href="/service-center-appointments">
+                        <span class="icon">
+                            <ion-icon name="calendar-outline"></ion-icon>
+                        </span>
+                    <span class="title">Appointments</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="/service-centre-map">
+                        <span class="icon">
+                            <ion-icon name="location-outline"></ion-icon>
+                        </span>
+                    <span class="title">Map</span>
+                </a>
+            </li>
+
+
+            <li>
 
                 <a href="/service-center-create-product">
                         <span class="icon">
