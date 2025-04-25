@@ -7,6 +7,7 @@ use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
 use app\models\Customer;
+use app\models\MarketplaceOrderServiceCenter;
 use app\models\Notification;
 use app\models\Post;
 use app\models\Appointment;
@@ -100,6 +101,15 @@ class AppoinmentController extends Controller
         $totalCompleted = $appointment->getTotalCompletedAppointments($ser_cen_id);
         $recentCustomers = $appointment->getRecentCustomers($ser_cen_id);
         $completedAppointments = $appointment->getCompletedAppointmentDetails($ser_cen_id);
+        $market = new MarketplaceOrderServiceCenter();
+        $sellerEarning = $market->SellerEarnings($ser_cen_id);
+
+        
+
+        $totalEarning = 0;
+        foreach($sellerEarning as $seller) {
+            $totalEarning += $seller['seller_earning'];
+        }
 
 
         $this->setLayout('auth');
@@ -108,6 +118,7 @@ class AppoinmentController extends Controller
             'recentCustomers' => $recentCustomers,
             'totalCompleted' => $totalCompleted,
             'completedAppointments' => $completedAppointments,
+            'totalEarning' => $totalEarning,
         ]);
     }
 
@@ -151,7 +162,7 @@ class AppoinmentController extends Controller
 
             if ($enteredOtp !== $storedOtp) {
                 Application::$app->session->setFlash('error', 'Incorrect OTP. Appointment not confirmed.');
-                $response->redirect('/service-centre-dashboard');
+                $response->redirect('/service-center-appointments');
                 return;
             }
         }
@@ -162,7 +173,7 @@ class AppoinmentController extends Controller
         } else {
             Application::$app->session->setFlash('error', 'Failed to update appointment status.');
         }
-        $response->redirect('/service-centre-dashboard');
+        $response->redirect('/service-center-appointments');
     }
 
 
@@ -181,10 +192,10 @@ class AppoinmentController extends Controller
         $result = $appointment->deleteAppointment($appointmentId);
         if ($result) {
             Application::$app->session->setFlash('success', 'Appointment deleted successfully.');
-            $response->redirect('/service-centre-dashboard');
+            $response->redirect('/service-center-appointments');
         } else {
             Application::$app->session->setFlash('error', 'Failed to delete appointment.');
-            $response->redirect('/service-centre-dashboard');
+            $response->redirect('/service-center-appointments');
         }
     }
 

@@ -1,95 +1,144 @@
-/* Section title */
-.appointments-section h2 {
+.appointments-section {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .appointments-section h2 {
     text-align: center;
+    font-size: 32px;
+    margin-bottom: 30px;
     color: #010336;
-    margin-bottom: 20px;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-/* Centered table with styling */
-.appointments-table {
-    width: 75%;
-    margin: 0 auto;
-    border-collapse: collapse;
-    background-color: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     font-family: 'Segoe UI', sans-serif;
-}
-
-/* Table head */
-.appointments-table thead {
-    background-color: #010336;
-    color: #ffffff;
-}
-
-.appointments-table th,
-.appointments-table td {
-    padding: 14px 18px;
-    text-align: left;
-    border-bottom: 1px solid #e6e6e6;
-}
-
-/* Hover effect */
-.appointments-table tbody tr:hover {
-    background-color: #f9f9f9;
-}
-
-/* Remove bottom border from last row */
-.appointments-table tbody tr:last-child td {
-    border-bottom: none;
-}
-
-/* Select dropdown styling */
-.appointments-table select {
-    padding: 6px 10px;
+  }
+  
+  .appointment-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .appointment-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    width: 100%;
+    max-width: 25%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease;
+  }
+  
+  .appointment-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .appointment-card h3 {
+    font-size: 20px;
+    color: #010336;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .appointment-info {
+    display: flex;
+    align-items: center;
+    margin: 6px 0;
+    font-size: 14px;
+    color: #333;
+    gap: 8px;
+  }
+  
+  .status-badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  .status-confirmed {
+    background-color: #d4edda;
+    color: #218838;
+  }
+  
+  .status-pending {
+    background-color: #fff3cd;
+    color: #856404;
+  }
+  
+  .status-cancelled {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  
+  /* Card Actions */
+  .card-actions {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .status-select,
+  .otp-field,
+  .card-actions button {
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 8px;
+    font-family: 'Segoe UI', sans-serif;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fafafa;
-    font-size: 14px;
-    cursor: pointer;
-    transition: border-color 0.2s ease;
-}
-
-.appointments-table select:focus {
-    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+    transition: 0.3s ease;
+  }
+  
+  .status-select:focus,
+  .otp-field:focus {
     border-color: #010336;
-}
-
-/* Button styling */
-.appointments-table button {
+    outline: none;
+  }
+  
+  .card-actions button {
     background-color: #010336;
     color: #fff;
     border: none;
-    padding: 8px 14px;
-    border-radius: 5px;
     cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-}
-
-.appointments-table button:hover {
-    background-color: #010336;
-}
-
-/* Responsive word wrapping */
-.appointments-table td {
-    word-break: break-word;
-}
-
-.delete-button {
+  }
+  
+  .card-actions button:hover {
+    background-color: #1d1e65;
+  }
+  
+  .card-actions .delete-button {
     background-color: #e84118;
-    color: #fff;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-}
-
-.delete-button:hover {
+  }
+  
+  .card-actions .delete-button:hover {
     background-color: #c23616;
-}
+  }
+  
+  /* Responsive */
+  @media screen and (max-width: 1200px) {
+    .appointment-card {
+      max-width: 45%;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .appointment-card {
+      max-width: 100%;
+    }
+  }
+  
