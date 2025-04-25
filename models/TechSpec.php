@@ -53,6 +53,15 @@ class TechSpec extends DbModel
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
+    public function checkTechnicianSpecIssue($tech_id)
+    {
+        $sql = "SELECT COUNT(*) as total_specs FROM tech_spec_issue WHERE tech_id = :tech_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':tech_id', $tech_id);
+        $stmt->execute();
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
     public function rules(): array
     {
 

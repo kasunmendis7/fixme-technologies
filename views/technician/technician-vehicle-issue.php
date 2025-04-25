@@ -1,3 +1,8 @@
+<?php
+
+use app\core\Application;
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,13 +13,23 @@
     <title>Select Specializations</title>
     <link rel="stylesheet" href="/css/technician/technician-specialization.css">
     <link rel="stylesheet" href="/css/technician/overlay.css">
+    <link rel="stylesheet" href="/css/technician/flash-messages.css">
 </head>
 <body>
 <?php
 include_once 'components/sidebar.php';
 include_once 'components/header.php';
 ?>
-
+<?php if (Application::$app->session->getFlash('specialization-updated')): ?>
+    <div class="alert alert-success">
+        <?php echo Application::$app->session->getFlash('specialization-updated') ?>
+    </div>
+<?php endif; ?>
+<?php if (Application::$app->session->getFlash('add-specialized-issue')): ?>
+    <div class="alert alert-error">
+        <?php echo Application::$app->session->getFlash('add-specialized-issue') ?>
+    </div>
+<?php endif; ?>
 <form action="/technician-update-vehicle-issue" method="POST">
     <h1>Select Your Specialized Types</h1>
 
@@ -22,7 +37,7 @@ include_once 'components/header.php';
 
     <?php if (!empty($issues)): ?>
         <fieldset>
-            <legend>🛠 Available Vehicle Types</legend>
+            <legend>🛠 Available Specialized Vehicle Issue Types</legend>
             <?php foreach ($issues as $issue): ?>
                 <?php $issueName = ucwords($issue['issue_type']); ?>
                 <label>

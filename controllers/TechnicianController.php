@@ -47,10 +47,15 @@ class TechnicianController extends Controller
     {
         $techSpecModel = new TechSpec();
         $techPaymentMethod = new TechnicianPaymentMethod();
-        $hasUpdatedSpecs = $techSpecModel->checkTechnicianSpecVeh(Application::$app->session->get('technician'));
+        $hasUpdatedVehicleType = $techSpecModel->checkTechnicianSpecVeh(Application::$app->session->get('technician'));
         $hasAddedPaymentMethod = $techPaymentMethod->checkTechnicianPaymentMethod(Application::$app->session->get('technician'));
-        if ($hasUpdatedSpecs['total_specs'] == 0) {
+        $hasUpdatedVehicleIssue = $techSpecModel->checkTechnicianSpecIssue(Application::$app->session->get('technician'));
+        if ($hasUpdatedVehicleType['total_specs'] == 0) {
+            Application::$app->session->setFlash('add-specialized-vehicle', 'Please add specialized vehicle type!');
             Application::$app->response->redirect('/technician-vehicle');
+        } elseif ($hasUpdatedVehicleIssue['total_specs'] == 0) {
+            Application::$app->session->setFlash('add-specialized-issue', 'Please add specialized vehicle issues!');
+            Application::$app->response->redirect('/technician-vehicle-issue');
         } elseif ($hasAddedPaymentMethod['count'] == 0) {
             Application::$app->session->setFlash('add-bank-account', 'Please add a Bank Account to Proceed!');
             Application::$app->response->redirect('/technician-payment-details');
@@ -190,10 +195,15 @@ class TechnicianController extends Controller
         $requests = TechnicianRequest::getRequestsByTechnicianId($technicianId);
         $techSpecModel = new TechSpec();
         $techPaymentMethod = new TechnicianPaymentMethod();
-        $hasUpdatedSpecs = $techSpecModel->checkTechnicianSpecVeh(Application::$app->session->get('technician'));
+        $hasUpdatedVehicleType = $techSpecModel->checkTechnicianSpecVeh(Application::$app->session->get('technician'));
         $hasAddedPaymentMethod = $techPaymentMethod->checkTechnicianPaymentMethod(Application::$app->session->get('technician'));
-        if ($hasUpdatedSpecs['total_specs'] == 0) {
-            Application::$app->response->redirect('/technician-specialization');
+        $hasUpdatedVehicleIssue = $techSpecModel->checkTechnicianSpecIssue(Application::$app->session->get('technician'));
+        if ($hasUpdatedVehicleType['total_specs'] == 0) {
+            Application::$app->session->setFlash('add-specialized-vehicle', 'Please add specialized vehicle type!');
+            Application::$app->response->redirect('/technician-vehicle');
+        } elseif ($hasUpdatedVehicleIssue['total_specs'] == 0) {
+            Application::$app->session->setFlash('add-specialized-issue', 'Please add specialized vehicle issues!');
+            Application::$app->response->redirect('/technician-vehicle-issue');
         } elseif ($hasAddedPaymentMethod['count'] == 0) {
             Application::$app->session->setFlash('add-bank-account', 'Please add a Bank Account to Proceed!');
             Application::$app->response->redirect('/technician-payment-details');
@@ -562,23 +572,18 @@ class TechnicianController extends Controller
 
     public function getSpecializedIssue(Request $request, Response $response)
     {
-        // 1) Who’s logged in?
         $technicianId = Application::$app->session->get('technician');
 
-        // 2) Get their vehicle IDs
         $vehicleModel = new Vehicle();
         $vehicleIds = $vehicleModel->getVehicleIdsByTechnician($technicianId);
 
-        // If they haven’t picked any vehicles yet, bounce them back
         if (empty($vehicleIds)) {
-            Application::$app->session->setFlash('error', 'Please select at least one vehicle type first.');
+            Application::$app->session->setFlash('select-vehicle', 'Please select at least one vehicle type to proceed.');
             return $response->redirect('/technician-vehicle');
         }
 
-        // 3) Fetch all issues linked to those vehicle IDs
         $issues = $vehicleModel->getIssuesByVehicleIds($vehicleIds);
 
-        // 4) Render
         $this->setLayout('auth');
         return $this->render('/technician/technician-vehicle-issue', [
             'issues' => $issues,
@@ -622,16 +627,22 @@ class TechnicianController extends Controller
         $model->tech_id = Application::$app->session->get('technician');
         $model->vehicle_ids = $_POST['vehicles'] ?? [];
 
+        $techSpecModel = new TechSpec();
         $techPaymentMethod = new TechnicianPaymentMethod();
         $hasAddedPaymentMethod = $techPaymentMethod->checkTechnicianPaymentMethod(Application::$app->session->get('technician'));
+        $hasUpdatedVehicleIssue = $techSpecModel->checkTechnicianSpecIssue(Application::$app->session->get('technician'));
 
 
         if ($model->saveVehicleTypes()) {
-            Application::$app->session->setFlash('specialization-updated', 'Specializations saved successfully!');
-            if ($hasAddedPaymentMethod['count'] == 0) {
+            Application::$app->session->setFlash('specialization-updated', 'Specialized Vehicle Type/s saved successfully!');
+            if ($hasUpdatedVehicleIssue['total_specs'] == 0) {
+                Application::$app->session->setFlash('add-specialized-issue', 'Please add specialized vehicle issues!');
+                Application::$app->response->redirect('/technician-vehicle-issue');
+            } elseif ($hasAddedPaymentMethod['count'] == 0) {
+                Application::$app->session->setFlash('add-bank-account', 'Please add a Bank Account to Proceed!');
                 $response->redirect('/technician-payment-details');
             } else {
-                $response->redirect('/technician-vehicle-issue');
+                $response->redirect('/technician-dashboard');
             }
         } else {
             Application::$app->session->setFlash('specialization-error', 'Something went wrong.');
@@ -649,7 +660,7 @@ class TechnicianController extends Controller
 
         if ($model->saveSpecializedIssues()) {
             Application::$app->session->setFlash('issue-updated', 'Specialized issues saved successfully!');
-            $response->redirect('/technician-dashboard'); // Or wherever you want to send them next
+            $response->redirect('/technician-dashboard');
         } else {
             Application::$app->session->setFlash('issue-error', 'Something went wrong while saving specialized issues.');
             $response->redirect('/technician-vehicle-issue');
