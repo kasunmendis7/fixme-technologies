@@ -6,11 +6,6 @@ use app\core\DbModel;
 
 class Issue extends DbModel
 {
-    public function ()
-    {
-        
-    }
-    
     public function tableName(): string
     {
         return 'issue';
