@@ -51,7 +51,6 @@ include_once 'components/header.php';
                     onclick="viewUser( <?php echo $technician['tech_id'] ?> )">
                 Message
             </button>
-            <button class="message-btn">Call</button>
             <button class="message-btn"
                     onclick="sendRequest( <?php echo $technician['tech_id'] . ', ' . Application::$app->session->get('customer') ?> )"
             >

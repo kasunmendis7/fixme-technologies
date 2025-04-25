@@ -1,3 +1,8 @@
+<?php
+
+use app\core\Application;
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,13 +13,23 @@
     <title>Select Specializations</title>
     <link rel="stylesheet" href="/css/technician/technician-specialization.css">
     <link rel="stylesheet" href="/css/technician/overlay.css">
+    <link rel="stylesheet" href="/css/technician/flash-messages.css">
 </head>
 <body>
 <?php
 include_once 'components/sidebar.php';
 include_once 'components/header.php';
 ?>
-
+<?php if (Application::$app->session->getFlash('select-vehicle')): ?>
+    <div class="alert alert-error">
+        <?php echo Application::$app->session->getFlash('select-vehicle') ?>
+    </div>
+<?php endif; ?>
+<?php if (Application::$app->session->getFlash('add-specialized-vehicle')): ?>
+    <div class="alert alert-error">
+        <?php echo Application::$app->session->getFlash('add-specialized-vehicle') ?>
+    </div>
+<?php endif; ?>
 <form action="/technician-update-vehicle" method="POST">
     <h1>Select Your Vehicle Type</h1>
 
