@@ -10,7 +10,7 @@ use app\models\ServiceCenterReview;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Service Center Dashboard</title>
     <link rel="stylesheet" href="/css/technician/technician-dashboard.css">
@@ -21,75 +21,75 @@ use app\models\ServiceCenterReview;
 </head>
 
 <body>
+<?php
+include_once 'components/sidebar.php';
+include_once 'components/header.php';
+?>
+<!-- JavaScript Files -->
+<script src="/js/technician/technician-home.js"></script>
+<!-- ======================= Cards ================== -->
+
+<?php if (Application::$app->session->getFlash('success')): ?>
+    <div class="alert alert-success">
+        <?php echo Application::$app->session->getFlash('success') ?>
+    </div>
+<?php endif; ?>
+<div class="cardBox">
+    <div class="card">
+        <div>
+            <div class="numbers"><?php echo htmlspecialchars($totalCompleted); ?></div>
+            <div class="cardName">Total Repairs</div>
+        </div>
+
+        <div class="iconBx">
+            <ion-icon name="cog-outline"></ion-icon>
+        </div>
+    </div>
+
     <?php
-    include_once 'components/sidebar.php';
-    include_once 'components/header.php';
+    $level = 0;
+    if ($totalCompleted >= 10 && $totalCompleted < 20) {
+        $level = 1;
+    } elseif ($totalCompleted >= 20 && $totalCompleted < 30) {
+        $level = 2;
+    } elseif ($totalCompleted >= 30 && $totalCompleted < 40) {
+        $level = 3;
+    } elseif ($totalCompleted >= 40 && $totalCompleted < 50) {
+        $level = 4;
+    } elseif ($totalCompleted >= 50) {
+        $level = 5;
+    }
     ?>
-    <!-- JavaScript Files -->
-    <script src="/js/technician/technician-home.js"></script>
-    <!-- ======================= Cards ================== -->
 
-    <?php if (Application::$app->session->getFlash('success')): ?>
-        <div class="alert alert-success">
-            <?php echo Application::$app->session->getFlash('success') ?>
-        </div>
-    <?php endif; ?>
-    <div class="cardBox">
-        <div class="card">
-            <div>
-                <div class="numbers"><?php echo htmlspecialchars($totalCompleted); ?></div>
-                <div class="cardName">Total Repairs</div>
-            </div>
-
-            <div class="iconBx">
-                <ion-icon name="cog-outline"></ion-icon>
-            </div>
+    <div class="card">
+        <div>
+            <div class="numbers"><?= $level ?></div>
+            <div class="cardName">Level</div>
         </div>
 
-        <?php
-        $level = 0;
-        if ($totalCompleted >= 10 && $totalCompleted < 20) {
-            $level = 1;
-        } elseif ($totalCompleted >= 20 && $totalCompleted < 30) {
-            $level = 2;
-        } elseif ($totalCompleted >= 30 && $totalCompleted < 40) {
-            $level = 3;
-        } elseif ($totalCompleted >= 40 && $totalCompleted < 50) {
-            $level = 4;
-        } elseif ($totalCompleted >= 50) {
-            $level = 5;
-        }
-        ?>
+        <div class="iconBx">
+            <ion-icon name="trophy-outline"></ion-icon>
 
-        <div class="card">
-            <div>
-                <div class="numbers"><?= $level ?></div>
-                <div class="cardName">Level</div>
-            </div>
+        </div>
+    </div>
 
-            <div class="iconBx">
-                <ion-icon name="trophy-outline"></ion-icon>
+    <div class="card">
+        <div>
+            <?php
+            $serviceCenterReviews = new ServiceCenterReview();
+            $totalReviews = $serviceCenterReviews->countTotalReviewsByServiceCenterId(Application::$app->session->get('serviceCenter'));
+            ?>
+            <div class="numbers" id="total_review"><?php echo $totalReviews ?></div>
+            <div class="cardName">Total Reviews</div>
 
-            </div>
         </div>
 
-        <div class="card">
-            <div>
-                <?php
-                $serviceCenterReviews = new ServiceCenterReview();
-                $totalReviews = $serviceCenterReviews->countTotalReviewsByServiceCenterId(Application::$app->session->get('serviceCenter'));
-                ?>
-                <div class="numbers" id="total_review"><?php echo $totalReviews ?></div>
-                <div class="cardName">Total Reviews</div>
-
-            </div>
-
-            <div class="iconBx">
-                <ion-icon name="star-outline"></ion-icon>
-            </div>
+        <div class="iconBx">
+            <ion-icon name="star-outline"></ion-icon>
         </div>
+    </div>
 
-        <div class="card">
+    <div class="card">
         <div>
             <div class="numbers"><?php echo 'Rs. ' . number_format($totalEarning); ?></div>
             <div class="cardName">Earning</div>
@@ -99,12 +99,12 @@ use app\models\ServiceCenterReview;
             <ion-icon name="cash-outline"></ion-icon>
         </div>
     </div>
-    </div>
+</div>
 
 
-    <!-- appointment details -->
-    <!-- <div class="appointments-section">
-        <h2>Appointments</h2>
+<!-- appointment details -->
+<!-- <div class="appointments-section">
+    <h2>Appointments</h2> -->
 
 
 <!-- ================ Order Details List ================= -->
@@ -112,73 +112,78 @@ use app\models\ServiceCenterReview;
     <div class="recentOrders">
         <div class="cardHeader">
             <h2>Recent Orders</h2>
-            <!--            <a href="#" class="btn">View All</a>-->
         </div>
         <?php if ($completedAppointments): ?>
             <table>
                 <thead>
-                    <tr>
-                        <th>Customer Name</th>
-                        <th>Phone Number</th>
-                        <th>Vehicle Details</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
+                <tr>
+                    <th>Customer Name</th>
+                    <th>Phone Number</th>
+                    <th>Vehicle Details</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($appointments as $appointment): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($appointment['customer_fname']) ?>
-                                <?= htmlspecialchars($appointment['customer_lname']) ?>
-                            </td>
-                            <td><?= htmlspecialchars($appointment['customer_phone_no']) ?></td>
-                            <td><?= htmlspecialchars($appointment['vehicle_details']) ?></td>
-                            <td><?= htmlspecialchars($appointment['appointment_date']) ?></td>
-                            <td><?= htmlspecialchars($appointment['appointment_time']) ?></td>
-                            <td>
-                                <form action="/change-appointment-status" method="post"
-                                    style="display: flex; flex-direction: column; gap: 6px;">
-                                    <input type="hidden" name="appointment_id" value="<?= $appointment['appointment_id'] ?>">
-                                    <select name="status" class="status-select" style="padding: 6px; border-radius: 4px;"
+                <?php foreach ($appointments as $appointment): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($appointment['customer_fname']) ?>
+                            <?= htmlspecialchars($appointment['customer_lname']) ?>
+                        </td>
+                        <td><?= htmlspecialchars($appointment['customer_phone_no']) ?></td>
+                        <td><?= htmlspecialchars($appointment['vehicle_details']) ?></td>
+                        <td><?= htmlspecialchars($appointment['appointment_date']) ?></td>
+                        <td><?= htmlspecialchars($appointment['appointment_time']) ?></td>
+                        <td>
+                            <form action="/change-appointment-status" method="post"
+                                  style="display: flex; flex-direction: column; gap: 6px;">
+                                <input type="hidden" name="appointment_id"
+                                       value="<?= $appointment['appointment_id'] ?>">
+                                <select name="status" class="status-select" style="padding: 6px; border-radius: 4px;"
                                         data-otp-id="otp-<?= $appointment['appointment_id'] ?>">
-                                        <option value="pending" <?= $appointment['status'] === 'pending' ? 'selected' : '' ?>>
-                                            Pending</option>
-                                        <option value="confirmed" <?= $appointment['status'] === 'confirmed' ? 'selected' : '' ?>>
-                                            Confirmed</option>
-                                        <option value="cancelled" <?= $appointment['status'] === 'cancelled' ? 'selected' : '' ?>>
-                                            Cancelled</option>
-                                    </select>
-                                    <input type="text" name="otp" placeholder="Enter OTP"
-                                        id="otp-<?= $appointment['appointment_id'] ?>" class="otp-field"
-                                        style="padding: 6px; border: 1px solid #ccc; border-radius: 4px; display: none;">
+                                    <option value="pending" <?= $appointment['status'] === 'pending' ? 'selected' : '' ?>>
+                                        Pending
+                                    </option>
+                                    <option value="confirmed" <?= $appointment['status'] === 'confirmed' ? 'selected' : '' ?>>
+                                        Confirmed
+                                    </option>
+                                    <option value="cancelled" <?= $appointment['status'] === 'cancelled' ? 'selected' : '' ?>>
+                                        Cancelled
+                                    </option>
+                                </select>
+                                <input type="text" name="otp" placeholder="Enter OTP"
+                                       id="otp-<?= $appointment['appointment_id'] ?>" class="otp-field"
+                                       style="padding: 6px; border: 1px solid #ccc; border-radius: 4px; display: none;">
 
-                            </td>
-                            <td>
-                                <button type="submit"
+                        </td>
+                        <td>
+                            <button type="submit"
                                     style="background-color: #0e4d92; color: #fff; padding: 8px 12px; border: none; border-radius: 5px; cursor: pointer;">
-                                    Update
-                                </button>
-                                </form>
-                                <form action="/delete-appointment" method="post" style="display: inline;">
-                                    <input type="hidden" name="appointment_id" value="<?= $appointment['appointment_id'] ?>">
-                                    <button type="submit"
+                                Update
+                            </button>
+                            </form>
+                            <form action="/delete-appointment" method="post" style="display: inline;">
+                                <input type="hidden" name="appointment_id"
+                                       value="<?= $appointment['appointment_id'] ?>">
+                                <button type="submit"
                                         style="background-color: #e84118; color: #fff; padding: 8px 12px; border: none; border-radius: 5px; cursor: pointer;">
-                                        Delete
-                                    </button>
-                                </form>
-                            </td>
+                                    Delete
+                                </button>
+                            </form>
+                        </td>
 
 
-                        </tr>
-                    <?php endforeach; ?>
+                    </tr>
+                <?php endforeach; ?>
                 </tbody>
             </table>
         <?php else: ?>
             <p>No appointments found.</p>
         <?php endif; ?>
-    </div> -->
+    </div>
+    -->
 
 
     <!-- ================ Order Details List ================= -->
@@ -191,77 +196,77 @@ use app\models\ServiceCenterReview;
             <?php if ($completedAppointments): ?>
                 <table>
                     <thead>
-                        <tr>
-                            <td>Name</td>
-                            <td>Date</td>
-                            <td>Time</td>
-                            <td>Status</td>
-                        </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>Date</td>
+                        <td>Time</td>
+                        <td>Status</td>
+                    </tr>
                     </thead>
 
                     <?php foreach ($completedAppointments as $compeletedAppointment): ?>
 
                         <tbody>
 
-                            <tr>
-                                <td><?= htmlspecialchars($compeletedAppointment['fname']) ?>
-                                    <?= htmlspecialchars($compeletedAppointment['lname']) ?>
-                                </td>
-                                <td><?= htmlspecialchars($compeletedAppointment['appointment_date']) ?></td>
-                                <td><?= htmlspecialchars($compeletedAppointment['appointment_time']) ?></td>
-                                <td>
+                        <tr>
+                            <td><?= htmlspecialchars($compeletedAppointment['fname']) ?>
+                                <?= htmlspecialchars($compeletedAppointment['lname']) ?>
+                            </td>
+                            <td><?= htmlspecialchars($compeletedAppointment['appointment_date']) ?></td>
+                            <td><?= htmlspecialchars($compeletedAppointment['appointment_time']) ?></td>
+                            <td>
                                     <span
-                                        class="status inProgress"><?= htmlspecialchars($compeletedAppointment['status']) ?></span>
-                                </td>
-                            </tr>
-                            <!-- <tr>
-                        <td>Sheane Mario</td>
-                        <td>Rs. 1200</td>
-                        <td>Paid</td>
-                        <td><span class="status delivered">Completed</span></td>
-                    </tr>
+                                            class="status inProgress"><?= htmlspecialchars($compeletedAppointment['status']) ?></span>
+                            </td>
+                        </tr>
+                        <!-- <tr>
+                    <td>Sheane Mario</td>
+                    <td>Rs. 1200</td>
+                    <td>Paid</td>
+                    <td><span class="status delivered">Completed</span></td>
+                </tr>
 
-                    <tr>
-                        <td>Pulasthi Abhisheke</td>
-                        <td>Rs. 110</td>
-                        <td>Due</td>
-                        <td><span class="status pending">Pending</span></td>
-                    </tr>
+                <tr>
+                    <td>Pulasthi Abhisheke</td>
+                    <td>Rs. 110</td>
+                    <td>Due</td>
+                    <td><span class="status pending">Pending</span></td>
+                </tr>
 
-                    <tr>
-                        <td>Nimal Rathinarasa</td>
-                        <td>Rs. 1200</td>
-                        <td>-</td>
-                        <td><span class="status return">Cancelled</span></td>
-                    </tr>
+                <tr>
+                    <td>Nimal Rathinarasa</td>
+                    <td>Rs. 1200</td>
+                    <td>-</td>
+                    <td><span class="status return">Cancelled</span></td>
+                </tr>
 
-                    <tr>
-                        <td>Jimmy Donaldson</td>
-                        <td>Rs. 620</td>
-                        <td>Due</td>
-                        <td><span class="status inProgress">In Progress</span></td>
-                    </tr>
+                <tr>
+                    <td>Jimmy Donaldson</td>
+                    <td>Rs. 620</td>
+                    <td>Due</td>
+                    <td><span class="status inProgress">In Progress</span></td>
+                </tr>
 
-                    <tr>
-                        <td>Erick Dodger</td>
-                        <td>Rs. 1200</td>
-                        <td>Paid</td>
-                        <td><span class="status delivered">Completed</span></td>
-                    </tr>
+                <tr>
+                    <td>Erick Dodger</td>
+                    <td>Rs. 1200</td>
+                    <td>Paid</td>
+                    <td><span class="status delivered">Completed</span></td>
+                </tr>
 
-                    <tr>
-                        <td>Steven Schaphiro Laptop</td>
-                        <td>Rs. 110</td>
-                        <td>Due</td>
-                        <td><span class="status delivered">Completed</span></td>
-                    </tr>
+                <tr>
+                    <td>Steven Schaphiro Laptop</td>
+                    <td>Rs. 110</td>
+                    <td>Due</td>
+                    <td><span class="status delivered">Completed</span></td>
+                </tr>
 
-                    <tr>
-                        <td>Dawson Smith</td>
-                        <td>Rs. 1200</td>
-                        <td>-</td>
-                        <td><span class="status return">Cancelled</span></td>
-                    </tr> -->
+                <tr>
+                    <td>Dawson Smith</td>
+                    <td>Rs. 1200</td>
+                    <td>-</td>
+                    <td><span class="status return">Cancelled</span></td>
+                </tr> -->
                         </tbody>
                     <?php endforeach; ?>
                 </table>
@@ -275,7 +280,7 @@ use app\models\ServiceCenterReview;
         <!-- ================= New Customers ================ -->
         <?php
         include_once 'components/recent-customers.php'
-            ?>
+        ?>
     </div>
 
 

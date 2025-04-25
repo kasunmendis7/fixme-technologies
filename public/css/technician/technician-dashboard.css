@@ -590,3 +590,13 @@ body {
     color: #FFFFFF;
     padding: .5rem 1rem;
 }
+
+@media (max-width: 768px) {
+    .payment-due, .payment-status, .payment-rejected {
+        display: block; /* Stack each item vertically on small screens */
+        font-size: 0.9rem; /* Slightly smaller font size */
+        text-align: center; /* Center-align for better readability on small screens */
+        margin: 0.5rem 0; /* Add vertical spacing between elements */
+    }
+
+}
