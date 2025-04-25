@@ -3,6 +3,8 @@
 use app\core\Application;
 use app\models\CusTechReq;
 
+/** @var $vehicles */
+
 ?>
 
 <!DOCTYPE html>
@@ -28,26 +30,22 @@ include_once 'components/header.php';
 <body>
 <div class="form-container">
     <h1 class="form-title">Report Your Vehicle Issue</h1>
-    <form id="vehicleForm" class="vehicle-form">
+    <form id="vehicleForm" class="vehicle-form" action="/customer-vehicle-issue-form" method="post">
         <label for="vehicleType" class="label">Select Vehicle Type:</label>
         <select id="vehicleType" name="vehicleType" class="dropdown" required>
             <option value="" disabled selected>Select a vehicle</option>
-            <option value="motorbike">Motorbike</option>
-            <option value="tuk-tuk">Tuk-Tuk</option>
-            <option value="car">Car</option>
+            <?php foreach ($vehicles as $vehicle): ?>
+                <option value="<?= $vehicle['vehicle_id'] ?>"><?= ucfirst($vehicle['vehicle_type']) ?></option>
+            <?php endforeach; ?>
         </select>
 
         <label for="selectIssue" class="label">Select Issue:</label>
         <select id="selectIssue" name="selectIssue" class="dropdown" required>
-            <option value="" disabled selected>Select an issue</option>
-            <option value="battery">Battery Issue</option>
-            <option value="engine">Engine Problem</option>
-            <option value="brakes">Brake Issue</option>
-            <option value="other">Other</option>
+            <option value="" disabled selected>Please select your vehicle Type first</option>
         </select>
 
         <label for="technicianCare" class="label">How much do you care about the nearest technician?</label>
-        <select id="technicianCare" name="technicianCare" class="dropdown" required>
+        <select id="technicianCare" name="nearestTechnicianCare" class="dropdown" required>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
