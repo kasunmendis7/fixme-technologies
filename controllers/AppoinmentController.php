@@ -7,6 +7,7 @@ use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
 use app\models\Customer;
+use app\models\MarketplaceOrderServiceCenter;
 use app\models\Notification;
 use app\models\Post;
 use app\models\Appointment;
@@ -27,11 +28,14 @@ class AppoinmentController extends Controller
 
         $customer = new Customer();
         $customerData = $customer->findById($cus_id);
-        
+
         if ($request->isPost()) {
             $appointment->loadData($request->getBody());
             $appointment->service_center_id = $request->getBody()['service_center_id'];
             $appointment->customer_id = $cus_id;
+            $otp = str_pad(rand(0, 999999), 6, '0', STR_PAD_LEFT);
+            $appointment->otp = $otp;
+            error_log('OTP: ' . $otp);
 
             if ($appointment->isSlotAvailable()) {
                 if ($appointment->save() && $appointment->validate()) {
@@ -39,7 +43,12 @@ class AppoinmentController extends Controller
                     $notifi->createNotification([
                         'customer_id' => $cus_id,
                         'service_center_id' => $appointment->service_center_id,
-                        'message' => 'New appointment booked by customer with ID: ' . $cus_id .' and name ' . $customerData['fname'] . ' and phone no is ' . $customerData['phone_no'] . ' on ' . $appointment->appointment_date . ' at ' . $appointment->appointment_time
+                        'message' => 'New appointment booked by customer with ID: ' . $cus_id .
+                            ' and name ' . $customerData['fname'] .
+                            '. Phone: ' . $customerData['phone_no'] .
+                            '. Date: ' . $appointment->appointment_date .
+                            ' at ' . $appointment->appointment_time .
+                            '. OTP: ' . $otp
                     ]);
                     Application::$app->session->setFlash('success', 'Appointment booked successfully.');
                     Application::$app->response->redirect('/customer-dashboard');
@@ -92,8 +101,16 @@ class AppoinmentController extends Controller
         $totalCompleted = $appointment->getTotalCompletedAppointments($ser_cen_id);
         $recentCustomers = $appointment->getRecentCustomers($ser_cen_id);
         $completedAppointments = $appointment->getCompletedAppointmentDetails($ser_cen_id);
+        $market = new MarketplaceOrderServiceCenter();
+        $sellerEarning = $market->SellerEarnings($ser_cen_id);
 
-        error_log('Total Completed: ' . print_r($totalCompleted, true));
+        
+
+        $totalEarning = 0;
+        foreach($sellerEarning as $seller) {
+            $totalEarning += $seller['seller_earning'];
+        }
+
 
         $this->setLayout('auth');
         return $this->render('/service-centre/service-centre-dashboard', [
@@ -101,8 +118,29 @@ class AppoinmentController extends Controller
             'recentCustomers' => $recentCustomers,
             'totalCompleted' => $totalCompleted,
             'completedAppointments' => $completedAppointments,
+            'totalEarning' => $totalEarning,
         ]);
     }
+
+
+    public function loadAppointmentDetailsForTab()
+    {
+        $ser_cen_id = Application::$app->session->get('serviceCenter');
+        if(!$ser_cen_id) {
+            Application::$app->session->setFlash('error', "Please log in to view your appointments");
+            Application::$app->response->redirect('/service-centre-login');
+            return;
+        }
+        $appointment = new Appointment();
+        $appointments = $appointment->loadAppointmentsForServiceCenter($ser_cen_id);
+
+        $this->setLayout('auth');
+        return $this->render('/service-centre/service-center-appointment', [
+            'appointments' => $appointments,
+        ]);
+    }
+
+    
 
     //function to controll status of the appointment 
     public function updateAppointmentStatus(Request $request, Response $response)
@@ -111,23 +149,33 @@ class AppoinmentController extends Controller
         $appointmentId = $body['appointment_id'] ?? null;
         $status = $body['status'] ?? null;
 
-        if(!$appointmentId || !$status) {
+        if (!$appointmentId || !$status) {
             Application::$app->session->setFlash('error', 'Invalid appointment Id or status.');
             return;
         }
 
         $appointment = new Appointment();
-        $result = $appointment->changeStatus($appointmentId, $status);
 
-        if($result) {
-            Application::$app->session->setFlash('success', 'Appointment status updated successfully.');
-            $response->redirect('/service-centre-dashboard');
-        } else {
-            Application::$app->session->setFlash('error', 'Failed to update appointment status.');
-            $response->redirect('/service-centre-dashboard');
+        if ($status === 'confirmed') {
+            $enteredOtp = $request->getBody()['otp'] ?? '';
+            $storedOtp = $appointment->getOtpByAppointmentId($appointmentId);
+
+            if ($enteredOtp !== $storedOtp) {
+                Application::$app->session->setFlash('error', 'Incorrect OTP. Appointment not confirmed.');
+                $response->redirect('/service-center-appointments');
+                return;
+            }
         }
 
+        $result = $appointment->changeStatus($appointmentId, $status);
+        if ($result) {
+            Application::$app->session->setFlash('success', 'Appointment status updated successfully.');
+        } else {
+            Application::$app->session->setFlash('error', 'Failed to update appointment status.');
+        }
+        $response->redirect('/service-center-appointments');
     }
+
 
     //function to delete the appointment 
     public function deleteAppointment(Request $request, Response $response)
@@ -135,26 +183,26 @@ class AppoinmentController extends Controller
         $body = $request->getBody();
         $appointmentId = $body['appointment_id'] ?? null;
 
-        if(!$appointmentId) {
+        if (!$appointmentId) {
             Application::$app->session->setFlash('error', 'Invalid appointment Id.');
             return;
         }
 
         $appointment = new Appointment();
         $result = $appointment->deleteAppointment($appointmentId);
-        if($result) {
+        if ($result) {
             Application::$app->session->setFlash('success', 'Appointment deleted successfully.');
-            $response->redirect('/service-centre-dashboard');
+            $response->redirect('/service-center-appointments');
         } else {
             Application::$app->session->setFlash('error', 'Failed to delete appointment.');
-            $response->redirect('/service-centre-dashboard');
+            $response->redirect('/service-center-appointments');
         }
     }
 
     //function to controll fetch appointment dates 
     public function fetchAppointmentDates(Request $request)
     {
-        if($request->isPost()) {
+        if ($request->isPost()) {
             $body = $request->getBody();
             error_log('Body: ' . print_r($body, true));
             $ser_cen_id = $body['service_center_id'] ?? null;
@@ -175,7 +223,7 @@ class AppoinmentController extends Controller
             header('Content-Type: application/json');
             echo json_encode($bookedSlots);
             return;
-        }   
+        }
         http_response_code(405);
         echo json_encode(['error' => 'Method not allowed.']);
     }
@@ -190,7 +238,7 @@ class AppoinmentController extends Controller
         }
         $appointment = new Appointment();
         $recentCustomers = $appointment->getRecentCustomers($ser_cen_id);
-        if(!empty($recentCustomers)) {
+        if (!empty($recentCustomers)) {
             $this->setLayout('auth');
             return $this->render('/service-centre/components/recent-customers', [
                 'recentCustomers' => $recentCustomers,
