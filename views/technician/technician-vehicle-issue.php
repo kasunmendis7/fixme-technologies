@@ -31,7 +31,7 @@ include_once 'components/header.php';
     </div>
 <?php endif; ?>
 <form action="/technician-update-vehicle-issue" method="POST">
-    <h1>Select Your Specialized Types</h1>
+    <h1>Select Your Specialized Issue Types</h1>
 
     <input type="hidden" name="tech_id" value="<?= $technicianId ?? '' ?>">
 

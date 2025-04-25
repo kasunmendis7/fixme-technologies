@@ -1,3 +1,14 @@
+// Menu Toggle
+let toggle = document.querySelector(".toggle");
+let navigation = document.querySelector(".navigation");
+let main = document.querySelector(".main");
+
+toggle.onclick = function () {
+    navigation.classList.toggle("active");
+    main.classList.toggle("active");
+};
+
+
 // Function to start editing a comment
 function editComment(commentID) {
     // Hides the text of the comment by getting the element with an ID that includes the commentID and setting its display to none
