@@ -163,7 +163,9 @@ include_once 'components/header.php';
             </tbody>
         </table>
     <?php else: ?>
-        <p>No appointments found.</p>
+        <div class="no-orders">
+            <p>No appointments found.</p>
+        </div>
     <?php endif; ?>
 </div>
 
@@ -173,7 +175,7 @@ include_once 'components/header.php';
     <div class="recentOrders">
         <div class="cardHeader">
             <h2>Recent Orders</h2>
-            <a href="#" class="btn">View All</a>
+            <!--            <a href="#" class="btn">View All</a>-->
         </div>
         <?php if ($completedAppointments): ?>
             <table>

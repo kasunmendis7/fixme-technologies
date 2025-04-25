@@ -11,7 +11,7 @@ use app\core\Application;
             <div class="row">
                 <div class="col-sm-4 text-center">
                     <h1 class="text-warning mt-4 mb-4">
-                        <b><span id="average_rating">0.0</span> / 5</b>
+                        <b><span id="average_rating">0.0</span> / 5.0</b>
                     </h1>
                     <!-- show 5 stars -->
                     <div class="mb-3">
