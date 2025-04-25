@@ -89,16 +89,16 @@ use app\models\ServiceCenterReview;
             </div>
         </div>
 
-        <!-- <div class="card">
+        <div class="card">
         <div>
-            <div class="numbers">Rs. 7,842</div>
+            <div class="numbers"><?php echo 'Rs. ' . number_format($totalEarning); ?></div>
             <div class="cardName">Earning</div>
         </div>
 
         <div class="iconBx">
             <ion-icon name="cash-outline"></ion-icon>
         </div>
-    </div> -->
+    </div>
     </div>
 
     <!-- appointment details -->

@@ -41,6 +41,16 @@ class MarketplaceOrderServiceCenter extends DbModel
         return $stmt->execute();
     }
 
+    //function to get seller earnings 
+    public function SellerEarnings($service_center_id)
+    {
+        $sql = "SELECT seller_earning FROM marketplace_order_service_centers WHERE service_center_id = :service_center_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':service_center_id', $service_center_id);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
     public function rules(): array
     {
         return [];
