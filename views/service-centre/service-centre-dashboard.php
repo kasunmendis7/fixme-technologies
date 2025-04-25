@@ -102,7 +102,7 @@ use app\models\ServiceCenterReview;
     </div>
 
     <!-- appointment details -->
-    <div class="appointments-section">
+    <!-- <div class="appointments-section">
         <h2>Appointments</h2>
 
         <?php if (isset($appointments) && is_array($appointments) && count($appointments) > 0): ?>
@@ -169,7 +169,7 @@ use app\models\ServiceCenterReview;
         <?php else: ?>
             <p>No appointments found.</p>
         <?php endif; ?>
-    </div>
+    </div> -->
 
 
     <!-- ================ Order Details List ================= -->
