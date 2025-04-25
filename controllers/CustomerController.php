@@ -841,4 +841,70 @@ class CustomerController extends Controller
         $dompdf->stream($filename, ["Attachment" => true]);
         exit();
     }
+
+    //function get customer details 
+    public function customerDetails() 
+    {
+        $cus_id = Application::$app->session->get('customer');
+
+        if (!$cus_id) {
+            Application::$app->session->setFlash('error', 'Please log in first.');
+            Application::$app->response->redirect('/customer-login');
+            return;
+        }
+
+        $customer = new Customer();
+        $customerDetails = $customer->findById($cus_id);
+        error_log("Customer Details: " . json_encode($customerDetails));
+
+        $this->setLayout('auth');
+        return $this->render('/service-centre/customer-details', [
+            'customerDetails' => $customerDetails
+        ]);
+    }
+
+    //fuction to get customer order details 
+    public function customerOrders ($order_id) {
+        $cus_id = Application::$app->session->get('customer');
+
+        if (!$cus_id) {
+            Application::$app->session->setFlash('error', 'Please log in first.');
+            Application::$app->response->redirect('/customer-login');
+            return;
+        }
+
+        $orderModel = new MarketplaceOrder();
+        $checkoutModel = new CheckoutInfo();
+        $cartModel = new Cart();
+
+        $orderDetails = $orderModel->listOrderDetails($order_id);
+        $checkoutInfo = $checkoutModel->listData($cus_id);
+        $cartItems = $cartModel->getCartItems($cus_id);
+
+        $total = 0;
+        foreach ($cartItems as $item) {
+            $total += $item['price'] * $item['quantity'];
+        }
+        $total = number_format($total, 2, '.', '');
+
+        // Make data available in view
+        $data = [
+            'order_id' => $order_id,
+            'customer_name' => $checkoutInfo['full_name'],
+            'orderDetails' => $orderDetails,
+            'checkoutInfo' => $checkoutInfo,
+            'cartItems' => $cartItems,
+            'total' => $total
+        ];
+
+        $this->setLayout('auth');
+        return $this->render('/service-centre/customer-order-details', [
+            'orderDetails' => $orderDetails,
+            'checkoutInfo' => $checkoutInfo,
+            'cartItems' => $cartItems,
+            'total' => $total
+        ]);
+
+    }
+
 }
