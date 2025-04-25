@@ -108,6 +108,7 @@ include_once '../service-centre/appointment-details.php';
                 <th>Date</th>
                 <th>Time</th>
                 <th>Status</th>
+                <th>OTP</th>
             </tr>
             </thead>
             <tbody>
@@ -119,6 +120,7 @@ include_once '../service-centre/appointment-details.php';
                     <td><?= htmlspecialchars($appointment['appointment_date']) ?></td>
                     <td><?= htmlspecialchars($appointment['appointment_time']) ?></td>
                     <td><?= htmlspecialchars($appointment['status']) ?></td>
+                    <td><?= htmlspecialchars($appointment['otp']) ?></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

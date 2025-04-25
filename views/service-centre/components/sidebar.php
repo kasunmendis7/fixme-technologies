@@ -22,6 +22,16 @@
                     <span class="title">Dashboard</span>
                 </a>
             </li>
+
+            <li>
+                <a href="/service-centre-dashboard">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                    <span class="title">Appointments</span>
+                </a>
+            </li>
+
             <li>
                 <a href="/service-centre-map">
                         <span class="icon">
