@@ -101,12 +101,21 @@ use app\models\ServiceCenterReview;
     </div>
     </div>
 
+
     <!-- appointment details -->
     <!-- <div class="appointments-section">
         <h2>Appointments</h2>
 
-        <?php if (isset($appointments) && is_array($appointments) && count($appointments) > 0): ?>
-            <table class="appointments-table">
+
+<!-- ================ Order Details List ================= -->
+<div class="details">
+    <div class="recentOrders">
+        <div class="cardHeader">
+            <h2>Recent Orders</h2>
+            <!--            <a href="#" class="btn">View All</a>-->
+        </div>
+        <?php if ($completedAppointments): ?>
+            <table>
                 <thead>
                     <tr>
                         <th>Customer Name</th>

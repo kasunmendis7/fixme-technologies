@@ -137,4 +137,22 @@ class Technician extends DbModel
         $stmt->execute();
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
+
+    public function getAvailabilityStatus($tech_id)
+    {
+        $sql = "SELECT available FROM technician WHERE tech_id = :tech_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':tech_id', $tech_id);
+        $stmt->execute();
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function updateAvailability($tech_id, $status)
+    {
+        $sql = "UPDATE technician SET available = :available WHERE tech_id = :tech_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':available', $status);
+        $stmt->bindValue(':tech_id', $tech_id);
+        $stmt->execute();
+    }
 }

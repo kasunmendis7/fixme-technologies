@@ -82,6 +82,16 @@ include_once 'components/header.php';
             </div>
         </div>
     </a>
+    <a href="/technician-availability">
+        <div class="card">
+            <div>
+                <div class="cardName">Update Availability</div>
+            </div>
+            <div class="iconBx">
+                <ion-icon name="power-outline"></ion-icon>
+            </div>
+        </div>
+    </a>
 </div>
 
 <!-- Overlay for the confirmation message -->

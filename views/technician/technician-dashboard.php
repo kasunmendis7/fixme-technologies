@@ -29,6 +29,11 @@ include_once 'components/header.php';
 ?>
 <!-- Technician Dashboard JavaScript Files -->
 <script src="/js/technician/technician-home.js"></script>
+<?php if (Application::$app->session->getFlash('issue-updated')): ?>
+    <div class="alert alert-success">
+        <?php echo Application::$app->session->getFlash('issue-updated') ?>
+    </div>
+<?php endif; ?>
 <?php if (Application::$app->session->getFlash('specialization-updated')): ?>
     <div class="alert alert-success">
         <?php echo Application::$app->session->getFlash('specialization-updated') ?>
