@@ -64,6 +64,15 @@
             </li>
 
             <li>
+                <a href="/admin-add-vehicle-type">
+                        <span class="icon">
+                            <ion-icon name="car-sport-outline"></ion-icon>
+                        </span>
+                    <span class="title">Add Vehicle Types</span>
+                </a>
+            </li>
+
+            <li>
                 <a href="/admin-settings">
                         <span class="icon">
                             <ion-icon name="settings-outline"></ion-icon>

@@ -97,6 +97,16 @@ class TechnicianReview extends DbModel
 
     }
 
+    public function getReviewsCnt($cus_id)
+    {
+        $sql = "SELECT COUNT(*) as reviews_cnt FROM technician_reviews WHERE cus_id = :cus_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':cus_id', $cus_id);
+        $stmt->execute();
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $result['reviews_cnt'] ?? 0;
+    }
+
     public function primaryKey(): string
     {
         return 'review_id';  // Assuming review_id is your primary key
