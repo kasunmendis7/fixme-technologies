@@ -264,4 +264,10 @@ class ServiceCentreController extends Controller
         ]);
     }
 
+    //function to save the services for ther service center 
+    public function addServices()
+    {
+        
+    }
+
 }
