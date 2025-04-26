@@ -1,38 +1,39 @@
 <?php
 
-    namespace app\models;
+namespace app\models;
 
-    use app\core\DbModel;
+use app\core\DbModel;
 
-    class Product extends DbModel
+class Product extends DbModel
+{
+    public int $ser_cen_id;
+    public int $product_id;
+    public string $description = '';
+    public float $price;
+    public string $media = '';
+    public int $product_count = 0;
+    // public string $category;
+    public ?string $created_at = null;
+    public ?string $updated_at = null;
+
+    public function tableName(): string
     {
-        public int $ser_cen_id;
-        public int $product_id;
-        public string $description = '';
-        public float $price;
-        public string $media = '';
-        public int $product_count = 0;
-        // public string $category;
-        public ?string $created_at = null;
-        public ?string $updated_at = null;
+        return 'product';
+    }
 
-        public function tableName(): string
-        {
-            return 'product';
-        }
+    public function attributes(): array
+    {
+        return ['ser_cen_id', 'description', 'price', 'media'];
+    }
 
-        public function attributes(): array
-        {
-            return ['ser_cen_id', 'description', 'price', 'media', 'product_count'];
-        }
-        public function primaryKey(): string
-        {
-            return 'product_id';
-        }
+    public function primaryKey(): string
+    {
+        return 'product_id';
+    }
 
 
-        public function save()
-        {
+    public function save()
+    {
 //            if (!empty($_FILES['media']['name'])) {
 //                $uploadDir = 'assets/uploads/';
 //                $fileName = uniqid() . '_' . basename($_FILES['media']['name']); // Generate unique name
@@ -49,74 +50,74 @@
 //                    throw new \Exception('Invalid file type or size.');
 //                }
 //            }
-            $this->media = $_FILES['media']['name'];
-            move_uploaded_file($_FILES['media']['tmp_name'], 'assets/uploads/' . $this->media);
-            return parent::save();
-        }
+        $this->media = $_FILES['media']['name'];
+        move_uploaded_file($_FILES['media']['tmp_name'], 'assets/uploads/' . $this->media);
+        return parent::save();
+    }
 
-        public static function getAllProducts(): array
-        {
-            $sql = 'SELECT p.*, s.name AS seller_name
+    public static function getAllProducts(): array
+    {
+        $sql = 'SELECT p.*, s.name AS seller_name
             FROM product p
             JOIN service_center s ON p.ser_cen_id = s.ser_cen_id
             ORDER BY p.created_at DESC';
-            $stmt = (new Product)->prepare($sql);
-            $stmt->execute();
-            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
-        }
+        $stmt = (new Product)->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 
-        public function getProductByServiceCenter(int $ser_cen_id): array
-        {
-            try {
-                $sql = 'SELECT * FROM product WHERE ser_cen_id = :ser_cen_id ORDER BY created_at DESC';
-                $stmt = self::prepare($sql);
-                $stmt->bindValue(':ser_cen_id', $ser_cen_id);
-                $stmt->execute();
-
-                $products = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-
-                // Debugging: Check the fetched data
-                if (!$products) {
-                    throw new \Exception("No products found for service center ID: $ser_cen_id");
-                }
-
-                return $products;
-            } catch (\Exception $e) {
-                // Log the error (optional) and return an empty array
-                error_log($e->getMessage());
-                return [];
-            }
-        }
-
-        public function getProductByIdAndServiceCenter(int $ser_cen_id, int $product_id): ?array
-        {
-            $sql = 'SELECT * FROM product WHERE product_id = :product_id AND ser_cen_id = :ser_cen_id';
+    public function getProductByServiceCenter(int $ser_cen_id): array
+    {
+        try {
+            $sql = 'SELECT * FROM product WHERE ser_cen_id = :ser_cen_id ORDER BY created_at DESC';
             $stmt = self::prepare($sql);
-            $stmt->bindValue(':product_id', $product_id);
             $stmt->bindValue(':ser_cen_id', $ser_cen_id);
             $stmt->execute();
 
-            return $stmt->fetch(\PDO::FETCH_ASSOC) ?: null;
-        }
+            $products = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
-        public function editProduct(): bool
-        {
-            $sql = "
+            // Debugging: Check the fetched data
+            if (!$products) {
+                throw new \Exception("No products found for service center ID: $ser_cen_id");
+            }
+
+            return $products;
+        } catch (\Exception $e) {
+            // Log the error (optional) and return an empty array
+            error_log($e->getMessage());
+            return [];
+        }
+    }
+
+    public function getProductByIdAndServiceCenter(int $ser_cen_id, int $product_id): ?array
+    {
+        $sql = 'SELECT * FROM product WHERE product_id = :product_id AND ser_cen_id = :ser_cen_id';
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':product_id', $product_id);
+        $stmt->bindValue(':ser_cen_id', $ser_cen_id);
+        $stmt->execute();
+
+        return $stmt->fetch(\PDO::FETCH_ASSOC) ?: null;
+    }
+
+    public function editProduct(): bool
+    {
+        $sql = "
         UPDATE product
         SET description = :description, price = :price, media = CASE WHEN :media = '' THEN media ELSE :media END, updated_at = NOW(), product_count = :product_count
         WHERE product_id = :product_id AND ser_cen_id = :ser_cen_id
     ";
 
-            $stmt = self::prepare($sql);
-            $stmt->bindValue(':description', $this->description);
-            $stmt->bindValue(':price', $this->price);
-            $stmt->bindValue(':media', $this->media);
-            $stmt->bindValue(':product_id', $this->product_id);
-            $stmt->bindValue(':ser_cen_id', $this->ser_cen_id);
-            $stmt->bindValue(':product_count', $this->product_count);
-            // $stmt->bindValue(':category', $this->category);
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':description', $this->description);
+        $stmt->bindValue(':price', $this->price);
+        $stmt->bindValue(':media', $this->media);
+        $stmt->bindValue(':product_id', $this->product_id);
+        $stmt->bindValue(':ser_cen_id', $this->ser_cen_id);
+        $stmt->bindValue(':product_count', $this->product_count);
+        // $stmt->bindValue(':category', $this->category);
 
-            // Debugging: Check SQL and parameters
+        // Debugging: Check SQL and parameters
 //            var_dump([
 //                'SQL' => $sql,
 //                'description' => $this->description,
@@ -126,68 +127,70 @@
 //                'ser_cen_id' => $this->ser_cen_id
 //            ]);
 
-            $result = $stmt->execute();
+        $result = $stmt->execute();
 
-            // Debugging: Check execution result
+        // Debugging: Check execution result
 //            var_dump($result);
 //            die();
 
-            return $result;
-        }
+        return $result;
+    }
 
 
-        public function deleteProduct(int $product_id, int $ser_cen_id): bool
-        {
-            $sql = 'DELETE FROM product WHERE product_id = :product_id AND ser_cen_id = :ser_cen_id';
-            $stmt = self::prepare($sql);
-            $stmt->bindValue(':product_id', $product_id);
-            $stmt->bindValue(':ser_cen_id', $ser_cen_id);
-            return $stmt->execute();
-        }
-        public function productRules(): array
-        {
-            return [
-                'seller_id' => [self::RULE_REQUIRED],
-                'name' => [self::RULE_REQUIRED, [self::RULE_MAX, 'max' => 255]],
-                'description' => [self::RULE_REQUIRED, [self::RULE_MAX, 'max' => 1000]],
-                'price' => [self::RULE_REQUIRED]
-            ];
-        }
+    public function deleteProduct(int $product_id, int $ser_cen_id): bool
+    {
+        $sql = 'DELETE FROM product WHERE product_id = :product_id AND ser_cen_id = :ser_cen_id';
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':product_id', $product_id);
+        $stmt->bindValue(':ser_cen_id', $ser_cen_id);
+        return $stmt->execute();
+    }
 
-        public function rules(): array
-        {
-            return [
+    public function productRules(): array
+    {
+        return [
+            'seller_id' => [self::RULE_REQUIRED],
+            'name' => [self::RULE_REQUIRED, [self::RULE_MAX, 'max' => 255]],
+            'description' => [self::RULE_REQUIRED, [self::RULE_MAX, 'max' => 1000]],
+            'price' => [self::RULE_REQUIRED]
+        ];
+    }
 
-            ];
-        }
+    public function rules(): array
+    {
+        return [
 
-        public function updateRules(): array
-        {
-            return [
+        ];
+    }
 
-            ];
-        }
+    public function updateRules(): array
+    {
+        return [
 
-        public function getProductsByCategory(string $category) {
-            try {
-                
-                $sql = 'SELECT p.*, s.name AS seller_name
+        ];
+    }
+
+    public function getProductsByCategory(string $category)
+    {
+        try {
+
+            $sql = 'SELECT p.*, s.name AS seller_name
                     FROM product p
                     JOIN service_center s ON p.ser_cen_id = s.ser_cen_id
                     WHERE p.category = :category
                     ORDER BY p.created_at DESC';
-                
-                $stmt = self::prepare($sql);
-                $stmt->bindValue(':category', $category);
-                $stmt->execute();
 
-                return $stmt->fetchAll(\PDO::FETCH_ASSOC);
-                
-            } catch (\Exception $e) {
-                error_log($e->getMessage());
-                return [];
-            }
+            $stmt = self::prepare($sql);
+            $stmt->bindValue(':category', $category);
+            $stmt->execute();
+
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        } catch (\Exception $e) {
+            error_log($e->getMessage());
+            return [];
         }
     }
+}
 
 ?>

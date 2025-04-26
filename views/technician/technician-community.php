@@ -59,7 +59,9 @@ as $post): ?>
         </div>
 
         <div class="post-img">
-            <img src="/assets/uploads/<?php echo htmlspecialchars($post['media']); ?>" alt="">
+            <?php if (!empty($post['media'])): ?>
+                <img src="/assets/uploads/<?php echo htmlspecialchars($post['media']); ?>" alt="">
+            <?php endif; ?>
         </div>
         <div class="post-body">
             <div class="post-actions">
