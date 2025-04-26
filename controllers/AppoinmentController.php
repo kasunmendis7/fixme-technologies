@@ -87,6 +87,25 @@ class AppoinmentController extends Controller
         ]);
     }
 
+    public function loadAppointmentDetailsForAppointmentTab()
+    {
+        $cus_id = Application::$app->session->get('customer');
+
+        if (!$cus_id) {
+            Application::$app->session->setFlash('error', 'Please log in to view your appointments.');
+            Application::$app->response->redirect('/customer-login');
+            return;
+        }
+
+        $appointment = new Appointment();
+        $appointments = $appointment->loadAppointmentsForCustomer($cus_id);
+
+        $this->setLayout('auth');
+        return $this->render('/customer/customer-appointments', [
+            'appointments' => $appointments  // this should always be passed, even if empty
+        ]);
+    }
+
     //function to load the appointment details for the service centers
     public function loadAppointmentDetailsForServiceCenter()
     {
@@ -139,6 +158,8 @@ class AppoinmentController extends Controller
             'appointments' => $appointments,
         ]);
     }
+
+
 
     
 

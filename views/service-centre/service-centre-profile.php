@@ -7,9 +7,13 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Service center Profile</title>
-    <link rel="stylesheet" href="/css/customer/customer-profile.css">
+    <!-- <link rel="stylesheet" href="/css/customer/customer-profile.css"> -->
     <link rel="stylesheet" href="/css/customer/customer-dashboard.css">
     <link rel="stylesheet" href="/css/customer/overlay.css">
+    <link rel="stylesheet" href="/css/service-center/service-center-profile.css">
+    <link rel="stylesheet" href="/css/service-center/notification.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 
 <body>
@@ -95,7 +99,7 @@ include_once 'components/header.php';
                                                class="edit-input" style="display:none;">
                                     </div>
                                 </div>
-                                <div class="row">
+                                <!-- <div class="row">
                                     <div class="col-md-6">
                                         <ion-icon name="cog-outline"></ion-icon>
                                         <label>Services</label>
@@ -106,7 +110,7 @@ include_once 'components/header.php';
                                                value="<?php echo Application::$app->serviceCenter->{'service_category'} ?>"
                                                class="edit-input" style="display:none;">
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
