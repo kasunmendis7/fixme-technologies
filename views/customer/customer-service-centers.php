@@ -74,7 +74,7 @@ include_once 'components/header.php';
                             <h5 class="card-title">' . htmlspecialchars($serviceCenter['name']) . '</h5>
                             <h6 class="distance">' . htmlspecialchars($serviceCenter['distance']) . ' km Away</h6>
                             <h6 class="distance">' . round($serviceCenter['duration']) . ' mins Away</h6>
-                            <h5 class="rating">Rating: <span>4.5</span></h5>
+                            <h5 class="rating">Rating: <span>' . number_format($averageRatings, 1) . '</span></h5>
                             <h5 class="service-category">Service Center</h5>
                             ' . $starsHtml . '                           
                             <button type="button" class="btn btn-primary" onclick="viewProfile(' . $serviceCenter['ser_cen_id'] . ')">View Profile</button>

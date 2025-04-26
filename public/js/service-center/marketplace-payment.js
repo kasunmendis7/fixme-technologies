@@ -3,7 +3,7 @@ async function paymenteGateway() {
     let apiUrl = `${baseUrl}/marketplace-payment`;
 
     try {
-        
+
         const response = await fetch(apiUrl, {
             method: 'POST',
             headers: {
@@ -17,7 +17,7 @@ async function paymenteGateway() {
 
         const paymentDetails = await response.json();
 
-        if(paymentDetails.error) {
+        if (paymentDetails.error) {
             alert(paymentDetails.error);
             return;
         }
@@ -51,7 +51,7 @@ async function paymenteGateway() {
             country: paymentDetails.country,
             return_url: "http://localhost:8080/",
             cancel_url: "http://localhost:8080/",
-            notify_url: "https://5a8b-2a09-bac5-485f-1d05-00-2e4-9a.ngrok-free.app/payhere-payment-response",
+            notify_url: "https://3bc8-112-134-150-236.ngrok-free.app/payhere-payment-response",
             delivery_address: "",
             delivery_city: "",
             delivery_country: "",
@@ -60,7 +60,7 @@ async function paymenteGateway() {
         }
 
         // Initiate payment
-        document.getElementById('payhere-payment').onclick = function(e) {
+        document.getElementById('payhere-payment').onclick = function (e) {
             e.preventDefault();
             payhere.startPayment(payment);
         }
@@ -69,7 +69,7 @@ async function paymenteGateway() {
 
         console.error("Error processing payment:", error);
         alert("An error occurred while processing the payment. Please try again.");
-        
+
     }
-    
+
 }
