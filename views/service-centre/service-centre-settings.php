@@ -33,16 +33,16 @@ include_once 'components/header.php';
             </div>
         </div>
     </a>
-    <a href="/service-center-payment-details">
-        <div class="card">
-            <div>
-                <div class="cardName">Payment Details</div>
-            </div>
-            <div class="iconBx">
-                <ion-icon name="card-outline"></ion-icon>
-            </div>
-        </div>
-    </a>
+    <!--    <a href="/service-center-payment-details">-->
+    <!--        <div class="card">-->
+    <!--            <div>-->
+    <!--                <div class="cardName">Payment Details</div>-->
+    <!--            </div>-->
+    <!--            <div class="iconBx">-->
+    <!--                <ion-icon name="card-outline"></ion-icon>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </a>-->
     <a href="#">
         <div class="card">
             <div>
