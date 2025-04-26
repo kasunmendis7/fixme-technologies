@@ -16,7 +16,7 @@ use app\models\CusTechAdvPayment;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Customer Dashboard</title>
     <link rel="stylesheet" href="/css/customer/customer-dashboard.css">
@@ -26,35 +26,36 @@ use app\models\CusTechAdvPayment;
 </head>
 
 <body>
-<?php
-include_once 'components/sidebar.php';
-include_once 'components/header.php';
-?>
-<!-- ======================= Cards ================== -->
-<?php if (Application::$app->session->getFlash('deleteCusTechReq-success')): ?>
-    <div class="alert alert-success">
-        <?php echo Application::$app->session->getFlash('deleteCusTechReq-success') ?>
-    </div>
-<?php endif; ?>
-<?php if (Application::$app->session->getFlash('deleteCusTechReq-error')): ?>
-    <div class="alert alert-error">
-        <?php echo Application::$app->session->getFlash('deleteCusTechReq-error') ?>
-    </div>
-<?php endif; ?>
-<div class="cardBox">
-    <div class="card" onclick="getAdvancePayments(<?php echo Application::$app->session->get('customer') ?>)">
-        <div>
-            <?php
-            $ctap = new CusTechAdvPayment();
-            $advancePaymentCount = $ctap->countAdvancePayment(Application::$app->session->get('customer'));
-            ?>
-            <div class="numbers"><?php echo $advancePaymentCount ?></div>
-            <div class="cardName">Advance Payments</div>
+    <?php
+    include_once 'components/sidebar.php';
+    include_once 'components/header.php';
+    ?>
+    <!-- ======================= Cards ================== -->
+    <?php if (Application::$app->session->getFlash('deleteCusTechReq-success')): ?>
+        <div class="alert alert-success">
+            <?php echo Application::$app->session->getFlash('deleteCusTechReq-success') ?>
         </div>
+    <?php endif; ?>
+    <?php if (Application::$app->session->getFlash('deleteCusTechReq-error')): ?>
+        <div class="alert alert-error">
+            <?php echo Application::$app->session->getFlash('deleteCusTechReq-error') ?>
+        </div>
+    <?php endif; ?>
+    <div class="cardBox">
+        <div class="card" onclick="getAdvancePayments(<?php echo Application::$app->session->get('customer') ?>)">
+            <div>
+                <?php
+                $ctap = new CusTechAdvPayment();
+                $advancePaymentCount = $ctap->countAdvancePayment(Application::$app->session->get('customer'));
+                ?>
+                <div class="numbers"><?php echo $advancePaymentCount ?></div>
+                <div class="cardName">Advance Payments</div>
+            </div>
 
-        <div class="iconBx">
-            <ion-icon name="cog-outline"></ion-icon>
-        </div>
+            <div class="iconBx">
+                <ion-icon name="cog-outline"></ion-icon>
+            </div>
+
     </div>
 
     <div class="card">
@@ -77,150 +78,172 @@ include_once 'components/header.php';
             <div class="cardName">Level</div>
         </div>
 
-        <div class="iconBx">
-            <ion-icon name="trophy-outline"></ion-icon>
+        <div class="card">
+            <div>
+                <div class="numbers">2</div>
+                <div class="cardName">Level</div>
+            </div>
 
-        </div>
-    </div>
+            <div class="iconBx">
+                <ion-icon name="trophy-outline"></ion-icon>
 
+            </div>
     <div class="card">
         <div>
             <div class="numbers"><?php echo $reviewCount ?></div>
             <div class="cardName">Total Reviews</div>
         </div>
 
-        <div class="iconBx">
-            <ion-icon name="star-outline"></ion-icon>
-        </div>
-    </div>
+        <div class="card">
+            <div>
+                <div class="numbers">20</div>
+                <div class="cardName">Total Reviews</div>
+            </div>
 
+            <div class="iconBx">
+                <ion-icon name="star-outline"></ion-icon>
+            </div>
     <div class="card">
         <div>
             <div class="numbers">Rs.<?php echo number_format($revenue, 0) ?></div>
             <div class="cardName">Payments</div>
         </div>
 
-        <div class="iconBx">
-            <ion-icon name="cash-outline"></ion-icon>
+        <div class="card">
+            <div>
+                <div class="numbers">Rs. 7,842</div>
+                <div class="cardName">Payments</div>
+            </div>
+
+            <div class="iconBx">
+                <ion-icon name="cash-outline"></ion-icon>
+            </div>
         </div>
     </div>
-</div>
 
-<!-- appointment lists -->
-<!--
+    <!-- appointment lists -->
+    <!--
 include_once '../service-centre/appointment-details.php';
 ?> -->
 
-<h2 class="appointment-header">Appointments</h2>
+    <!-- <h2 class="appointment-header">Appointments</h2>
 
-<div class="customer-appointments-section">
-
-
-    <?php if (isset($appointments) && is_array($appointments) && count($appointments) > 0): ?>
-        <table class="customer-appointments-table">
-            <thead>
-            <tr>
-                <th>Service Center Name</th>
-                <th>Phone no</th>
-                <th>Vehicle</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Status</th>
-                <th>OTP</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($appointments as $appointment): ?>
-                <tr>
-                    <td><?= htmlspecialchars($appointment['service_center_name']) ?></td>
-                    <td><?= htmlspecialchars($appointment['service_center_phone_no']) ?></td>
-                    <td><?= htmlspecialchars($appointment['vehicle_details']) ?></td>
-                    <td><?= htmlspecialchars($appointment['appointment_date']) ?></td>
-                    <td><?= htmlspecialchars($appointment['appointment_time']) ?></td>
-                    <td><?= htmlspecialchars($appointment['status']) ?></td>
-                    <td><?= htmlspecialchars($appointment['otp']) ?></td>
-                </tr>
-            <?php endforeach; ?>
-            </tbody>
-        </table>
-    <?php else: ?>
-        <p>No appointments found.</p>
-    <?php endif; ?>
-</div>
+    <div class="customer-appointments-section">
 
 
-<!-- ================ Request Details List ================= -->
-<div class="details">
-    <div class="recentRequests">
-        <div class="cardHeader">
-            <h2>Recent Requests</h2>
-        </div>
+        <?php if (isset($appointments) && is_array($appointments) && count($appointments) > 0): ?>
+            <table class="customer-appointments-table">
+                <thead>
+                    <tr>
+                        <th>Service Center Name</th>
+                        <th>Phone no</th>
+                        <th>Vehicle</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th>OTP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($appointments as $appointment): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($appointment['service_center_name']) ?></td>
+                            <td><?= htmlspecialchars($appointment['service_center_phone_no']) ?></td>
+                            <td><?= htmlspecialchars($appointment['vehicle_details']) ?></td>
+                            <td><?= htmlspecialchars($appointment['appointment_date']) ?></td>
+                            <td><?= htmlspecialchars($appointment['appointment_time']) ?></td>
+                            <td><?= htmlspecialchars($appointment['status']) ?></td>
+                            <td><?= htmlspecialchars($appointment['otp']) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php else: ?>
+            <p>No appointments found.</p>
+        <?php endif; ?>
+    </div> -->
 
-        <table>
-            <thead>
-            <tr>
-                <td>Name</td>
-                <td>Price</td>
-                <td>Payment</td>
-                <td></td>
-                <td>Status</td>
-            </tr>
-            </thead>
 
-            <tbody>
-            <?php
-            $ctr = new CusTechReq();
-            $requests = $ctr->getAllRequests(Application::$app->session->get('customer'));
-            foreach ($requests as $request) {
-                echo '<tr>
+    <!-- ================ Request Details List ================= -->
+    <div class="details">
+        <div class="recentRequests">
+            <div class="cardHeader">
+                <h2>Recent Requests</h2>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>Price</td>
+                        <td>Payment</td>
+                        <td></td>
+                        <td>Status</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <?php
+                    $ctr = new CusTechReq();
+                    $requests = $ctr->getAllRequests(Application::$app->session->get('customer'));
+                    foreach ($requests as $request) {
+                        echo '<tr>
                 <td>' . $request['fname'] . ' ' . $request['lname'] . '</td>
                 <td>Rs. ' . (is_null($request['amount']) ? '0.00' : number_format($request['amount'], 2)) . '</td>';
 
-                echo '<td>';
-                if ($request['status'] == 'pending') {
-                    echo '<span class="payment-due">Payment Due !</span>';
-                } else if ($request['status'] == 'InProgress') {
-                    if ($request['done'] == 'true') {
-                        echo '<span class="payment-status">Advance Paid ✔</span>';
-                    } else {
-                        echo '<span class="pay-now-btn"><a href="/customer-advance-payments">Pay Now</a></span>';
-                    }
-                } else {
-                    echo '<span class="payment-rejected">-</span>';
-                }
-                echo '</td>';
+                        echo '<td>';
+                        if ($request['status'] == 'pending') {
+                            echo '<span class="payment-due">Payment Due !</span>';
+                        } else if ($request['status'] == 'InProgress') {
+                            if ($request['done'] == 'true') {
+                                echo '<span class="payment-status">Advance Paid ✔</span>';
+                            } else {
+                                echo '<span class="pay-now-btn"><a href="/customer-advance-payments">Pay Now</a></span>';
+                            }
+                        } else {
+                            echo '<span class="payment-rejected">-</span>';
+                        }
+                        echo '</td>';
 
-                // Additional action cell: show cancel button if request is pending
-                echo '<td>';
-                if ($request['status'] == 'pending') {
-                    echo '<span>
+                        // Additional action cell: show cancel button if request is pending
+                        echo '<td>';
+                        if ($request['status'] == 'pending') {
+                            echo '<span>
                       <button type="submit" class="cancel-btn" onclick="cancelReq(' . $request['cus_id'] . ',' . $request['tech_id'] . ')">
                           Cancel
                       </button>
                   </span>';
-                }
-                echo '</td>';
+                        }
+                        echo '</td>';
 
-                // Status cell
-                echo '<td>
+                        // Status cell
+                        echo '<td>
                 <span class="status ' . strtolower($request['status']) . '">
                     ' . ucfirst($request['status']) . '
                 </span>
               </td>
              </tr>';
-            }
-            ?>
-            </tbody>
+                    }
+                    ?>
+                </tbody>
 
-        </table>
-    </div>
-
-    <!-- ================= Recent Technicians ================ -->
-    <div class="recentTechnicians">
-        <div class="cardHeader">
-            <h2>Recent Technicians</h2>
+            </table>
         </div>
 
+        <!-- ================= Recent Technicians ================ -->
+        <div class="recentTechnicians">
+            <div class="cardHeader">
+                <h2>Recent Technicians</h2>
+            </div>
+
+            <table>
+                <?php
+                $ctr = new CusTechReq();
+                $recentTechnicians = $ctr->getRecentTechnicians(Application::$app->session->get('customer'));
+                foreach ($recentTechnicians as $recentTechnician) {
+                    echo
+                        '
+                        <tr>
         <table>
             <?php
             $ctr = new CusTechReq();
@@ -237,27 +260,27 @@ include_once '../service-centre/appointment-details.php';
                             </td>
                         </tr>
                     ';
-            }
-            ?>
+                }
+                ?>
 
-        </table>
+            </table>
+        </div>
     </div>
-</div>
 
-<!-- Overlay for the confirmation message -->
-<div id="signOutOverlay" class="overlay">
-    <div class="overlay-content">
-        <p>Are you sure you want to sign out?</p>
-        <button id="confirmSignOut" class="btn"><a href="/customer-logout"></a> Yes</button>
-        <button id="cancelSignOut" class="btn">No</button>
+    <!-- Overlay for the confirmation message -->
+    <div id="signOutOverlay" class="overlay">
+        <div class="overlay-content">
+            <p>Are you sure you want to sign out?</p>
+            <button id="confirmSignOut" class="btn"><a href="/customer-logout"></a> Yes</button>
+            <button id="cancelSignOut" class="btn">No</button>
+        </div>
     </div>
-</div>
-<!--    Icons-->
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-<script src="/js/customer/customer-dashboard.js"></script>
-<script src="/js/customer/customer-home.js"></script>
-<script src="/js/customer/overlay.js"></script>
+    <!--    Icons-->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="/js/customer/customer-dashboard.js"></script>
+    <script src="/js/customer/customer-home.js"></script>
+    <script src="/js/customer/overlay.js"></script>
 </body>
 
 </html>

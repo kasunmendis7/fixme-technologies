@@ -33,17 +33,8 @@ include_once 'components/header.php';
             </div>
         </div>
     </a>
-    <!--    <a href="/service-center-payment-details">-->
-    <!--        <div class="card">-->
-    <!--            <div>-->
-    <!--                <div class="cardName">Payment Details</div>-->
-    <!--            </div>-->
-    <!--            <div class="iconBx">-->
-    <!--                <ion-icon name="card-outline"></ion-icon>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </a>-->
-    <a href="#">
+    
+    <!-- <a href="#">
         <div class="card">
             <div>
                 <div class="cardName">Transactions</div>
@@ -52,7 +43,7 @@ include_once 'components/header.php';
                 <ion-icon name="receipt-outline"></ion-icon>
             </div>
         </div>
-    </a>
+    </a> -->
 </div>
 
 <!-- Overlay for the confirmation message -->

@@ -54,23 +54,10 @@ include_once 'components/header.php';
         <label for="media">Upload Media:</label>
         <input type="file" id="media" name="media" accept="image/*,video/*" required>
 
-        <label for="product_count">Product Count:</label>
-        <input type="number" id="product_count" name="product_count" required>
+        <!-- <label for="product_count">Product Count:</label>
+        <input type="number" id="product_count" name="product_count" required> -->
 
-        <!-- <label for="category">Category:</label> -->
-        <!-- <select class="category-select" name="category" id="category" required>
-            <option value="">Select a category</option>
-            <option value="Tools">Tools</option>
-            <option value="Engine & Transmission">Engine & Transmission</option>
-            <option value="Brakes & Suspension">Brakes & Suspension</option>
-            <option value="Electrical & Electronics">Electrical & Electronics</option>
-            <option value="Body Parts & Exterior">Body Parts & Exterior</option>
-            <option value="Tires & Wheels">Tires & Wheels</option>
-            <option value="Interior Accessories">Interior Accessories</option>
-            <option value="Fluids & Maintenance">Fluids & Maintenance</option>
-            <option value="Performance & Upgrades">Performance & Upgrades</option>
-            <option value="Safety & Security">Safety & Security</option>
-        </select> -->
+       
 
         <button type="submit">Add Product</button>
     </form>
@@ -86,7 +73,6 @@ include_once 'components/header.php';
                 <th>Image</th>
                 <th>Description</th>
                 <th>Price</th>
-                <th>Product count</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -99,7 +85,6 @@ include_once 'components/header.php';
                     </td>
                     <td><?php echo htmlspecialchars($product['description']); ?></td>
                     <td>Rs. <?php echo htmlspecialchars($product['price']); ?></td>
-                    <td><?php echo htmlspecialchars($product['product_count']) ?></td>
                     <td>
                         <form action="/service-center-update-product" method="get">
                             <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
