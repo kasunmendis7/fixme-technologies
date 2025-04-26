@@ -416,7 +416,7 @@ include_once 'components/header.php';
         <button id="cancelSignOut" class="btn">No</button>
     </div>
 </div>
-<script src="/js/technician/overlay.js"></script>
+<script src="/js/service-center/overlay.js"></script>
 
 </body>
 </html>
