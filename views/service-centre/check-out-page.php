@@ -354,7 +354,7 @@ use app\core\Application;
                         "merchant_id": "1229154",    // Replace your Merchant ID
                         "return_url": "http://localhost:8080/",     // Important
                         "cancel_url": "http://localhost:8080/",     // Important
-                        "notify_url": "https://5019-2a09-bac1-4320-00-279-6.ngrok-free.app/marketplace-payment-response",
+                        "notify_url": "https://3bc8-112-134-150-236.ngrok-free.app/marketplace-payment-response",
                         "order_id": data.order_id,
                         "items": data.items,
                         "amount": data.amount + 200,
