@@ -4,6 +4,10 @@ use app\core\Application;
 use app\models\CusTechReq;
 use app\models\CusTechAdvPayment;
 
+/** @var $revenue */
+/** @var $finishedContractsCount */
+/** @var $reviewCount */
+
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +59,21 @@ include_once 'components/header.php';
 
     <div class="card">
         <div>
-            <div class="numbers">2</div>
+            <div class="numbers"><?php
+                $level = 0;
+                if ($finishedContractsCount >= 15) {
+                    $level = 5;
+                } else if ($finishedContractsCount >= 10) {
+                    $level = 4;
+                } else if ($finishedContractsCount >= 5) {
+                    $level = 3;
+                } else if ($finishedContractsCount >= 1) {
+                    $level = 2;
+                } else {
+                    $level = 1;
+                }
+                echo $level
+                ?></div>
             <div class="cardName">Level</div>
         </div>
 
@@ -67,7 +85,7 @@ include_once 'components/header.php';
 
     <div class="card">
         <div>
-            <div class="numbers">20</div>
+            <div class="numbers"><?php echo $reviewCount ?></div>
             <div class="cardName">Total Reviews</div>
         </div>
 
@@ -78,7 +96,7 @@ include_once 'components/header.php';
 
     <div class="card">
         <div>
-            <div class="numbers">Rs. 7,842</div>
+            <div class="numbers">Rs.<?php echo number_format($revenue, 0) ?></div>
             <div class="cardName">Payments</div>
         </div>
 
@@ -210,7 +228,7 @@ include_once '../service-centre/appointment-details.php';
             foreach ($recentTechnicians as $recentTechnician) {
                 echo
                     '
-                        <tr>
+                        <tr onclick="viewTechProfile(' . $recentTechnician['tech_id'] . ')">
                             <td>
                                 <div class="imgBx"><img src="' . $recentTechnician['profile_picture'] . '" alt="Technician profile-pic"></div>
                             </td>
