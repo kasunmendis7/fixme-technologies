@@ -11,6 +11,7 @@ use app\models\cart;
 use app\models\Customer;
 use app\models\Post;
 use app\models\ServiceCenter;
+use app\models\ServiceCenterServices;
 use app\models\Technician;
 
 class ServiceCentreController extends Controller
@@ -267,7 +268,35 @@ class ServiceCentreController extends Controller
     //function to save the services for ther service center 
     public function addServices()
     {
-        
+        $ser_cen_id = Application::$app->session->get('serviceCenter');
+        if (!$ser_cen_id) {
+            Application::$app->session->setFlash('error', 'Please log in to add services.');
+            Application::$app->response->redirect('/service-centre-login');
+        }
+
+        if(Application::$app->request->isPost()) {
+            $services = Application::$app->request->getBody()['services'] ?? [];
+
+            if (count($services) < 1 || count($services) > 10) {
+                Application::$app->session->setFlash('error', 'You can add between 1 and 10 services.');
+                return;
+            }
+
+            foreach($services as $serviceName) {
+                if(!empty($serviceName)) {
+                    $service = new ServiceCenterServices();
+                    $service->service_center_id = $ser_cen_id;
+                    $service->name = $serviceName;
+                    $service->save();
+                }
+            }
+
+            Application::$app->session->setFlash('success', 'Services added successfully.');
+
+        } else {
+            return $this->render('service-centre/service-center-services');
+        }
+
     }
 
 }
