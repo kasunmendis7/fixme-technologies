@@ -141,6 +141,8 @@ $app->router->get('/service-center-view-cart', [ServiceCentreController::class, 
 $app->router->post('/remove-from-serv-cen-cart', [ServiceCentreController::class, 'removeServCenItemsFromCart']);
 $app->router->get('/service-center-check-out-page', [ServiceCentreController::class, 'servCenCheckOutPage']);
 $app->router->get('/service-center-appointments', [AppoinmentController::class, 'loadAppointmentDetailsForTab']);
+$app->router->get('/customer-order-details', [CustomerController::class, 'customerOrdersList']);
+// $app->router->get('/customer-order-details/{id}', [CustomerController::class, 'customerOrders']);
 // $app->router->get('/service-centre-dashboard', [AppoinmentController::class, 'recentCustomers']);
 
 
@@ -157,6 +159,7 @@ $app->router->post('/add-to-cart', [CartController::class, 'addToCartController'
 $app->router->post('/service-center-add-to-cart', [CustomerController::class, 'addToCartController']);
 $app->router->get('/cart-item-count', [CartController::class, 'getCartItemCount']);
 $app->router->post('/checkout-save', [CheckoutInfoController::class, 'saveCheckout']);
+$app->router->post('/checkout-save-customer', [CheckoutInfoController::class, 'saveCheckoutCustomer']);
 $app->router->get('/get-invoice/{id}', [CustomerController::class, 'downloadScInvoice']);
 
 /* Customer Routes */
@@ -196,6 +199,7 @@ $app->router->get('/get-contract-status/{id}', [CustomerController::class, 'getC
 $app->router->get('/get-vehicle-issues/{id}', [VehicleIssueController::class, 'getVehicleIssues']);
 $app->router->post('/customer-vehicle-issue-form', [CustomerController::class, 'recommendTechnicians']);
 
+$app->router->get('/customer-details', [CustomerController::class, 'customerDetails']);
 $app->router->get('/get-appointments', [AppoinmentController::class, 'loadAppointmentDetails']);
 
 /* Admin Routes */
