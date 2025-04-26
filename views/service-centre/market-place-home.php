@@ -21,6 +21,7 @@ use app\core\Application;
     <script src="/js/service-center/marketplace-home.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="/js/service-center/overlay.js"></script>
     <title>Marketplace</title>
 </head>
 
@@ -54,17 +55,15 @@ use app\core\Application;
                 text-align: center;
                 font-weight: bold;
                 position: absolute;
-            ">
-                            0
-                        </span>
+            ">0</span>
                 </a>
             </li>
 
         </ul>
 
         <form class="search-bar">
-            <input class="search-bar-enter" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn" type="submit">Search</button>
+            <!--            <input class="search-bar-enter" type="search" placeholder="Search" aria-label="Search">-->
+            <!--            <button class="btn" type="submit">Search</button>-->
         </form>
         <h6
                 style="display: flex; align-items: center; justify-content: flex-end; gap: 10px; margin: 0; padding: 10px;">
