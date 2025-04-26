@@ -159,7 +159,7 @@ class ServiceCentreController extends Controller
         if (!$serviceCenter) {
             return $this->render('_404');
         }
-//        show($serviceCenter['name']);
+        //        show($serviceCenter['name']);
 
         return $this->render('/customer/service-center-profile', [
             'serviceCenter' => $serviceCenter,
@@ -228,7 +228,8 @@ class ServiceCentreController extends Controller
     }
 
     //api to get cart items count
-    public function getCartItemCount() {
+    public function getCartItemCount()
+    {
         $cus_id = Application::$app->session->get('customer');
         if (!$cus_id) {
             Application::$app->response->redirect('/customer-login');
@@ -268,35 +269,63 @@ class ServiceCentreController extends Controller
     //function to save the services for ther service center 
     public function addServices()
     {
+        $serviceCenterId = Application::$app->session->get('serviceCenter');
+
+        if (!$serviceCenterId) {
+            http_response_code(401);
+            echo json_encode(['error' => 'Unauthorized - No service center ID found']);
+            exit;
+        }
+
+        $services = $_POST['services'] ?? [];
+
+        // Clean and filter out empty values
+        $services = array_filter(array_map('trim', $services));
+
+        if (count($services) < 1) {
+            http_response_code(400);
+            echo json_encode(['error' => 'At least one service is required']);
+            exit;
+        }
+
+        if (count($services) > 10) {
+            http_response_code(400);
+            echo json_encode(['error' => 'You cannot add more than 10 services']);
+            exit;
+        }
+
+        $model = new ServiceCenterServices();
+        foreach ($services as $service) {
+            $model->create([
+                'ser_cen_id' => (int) $serviceCenterId,
+                'name' => htmlspecialchars($service)  // escaping input
+            ]);
+        }
+
+        echo json_encode(['success' => true, 'message' => 'Services added successfully']);
+        Application::$app->response->redirect('/service-centre-dashboard');
+    }
+
+
+
+    //function to get the services for the service center
+    public function getServicesByServiceCenter()
+    {
         $ser_cen_id = Application::$app->session->get('serviceCenter');
         if (!$ser_cen_id) {
-            Application::$app->session->setFlash('error', 'Please log in to add services.');
+            Application::$app->session->setFlash('error', 'Please log in to view the services.');
             Application::$app->response->redirect('/service-centre-login');
+            return;
         }
-
-        if(Application::$app->request->isPost()) {
-            $services = Application::$app->request->getBody()['services'] ?? [];
-
-            if (count($services) < 1 || count($services) > 10) {
-                Application::$app->session->setFlash('error', 'You can add between 1 and 10 services.');
-                return;
-            }
-
-            foreach($services as $serviceName) {
-                if(!empty($serviceName)) {
-                    $service = new ServiceCenterServices();
-                    $service->service_center_id = $ser_cen_id;
-                    $service->name = $serviceName;
-                    $service->save();
-                }
-            }
-
-            Application::$app->session->setFlash('success', 'Services added successfully.');
-
-        } else {
-            return $this->render('service-centre/service-center-services');
-        }
+        $serviceModel = new ServiceCenterServices();
+        $services = $serviceModel->getServicesByServiceCenter($ser_cen_id);
+        error_log("Services:" . print_r($services, true)); // Log the services for debugging
+        
+        header('Content-Type: application/json');
+        echo json_encode($services);
+        exit;
 
     }
+
 
 }
