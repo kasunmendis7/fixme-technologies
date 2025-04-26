@@ -54,11 +54,11 @@ include_once 'components/header.php';
             <input type="number" step="0.01" name="price" value="<?php echo htmlspecialchars($product['price']); ?>">
         </div>
 
-        <div>
+        <!-- <div>
             <label for="">Product count:</label>
             <input type="number" name="product_count"
                    value="<?php echo htmlspecialchars($product['product_count']); ?>">
-        </div>
+        </div> -->
 
         <!-- <div>
             <label for="">Category:</label>
