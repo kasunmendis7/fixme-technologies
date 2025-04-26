@@ -253,7 +253,7 @@ use app\core\Application;
                             "notify_url": "https://e591-2402-4000-1324-56c6-c619-5239-8a0c-84d2.ngrok-free.app/marketplace-payment-response",
                             "order_id": data.order_id,
                             "items": data.items,
-                            "amount": data.amount + 200.00,
+                            "amount": data.amount,
                             "currency": "LKR",
                             "hash": data.hash, // *Replace with generated hash retrieved from backend
                             "first_name": data.full_name,
