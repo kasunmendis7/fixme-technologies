@@ -143,6 +143,12 @@ class ServiceCentreController extends Controller
         return $this->render('/service-centre/service-center-messages');
     }
 
+    public function serviceCenterServices()
+    {
+        $this->setLayout('auth');
+        return $this->render('/service-centre/manage-services');
+    }
+
     public function cart()
     {
         $this->setLayout('auth');

@@ -33,6 +33,15 @@
             </li>
 
             <li>
+                <a href="/service-center-services">
+                        <span class="icon">
+                            <ion-icon name="calendar-outline"></ion-icon>
+                        </span>
+                    <span class="title">Services</span>
+                </a>
+            </li>
+
+            <li>
 
                 <a href="/service-center-create-product">
                         <span class="icon">
