@@ -35,10 +35,10 @@ use app\core\Application;
 
 <body>
 
-    <?php
-    include_once 'components/sidebar.php';
-    include_once 'components/header.php';
-    ?>
+<?php
+include_once 'components/sidebar.php';
+include_once 'components/header.php';
+?>
 
     <section>
         <div class="flash-message">
@@ -49,155 +49,155 @@ use app\core\Application;
                 <div style="position: fixed; bottom: 2%; right: 6%; z-index: 999;">
                     <button type="submit" id="payhere-button"
                         style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer;">
-                        Pay Now
-                    </button>
+                    Pay Now
+                </button>
+            </div>
+        <?php endif; ?>
+    </div>
+</section>
+
+<?php if (Application::$app->session->getFlash('success')): ?>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const submitBtn = document.getElementById("submit-btn");
+            if (submitBtn) {
+                submitBtn.style.display = "none";
+            }
+        });
+    </script>
+<?php endif; ?>
+
+<header>
+    <h3>
+        <center>Checkout</center>
+    </h3>
+</header>
+
+<main>
+
+    <section class="checkout-form">
+        <form action="/checkout-save-customer" id="myForm" method="post">
+            <h6>Contact information</h6>
+            <div class="form-control">
+                <label for="checkout-email">E-mail</label>
+                <div>
+                    <span class="fa fa-envelope"></span>
+                    <input type="email" id="checkout-email" name="checkout-email" placeholder="Enter your email...">
                 </div>
-            <?php endif; ?>
+            </div>
+            <div class="form-control">
+                <label for="checkout-phone">Phone</label>
+                <div>
+                    <span class="fa fa-phone"></span>
+                    <input type="tel" name="checkout-phone" id="checkout-phone" placeholder="Enter you phone...">
+                </div>
+            </div>
+            <br>
+            <h6>Shipping address</h6>
+            <div class="form-control">
+                <label for="checkout-name">Full name</label>
+                <div>
+                    <span class="fa fa-user-circle"></span>
+                    <input type="text" id="checkout-name" name="checkout-name" placeholder="Enter you name...">
+                </div>
+            </div>
+            <div class="form-control">
+                <label for="checkout-address">Address</label>
+                <div>
+                    <span class="fa fa-home"></span>
+                    <input type="text" name="checkout-address" id="checkout-address" placeholder="Your address...">
+                </div>
+            </div>
+            <div class="form-control">
+                <label for="checkout-city">City</label>
+                <div>
+                    <span class="fa fa-building"></span>
+                    <input type="text" name="checkout-city" id="checkout-city" placeholder="Your city...">
+                </div>
+            </div>
+            <div class="form-group">
+                <!-- <div class="form-control">
+        <label for="checkout-country">Country</label>
+        <div>
+            <span class="fa fa-globe"></span>
+            <input type="text" name="checkout-country" id="checkout-country" placeholder="Your country..."
+                list="country-list">
+            <datalist id="country-list">
+                <option value="India"></option>
+                <option value="USA"></option>
+                <option value="Russia"></option>
+                <option value="Japan"></option>
+                <option value="Egypt"></option>
+            </datalist>
+        </div>
+    </div> -->
+                <div class="form-control">
+                    <label for="checkout-postal">Postal code</label>
+                    <div>
+                        <span class="fa fa-archive"></span>
+                        <input type="numeric" name="checkout-postal" id="checkout-postal"
+                               placeholder="Your postal code...">
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="form-control checkbox-control">
+    <input type="checkbox" name="checkout-checkbox" id="checkout-checkbox">
+    <label for="checkout-checkbox">Save this information for next time</label>
+</div> -->
+            <div class="form-control-btn" id="form-control-btn">
+                <button type="submit" id="submit-btn" onclick="hideSubmitButton()">Submit</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="checkout-details">
+        <div class="checkout-details-inner">
+            <div class="checkout-lists">
+                <?php
+                $total = 0;
+                $shipping = 200.00;
+                foreach ($cartItems as $item):
+                    $price = $item['discount_price'] ?? $item['price'];
+                    $subtotal = $price * $item['quantity'];
+                    $total += $subtotal;
+                    ?>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="/assets/uploads/<?= $item['media'] ?>" alt="">
+                        </div>
+                        <div class="card-details">
+                            <div class="card-name" style="font-size: 1rem;">
+                                <?= htmlspecialchars($item['description']) ?>
+                            </div>
+                            <div class="card-price" style="font-size: 0.9rem;">
+                                Rs. <?= number_format($price, 2) ?>
+                                <!-- <?php if ($item['price']): ?>
+                                        <span>Rs. <?= number_format($item['price'], 2) ?></span>
+                                    <?php endif; ?> -->
+                            </div>
+                            <div class="card-wheel">
+                                <!-- <button>-</button> -->
+                                <span style="align-items: center; margin-left: 50%;"><?= $item['quantity'] ?></span>
+                                <!-- <button>+</button> -->
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <div class="checkout-shipping">
+                <h6>Shipping</h6>
+                <p style="font-size: 1rem;">Rs. <?= number_format($shipping, 2) ?></p>
+            </div>
+            <div class="checkout-total">
+                <h6>Total</h6>
+                <p style="font-size: 1rem;">Rs. <?= number_format($total + $shipping, 2) ?></p>
+            </div>
         </div>
     </section>
 
-    <?php if (Application::$app->session->getFlash('success')): ?>
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const submitBtn = document.getElementById("submit-btn");
-                if (submitBtn) {
-                    submitBtn.style.display = "none";
-                }
-            });
-        </script>
-    <?php endif; ?>
 
-    <header>
-        <h3>
-            <center>Checkout</center>
-        </h3>
-    </header>
-
-    <main>
-
-        <section class="checkout-form">
-            <form action="/checkout-save-customer" id="myForm" method="post">
-                <h6>Contact information</h6>
-                <div class="form-control">
-                    <label for="checkout-email">E-mail</label>
-                    <div>
-                        <span class="fa fa-envelope"></span>
-                        <input type="email" id="checkout-email" name="checkout-email" placeholder="Enter your email...">
-                    </div>
-                </div>
-                <div class="form-control">
-                    <label for="checkout-phone">Phone</label>
-                    <div>
-                        <span class="fa fa-phone"></span>
-                        <input type="tel" name="checkout-phone" id="checkout-phone" placeholder="Enter you phone...">
-                    </div>
-                </div>
-                <br>
-                <h6>Shipping address</h6>
-                <div class="form-control">
-                    <label for="checkout-name">Full name</label>
-                    <div>
-                        <span class="fa fa-user-circle"></span>
-                        <input type="text" id="checkout-name" name="checkout-name" placeholder="Enter you name...">
-                    </div>
-                </div>
-                <div class="form-control">
-                    <label for="checkout-address">Address</label>
-                    <div>
-                        <span class="fa fa-home"></span>
-                        <input type="text" name="checkout-address" id="checkout-address" placeholder="Your address...">
-                    </div>
-                </div>
-                <div class="form-control">
-                    <label for="checkout-city">City</label>
-                    <div>
-                        <span class="fa fa-building"></span>
-                        <input type="text" name="checkout-city" id="checkout-city" placeholder="Your city...">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <!-- <div class="form-control">
-            <label for="checkout-country">Country</label>
-            <div>
-                <span class="fa fa-globe"></span>
-                <input type="text" name="checkout-country" id="checkout-country" placeholder="Your country..."
-                    list="country-list">
-                <datalist id="country-list">
-                    <option value="India"></option>
-                    <option value="USA"></option>
-                    <option value="Russia"></option>
-                    <option value="Japan"></option>
-                    <option value="Egypt"></option>
-                </datalist>
-            </div>
-        </div> -->
-                    <div class="form-control">
-                        <label for="checkout-postal">Postal code</label>
-                        <div>
-                            <span class="fa fa-archive"></span>
-                            <input type="numeric" name="checkout-postal" id="checkout-postal"
-                                placeholder="Your postal code...">
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="form-control checkbox-control">
-        <input type="checkbox" name="checkout-checkbox" id="checkout-checkbox">
-        <label for="checkout-checkbox">Save this information for next time</label>
-    </div> -->
-                <div class="form-control-btn" id="form-control-btn">
-                    <button type="submit" id="submit-btn" onclick="hideSubmitButton()">Submit</button>
-                </div>
-            </form>
-        </section>
-
-        <section class="checkout-details">
-            <div class="checkout-details-inner">
-                <div class="checkout-lists">
-                    <?php
-                    $total = 0;
-                    $shipping = 200.00;
-                    foreach ($cartItems as $item):
-                        $price = $item['discount_price'] ?? $item['price'];
-                        $subtotal = $price * $item['quantity'];
-                        $total += $subtotal;
-                        ?>
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="/assets/uploads/<?= $item['media'] ?>" alt="">
-                            </div>
-                            <div class="card-details">
-                                <div class="card-name" style="font-size: 1rem;">
-                                    <?= htmlspecialchars($item['description']) ?>
-                                </div>
-                                <div class="card-price" style="font-size: 0.9rem;">
-                                    Rs. <?= number_format($price, 2) ?>
-                                    <!-- <?php if ($item['price']): ?>
-                                        <span>Rs. <?= number_format($item['price'], 2) ?></span>
-                                    <?php endif; ?> -->
-                                </div>
-                                <div class="card-wheel">
-                                    <!-- <button>-</button> -->
-                                    <span style="align-items: center; margin-left: 50%;"><?= $item['quantity'] ?></span>
-                                    <!-- <button>+</button> -->
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-
-                <div class="checkout-shipping">
-                    <h6>Shipping</h6>
-                    <p style="font-size: 1rem;">Rs. <?= number_format($shipping, 2) ?></p>
-                </div>
-                <div class="checkout-total">
-                    <h6>Total</h6>
-                    <p style="font-size: 1rem;">Rs. <?= number_format($total + $shipping, 2) ?></p>
-                </div>
-            </div>
-        </section>
-
-
-    </main>
+</main>
 
 
 <!-- Include PayHere SDK -->
@@ -304,7 +304,10 @@ use app\core\Application;
                     alert("Failed to initiate payment.");
                 });
         });
+
     });
+    })
+    ;
 </script>
 
 </body>

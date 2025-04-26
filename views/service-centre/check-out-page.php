@@ -402,31 +402,24 @@ use app\core\Application;
                         'Content-Type': 'application/json'
                     }
                 })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error("Failed to fetch payment data");
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        console.log("Payment Data Received:", data);
+=======
+                .then(data => {
+                    console.log("Payment Data Received:", data);
 
-                        payhere.onCompleted = function onCompleted(orderId) {
-                            alert("Payment completed! OrderID: " + orderId);
-                            // You can redirect or show a success page here
-                            window.location.href = `/get-invoice/${orderId}`;
-                            // window.location.href = `/customer-order-details/${orderId}`;
+                    payhere.onCompleted = function onCompleted(orderId) {
+                        alert("Payment completed! OrderID: " + orderId);
+                        // You can redirect or show a success page here
+                        window.location.href = `/get-invoice/${orderId}`;
+                    };
 
-                        };
+                    payhere.onDismissed = function onDismissed() {
+                        alert("Payment dismissed.");
+                    };
 
-                        payhere.onDismissed = function onDismissed() {
-                            alert("Payment dismissed.");
-                        };
-
-                        payhere.onError = function onError(error) {
-                            console.error("PayHere Error:", error);
-                            alert("Error: " + error);
-                        };
+                    payhere.onError = function onError(error) {
+                        console.error("PayHere Error:", error);
+                        alert("Error: " + error);
+                    };
 
                     var payment = {
                         "sandbox": true,
@@ -436,7 +429,7 @@ use app\core\Application;
                         "notify_url": "https://3bc8-112-134-150-236.ngrok-free.app/marketplace-payment-response",
                         "order_id": data.order_id,
                         "items": data.items,
-                        "amount": data.amount + 200,
+                        "amount": data.amount,
                         "currency": "LKR",
                         "hash": data.hash, // *Replace with generated hash retrieved from backend
                         "first_name": data.full_name,
@@ -454,13 +447,12 @@ use app\core\Application;
                     }
 
 
-                        payhere.startPayment(payment);
-                    })
-                    .catch(error => {
-                        console.error("Error initiating payment:", error);
-                        alert("Failed to initiate payment.");
-                    });
-            });
+                    payhere.startPayment(payment);
+                })
+                .catch(error => {
+                    console.error("Error initiating payment:", error);
+                    alert("Failed to initiate payment.");
+                });
         });
     </script>
 

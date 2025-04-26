@@ -6,9 +6,10 @@ body, html {
     overflow-x: hidden;
 }
 
-h1{
+h1 {
     font-size: 30px;
 }
+
 .container-landing-page {
     position: relative;
     width: 100%;
@@ -21,15 +22,17 @@ h1{
     width: 100%;
 }
 
-.section1  {
+.section1 {
     display: flex;
     flex-direction: column;
     background-color: white;
 }
-.section2{
+
+.section2 {
     background-color: white;
 }
-.section3{
+
+.section3 {
     background-color: white;
 
 }
@@ -86,6 +89,9 @@ h1{
     align-items: center;
     justify-content: space-between;
     color: #333333;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 40px;
 }
 
 .faq-section h2 {
@@ -100,6 +106,77 @@ h1{
 .faq-item p {
     font-size: 1rem;
     line-height: 1.2;
+}
+
+.container-landing-page {
+    padding: 40px 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9fafb;
+}
+
+.header-landing-page {
+    margin: auto;
+}
+
+/* Left side (FAQ content) */
+.left-side {
+    flex: 1;
+    min-width: 300px;
+}
+
+.left-side h2 {
+    font-size: 2rem;
+    color: #1f2937;
+    margin-bottom: 24px;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+}
+
+.faq-item h3 {
+    font-size: 1.2rem;
+    color: #111827;
+    margin-bottom: 8px;
+}
+
+.faq-item p {
+    font-size: 1rem;
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+/* Right side (image) */
+.right-side {
+    flex: 1;
+    min-width: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.faq-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .faq-section {
+        flex-direction: column;
+        padding: 24px;
+    }
+
+    .left-side h2 {
+        font-size: 1.5rem;
+    }
+
+    .faq-item h3 {
+        font-size: 1.1rem;
+    }
 }
 
 @media (max-width: 768px) {
