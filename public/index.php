@@ -144,6 +144,11 @@ $app->router->get('/service-center-appointments', [AppoinmentController::class, 
 $app->router->get('/customer-order-details', [CustomerController::class, 'customerOrdersList']);
 $app->router->post('/add-services', [ServiceCentreController::class, 'addServices']);
 $app->router->get('/get-services', [ServiceCentreController::class, 'getServicesByServiceCenter']);
+$app->router->get('/get-services-by-service-center', [ServiceCentreController::class, 'getServicesByServiceCenter']);
+$app->router->get('/service-center-services', [ServiceCentreController::class, 'serviceCenterServices']);
+$app->router->post('/delete-service', [ServiceCentreController::class, 'deleteService']);
+$app->router->post('/update-service', [ServiceCentreController::class, 'updateService']);
+$app->router->post('/add-service-from-manage-console', [ServiceCentreController::class, 'addServiceFromManageConsole']);
 // $app->router->get('/customer-order-details/{id}', [CustomerController::class, 'customerOrders']);
 // $app->router->get('/service-centre-dashboard', [AppoinmentController::class, 'recentCustomers']);
 

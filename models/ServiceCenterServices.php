@@ -54,4 +54,21 @@ class ServiceCenterServices extends DbModel
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    public function deleteService($id)
+    {
+        $sql = "DELETE FROM " . $this->tableName() . " WHERE id = :id";
+        $stmt = $this->prepare($sql);
+        $stmt->bindValue(':id', $id);
+        return $stmt->execute();
+    }
+    public function updateService($id, $name)
+    {
+        $sql = "UPDATE " . $this->tableName() . " SET name = :name WHERE id = :id";
+        $stmt = $this->prepare($sql);
+        $stmt->bindValue(':name', $name);
+        $stmt->bindValue(':id', $id);
+        return $stmt->execute();
+    }
+
 }
