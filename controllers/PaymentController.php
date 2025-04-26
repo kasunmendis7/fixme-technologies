@@ -136,7 +136,7 @@ class PaymentController extends Controller
 
             $order = new MarketplaceOrder();
             $order->order_id = $order_id;
-            error_log("Order ID: " . print_r($order->order_id, true));
+            error_log("Order ID>>>>>>>>: " . print_r($order->order_id, true));
             $order->customer_id = $cus_id;
             $order->total_amount = $totalAmount;
             $order->status = 'completed';

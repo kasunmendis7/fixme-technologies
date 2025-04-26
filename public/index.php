@@ -137,6 +137,8 @@ $app->router->post('/clear-notifications-for-service-center', [NotificationContr
 $app->router->get('/service-center-view-cart', [ServiceCentreController::class, 'viewServiceCenterCart']);
 $app->router->post('/remove-from-serv-cen-cart', [ServiceCentreController::class, 'removeServCenItemsFromCart']);
 $app->router->get('/service-center-check-out-page', [ServiceCentreController::class, 'servCenCheckOutPage']);
+$app->router->get('/customer-order-details', [CustomerController::class, 'customerOrdersList']);
+// $app->router->get('/customer-order-details/{id}', [CustomerController::class, 'customerOrders']);
 // $app->router->get('/service-centre-dashboard', [AppoinmentController::class, 'recentCustomers']);
 
 
