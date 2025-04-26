@@ -61,6 +61,15 @@
             </li>
 
             <li>
+                <a href="/customer-appointments">
+                    <span class="icon">
+                        <ion-icon name="calendar-outline"></ion-icon>
+                    </span>
+                    <span class="title">Appointments</span>
+                </a>
+            </li>
+
+            <li>
                 <a href="/customer-messages">
                     <span class="icon">
                         <ion-icon name="chatbubble-outline"></ion-icon>

@@ -217,7 +217,7 @@ use app\models\ServiceCenterReview;
         <div class="details">
             <div class="recentOrders">
                 <div class="cardHeader">
-                    <h2>Recent Orders</h2>
+                    <h2>Recent Appointments</h2>
                 </div>
                 <?php if ($completedAppointments): ?>
                     <table>
