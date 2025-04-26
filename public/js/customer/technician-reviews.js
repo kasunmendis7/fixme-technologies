@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     var html = '';
                     data.review_data.forEach(function (review) {
                         html += '<div class="row mb-3">';
-                        html += '<div class="col-sm-1"><div style="background:#010336; color:#fff; padding:25px; text-align:center; border-radius:50%; margin-left: 20px"><h2 style="margin:0;">' + review.user_name.split(' ').map(n => n[0]).join('') + '</h2></div></div>';
+                        html += '<div class="col-sm-1 user-name-letters"><div style="background:#010336; color:#fff; padding:25px; text-align:center; border-radius:50%; margin-left: 20px"><h2 style="margin:0;">' + review.user_name.split(' ').map(n => n[0]).join('') + '</h2></div></div>';
                         html += '<div class="col-sm-11">';
                         html += '<div class="card">';
                         html += '<div class="card-header"><b>' + review.user_name + '</b></div>';
