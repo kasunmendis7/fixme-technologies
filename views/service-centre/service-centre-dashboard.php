@@ -17,6 +17,7 @@ use app\models\ServiceCenterReview;
     <link rel="stylesheet" href="/css/customer/overlay.css">
     <link rel="stylesheet" href="/css/service-center/appointment-table.css">
     <link rel="stylesheet" href="/css/service-center/notification.css">
+    <link rel="stylesheet" href="/css/service-center/service-center-services.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -106,6 +107,10 @@ include_once 'components/header.php';
 <!-- <div class="appointments-section">
     <h2>Appointments</h2> -->
 
+<?php
+    include_once 'components/service-center-services.php';
+?>
+ 
 
 <!-- ================ Order Details List ================= -->
 <div class="details">
