@@ -64,7 +64,7 @@ async function fetchRoute(mode) {
     const customerCoords = locations['customer_loc'];
     const serviceCenterCoords = locations['service_center_loc'];
     try {
-        const response = await fetch('http://localhost:8080/get-route', {
+        const response = await fetch('http://localhost:8080/get-service-center-route', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
