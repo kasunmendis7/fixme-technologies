@@ -2,6 +2,10 @@
 
 use app\core\Application;
 
+/**
+ * @var $locations
+ */
+
 ?>
 
 <!DOCTYPE html>
