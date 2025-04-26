@@ -34,65 +34,107 @@ use app\core\Application;
             </a>
         </div>
 
-        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
-            <li><a href="/service-centre-landing" class="nav-link px-2">Service Centre</a></li>
-            <li><a href="/about-us" class="nav-link px-2">About</a></li>
-            <li class="position-relative">
-                <a href="/view-cart" class="nav-link px-2" style="position: relative; display: inline-block;">
-                    <ion-icon name="cart-outline" style="font-size: 24px;  color: #333;"></ion-icon>
-                    <span id="cart-count" class="position-absolute badge rounded-pill bg-danger" style="
-                display: none;
-                top: -5px;
-                right: -10px;
-                font-size: 0.65rem;
-                background-color: #dc3545;
-                color: white;
-                padding: 3px 6px;
-                border-radius: 50%;
-                box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
-                min-width: 18px;
-                text-align: center;
-                font-weight: bold;
-                position: absolute;
-            ">0</span>
-                </a>
-            </li>
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
+                <li><a href="/service-centre-landing" class="nav-link px-2">Service Centre</a></li>
+                <li><a href="/about-us" class="nav-link px-2">About</a></li>
+                <li class="position-relative">
+                    <a href="/view-cart" class="nav-link px-2" style="position: relative; display: inline-block;">
+                        <ion-icon name="cart-outline" style="font-size: 24px;  color: #fff;"></ion-icon>
+                        <span id="cart-count" class="position-absolute badge rounded-pill bg-danger" style="
+                        display: none;
+                        top: -5px;
+                        right: -10px;
+                        font-size: 0.65rem;
+                        background-color: #dc3545;
+                        color: white;
+                        padding: 3px 6px;
+                        border-radius: 50%;
+                        box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+                        min-width: 18px;
+                        text-align: center;
+                        font-weight: bold;
+                        position: absolute;
+                    ">
+                            0
+                        </span>
+                    </a>
+                </li>
+            </ul>
 
-        </ul>
+            <div class="dropdown" style="margin-right: 15px;">
+                <?php
+                $userId = Application::$app->session->get('customer');
 
-        <form class="search-bar">
-            <!--            <input class="search-bar-enter" type="search" placeholder="Search" aria-label="Search">-->
-            <!--            <button class="btn" type="submit">Search</button>-->
-        </form>
-        <h6
-                style="display: flex; align-items: center; justify-content: flex-end; gap: 10px; margin: 0; padding: 10px;">
-            <?php
-            $userId = Application::$app->session->get('customer');
 
-            if ($userId) {
-                $customerClass = Application::$app->customerClass;
-                $customerInstance = new $customerClass();
-                $customer = $customerInstance->findOne(['cus_id' => $userId]);
-                $username = $customer->fname . ' ' . $customer->lname;
-                $userProfile = $customer->profile_picture;
-                if (!empty($userProfile)) {
-                    echo '<img src="/assets/uploads/' . htmlspecialchars($userProfile) . '" alt="Profile Picture" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">';
+                if ($userId) {
+                    $customerClass = Application::$app->customerClass;
+                    $customerInstance = new $customerClass();
+                    $customer = $customerInstance->findOne(['cus_id' => $userId]);
+                    $username = $customer->fname;
+                    $userProfile = $customer->profile_picture;
+                    ?>
+                    <div class="dropdown-toggle" style="display: flex; align-items: center; gap: 10px; cursor: pointer;"
+                        onclick="toggleDropdown()">
+                        <?php
+                        if (!empty($userProfile)) {
+                            echo '<img src="/assets/uploads/' . htmlspecialchars($userProfile) . '" alt="Profile Picture" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">';
+                        } else {
+                            echo '<img src="/assets/default-profile.svg" alt="Default Profile Picture" style="width: 40px; height: 40px; background-color: white; border-radius: 50%; object-fit: cover;">';
+                        }
+                        if (!empty($username)) {
+                            echo '<span style="font-size: 16px; font-weight: 500; color: #fff;">' . htmlspecialchars($username) . '</span>';
+                        }
+                        ?>
+                    </div>
+                    <div id="profileDropdown" class="dropdown-menu"
+                        style="display: none; position: absolute; right: 0; background-color: white; min-width: 180px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1; border-radius: 4px; margin-top: 5px;">
+                        <a href="/customer-details"
+                            style="color: black; padding: 12px 16px; text-decoration: none; display: block; font-size: 14px;">
+                            <ion-icon name="person-outline" style="vertical-align: middle; margin-right: 5px;"></ion-icon>
+                            My Profile
+                        </a>
+                        <a href="/customer-order-details"
+                            style="color: black; padding: 12px 16px; text-decoration: none; display: block; font-size: 14px;">
+                            <ion-icon name="bag-outline" style="vertical-align: middle; margin-right: 5px;"></ion-icon> My
+                            Orders
+                        </a>
+                        <div style="height: 1px; background-color: #e0e0e0; margin: 5px 0;"></div>
+                        <a href="/customer-logout"
+                            style="color: #dc3545; padding: 12px 16px; text-decoration: none; display: block; font-size: 14px;">
+                            <ion-icon name="log-out-outline" style="vertical-align: middle; margin-right: 5px;"></ion-icon>
+                            Logout
+                        </a>
+                    </div>
+                    <?php
                 } else {
-                    echo '<img src="/assets/default-profile.svg" alt="Default Profile Picture" style="width: 40px; height: 40px; background-color: white; border-radius: 50%; object-fit: cover;">';
+                    echo '<button onclick="window.location.href=\'/customer-login\'" style="padding: 8px 16px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px;">Login</button>';
                 }
-                if (!empty($username)) {
-                    echo '<span style="font-size: 16px; font-weight: 500; color: #fff;">' . htmlspecialchars($username) . '</span>';
-                    echo '<button onclick="window.location.href=\'/customer-logout\'" style="padding: 8px 16px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px;">Logout</button>';
-                }
-            } else {
-                echo '<button onclick="window.location.href=\'/customer-login\'" style="padding: 8px 16px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px;">Login</button>';
-            }
-            ?>
-        </h6>
+                ?>
+            </div>
+        </header>
+    </nav>
 
-    </header>
-</nav>
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.getElementById('profileDropdown');
+            if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+                dropdown.style.display = 'block';
+            } else {
+                dropdown.style.display = 'none';
+            }
+        }
+
+        // Close the dropdown if user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropdown-toggle') && !event.target.matches('.dropdown-toggle *')) {
+                const dropdown = document.getElementById('profileDropdown');
+                if (dropdown.style.display === 'block') {
+                    dropdown.style.display = 'none';
+                }
+            }
+        }
+    </script>
 
 <section>
     <div class="flash-message">

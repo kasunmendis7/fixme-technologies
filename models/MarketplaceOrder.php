@@ -63,6 +63,25 @@ class MarketplaceOrder extends DbModel
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     } 
 
+    //function to list order details according to the customer id 
+    public function listOrderDetailsByCustomer($cus_id)
+    {
+        $sql = "SELECT * FROM marketplace_orders WHERE customer_id = :customer_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':customer_id', $cus_id);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    //function to list order id s according to the customer id
+    public function listOrderIdByCustomer($cus_id)
+    {
+        $sql = "SELECT order_id FROM marketplace_orders WHERE customer_id = :customer_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':customer_id', $cus_id);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 
     public function rules(): array
     {
