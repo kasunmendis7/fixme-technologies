@@ -1,5 +1,18 @@
 <?php
+
+use \app\core\Application;
+
 ?>
+
+<?php
+$isGuest = false;
+if (Application::isGuestCustomer() && Application::isGuestTechnician() && Application::isGuestServiceCenter()) {
+    $isGuest = true;
+}
+?>
+<script>
+    const isGuest = <?php echo $isGuest ? 'true' : 'false'; ?>;
+</script>
 
 <div class="container-map">
     <center>

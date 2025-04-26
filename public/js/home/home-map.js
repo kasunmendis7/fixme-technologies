@@ -113,11 +113,19 @@ async function loadMap() {
 }
 
 function locateTechnician(techId) {
-    window.location.href = `/select-user-login`;
+    if (isGuest == 'true') {
+        window.location.href = `/select-user-login`;
+        return;
+    }
+    window.location.href = `/technician-profile/${techId}`;
 }
 
 function locateServiceCentre(serviceCentreId) {
-    window.location.href = '/select-user-login';
+    if (isGuest == 'true') {
+        window.location.href = `/select-user-login`;
+        return;
+    }
+    window.location.href = `/service-center-profile/${serviceCentreId}`;
 }
 
 window.onload = loadMap;

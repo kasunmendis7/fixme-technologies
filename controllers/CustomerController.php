@@ -38,7 +38,13 @@ class CustomerController extends Controller
 
     public function customerDashboard()
     {
+        $ctap = new CusTechAdvPayment();
+        $revenue = $ctap->getCustomerTotalPayment(Application::$app->session->get('customer'));
+
         $cus_id = Application::$app->session->get('customer');
+
+        $finishedContCount = (new CusTechContract())->totalFinishedContracts($cus_id);
+        $reviewCnt = (new TechnicianReview())->getReviewsCnt($cus_id);
 
         if (!$cus_id) {
             Application::$app->session->setFlash('error', 'Please log in first.');
@@ -51,7 +57,10 @@ class CustomerController extends Controller
 
         $this->setLayout('auth');
         return $this->render('/customer/customer-dashboard', [
-            'appointments' => $appointments
+            'appointments' => $appointments,
+            'revenue' => $revenue,
+            'finishedContractsCount' => $finishedContCount,
+            'reviewCount' => $reviewCnt
         ]);
     }
 

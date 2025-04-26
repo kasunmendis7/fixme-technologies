@@ -200,6 +200,16 @@ class CusTechContract extends DbModel
         return $data;
     }
 
+    public function totalFinishedContracts($cus_id)
+    {
+        $sql = "SELECT COUNT(*) as count FROM cus_tech_contract WHERE cus_id = :cus_id AND done = 'true'";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':cus_id', $cus_id);
+        $stmt->execute();
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $result['count'];
+    }
+
     public function tableName(): string
     {
         return 'cus_tech_contract';
