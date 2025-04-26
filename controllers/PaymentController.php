@@ -40,6 +40,9 @@ class PaymentController extends Controller
             $itemDescriptions[] = $item['description'] . ' x' . $item['quantity'];
         }
 
+        $extraFee = 200.00;
+        $totalAmountWithFee = $totalAmount + $extraFee;
+
         $checkout = new CheckoutInfo();
         $checkoutInfo = $checkout->listData($cus_id);
 
@@ -56,7 +59,7 @@ class PaymentController extends Controller
             md5(
                 $merchant_id .
                 $order_id .
-                number_format($totalAmount, 2, '.', '') .
+                number_format($totalAmountWithFee, 2, '.', '') .
                 $currency .
                 strtoupper(md5($merchant_secret))
             )
@@ -70,7 +73,7 @@ class PaymentController extends Controller
             'address' => $checkoutInfo['address'],
             'city' => $checkoutInfo['city'],
             'country' => "Sri Lanka",
-            'amount' => number_format($totalAmount, 2, '.', ''),
+            'amount' => number_format($totalAmountWithFee, 2, '.', ''),
             'merchant_id' => $merchant_id,
             'order_id' => $order_id,
             'currency' => $currency,
@@ -175,7 +178,7 @@ class PaymentController extends Controller
     public function ListPaymentDetails(Request $request, Response $response)
     {
         $cus_id = Application::$app->session->get('customer');
-        
+
     }
 
 }
