@@ -57,7 +57,7 @@
     padding: 0.75rem 1.25rem;
     border-bottom: 1px solid #ddd;
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1rem;
 }
 
 .card-body {
@@ -211,9 +211,13 @@ label {
 }
 
 .review-text {
-    font-size: 20px;
+    font-size: 16px;
     font-family: "Ubuntu", sans-serif;
     color: #333;
     padding-top: 10px;
     border-radius: 5px;
 }
+
+/*.col-sm-11 {*/
+/*    width: 100%;*/
+/*}*/

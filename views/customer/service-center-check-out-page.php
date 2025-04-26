@@ -117,20 +117,20 @@ use app\core\Application;
                 </div>
                 <div class="form-group">
                     <!-- <div class="form-control">
-            <label for="checkout-country">Country</label>
-            <div>
-                <span class="fa fa-globe"></span>
-                <input type="text" name="checkout-country" id="checkout-country" placeholder="Your country..."
-                    list="country-list">
-                <datalist id="country-list">
-                    <option value="India"></option>
-                    <option value="USA"></option>
-                    <option value="Russia"></option>
-                    <option value="Japan"></option>
-                    <option value="Egypt"></option>
-                </datalist>
-            </div>
-        </div> -->
+        <label for="checkout-country">Country</label>
+        <div>
+            <span class="fa fa-globe"></span>
+            <input type="text" name="checkout-country" id="checkout-country" placeholder="Your country..."
+                list="country-list">
+            <datalist id="country-list">
+                <option value="India"></option>
+                <option value="USA"></option>
+                <option value="Russia"></option>
+                <option value="Japan"></option>
+                <option value="Egypt"></option>
+            </datalist>
+        </div>
+    </div> -->
                     <div class="form-control">
                         <label for="checkout-postal">Postal code</label>
                         <div>
@@ -141,9 +141,9 @@ use app\core\Application;
                     </div>
                 </div>
                 <!-- <div class="form-control checkbox-control">
-        <input type="checkbox" name="checkout-checkbox" id="checkout-checkbox">
-        <label for="checkout-checkbox">Save this information for next time</label>
-    </div> -->
+    <input type="checkbox" name="checkout-checkbox" id="checkout-checkbox">
+    <label for="checkout-checkbox">Save this information for next time</label>
+</div> -->
                 <div class="form-control-btn" id="form-control-btn">
                     <button type="submit" id="submit-btn" onclick="hideSubmitButton()">Submit</button>
                 </div>
@@ -200,119 +200,33 @@ use app\core\Application;
     </main>
 
 
+    <!-- Include PayHere SDK -->
+    <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
 
+    <!-- JS for handling PayHere payment -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const payButton = document.getElementById('payhere-button');
 
-<!-- Include PayHere SDK -->
-<script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
+            if (!payButton) {
+                console.error("PayHere button not found!");
+                return;
+            }
 
-<!-- JS for handling PayHere payment -->
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const payButton = document.getElementById('payhere-button');
-
-        if (!payButton) {
-            console.error("PayHere button not found!");
-            return;
-        }
-
-        payButton.addEventListener('click', function () {
-            fetch('/marketplace-payment', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("Failed to fetch payment data");
+            payButton.addEventListener('click', function () {
+                fetch('/marketplace-payment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
                     }
-                    return response.json();
                 })
-                .then(data => {
-                    console.log("Payment Data Received:", data);
-
-                    payhere.onCompleted = function onCompleted(orderId) {
-                        alert("Payment completed! OrderID: " + orderId);
-                        // You can redirect or show a success page here
-                    };
-
-                    payhere.onDismissed = function onDismissed() {
-                        alert("Payment dismissed.");
-                    };
-
-                    payhere.onError = function onError(error) {
-                        console.error("PayHere Error:", error);
-                        alert("Error: " + error);
-                    };
-
-                    var payment = {
-                        "sandbox": true,
-                        "merchant_id": "1229154",    // Replace your Merchant ID
-                        "return_url": "http://localhost:8080/",     // Important
-                        "cancel_url": "http://localhost:8080/",     // Important
-                        "notify_url": "https://3bc8-112-134-150-236.ngrok-free.app/marketplace-payment-response",
-                        "order_id": data.order_id,
-                        "items": data.items,
-                        "amount": data.amount + 200,
-                        "currency": "LKR",
-                        "hash": data.hash, // *Replace with generated hash retrieved from backend
-                        "first_name": data.full_name,
-                        "last_name": "",
-                        "email": data.email,
-                        "phone": data.phone,
-                        "address": data.address,
-                        "city": data.city,
-                        "country": "Sri Lanka",
-                        "delivery_address": data.address,
-                        "delivery_city": data.city,
-                        "delivery_country": "Sri Lanka",
-                        "custom_1": data.customer_1,
-                        "custom_2": ""
-                    }
-
-                    console.log("payment detials, ", payment);
-
-                    // Start the payment
-                    // payhere.startPayment({
-                    //     sandbox: true, // Change to false for live
-                    //     merchant_id: data.merchant_id,
-                    //     return_url: "http://localhost:8080/",
-                    //     cancel_url: "http://localhost:8080/",
-                    //     notify_url: "https://5a8b-2a09-bac5-485f-1d05-00-2e4-9a.ngrok-free.app/payhere-payment-response", // Update if you use IPN
-                    //     order_id: data.order_id,
-                    //     items: data.items,
-                    //     amount: data.amount + 200,
-                    //     currency: data.currency,
-                    //     hash: data.hash,
-                    //     first_name: data.full_name,
-                    //     last_name: "", // Optional
-                    //     email: data.email,
-                    //     phone: data.phone,
-                    //     address: data.address,
-                    //     city: data.city,
-                    //     country: data.country,
-                    //     delivery_address: data.address,
-                    //     delivery_city: data.city,
-                    //     delivery_country: "Sri Lanka",
-                    //     custom_1: "",
-                    //     custom_2: ""
-                    // });
-
-                    payhere.startPayment(payment);
-                })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error("Failed to fetch payment data");
-                        }
-                        return response.json();
-                    })
+                    .then(response => response.json()) // FIX 1: parse the response
                     .then(data => {
                         console.log("Payment Data Received:", data);
 
                         payhere.onCompleted = function onCompleted(orderId) {
                             alert("Payment completed! OrderID: " + orderId);
                             window.location.href = `/get-invoice/${orderId}`;
-                            // You can redirect or show a success page here
                         };
 
                         payhere.onDismissed = function onDismissed() {
@@ -326,15 +240,15 @@ use app\core\Application;
 
                         var payment = {
                             "sandbox": true,
-                            "merchant_id": "1229154",    // Replace your Merchant ID
-                            "return_url": "http://localhost:8080/",     // Important
-                            "cancel_url": "http://localhost:8080/",     // Important
-                            "notify_url": "https://e591-2402-4000-1324-56c6-c619-5239-8a0c-84d2.ngrok-free.app/marketplace-payment-response",
+                            "merchant_id": data.merchant_id,   // Ideally dynamic
+                            "return_url": "http://localhost:8080/",
+                            "cancel_url": "http://localhost:8080/",
+                            "notify_url": "https://3bc8-112-134-150-236.ngrok-free.app/marketplace-payment-response",
                             "order_id": data.order_id,
                             "items": data.items,
-                            "amount": data.amount + 200.00,
+                            "amount": data.amount,
                             "currency": "LKR",
-                            "hash": data.hash, // *Replace with generated hash retrieved from backend
+                            "hash": data.hash,
                             "first_name": data.full_name,
                             "last_name": "",
                             "email": data.email,
@@ -345,37 +259,9 @@ use app\core\Application;
                             "delivery_address": data.address,
                             "delivery_city": data.city,
                             "delivery_country": "Sri Lanka",
-                            "custom_1": data.customer_1,
+                            "custom_1": data.custom_1, // Confirm the backend field name
                             "custom_2": ""
-                        }
-
-                        console.log("payment detials, ", payment);
-
-                        // Start the payment
-                        // payhere.startPayment({
-                        //     sandbox: true, // Change to false for live
-                        //     merchant_id: data.merchant_id,
-                        //     return_url: "http://localhost:8080/",
-                        //     cancel_url: "http://localhost:8080/",
-                        //     notify_url: "https://5a8b-2a09-bac5-485f-1d05-00-2e4-9a.ngrok-free.app/payhere-payment-response", // Update if you use IPN
-                        //     order_id: data.order_id,
-                        //     items: data.items,
-                        //     amount: data.amount + 200,
-                        //     currency: data.currency,
-                        //     hash: data.hash,
-                        //     first_name: data.full_name,
-                        //     last_name: "", // Optional
-                        //     email: data.email,
-                        //     phone: data.phone,
-                        //     address: data.address,
-                        //     city: data.city,
-                        //     country: data.country,
-                        //     delivery_address: data.address,
-                        //     delivery_city: data.city,
-                        //     delivery_country: "Sri Lanka",
-                        //     custom_1: "",
-                        //     custom_2: ""
-                        // });
+                        };
 
                         payhere.startPayment(payment);
                     })
@@ -384,9 +270,8 @@ use app\core\Application;
                         alert("Failed to initiate payment.");
                     });
             });
-
         });
-    });
-</script>
+    </script>
+
 
 </body>

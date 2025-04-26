@@ -1,0 +1,117 @@
+.service-management-container {
+    padding: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.service-input {
+    padding: 10px 15px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 10px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.service-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.save-button,
+.add-service-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.save-button:hover,
+.add-service-button:hover {
+    background-color: #0056b3;
+}
+
+.add-service-form {
+    margin-top: 20px;
+}
+
+.service-card {
+    background: #f8f9fa;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.service-actions button {
+    margin-left: 10px;
+}
+
+.service-management-container {
+    padding: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.service-input {
+    padding: 10px 15px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 10px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.service-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.save-button,
+.add-service-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.save-button:hover,
+.add-service-button:hover {
+    background-color: #0056b3;
+}
+
+.add-service-form {
+    margin-top: 20px;
+}
+
+.service-card {
+    background: #f8f9fa;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.service-actions button {
+    margin-left: 10px;
+}

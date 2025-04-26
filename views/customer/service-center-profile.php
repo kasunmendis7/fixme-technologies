@@ -44,20 +44,20 @@ use app\core\Application;
                 <p>Service center</p>
             </div>
             <div class="status">
-                <div class="availability">
+                <!-- <div class="availability">
                     <span class="status-dot"></span>
                     <span>Available</span>
-                </div>
+                </div> -->
                 <button class="message-btn"
                     onclick="getDirections( <?php echo $serviceCenter['ser_cen_id'] . ', ' . Application::$app->session->get('customer') ?> )">
                 Directions
             </button>
-                <button class="message-btn">Message</button>
+                <!-- <button class="message-btn">Message</button>
                 <button class="message-btn">Call</button>
                 <button class="message-btn"
                     onclick="sendRequest( <?php echo $serviceCenter['ser_cen_id'] . ', ' . Application::$app->session->get('customer') ?> )">
                     Request
-                </button>
+                </button> -->
             </div>
         </div>
     </header>
@@ -78,48 +78,7 @@ use app\core\Application;
         <button class="tab" onclick="scrollToSection('ratings-reviews-section');">Ratings & Reviews</button>
     </nav>
 
-    <main class="content">
-        <div class="cards">
-            <!-- Profile Card 1 -->
-            <article class="card">
-                <div class="card-image">
-                    <!--                <img src="/assets/uploads/tech1.jpg" alt="Technician Profile Picture">-->
-                </div>
-                <div class="card-content">
-                    <h3>Shane Mario</h3>
-                    <p>Expert in electrical repairs with 10+ years of experience.</p>
-                    <p><small>Posted on <?php echo date('F j, Y, g:i a'); ?></small></p>
-                    <button class="message-btn">Message</button>
-                </div>
-            </article>
-
-            <!-- Profile Card 2 -->
-            <article class="card">
-                <div class="card-image">
-                    <!--                <img src="/assets/uploads/tech2.jpg" alt="Technician Profile Picture">-->
-                </div>
-                <div class="card-content">
-                    <h3>Alex Johnson</h3>
-                    <p>Specialist in plumbing and maintenance with a reputation for quick solutions.</p>
-                    <p><small>Posted on <?php echo date('F j, Y, g:i a'); ?></small></p>
-                    <button class="message-btn">Message</button>
-                </div>
-            </article>
-
-            <!-- Profile Card 3 -->
-            <article class="card">
-                <div class="card-image">
-                    <!--                <img src="/assets/uploads/tech3.jpg" alt="Technician Profile Picture">-->
-                </div>
-                <div class="card-content">
-                    <h3>Lisa Ray</h3>
-                    <p>Certified HVAC technician, ensuring quality and efficient services.</p>
-                    <p><small>Posted on <?php echo date('F j, Y, g:i a'); ?></small></p>
-                    <button class="message-btn">Message</button>
-                </div>
-            </article>
-        </div>
-    </main>
+   
 
     <!-- Feedback Section -->
     <?php
@@ -150,33 +109,6 @@ use app\core\Application;
         <button type="submit">Book Now</button>
     </form>
 
-
-    <!--<main class="content">-->
-    <!--    <div class="cards">-->
-    <!--        <!-- Card Template -->
-    <!--        <article class="card">-->
-    <!--            <div class="card-image">-->
-    <!--                <img src="https://via.placeholder.com/150" alt="Food Image">-->
-    <!--            </div>-->
-    <!--            <div class="card-content">-->
-    <!--                <h3>Shane Mario</h3>-->
-    <!--                <p>You and your family will love this refreshing salad that's perfect for warm days or summer meals!</p>-->
-    <!--                <button class="visit-btn">Visit Us</button>-->
-    <!--            </div>-->
-    <!--        </article>-->
-    <!--        <!-- Repeat as needed -->
-    <!--        <article class="card">-->
-    <!--            <div class="card-image">-->
-    <!--                <img src="https://via.placeholder.com/150" alt="Food Image">-->
-    <!--            </div>-->
-    <!--            <div class="card-content">-->
-    <!--                <h3>Shane Mario</h3>-->
-    <!--                <p>You and your family will love this refreshing salad that's perfect for warm days or summer meals!</p>-->
-    <!--                <button class="visit-btn">Visit Us</button>-->
-    <!--            </div>-->
-    <!--        </article>-->
-    <!--    </div>-->
-    <!--</main>-->
 
     <!-- Overlay for the confirmation message -->
     <div id="signOutOverlay" class="overlay">

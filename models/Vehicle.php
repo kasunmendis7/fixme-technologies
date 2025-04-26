@@ -62,6 +62,23 @@ class Vehicle extends DbModel
         return true;
     }
 
+    public function addVehicleType($vehicle_type)
+    {
+        $sql = "INSERT INTO vehicle(vehicle_type) VALUES (:vehicle_type)";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':vehicle_type', $vehicle_type);
+        $stmt->execute();
+
+    }
+
+    public function removeVehicleType($vehicle_id)
+    {
+        $sql = "DELETE FROM vehicle WHERE vehicle_id = :vehicle_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':vehicle_id', $vehicle_id, \PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
 
     public function tableName(): string
     {

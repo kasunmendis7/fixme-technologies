@@ -11,6 +11,7 @@ use app\models\cart;
 use app\models\Customer;
 use app\models\Post;
 use app\models\ServiceCenter;
+use app\models\ServiceCenterServices;
 use app\models\Technician;
 
 class ServiceCentreController extends Controller
@@ -142,6 +143,12 @@ class ServiceCentreController extends Controller
         return $this->render('/service-centre/service-center-messages');
     }
 
+    public function serviceCenterServices()
+    {
+        $this->setLayout('auth');
+        return $this->render('/service-centre/manage-services');
+    }
+
     public function cart()
     {
         $this->setLayout('auth');
@@ -158,7 +165,7 @@ class ServiceCentreController extends Controller
         if (!$serviceCenter) {
             return $this->render('_404');
         }
-//        show($serviceCenter['name']);
+        //        show($serviceCenter['name']);
 
         return $this->render('/customer/service-center-profile', [
             'serviceCenter' => $serviceCenter,
@@ -227,7 +234,8 @@ class ServiceCentreController extends Controller
     }
 
     //api to get cart items count
-    public function getCartItemCount() {
+    public function getCartItemCount()
+    {
         $cus_id = Application::$app->session->get('customer');
         if (!$cus_id) {
             Application::$app->response->redirect('/customer-login');
@@ -263,5 +271,131 @@ class ServiceCentreController extends Controller
             'cartItems' => $cartItems,
         ]);
     }
+
+    //function to save the services for ther service center 
+    public function addServices()
+    {
+        $serviceCenterId = Application::$app->session->get('serviceCenter');
+
+        if (!$serviceCenterId) {
+            http_response_code(401);
+            echo json_encode(['error' => 'Unauthorized - No service center ID found']);
+            exit;
+        }
+
+        $services = $_POST['services'] ?? [];
+
+        // Clean and filter out empty values
+        $services = array_filter(array_map('trim', $services));
+
+        if (count($services) < 1) {
+            http_response_code(400);
+            echo json_encode(['error' => 'At least one service is required']);
+            exit;
+        }
+
+        if (count($services) > 10) {
+            http_response_code(400);
+            echo json_encode(['error' => 'You cannot add more than 10 services']);
+            exit;
+        }
+
+        $model = new ServiceCenterServices();
+        foreach ($services as $service) {
+            $model->create([
+                'ser_cen_id' => (int) $serviceCenterId,
+                'name' => htmlspecialchars($service)  // escaping input
+            ]);
+        }
+
+        echo json_encode(['success' => true, 'message' => 'Services added successfully']);
+        Application::$app->response->redirect('/service-centre-dashboard');
+    }
+
+    //function to add service from manage console
+    public function addServiceFromManageConsole()
+    {
+        $serviceCenterId = Application::$app->session->get('serviceCenter');
+
+        if (!$serviceCenterId) {
+            http_response_code(401);
+            echo json_encode(['error' => 'Unauthorized - No service center ID found']);
+            exit;
+        }
+
+        $data = json_decode(file_get_contents("php://input"), true);
+        $name = $data['name'] ?? null;
+
+        if ($name) {
+            $model = new ServiceCenterServices();
+            $model->create([
+                'ser_cen_id' => (int) $serviceCenterId,
+                'name' => htmlspecialchars($name)  // escaping input
+            ]);
+
+            header('Content-Type: application/json');
+            echo json_encode(['success' => true]);
+        } else {
+            header('Content-Type: application/json');
+            echo json_encode(['success' => false]);
+        }
+        exit;
+    }
+
+
+    //function to get the services for the service center
+    public function getServicesByServiceCenter()
+    {
+        $ser_cen_id = Application::$app->session->get('serviceCenter');
+        if (!$ser_cen_id) {
+            Application::$app->session->setFlash('error', 'Please log in to view the services.');
+            Application::$app->response->redirect('/service-centre-login');
+            return;
+        }
+        $serviceModel = new ServiceCenterServices();
+        $services = $serviceModel->getServicesByServiceCenter($ser_cen_id);
+        error_log("Services:" . print_r($services, true)); // Log the services for debugging
+
+        header('Content-Type: application/json');
+        echo json_encode($services);
+        exit;
+
+    }
+
+    public function updateService()
+    {
+        $data = json_decode(file_get_contents("php://input"), true);
+        $id = $data['id'] ?? null;
+        $name = $data['name'] ?? null;
+
+        if ($id && $name) {
+            $serviceModel = new ServiceCenterServices();
+            $updated = $serviceModel->updateService($id, $name);
+
+            header('Content-Type: application/json');
+            echo json_encode(['success' => $updated]);
+        } else {
+            echo json_encode(['success' => false]);
+        }
+        exit;
+    }
+
+    public function deleteService()
+    {
+        $data = json_decode(file_get_contents("php://input"), true);
+        $id = $data['id'] ?? null;
+
+        if ($id) {
+            $serviceModel = new ServiceCenterServices();
+            $deleted = $serviceModel->deleteService($id);
+
+            header('Content-Type: application/json');
+            echo json_encode(['success' => $deleted]);
+        } else {
+            echo json_encode(['success' => false]);
+        }
+        exit;
+    }
+
 
 }

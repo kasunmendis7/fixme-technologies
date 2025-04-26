@@ -142,6 +142,13 @@ $app->router->post('/remove-from-serv-cen-cart', [ServiceCentreController::class
 $app->router->get('/service-center-check-out-page', [ServiceCentreController::class, 'servCenCheckOutPage']);
 $app->router->get('/service-center-appointments', [AppoinmentController::class, 'loadAppointmentDetailsForTab']);
 $app->router->get('/customer-order-details', [CustomerController::class, 'customerOrdersList']);
+$app->router->post('/add-services', [ServiceCentreController::class, 'addServices']);
+$app->router->get('/get-services', [ServiceCentreController::class, 'getServicesByServiceCenter']);
+$app->router->get('/get-services-by-service-center', [ServiceCentreController::class, 'getServicesByServiceCenter']);
+$app->router->get('/service-center-services', [ServiceCentreController::class, 'serviceCenterServices']);
+$app->router->post('/delete-service', [ServiceCentreController::class, 'deleteService']);
+$app->router->post('/update-service', [ServiceCentreController::class, 'updateService']);
+$app->router->post('/add-service-from-manage-console', [ServiceCentreController::class, 'addServiceFromManageConsole']);
 // $app->router->get('/customer-order-details/{id}', [CustomerController::class, 'customerOrders']);
 // $app->router->get('/service-centre-dashboard', [AppoinmentController::class, 'recentCustomers']);
 
@@ -212,6 +219,9 @@ $app->router->get('/admin-settings', [AdminController::class, 'adminSettings']);
 $app->router->get('/admin-profile', [AdminController::class, 'adminProfile']);
 $app->router->post('/update-admin-profile', [AdminController::class, 'updateAdminProfile']);
 $app->router->get('/technician-bank-accounts', [AdminController::class, 'technicianBankAccounts']);
+$app->router->get('/admin-add-vehicle-type', [AdminController::class, 'adminGetVehicleTypes']);
+$app->router->post('/admin-add-vehicle-type', [AdminController::class, 'adminAddVehicleTypes']);
+$app->router->post('/admin-remove-vehicle-type', [AdminController::class, 'adminRemoveVehicleType']);
 
 /* Admin Routes */
 $app->router->get('/admin-services', [AdminController::class, 'manageServices']);
