@@ -11,6 +11,7 @@ use app\models\Admin;
 use app\models\Customer;
 use app\models\Promotion;
 use app\models\Technician;
+use app\models\Vehicle;
 
 class AdminController extends Controller
 {
@@ -235,7 +236,7 @@ class AdminController extends Controller
     //function to fetch all the service centers 
     public function fetchServiceCenters()
     {
-        
+
         $admin = new Admin();
         $serviceCenters = $admin->fetchServiceCenters();
         $this->setLayout('auth');
@@ -243,5 +244,35 @@ class AdminController extends Controller
 
     }
 
+    public function adminGetVehicleTypes()
+    {
+        $vehicleModel = new Vehicle();
+        $vehicleTypes = $vehicleModel->fetchVehicleTypes();
+
+        $this->setLayout('auth');
+        return $this->render('/admin/admin-add-vehicle-type',
+            ['vehicleTypes' => $vehicleTypes]
+        );
+    }
+
+    public function adminAddVehicleTypes(Request $request)
+    {
+        $body = $request->getBody();
+        $vehicle_type = $body['vehicle_type'];
+
+        $vehicleModel = new Vehicle();
+        $vehicleModel->addVehicleType($vehicle_type);
+        Application::$app->response->redirect('/admin-add-vehicle-type');
+    }
+
+    public function adminRemoveVehicleType(Request $request)
+    {
+        $body = $request->getBody();
+        $vehicle_id = $body['vehicle_id'];
+
+        $vehicleModel = new Vehicle();
+        $vehicleModel->removeVehicleType($vehicle_id);
+        Application::$app->response->redirect('/admin-add-vehicle-type');
+    }
 }
 

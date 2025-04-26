@@ -196,7 +196,7 @@ function checkReviewEligibility() {
                 // Optionally add a message explaining why they can't review
                 const reviewSection = document.querySelector('.write_review_here');
                 reviewSection.insertAdjacentHTML('afterend',
-                    '<p class="review-notice">You can only review technicians after completing a service with them.</p>');
+                    '<p class="review-notice">Complete a Service to Rate.</p>');
             }
         })
         .catch(error => console.error('Error:', error));
