@@ -22,7 +22,7 @@ use app\core\Application;
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <!--    <script src="https://use.fontawesome.com/releases/v6.2.0/js/all.js"></script>-->
     <script src="https://kit.fontawesome.com/7d9ff0de02.js" crossorigin="anonymous"></script>
-    <title>Fixme Home</title>
+    <title>FixMe Home</title>
 </head>
 
 <body>

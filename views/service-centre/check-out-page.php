@@ -402,65 +402,57 @@ use app\core\Application;
                         'Content-Type': 'application/json'
                     }
                 })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error("Failed to fetch payment data");
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        console.log("Payment Data Received:", data);
+=======
+                .then(data => {
+                    console.log("Payment Data Received:", data);
 
-                        payhere.onCompleted = function onCompleted(orderId) {
-                            alert("Payment completed! OrderID: " + orderId);
-                            // You can redirect or show a success page here
-                            window.location.href = `/get-invoice/${orderId}`;
-                            // window.location.href = `/customer-order-details/${orderId}`;
+                    payhere.onCompleted = function onCompleted(orderId) {
+                        alert("Payment completed! OrderID: " + orderId);
+                        // You can redirect or show a success page here
+                        window.location.href = `/get-invoice/${orderId}`;
+                    };
 
-                        };
+                    payhere.onDismissed = function onDismissed() {
+                        alert("Payment dismissed.");
+                    };
 
-                        payhere.onDismissed = function onDismissed() {
-                            alert("Payment dismissed.");
-                        };
+                    payhere.onError = function onError(error) {
+                        console.error("PayHere Error:", error);
+                        alert("Error: " + error);
+                    };
 
-                        payhere.onError = function onError(error) {
-                            console.error("PayHere Error:", error);
-                            alert("Error: " + error);
-                        };
-
-                        var payment = {
-                            "sandbox": true,
-                            "merchant_id": "1229154",    // Replace your Merchant ID
-                            "return_url": "http://localhost:8080/",     // Important
-                            "cancel_url": "http://localhost:8080/",     // Important
-                            "notify_url": "https://25b2-2402-4000-1255-c5eb-44-8c77-86b0-9c94.ngrok-free.app/marketplace-payment-response",
-                            "order_id": data.order_id,
-                            "items": data.items,
-                            "amount": (parseFloat(data.amount) + 200).toFixed(2),
-                            "currency": "LKR",
-                            "hash": data.hash, // *Replace with generated hash retrieved from backend
-                            "first_name": data.full_name,
-                            "last_name": "",
-                            "email": data.email,
-                            "phone": data.phone,
-                            "address": data.address,
-                            "city": data.city,
-                            "country": "Sri Lanka",
-                            "delivery_address": data.address,
-                            "delivery_city": data.city,
-                            "delivery_country": "Sri Lanka",
-                            "custom_1": data.customer_1,
-                            "custom_2": ""
-                        }
+                    var payment = {
+                        "sandbox": true,
+                        "merchant_id": "1229154",    // Replace your Merchant ID
+                        "return_url": "http://localhost:8080/",     // Important
+                        "cancel_url": "http://localhost:8080/",     // Important
+                        "notify_url": "https://3bc8-112-134-150-236.ngrok-free.app/marketplace-payment-response",
+                        "order_id": data.order_id,
+                        "items": data.items,
+                        "amount": data.amount,
+                        "currency": "LKR",
+                        "hash": data.hash, // *Replace with generated hash retrieved from backend
+                        "first_name": data.full_name,
+                        "last_name": "",
+                        "email": data.email,
+                        "phone": data.phone,
+                        "address": data.address,
+                        "city": data.city,
+                        "country": "Sri Lanka",
+                        "delivery_address": data.address,
+                        "delivery_city": data.city,
+                        "delivery_country": "Sri Lanka",
+                        "custom_1": data.customer_1,
+                        "custom_2": ""
+                    }
 
 
-                        payhere.startPayment(payment);
-                    })
-                    .catch(error => {
-                        console.error("Error initiating payment:", error);
-                        alert("Failed to initiate payment.");
-                    });
-            });
+                    payhere.startPayment(payment);
+                })
+                .catch(error => {
+                    console.error("Error initiating payment:", error);
+                    alert("Failed to initiate payment.");
+                });
         });
     </script>
 

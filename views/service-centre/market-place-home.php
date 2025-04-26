@@ -21,6 +21,7 @@ use app\core\Application;
     <script src="/js/service-center/marketplace-home.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="/js/service-center/overlay.js"></script>
     <title>Marketplace</title>
 </head>
 
@@ -64,6 +65,7 @@ use app\core\Application;
             <div class="dropdown" style="margin-right: 15px;">
                 <?php
                 $userId = Application::$app->session->get('customer');
+
 
                 if ($userId) {
                     $customerClass = Application::$app->customerClass;
