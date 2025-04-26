@@ -183,7 +183,10 @@ include_once 'components/header.php';
             <p>No appointments found.</p>
         <?php endif; ?>
     </div>
-    -->
+    <!-- ================= New Customers ================ -->
+    <?php
+    include_once 'components/recent-customers.php'
+    ?>
 
 
     <!-- ================ Order Details List ================= -->
@@ -277,10 +280,7 @@ include_once 'components/header.php';
             <?php endif; ?>
         </div>
 
-        <!-- ================= New Customers ================ -->
-        <?php
-        include_once 'components/recent-customers.php'
-        ?>
+
     </div>
 
 
