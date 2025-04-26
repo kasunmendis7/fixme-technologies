@@ -71,9 +71,8 @@ include_once 'components/header.php';
                     <h5 class="rating">Rating: 
                     <span>' . number_format($averageRatings, 1) . '</span>
                     </h5>
-                    <h5 class="service-category">' . ($technician['category'] ?? 'Motor Mechanic') . '</h5>
+                    <h5 class="service-category">Technician</h5>
                     ' . $starsHtml . '
-                    <p class="card-text">' . ($technician['description'] ?? 'Experienced motor mechanic') . '</p>
                     <button type="button" class="btn btn-primary" onclick="viewProfile(' . $technician['tech_id'] . ')">View Profile</button>
                 </div>
             </div>

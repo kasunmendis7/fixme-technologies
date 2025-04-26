@@ -27,6 +27,7 @@ use app\controllers\ChatController;
 use app\controllers\TechnicianReviewController;
 use app\controllers\ServiceCenterReviewController;
 use app\controllers\ContactUsController;
+use app\controllers\VehicleIssueController;
 
 /* Load environment variables */
 /* Using vulcas/phpdotenv package to load sensitive data from .env file */
@@ -89,6 +90,8 @@ $app->router->get('/technician-active-contract-details/{id}', [TechnicianControl
 $app->router->post('/technician-finish-contract', [TechnicianController::class, 'technicianFinishContract']);
 $app->router->get('/technician-finished-contract-details/{id}', [TechnicianController::class, 'technicianFinishedContractDetails']);
 $app->router->get('/technician-download-invoice/{id}', [TechnicianController::class, 'downloadTechnicianInvoice']);
+$app->router->get('/technician-availability', [TechnicianController::class, 'technicianAvailability']);
+$app->router->post('/technician-update-availability', [TechnicianController::class, 'updateTechnicianAvailability']);
 
 /* Routes related to the Post */
 $app->router->get('/technician-create-post', [TechnicianController::class, 'technicianCreatePost']);
@@ -137,6 +140,7 @@ $app->router->post('/clear-notifications-for-service-center', [NotificationContr
 $app->router->get('/service-center-view-cart', [ServiceCentreController::class, 'viewServiceCenterCart']);
 $app->router->post('/remove-from-serv-cen-cart', [ServiceCentreController::class, 'removeServCenItemsFromCart']);
 $app->router->get('/service-center-check-out-page', [ServiceCentreController::class, 'servCenCheckOutPage']);
+$app->router->get('/service-center-appointments', [AppoinmentController::class, 'loadAppointmentDetailsForTab']);
 $app->router->get('/customer-order-details', [CustomerController::class, 'customerOrdersList']);
 // $app->router->get('/customer-order-details/{id}', [CustomerController::class, 'customerOrders']);
 // $app->router->get('/service-centre-dashboard', [AppoinmentController::class, 'recentCustomers']);
@@ -189,6 +193,10 @@ $app->router->get('/customer-active-contract-details/{id}', [CustomerController:
 $app->router->get('/customer-finish-contract/{id}', [CustomerController::class, 'customerFinishContract']);
 $app->router->get('/customer-finished-contract-details/{id}', [CustomerController::class, 'customerFinishedContractDetails']);
 $app->router->get('/customer-download-invoice/{id}', [CustomerController::class, 'downloadCustomerInvoice']);
+$app->router->get('/get-contract-status/{id}', [CustomerController::class, 'getContractStatus']);
+$app->router->get('/get-vehicle-issues/{id}', [VehicleIssueController::class, 'getVehicleIssues']);
+$app->router->post('/customer-vehicle-issue-form', [CustomerController::class, 'recommendTechnicians']);
+
 $app->router->get('/customer-details', [CustomerController::class, 'customerDetails']);
 $app->router->get('/get-appointments', [AppoinmentController::class, 'loadAppointmentDetails']);
 
@@ -312,6 +320,10 @@ $app->router->post('/marketplace-payment-response', [PaymentController::class, '
 /* Routes related to updating technician specializations */
 $app->router->get('/technician-specialization', [TechnicianController::class, 'technicianSpecialization']);
 $app->router->post('/technician-update-specialization', [TechnicianController::class, 'updateSpecialization']);
+$app->router->get('/technician-vehicle', [TechnicianController::class, 'getVehicleType']);
+$app->router->post('/technician-update-vehicle', [TechnicianController::class, 'updateVehicleType']);
+$app->router->get('/technician-vehicle-issue', [TechnicianController::class, 'getSpecializedIssue']);
+$app->router->post('/technician-update-vehicle-issue', [TechnicianController::class, 'updateSpecializedIssue']);
 
 /* Run the application */
 $app->run();

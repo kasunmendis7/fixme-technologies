@@ -106,6 +106,66 @@ class Customer extends DbModel
         }
     }
 
+    public function getTechsSortedByDistance(array $technicianIds)
+    {
+        $detailedTechs = [];
+        /** $technicians only contain tech_id, but this will contain their detials as well */
+        try {
+            foreach ($technicianIds as $tech_id) {
+                $technician = (new Technician())->getTechDetails($tech_id);
+                $detailedTechs[] = $technician;
+            }
+
+            $cus_id = Application::$app->session->get('customer');
+            $customer = (new Customer())->findById($cus_id);
+
+            $customerLat = $customer['latitude'];
+            $customerLng = $customer['longitude'];
+
+            $API_KEY = $_ENV['API_KEY'];
+
+            $destinations = array_map(function ($technician) {
+                return $technician['latitude'] . ',' . $technician['longitude'];
+            }, $detailedTechs);
+
+            $destinationsString = implode('|', $destinations);
+
+            /* Batch distance calculation using the distance matrix API */
+            $url = "https://maps.googleapis.com/maps/api/distancematrix/json?" .
+                "origins={$customerLat},{$customerLng}" .
+                "&destinations={$destinationsString}" .
+                "&mode=driving&units=metric&key={$API_KEY}";
+
+            $response = file_get_contents($url);
+            $data = json_decode($response, true);
+
+            if ($data['status'] !== 'OK') {
+                throw new \Exception("Error fetching data from Distance Matrix API: " . $data['status']);
+            }
+
+            /* Add distance and duration of travel fields to each technician */
+            foreach ($data['rows'][0]['elements'] as $index => $element) {
+                if ($element['status'] === 'OK') {
+                    $detailedTechs[$index]['distance'] = $element['distance']['value'] / 1000; // Distance in km
+                    $detailedTechs[$index]['duration'] = $element['duration']['value'] / 60; // Duration in minutes
+                } else {
+                    $detailedTechs[$index]['distance'] = null;
+                    $detailedTechs[$index]['duration'] = null;
+                }
+            }
+
+            /* sort technicians by distance in ascending order */
+            usort($detailedTechs, function ($a, $b) {
+                return $a['distance'] <=> $b['distance'];
+            });
+
+            return $detailedTechs;
+
+        } catch (\Exception $e) {
+            error_log("Error in getTechsSortedByDistance: " . $e->getMessage());
+        }
+    }
+
     public function getAllServiceCentersSortedByDistance()
     {
         try {
@@ -238,7 +298,7 @@ class Customer extends DbModel
     }
 
     //function to save checkout details 
-    
+
 
     public function findById($id)
     {

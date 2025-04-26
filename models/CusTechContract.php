@@ -190,6 +190,16 @@ class CusTechContract extends DbModel
 
     }
 
+    public function getContractStatus($contract_id)
+    {
+        $sql = "SELECT status FROM cus_tech_contract WHERE contract_id = :contract_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':contract_id', $contract_id);
+        $stmt->execute();
+        $data = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
     public function tableName(): string
     {
         return 'cus_tech_contract';

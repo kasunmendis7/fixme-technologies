@@ -72,13 +72,33 @@ include_once 'components/header.php';
             </div>
         </div>
     </a>
-    <a href="/technician-specialization">
+    <a href="/technician-vehicle">
         <div class="card">
             <div>
-                <div class="cardName">Update Specializations</div>
+                <div class="cardName">Update Specialized Vehicle Type</div>
+            </div>
+            <div class="iconBx">
+                <ion-icon name="car-sport-outline"></ion-icon>
+            </div>
+        </div>
+    </a>
+    <a href="/technician-vehicle-issue">
+        <div class="card">
+            <div>
+                <div class="cardName">Update Specialized Issues</div>
             </div>
             <div class="iconBx">
                 <ion-icon name="hammer-outline"></ion-icon>
+            </div>
+        </div>
+    </a>
+    <a href="/technician-availability">
+        <div class="card">
+            <div>
+                <div class="cardName">Update Availability</div>
+            </div>
+            <div class="iconBx">
+                <ion-icon name="power-outline"></ion-icon>
             </div>
         </div>
     </a>

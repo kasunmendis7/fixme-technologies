@@ -26,6 +26,10 @@ include_once 'components/sidebar.php';
 include_once 'components/header.php';
 ?>
 
+<script>
+    const contractId = <?= $contract['contract_id'] ?>;
+</script>
+
 <div class="contract-page">
     <div class="contract-header">
         <h2>Contract Details: #<?= htmlspecialchars($contract['contract_id']) ?></h2>
@@ -46,11 +50,11 @@ include_once 'components/header.php';
         </div>
 
         <!-- Step 2 -->
-        <div class="timeline-step <?= $contract['status'] === 'ongoing' ? 'active' : ($contract['status'] === 'finished' ? 'completed' : '') ?>">
+        <div class="timeline-step marker-2 <?= $contract['status'] === 'ongoing' ? 'active' : ($contract['status'] === 'finished' ? 'completed' : '') ?>">
             <div class="step-marker">2</div>
             <div class="step-content">
                 <h3>Ongoing</h3>
-                <p>Technician is currently performing the work.</p>
+                <p class="ongoing-p">Technician will get your work done in this stage.</p>
             </div>
         </div>
 

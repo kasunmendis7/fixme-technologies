@@ -1,73 +1,19 @@
-const issuesData = {
-    motorbike: [
-        "Engine won't start",
-        "Flat tire",
-        "Brake issues",
-        "Chain problems",
-        "Oil leakage"
-    ],
-    "tuk-tuk": [
-        "Engine overheating",
-        "Steering issues",
-        "Battery problems",
-        "Suspension damage",
-        "Brake failure"
-    ],
-    car: [
-        "Engine malfunction",
-        "Flat tire",
-        "Transmission issues",
-        "Brake failure",
-        "Air conditioning failure"
-    ]
-};
+const vehicleTypeDropdown = document.getElementById('vehicleType');
+const issueListDropdown = document.getElementById('selectIssue');
+vehicleTypeDropdown.addEventListener('change', async function () {
+    const vehicleId = vehicleTypeDropdown.value;
 
-const vehicleTypeSelect = document.getElementById("vehicleType");
-const issuesContainer = document.getElementById("issuesContainer");
-const issuesList = document.getElementById("issuesList");
-
-vehicleTypeSelect.addEventListener("change", () => {
-    const selectedVehicle = vehicleTypeSelect.value;
-
-    if (selectedVehicle) {
-        const issues = issuesData[selectedVehicle];
-        displayIssues(issues);
-        issuesContainer.style.display = "block";
+    const response = await fetch(`/get-vehicle-issues/${vehicleId}`);
+    if (response.ok) {
+        const issues = await response.json();
+        issueListDropdown.innerHTML = '<option value="" disabled selected>Select an issue</option>'
+        issues.forEach(issue => {
+            const option = document.createElement('option');
+            option.value = issue['issue_id'];
+            option.innerText = issue['issue_type'];
+            issueListDropdown.appendChild(option);
+        })
     } else {
-        issuesContainer.style.display = "none";
+        console.error("Error fetching vehicle issues for the vehicle type:", response.status);
     }
-});
-
-function displayIssues(issues) {
-    issuesList.innerHTML = "";
-    issues.forEach(issue => {
-        const issueWrapper = document.createElement("div");
-        issueWrapper.className = "issue-checkbox";
-
-        const checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.name = "issues";
-        checkbox.value = issue;
-
-        const label = document.createElement("label");
-        label.textContent = issue;
-
-        issueWrapper.appendChild(checkbox);
-        issueWrapper.appendChild(label);
-        issuesList.appendChild(issueWrapper);
-    });
-}
-
-document.getElementById("vehicleForm").addEventListener("submit", (event) => {
-    event.preventDefault();
-    const selectedVehicle = vehicleTypeSelect.value;
-    const selectedIssues = Array.from(document.querySelectorAll("input[name='issues']:checked"))
-        .map(input => input.value);
-    const additionalInfo = document.getElementById("description").value;
-
-    console.log("Vehicle Type:", selectedVehicle);
-    console.log("Selected Issues:", selectedIssues);
-    console.log("Additional Information:", additionalInfo);
-
-    alert("Form submitted successfully!");
 });
