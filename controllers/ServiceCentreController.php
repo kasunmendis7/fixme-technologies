@@ -312,6 +312,35 @@ class ServiceCentreController extends Controller
         Application::$app->response->redirect('/service-centre-dashboard');
     }
 
+    //function to add service from manage console
+    public function addServiceFromManageConsole()
+    {
+        $serviceCenterId = Application::$app->session->get('serviceCenter');
+
+        if (!$serviceCenterId) {
+            http_response_code(401);
+            echo json_encode(['error' => 'Unauthorized - No service center ID found']);
+            exit;
+        }
+
+        $data = json_decode(file_get_contents("php://input"), true);
+        $name = $data['name'] ?? null;
+
+        if ($name) {
+            $model = new ServiceCenterServices();
+            $model->create([
+                'ser_cen_id' => (int) $serviceCenterId,
+                'name' => htmlspecialchars($name)  // escaping input
+            ]);
+
+            header('Content-Type: application/json');
+            echo json_encode(['success' => true]);
+        } else {
+            header('Content-Type: application/json');
+            echo json_encode(['success' => false]);
+        }
+        exit;
+    }
 
 
     //function to get the services for the service center
@@ -326,11 +355,46 @@ class ServiceCentreController extends Controller
         $serviceModel = new ServiceCenterServices();
         $services = $serviceModel->getServicesByServiceCenter($ser_cen_id);
         error_log("Services:" . print_r($services, true)); // Log the services for debugging
-        
+
         header('Content-Type: application/json');
         echo json_encode($services);
         exit;
 
+    }
+
+    public function updateService()
+    {
+        $data = json_decode(file_get_contents("php://input"), true);
+        $id = $data['id'] ?? null;
+        $name = $data['name'] ?? null;
+
+        if ($id && $name) {
+            $serviceModel = new ServiceCenterServices();
+            $updated = $serviceModel->updateService($id, $name);
+
+            header('Content-Type: application/json');
+            echo json_encode(['success' => $updated]);
+        } else {
+            echo json_encode(['success' => false]);
+        }
+        exit;
+    }
+
+    public function deleteService()
+    {
+        $data = json_decode(file_get_contents("php://input"), true);
+        $id = $data['id'] ?? null;
+
+        if ($id) {
+            $serviceModel = new ServiceCenterServices();
+            $deleted = $serviceModel->deleteService($id);
+
+            header('Content-Type: application/json');
+            echo json_encode(['success' => $deleted]);
+        } else {
+            echo json_encode(['success' => false]);
+        }
+        exit;
     }
 
 
