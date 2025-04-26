@@ -66,7 +66,6 @@ use app\core\Application;
                 <?php
                 $userId = Application::$app->session->get('customer');
 
-
                 if ($userId) {
                     $customerClass = Application::$app->customerClass;
                     $customerInstance = new $customerClass();
