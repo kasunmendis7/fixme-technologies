@@ -70,7 +70,7 @@ include_once 'components/header.php';
 </div>
 
 <!-- JavaScript Files -->
-<script src="/js/customer/overlay.js"></script>
+<script src="/js/service-center/overlay.js"></script>
 <script src="/js/service-center/service-center-home.js"></script>
 </body>
 

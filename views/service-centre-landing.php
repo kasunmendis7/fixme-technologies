@@ -200,8 +200,6 @@
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#market">Market</a></li>
 
                 <div class="btn_dec" id="button">
                     <button type="button" class="btn btn-outline-primary"><a href="/service-centre-login">Login</a>
