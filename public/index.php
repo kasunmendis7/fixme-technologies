@@ -190,6 +190,7 @@ $app->router->post('/delete-customer-payment-method/{id}', [CustomerController::
 $app->router->get('/customer-advance-payments', [CustomerController::class, 'customerAdvancePayments']);
 $app->router->post('/reject-advance-payment/{id}', [CustomerController::class, 'rejectAdvPaymentUsingReqId']);
 $app->router->get('/get-service-center-directions/{id}', [CustomerController::class, 'getServiceCenterDirections']);
+$app->router->post('/get-service-center-route', [CustomerController::class, 'getServiceCenterRoute']);
 $app->router->get('/customer-active-contracts', [CustomerController::class, 'customerActiveContracts']);
 $app->router->get('/customer-finished-contracts', [CustomerController::class, 'customerFinishedContracts']);
 $app->router->get('/customer-active-contract-details/{id}', [CustomerController::class, 'customerActiveContractDetails']);
