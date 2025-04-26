@@ -18,6 +18,7 @@
 }
 
 body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     min-height: 100vh; /* 100% of the viewport height */
     overflow-x: hidden; /* Prevent horizontal scrolling */
 }
@@ -383,7 +384,7 @@ body {
 }
 
 .status.completed {
-    padding: .5rem 1rem;
+    padding: 2px 4px;
     background: #8de02c;
     color: var(--white);
     border-radius: 4px;
@@ -591,12 +592,97 @@ body {
     padding: .5rem 1rem;
 }
 
+/* technician-specialization */
+
+form {
+    background: #ffffff;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+}
+
+fieldset {
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+legend {
+    font-weight: bold;
+    color: #34495e;
+    padding: 0 0.5rem;
+    font-size: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.6rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    margin-right: 0.6rem;
+    transform: scale(1.1);
+}
+
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #111577;
+    color: #fff;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #010336;
+    transition: background-color 0.3s ease;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-    .payment-due, .payment-status, .payment-rejected {
-        display: block; /* Stack each item vertically on small screens */
-        font-size: 0.9rem; /* Slightly smaller font size */
-        text-align: center; /* Center-align for better readability on small screens */
-        margin: 0.5rem 0; /* Add vertical spacing between elements */
+
+    form {
+        padding: 1.5rem;
     }
 
+    label {
+        font-size: 0.95rem;
+    }
+
+    button[type="submit"] {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    form {
+        padding: 1rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    legend {
+        font-size: 1rem;
+    }
+
+    label {
+        font-size: 0.9rem;
+    }
 }

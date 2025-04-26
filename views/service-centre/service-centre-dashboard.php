@@ -28,6 +28,12 @@ include_once 'components/header.php';
 <!-- JavaScript Files -->
 <script src="/js/technician/technician-home.js"></script>
 <!-- ======================= Cards ================== -->
+
+<?php if (Application::$app->session->getFlash('success')): ?>
+    <div class="alert alert-success">
+        <?php echo Application::$app->session->getFlash('success') ?>
+    </div>
+<?php endif; ?>
 <div class="cardBox">
     <div class="card">
         <div>
@@ -83,89 +89,22 @@ include_once 'components/header.php';
         </div>
     </div>
 
-    <!-- <div class="card">
+    <div class="card">
         <div>
-            <div class="numbers">Rs. 7,842</div>
+            <div class="numbers"><?php echo 'Rs. ' . number_format($totalEarning); ?></div>
             <div class="cardName">Earning</div>
         </div>
 
         <div class="iconBx">
             <ion-icon name="cash-outline"></ion-icon>
         </div>
-    </div> -->
+    </div>
 </div>
+
 
 <!-- appointment details -->
-<div class="appointments-section">
-    <h2>Appointments</h2>
-
-    <?php if (isset($appointments) && is_array($appointments) && count($appointments) > 0): ?>
-        <table class="appointments-table">
-            <thead>
-            <tr>
-                <th>Customer Name</th>
-                <th>Phone Number</th>
-                <th>Vehicle Details</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($appointments as $appointment): ?>
-                <tr>
-                    <td><?= htmlspecialchars($appointment['customer_fname']) ?>
-                        <?= htmlspecialchars($appointment['customer_lname']) ?>
-                    </td>
-                    <td><?= htmlspecialchars($appointment['customer_phone_no']) ?></td>
-                    <td><?= htmlspecialchars($appointment['vehicle_details']) ?></td>
-                    <td><?= htmlspecialchars($appointment['appointment_date']) ?></td>
-                    <td><?= htmlspecialchars($appointment['appointment_time']) ?></td>
-                    <td>
-                        <form action="/change-appointment-status" method="post">
-                            <input type="hidden" name="appointment_id" value="<?= $appointment['appointment_id'] ?>">
-                            <select name="status">
-                                <option value="pending" <?= $appointment['status'] === 'pending' ? 'selected' : '' ?>>
-                                    Pending
-                                </option>
-                                <option value="confirmed" <?= $appointment['status'] === 'confirmed' ? 'selected' : '' ?>>
-                                    Confirmed
-                                </option>
-                                <option value="cancelled" <?= $appointment['status'] === 'cancelled' ? 'selected' : '' ?>>
-                                    Cancelled
-                                </option>
-                            </select>
-                    </td>
-                    <td>
-                        <div style="display: flex; gap: 10px;">
-                            <form action="/change-appointment-status" method="post" style="display: inline;">
-                                <input type="hidden" name="appointment_id"
-                                       value="<?= $appointment['appointment_id'] ?>">
-                                <button type="submit"
-                                        style="background-color: #010336; color: #fff; border: none; padding: 8px 14px; border-radius: 5px; cursor: pointer; font-size: 14px;">
-                                    Update
-                                </button>
-                            </form>
-                            <form action="/delete-appointment" method="post" style="display: inline;">
-                                <input type="hidden" name="appointment_id"
-                                       value="<?= $appointment['appointment_id'] ?>">
-                                <button type="submit"
-                                        style="background-color: #e84118; color: #fff; border: none; padding: 8px 14px; border-radius: 5px; cursor: pointer; font-size: 14px;">
-                                    Delete
-                                </button>
-                            </form>
-                        </div>
-                    </td>
-
-                </tr>
-            <?php endforeach; ?>
-            </tbody>
-        </table>
-    <?php else: ?>
-        <p>No appointments found.</p>
-    <?php endif; ?>
-</div>
+<!-- <div class="appointments-section">
+    <h2>Appointments</h2> -->
 
 
 <!-- ================ Order Details List ================= -->
@@ -173,107 +112,214 @@ include_once 'components/header.php';
     <div class="recentOrders">
         <div class="cardHeader">
             <h2>Recent Orders</h2>
-            <a href="#" class="btn">View All</a>
         </div>
         <?php if ($completedAppointments): ?>
             <table>
                 <thead>
                 <tr>
-                    <td>Name</td>
-                    <td>Date</td>
-                    <td>Time</td>
-                    <td>Status</td>
+                    <th>Customer Name</th>
+                    <th>Phone Number</th>
+                    <th>Vehicle Details</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
-
-                <?php foreach ($completedAppointments as $compeletedAppointment): ?>
-
-                    <tbody>
-
+                <tbody>
+                <?php foreach ($appointments as $appointment): ?>
                     <tr>
-                        <td><?= htmlspecialchars($compeletedAppointment['fname']) ?> <?= htmlspecialchars($compeletedAppointment['lname']) ?> </td>
-                        <td><?= htmlspecialchars($compeletedAppointment['appointment_date']) ?></td>
-                        <td><?= htmlspecialchars($compeletedAppointment['appointment_time']) ?></td>
-                        <td>
-                            <span class="status inProgress"><?= htmlspecialchars($compeletedAppointment['status']) ?></span>
+                        <td><?= htmlspecialchars($appointment['customer_fname']) ?>
+                            <?= htmlspecialchars($appointment['customer_lname']) ?>
                         </td>
-                    </tr>
-                    <!-- <tr>
-                        <td>Sheane Mario</td>
-                        <td>Rs. 1200</td>
-                        <td>Paid</td>
-                        <td><span class="status delivered">Completed</span></td>
-                    </tr>
+                        <td><?= htmlspecialchars($appointment['customer_phone_no']) ?></td>
+                        <td><?= htmlspecialchars($appointment['vehicle_details']) ?></td>
+                        <td><?= htmlspecialchars($appointment['appointment_date']) ?></td>
+                        <td><?= htmlspecialchars($appointment['appointment_time']) ?></td>
+                        <td>
+                            <form action="/change-appointment-status" method="post"
+                                  style="display: flex; flex-direction: column; gap: 6px;">
+                                <input type="hidden" name="appointment_id"
+                                       value="<?= $appointment['appointment_id'] ?>">
+                                <select name="status" class="status-select" style="padding: 6px; border-radius: 4px;"
+                                        data-otp-id="otp-<?= $appointment['appointment_id'] ?>">
+                                    <option value="pending" <?= $appointment['status'] === 'pending' ? 'selected' : '' ?>>
+                                        Pending
+                                    </option>
+                                    <option value="confirmed" <?= $appointment['status'] === 'confirmed' ? 'selected' : '' ?>>
+                                        Confirmed
+                                    </option>
+                                    <option value="cancelled" <?= $appointment['status'] === 'cancelled' ? 'selected' : '' ?>>
+                                        Cancelled
+                                    </option>
+                                </select>
+                                <input type="text" name="otp" placeholder="Enter OTP"
+                                       id="otp-<?= $appointment['appointment_id'] ?>" class="otp-field"
+                                       style="padding: 6px; border: 1px solid #ccc; border-radius: 4px; display: none;">
 
-                    <tr>
-                        <td>Pulasthi Abhisheke</td>
-                        <td>Rs. 110</td>
-                        <td>Due</td>
-                        <td><span class="status pending">Pending</span></td>
-                    </tr>
+                        </td>
+                        <td>
+                            <button type="submit"
+                                    style="background-color: #0e4d92; color: #fff; padding: 8px 12px; border: none; border-radius: 5px; cursor: pointer;">
+                                Update
+                            </button>
+                            </form>
+                            <form action="/delete-appointment" method="post" style="display: inline;">
+                                <input type="hidden" name="appointment_id"
+                                       value="<?= $appointment['appointment_id'] ?>">
+                                <button type="submit"
+                                        style="background-color: #e84118; color: #fff; padding: 8px 12px; border: none; border-radius: 5px; cursor: pointer;">
+                                    Delete
+                                </button>
+                            </form>
+                        </td>
 
-                    <tr>
-                        <td>Nimal Rathinarasa</td>
-                        <td>Rs. 1200</td>
-                        <td>-</td>
-                        <td><span class="status return">Cancelled</span></td>
-                    </tr>
 
-                    <tr>
-                        <td>Jimmy Donaldson</td>
-                        <td>Rs. 620</td>
-                        <td>Due</td>
-                        <td><span class="status inProgress">In Progress</span></td>
                     </tr>
-
-                    <tr>
-                        <td>Erick Dodger</td>
-                        <td>Rs. 1200</td>
-                        <td>Paid</td>
-                        <td><span class="status delivered">Completed</span></td>
-                    </tr>
-
-                    <tr>
-                        <td>Steven Schaphiro Laptop</td>
-                        <td>Rs. 110</td>
-                        <td>Due</td>
-                        <td><span class="status delivered">Completed</span></td>
-                    </tr>
-
-                    <tr>
-                        <td>Dawson Smith</td>
-                        <td>Rs. 1200</td>
-                        <td>-</td>
-                        <td><span class="status return">Cancelled</span></td>
-                    </tr> -->
-                    </tbody>
                 <?php endforeach; ?>
+                </tbody>
             </table>
         <?php else: ?>
-            <div class="no-orders">
-                <p>No completed appointments found.</p>
-            </div>
+            <p>No appointments found.</p>
         <?php endif; ?>
     </div>
-
     <!-- ================= New Customers ================ -->
     <?php
     include_once 'components/recent-customers.php'
     ?>
-</div>
 
 
-<div id="signOutOverlay" class="overlay">
-    <div class="overlay-content">
-        <p>Are you sure you want to sign out?</p>
-        <button id="confirmSignOut" class="btn"><a href="/service-center-logout"></a> Yes</button>
-        <button id="cancelSignOut" class="btn">No</button>
+    <!-- ================ Order Details List ================= -->
+    <div class="details">
+        <div class="recentOrders">
+            <div class="cardHeader">
+                <h2>Recent Orders</h2>
+                <a href="#" class="btn">View All</a>
+            </div>
+            <?php if ($completedAppointments): ?>
+                <table>
+                    <thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>Date</td>
+                        <td>Time</td>
+                        <td>Status</td>
+                    </tr>
+                    </thead>
+
+                    <?php foreach ($completedAppointments as $compeletedAppointment): ?>
+
+                        <tbody>
+
+                        <tr>
+                            <td><?= htmlspecialchars($compeletedAppointment['fname']) ?>
+                                <?= htmlspecialchars($compeletedAppointment['lname']) ?>
+                            </td>
+                            <td><?= htmlspecialchars($compeletedAppointment['appointment_date']) ?></td>
+                            <td><?= htmlspecialchars($compeletedAppointment['appointment_time']) ?></td>
+                            <td>
+                                    <span
+                                            class="status inProgress"><?= htmlspecialchars($compeletedAppointment['status']) ?></span>
+                            </td>
+                        </tr>
+                        <!-- <tr>
+                    <td>Sheane Mario</td>
+                    <td>Rs. 1200</td>
+                    <td>Paid</td>
+                    <td><span class="status delivered">Completed</span></td>
+                </tr>
+
+                <tr>
+                    <td>Pulasthi Abhisheke</td>
+                    <td>Rs. 110</td>
+                    <td>Due</td>
+                    <td><span class="status pending">Pending</span></td>
+                </tr>
+
+                <tr>
+                    <td>Nimal Rathinarasa</td>
+                    <td>Rs. 1200</td>
+                    <td>-</td>
+                    <td><span class="status return">Cancelled</span></td>
+                </tr>
+
+                <tr>
+                    <td>Jimmy Donaldson</td>
+                    <td>Rs. 620</td>
+                    <td>Due</td>
+                    <td><span class="status inProgress">In Progress</span></td>
+                </tr>
+
+                <tr>
+                    <td>Erick Dodger</td>
+                    <td>Rs. 1200</td>
+                    <td>Paid</td>
+                    <td><span class="status delivered">Completed</span></td>
+                </tr>
+
+                <tr>
+                    <td>Steven Schaphiro Laptop</td>
+                    <td>Rs. 110</td>
+                    <td>Due</td>
+                    <td><span class="status delivered">Completed</span></td>
+                </tr>
+
+                <tr>
+                    <td>Dawson Smith</td>
+                    <td>Rs. 1200</td>
+                    <td>-</td>
+                    <td><span class="status return">Cancelled</span></td>
+                </tr> -->
+                        </tbody>
+                    <?php endforeach; ?>
+                </table>
+            <?php else: ?>
+                <div class="no-orders">
+                    <p>No completed appointments found.</p>
+                </div>
+            <?php endif; ?>
+        </div>
+
+
     </div>
-</div>
-<!--    Icons-->
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-<script src="/js/service-center/overlay.js"></script>
+
+
+    <div id="signOutOverlay" class="overlay">
+        <div class="overlay-content">
+            <p>Are you sure you want to sign out?</p>
+            <button id="confirmSignOut" class="btn"><a href="/service-center-logout"></a> Yes</button>
+            <button id="cancelSignOut" class="btn">No</button>
+        </div>
+    </div>
+    <!--    Icons-->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="/js/service-center/overlay.js"></script>
+
+    <script>
+        document.querySelectorAll('.status-select').forEach(select => {
+            const otpInputId = select.dataset.otpId;
+            const otpInput = document.getElementById(otpInputId);
+
+            function toggleOtpField() {
+                if (select.value === 'confirmed') {
+                    otpInput.style.display = 'block';
+                    otpInput.setAttribute('required', 'required');
+                } else {
+                    otpInput.style.display = 'none';
+                    otpInput.removeAttribute('required');
+                }
+            }
+
+            // Initial check
+            toggleOtpField();
+
+            // On change event
+            select.addEventListener('change', toggleOtpField);
+        });
+    </script>
+
+
 </body>
 
 </html>

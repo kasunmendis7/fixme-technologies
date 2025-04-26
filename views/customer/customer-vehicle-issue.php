@@ -3,6 +3,8 @@
 use app\core\Application;
 use app\models\CusTechReq;
 
+/** @var $vehicles */
+
 ?>
 
 <!DOCTYPE html>
@@ -27,26 +29,40 @@ include_once 'components/header.php';
 ?>
 <body>
 <div class="form-container">
-    <h1>Vehicle Issue Form</h1>
-    <form id="vehicleForm">
-        <label for="vehicleType">Select Vehicle Type:</label>
-        <select id="vehicleType" name="vehicleType" required>
+    <h1 class="form-title">Report Your Vehicle Issue</h1>
+    <form id="vehicleForm" class="vehicle-form" action="/customer-vehicle-issue-form" method="post">
+        <label for="vehicleType" class="label">Select Vehicle Type:</label>
+        <select id="vehicleType" name="vehicleType" class="dropdown" required>
             <option value="" disabled selected>Select a vehicle</option>
-            <option value="motorbike">Motorbike</option>
-            <option value="tuk-tuk">Tuk-Tuk</option>
-            <option value="car">Car</option>
+            <?php foreach ($vehicles as $vehicle): ?>
+                <option value="<?= $vehicle['vehicle_id'] ?>"><?= ucfirst($vehicle['vehicle_type']) ?></option>
+            <?php endforeach; ?>
         </select>
 
-        <div id="issuesContainer" style="display: none;">
-            <label for="issues">Select Issues:</label>
-            <div id="issuesList"></div>
-        </div>
+        <label for="selectIssue" class="label">Select Issue:</label>
+        <select id="selectIssue" name="selectIssue" class="dropdown" required>
+            <option value="" disabled selected>Please select your vehicle Type first</option>
+        </select>
 
-        <label for="description">Additional Information:</label>
-        <textarea id="description" name="description" rows="4"
-                  placeholder="Describe the issue in detail (optional)"></textarea>
+        <label for="technicianCare" class="label">How much do you care about the nearest technician?</label>
+        <select id="technicianCare" name="nearestTechnicianCare" class="dropdown" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
 
-        <button type="submit">Get Recommended Technician</button>
+        <label for="ratingCare" class="label">How much do you care about the technician's rating?</label>
+        <select id="ratingCare" name="ratingCare" class="dropdown" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+
+        <button type="submit" class="submit-button">Get Recommended Technician</button>
     </form>
 </div>
 </body>

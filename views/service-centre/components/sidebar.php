@@ -22,12 +22,13 @@
                     <span class="title">Dashboard</span>
                 </a>
             </li>
+
             <li>
-                <a href="/service-centre-map">
+                <a href="/service-center-appointments">
                         <span class="icon">
-                            <ion-icon name="location-outline"></ion-icon>
+                            <ion-icon name="calendar-outline"></ion-icon>
                         </span>
-                    <span class="title">Map</span>
+                    <span class="title">Appointments</span>
                 </a>
             </li>
 

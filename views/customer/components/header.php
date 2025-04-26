@@ -18,9 +18,10 @@ use app\core\Application;
         </div>
         <div class="user-account">
             <h6 class="user-name">
-                 <li class="position-relative">
-                    <a href="/service-center-view-cart" class="nav-link px-2" style="position: relative; display: inline-block;">
-                        <ion-icon name="cart-outline" style="font-size: 24px;  color: #333;"></ion-icon>
+                <li class="position-relative">
+                    <a href="/service-center-view-cart" class="nav-link px-2"
+                       style="position: relative; display: inline-block;">
+                        <ion-icon name="cart-outline" style="font-size: 24px;  color: white;"></ion-icon>
                         <span id="cart-count" class="position-absolute badge rounded-pill bg-danger" style="
                 display: none;
                 top: -5px;

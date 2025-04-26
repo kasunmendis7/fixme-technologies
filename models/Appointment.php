@@ -13,6 +13,7 @@ class Appointment extends DbModel
     public string $appointment_date = '';
     public string $appointment_time = '';
     public string $status = 'Pending';
+    public string $otp = '';
 
     public function tableName(): string
     {
@@ -35,7 +36,7 @@ class Appointment extends DbModel
 
     public function attributes(): array
     {
-        return ['customer_id', 'service_center_id', 'vehicle_details', 'appointment_date', 'appointment_time', 'status'];
+        return ['customer_id', 'service_center_id', 'vehicle_details', 'appointment_date', 'appointment_time', 'status', 'otp'];
     }
 
     public function rules(): array
@@ -183,15 +184,22 @@ class Appointment extends DbModel
         return $completedAppointments;
     }
 
+    public function getOtpByAppointmentId($appointmentId)
+    {
+        $statement = self::prepare("SELECT otp FROM appointments WHERE appointment_id = :appointment_id");
+        $statement->bindValue(':appointment_id', $appointmentId);
+        $statement->execute();
 
+        return $statement->fetchColumn(); 
+    }
 
     //save function
     public function save()
     {
         $query = "INSERT INTO appointments 
-                    (customer_id, service_center_id, vehicle_details, appointment_date, appointment_time, status) 
+                    (customer_id, service_center_id, vehicle_details, appointment_date, appointment_time, status, otp) 
                   VALUES 
-                    (:customer_id, :service_center_id, :vehicle_details, :appointment_date, :appointment_time, :status)";
+                    (:customer_id, :service_center_id, :vehicle_details, :appointment_date, :appointment_time, :status, :otp)";
 
         $stmt = self::prepare($query);
         $stmt->bindValue(':customer_id', $this->customer_id);
@@ -200,6 +208,7 @@ class Appointment extends DbModel
         $stmt->bindValue(':appointment_date', $this->appointment_date);
         $stmt->bindValue(':appointment_time', $this->appointment_time);
         $stmt->bindValue(':status', $this->status);
+        $stmt->bindValue(':otp', $this->otp);
         $stmt->execute();
 
         // Check if the appointment was successfully inserted

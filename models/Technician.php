@@ -137,4 +137,55 @@ class Technician extends DbModel
         $stmt->execute();
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
+
+    public function getAvailabilityStatus($tech_id)
+    {
+        $sql = "SELECT available FROM technician WHERE tech_id = :tech_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':tech_id', $tech_id);
+        $stmt->execute();
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function filterAvailableTechs(array $technicians): array
+    {
+        $availableTechs = [];
+        foreach ($technicians as $technician) {
+            $tech_id = $technician['tech_id'];
+            $status = $this->getAvailabilityStatus($tech_id);
+            if ($status['available'] == 'true') {
+                $availableTechs[] = $tech_id;
+            }
+        }
+        return $availableTechs;
+    }
+
+    public function updateAvailability($tech_id, $status)
+    {
+        $sql = "UPDATE technician SET available = :available WHERE tech_id = :tech_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':available', $status);
+        $stmt->bindValue(':tech_id', $tech_id);
+        $stmt->execute();
+    }
+
+    public function getTechDetails($tech_id)
+    {
+        $sql = "SELECT tech_id, fname, lname, profile_picture, latitude, longitude FROM technician WHERE tech_id = :tech_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':tech_id', $tech_id);
+        $stmt->execute();
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function getAvgRating($tech_id)
+    {
+        $sql = "SELECT AVG(user_rating) as rating FROM technician_reviews WHERE tech_id = :tech_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':tech_id', $tech_id);
+        $stmt->execute();
+
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $result['rating'];
+    }
 }

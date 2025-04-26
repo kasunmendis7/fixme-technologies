@@ -44,14 +44,13 @@ include_once 'components/header.php';
         </div>
         <div class="status">
             <div class="availability">
-                <span class="status-dot"></span>
-                <span>Available</span>
+                <span class="status-dot-<?php echo $technician['available'] == 'true' ? 'available' : 'unavailable' ?>"></span>
+                <span><?php echo $technician['available'] == 'true' ? 'Available' : 'Not Available' ?></span>
             </div>
             <button class="message-btn"
                     onclick="viewUser( <?php echo $technician['tech_id'] ?> )">
                 Message
             </button>
-            <button class="message-btn">Call</button>
             <button class="message-btn"
                     onclick="sendRequest( <?php echo $technician['tech_id'] . ', ' . Application::$app->session->get('customer') ?> )"
             >

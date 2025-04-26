@@ -1,0 +1,107 @@
+/* Dark Blue and White Theme */
+
+/*body {*/
+/*    font-family: Arial, sans-serif;*/
+/*    background-color: #ffffff; !* White background (majority) *!*/
+/*    color: #333333; !* Neutral text *!*/
+/*}*/
+
+.container {
+    /*max-width: 1200px;*/
+    /*margin: auto;*/
+    /*padding: 20px;*/
+}
+
+.title-main {
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    /*margin-bottom: 20px;*/
+}
+
+.title-main h1 {
+    font-size: 2rem;
+    color: #0a244c; /* Dark Blue title color */
+}
+
+.techs-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.tech-card {
+    background: #ffffff; /* White card background */
+    /*border: 1px solid #0a1931; !* Dark Blue border *!*/
+    border-radius: 12px;
+    margin: 10px;
+    padding: 20px;
+    box-shadow: 0px 5px 15px rgba(10, 25, 49, 0.2); /* Subtle shadow */
+    transition: transform 0.3s, box-shadow 0.3s;
+    max-width: 350px;
+    width: 100%;
+    text-align: center;
+}
+
+.tech-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 15px 30px rgba(10, 25, 49, 0.3); /* Popup effect */
+}
+
+.profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    /*border: 3px solid #0a1931; !* Dark Blue border *!*/
+    margin-bottom: 20px;
+}
+
+.tech-info h2 {
+    font-size: 20px;
+    color: #0a1931; /* Dark Blue text for name */
+    margin: 5px 0;
+}
+
+.tech-info .rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.tech-info .rating ion-icon {
+    color: #f9c74f; /* Gold Star for rating */
+    margin-right: 2px;
+}
+
+.tech-info .rating span {
+    font-weight: bold;
+    font-size: 16px;
+    color: #333333; /* Neutral text for rating */
+}
+
+.view-profile-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff; /* White button text */
+    background-color: #4e668c; /* Dark Blue background */
+    text-decoration: none;
+    border-radius: 25px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.view-profile-btn:hover {
+    background-color: #053a6b; /* Slightly lighter Blue on hover */
+}
+
+.no-techs-message {
+    text-align: center;
+    font-size: 18px;
+    color: #666666;
+    margin-top: 20px;
+}

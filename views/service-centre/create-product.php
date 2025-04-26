@@ -35,6 +35,11 @@ include_once 'components/header.php';
         <?php echo Application::$app->session->getFlash('success') ?>
     </div>
 <?php endif; ?>
+<?php if (Application::$app->session->getFlash('error')): ?>
+    <div class="alert alert-error">
+        <?php echo Application::$app->session->getFlash('error') ?>
+    </div>
+<?php endif; ?>
 
 <div class="create-product-container">
     <!--Product creation form-->
@@ -48,6 +53,9 @@ include_once 'components/header.php';
 
         <label for="media">Upload Media:</label>
         <input type="file" id="media" name="media" accept="image/*,video/*" required>
+
+        <label for="product_count">Product Count:</label>
+        <input type="number" id="product_count" name="product_count" required>
 
         <!-- <label for="category">Category:</label> -->
         <!-- <select class="category-select" name="category" id="category" required>
@@ -78,6 +86,7 @@ include_once 'components/header.php';
                 <th>Image</th>
                 <th>Description</th>
                 <th>Price</th>
+                <th>Product count</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -90,6 +99,7 @@ include_once 'components/header.php';
                     </td>
                     <td><?php echo htmlspecialchars($product['description']); ?></td>
                     <td>Rs. <?php echo htmlspecialchars($product['price']); ?></td>
+                    <td><?php echo htmlspecialchars($product['product_count']) ?></td>
                     <td>
                         <form action="/service-center-update-product" method="get">
                             <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
