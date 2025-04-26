@@ -788,7 +788,8 @@ class CustomerController extends Controller
     //function to controll invoice 
     public function downloadScInvoice($order_id)
     {
-        $order_id = intval($order_id[0] ?? 0);
+        $order_id = is_array($order_id) ? $order_id[0] : $order_id;
+        $order_id = trim($order_id);
         $cus_id = Application::$app->session->get('customer');
 
         if (!$cus_id) {
@@ -801,9 +802,15 @@ class CustomerController extends Controller
         $checkoutModel = new CheckoutInfo();
         $cartModel = new Cart();
 
+        error_log("Order ID: " . $order_id);
+
         $orderDetails = $orderModel->listOrderDetails($order_id);
         $checkoutInfo = $checkoutModel->listData($cus_id);
         $cartItems = $cartModel->getCartItems($cus_id);
+
+        error_log("Order Details: " . json_encode($orderDetails));
+        error_log("Checkout Info: " . json_encode($checkoutInfo));
+        error_log("Cart Items: " . json_encode($cartItems));
 
         $total = 0;
         foreach ($cartItems as $item) {
@@ -843,7 +850,7 @@ class CustomerController extends Controller
     }
 
     //function get customer details 
-    public function customerDetails() 
+    public function customerDetails()
     {
         $cus_id = Application::$app->session->get('customer');
 
@@ -864,7 +871,8 @@ class CustomerController extends Controller
     }
 
     //fuction to get customer order details 
-    public function customerOrders ($order_id) {
+    public function customerOrders($order_id)
+    {
         $cus_id = Application::$app->session->get('customer');
 
         if (!$cus_id) {
@@ -880,6 +888,10 @@ class CustomerController extends Controller
         $orderDetails = $orderModel->listOrderDetails($order_id);
         $checkoutInfo = $checkoutModel->listData($cus_id);
         $cartItems = $cartModel->getCartItems($cus_id);
+
+        error_log("Order Details: " . json_encode($orderDetails));
+        error_log("Checkout Info: " . json_encode($checkoutInfo));
+        error_log("Cart Items: " . json_encode($cartItems));
 
         $total = 0;
         foreach ($cartItems as $item) {
@@ -905,6 +917,49 @@ class CustomerController extends Controller
             'total' => $total
         ]);
 
+    }
+
+    //function to list customer orders
+    public function customerOrdersList()
+    {
+        $cus_id = Application::$app->session->get('customer');
+
+        if (!$cus_id) {
+            Application::$app->session->setFlash('error', 'Please log in first.');
+            Application::$app->response->redirect('/customer-login');
+            return;
+        }
+
+        $customerOrders = new MarketplaceOrder();
+        $orders = $customerOrders->listOrderDetailsByCustomer($cus_id);
+        $orderIds = $customerOrders->listOrderIdByCustomer($cus_id);
+
+        $orderModel = new MarketplaceOrder();
+        $checkoutModel = new CheckoutInfo();
+        $cartModel = new Cart();
+
+        // Collect order details for each order_id
+        $allOrderDetails = [];
+        foreach ($orderIds as $order) {
+            $orderId = $order['order_id'];
+            $details = $orderModel->listOrderDetails($orderId);
+            $allOrderDetails[$orderId] = $details;
+        }
+
+        error_log("All Order Details: " . json_encode($allOrderDetails));
+
+        $checkoutInfo = $checkoutModel->listData($cus_id);
+        $cartItems = $cartModel->getCartItemsWithDetailsByCustomer($cus_id);
+        error_log("Checkout Info: " . json_encode($checkoutInfo));
+        error_log("Cart Items: " . json_encode($cartItems));
+
+        $this->setLayout('auth');
+        return $this->render('/service-centre/customer-order-details', [
+            'orders' => $orders,
+            'orderDetails' => $allOrderDetails, // array of details per order
+            'checkoutInfo' => $checkoutInfo,
+            'cartItems' => $cartItems
+        ]);
     }
 
 }

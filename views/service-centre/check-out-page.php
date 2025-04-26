@@ -418,6 +418,8 @@ use app\core\Application;
                             alert("Payment completed! OrderID: " + orderId);
                             // You can redirect or show a success page here
                             window.location.href = `/get-invoice/${orderId}`;
+                            // window.location.href = `/customer-order-details/${orderId}`;
+
                         };
 
                         payhere.onDismissed = function onDismissed() {
@@ -434,7 +436,7 @@ use app\core\Application;
                             "merchant_id": "1229154",    // Replace your Merchant ID
                             "return_url": "http://localhost:8080/",     // Important
                             "cancel_url": "http://localhost:8080/",     // Important
-                            "notify_url": "https://e591-2402-4000-1324-56c6-c619-5239-8a0c-84d2.ngrok-free.app/marketplace-payment-response",
+                            "notify_url": "https://25b2-2402-4000-1255-c5eb-44-8c77-86b0-9c94.ngrok-free.app/marketplace-payment-response",
                             "order_id": data.order_id,
                             "items": data.items,
                             "amount": data.amount + 200,

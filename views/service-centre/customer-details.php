@@ -167,7 +167,7 @@
                 </div>
 
                 <div class="profile-actions">
-                    <a href="/customer-orders" class="action-button">
+                    <a href="/customer-order-details" class="action-button">
                         <ion-icon name="bag-handle-outline"></ion-icon>
                         My Orders
                     </a>

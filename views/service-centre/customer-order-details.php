@@ -1,14 +1,14 @@
 <?php
-
 use app\core\Application;
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link rel="stylesheet" href="/css/base/_reset.css">
     <link rel="stylesheet" href="/css/base/_global.css">
     <link rel="stylesheet" href="/css/service-center/market-place-navbar.css">
@@ -21,10 +21,12 @@ use app\core\Application;
     <script src="/js/service-center/marketplace-home.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <title>Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/service-center/order-details.css">
 </head>
 
 <body>
+
     <nav class="container">
         <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3">
             <div class="col-md-3 mb-2 mb-md-0">
@@ -113,99 +115,42 @@ use app\core\Application;
         </header>
     </nav>
 
-    <script>
-        function toggleDropdown() {
-            const dropdown = document.getElementById('profileDropdown');
-            if (dropdown.style.display === 'none' || dropdown.style.display === '') {
-                dropdown.style.display = 'block';
-            } else {
-                dropdown.style.display = 'none';
-            }
-        }
-
-        // Close the dropdown if user clicks outside of it
-        window.onclick = function (event) {
-            if (!event.target.matches('.dropdown-toggle') && !event.target.matches('.dropdown-toggle *')) {
-                const dropdown = document.getElementById('profileDropdown');
-                if (dropdown.style.display === 'block') {
-                    dropdown.style.display = 'none';
-                }
-            }
-        }
-    </script>
-
-    <section>
-        <div class="flash-message">
-            <?php if (Application::$app->session->getFlash('success')): ?>
-                <div class="alert alert-success">
-                    <?php echo Application::$app->session->getFlash('success') ?>
-                </div>
-            <?php endif; ?>
+    <div class="order-container">
+        <!-- Checkout Info -->
+        <div class="checkout-info">
+            <h2><i class="fas fa-user-circle"></i> Customer Information</h2>
+            <p><i class="fas fa-user"></i> <?= $checkoutInfo['full_name'] ?? 'N/A' ?></p>
+            <p><i class="fas fa-envelope"></i> <?= $checkoutInfo['email'] ?? 'N/A' ?></p>
+            <p><i class="fas fa-phone"></i> <?= $checkoutInfo['phone'] ?? 'N/A' ?></p>
+            <p><i class="fas fa-map-marker-alt"></i> <?= $checkoutInfo['address'] ?? '' ?>,
+                <?= $checkoutInfo['city'] ?? '' ?> (<?= $checkoutInfo['postal_code'] ?? '' ?>)</p>
         </div>
-    </section>
 
-    <!-- Main Content with Sidebar -->
-    <section class="marketplace-container">
-        <!-- Categories Sidebar -->
-        <!-- <aside class="categories-sidebar">
-        <h3 class="categories-title">Product Categories</h3>
-        <ul class="categories-list">
-            <li><a href="/get-product-by-category?category=all" class="category-link" data-category="all">All</a></li>
-            <li><a href="/get-product-by-category?category=tools" class="category-link" data-category="tools">Tools</a>
-            </li>
-            <li><a href="/get-product-by-category?category=engine-transmission" class="category-link"
-                   data-category="engine-transmission">Engine & Transmission</a></li>
-            <li><a href="/get-product-by-category?category=brakes-suspension" class="category-link"
-                   data-category="brakes-suspension">Brakes & Suspension</a></li>
-            <li><a href="/get-product-by-category?category=electrical-electronics" class="category-link"
-                   data-category="electrical-electronics">Electrical & Electronics</a></li>
-            <li><a href="/get-product-by-category?category=body-parts-exterior" class="category-link"
-                   data-category="body-parts-exterior">Body Parts & Exterior</a></li>
-            <li><a href="/get-product-by-category?category=tires-wheels" class="category-link"
-                   data-category="tires-wheels">Tires & Wheels</a></li>
-            <li><a href="/get-product-by-category?category=interior-accessories" class="category-link"
-                   data-category="interior-accessories">Interior Accessories</a></li>
-            <li><a href="/get-product-by-category?category=fluids-maintenance" class="category-link"
-                   data-category="fluids-maintenance">Fluids & Maintenance</a></li>
-            <li><a href="/get-product-by-category?category=performance-upgrades" class="category-link"
-                   data-category="performance-upgrades">Performance & Upgrades</a></li>
-            <li><a href="/get-product-by-category?category=safety-security" class="category-link"
-                   data-category="safety-security">Safety & Security</a></li>
-        </ul>
-    </aside> -->
+        <!-- Loop through each order -->
+        <?php foreach ($orders as $order): ?>
+            <div class="order-details">
+                <h2><i class="fas fa-box"></i> Order #<?= $order['order_id'] ?> <span
+                        class="status <?= strtolower($order['status']) ?>"><?= ucfirst($order['status']) ?></span></h2>
 
-        <!-- Marketplace Products Section -->
-        <div class="marketplace">
-            <h1 class="marketplace-title">Available Products</h1>
-            <div class="products-grid">
-                <?php if (!empty($products)): ?>
-                    <?php foreach ($products as $product): ?>
-                        <div class="product-card">
-                            <img class="product-image" src="/assets/uploads/<?php echo htmlspecialchars($product['media']); ?>"
-                                alt="Product Image">
-                            <div class="product-details">
-                                <h2 class="product-title"><?php echo htmlspecialchars($product['description']); ?></h2>
-                                <p class="product-price">Rs. <?php echo htmlspecialchars($product['price']); ?></p>
-                                <p class="product-seller">Sold
-                                    by: <?php echo htmlspecialchars($product['seller_name']); ?></p>
-                                <p>Product id: <?php echo htmlspecialchars($product['product_id']) ?></p>
+                <ul>
+                    <?php foreach ($orderDetails[$order['order_id']] as $item): ?>
+                        <li class="order-item">
+                            <div class="item-icon"><i class="fas fa-tools"></i></div>
+                            <div class="item-details">
+                                <strong><?= $item['description'] ?></strong>
+                                <span>Qty: <?= $item['quantity'] ?></span>
+                                <span>Price: Rs. <?= number_format($item['price'], 2) ?></span>
                             </div>
-                            <!-- <a href="/check-out-page" class="product-btn">View Details</a> -->
-                            <!-- <button class="add-to-cart-btn" data-product-id="<?php echo $product['product_id']; ?>">Add to Cart</button> -->
-                            <form action="/add-to-cart" method="post">
-                                <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
-                                <button class="btn" style="color:black;" type="submit">Add to cart</button>
-                            </form>
-                        </div>
+                        </li>
                     <?php endforeach; ?>
-                <?php else: ?>
-                    <p class="no-products">No products are available in this category.</p>
-                <?php endif; ?>
+                </ul>
             </div>
-        </div>
-    </section>
+        <?php endforeach; ?>
+    </div>
 
-    <!-- Footer -->
+
+
+
     <div class="container-f">
         <footer class="py-5">
             <div class="row">
@@ -270,47 +215,8 @@ use app\core\Application;
         </footer>
     </div>
 
-    <!-- <script src="/js/service-center/filterProducts.js"></script> -->
-    <!-- <script>
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".category-link").forEach(link => {
-        link.addEventListener("click", function (event) {
-            event.preventDefault(); // Prevent default anchor behavior
-
-            let category = this.getAttribute("data-category");
-
-            // Send an AJAX request to fetch filtered products
-            fetch(`/get-product-by-category?category=${category}`, {
-                method: "GET",
-                headers: {
-                    "X-Requested-With": "XMLHttpRequest"
-                }
-            })
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById("product-list").innerHTML = data; // Update the product list
-            })
-            .catch(error => console.error("Error:", error));
-        });
-    });
-});
-</script> -->
-
     <script src="/js/service-center/cart.js"></script>
     <script src="/js/service-center/product-count.js"></script>
-
-    <script>
-        function saveCurrentLocation() {
-            const currentRoute = window.location.pathname;
-            let routes = JSON.parse(localStorage.getItem('visitedRoutes')) || [];
-
-            if (!routes.includes(currentRoute)) {
-                routes.push(currentRoute);
-                localStorage.setItem('visitedRoutes', '/market-place-home');
-            }
-        }
-        window.addEventListener('DOMContentLoaded', saveCurrentLocation);
-    </script>
 
 </body>
 
