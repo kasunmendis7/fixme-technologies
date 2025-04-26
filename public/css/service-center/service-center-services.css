@@ -1,31 +1,71 @@
-#services-form {
-    background: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    max-width: 500px;
+.card {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    padding: 30px;
+    width: 400px;
+    text-align: center;
+    transition: 0.3s;
 }
 
-#services-form input[type="text"] {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+.card:hover {
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
 
-#add-more, #show-service-form, #services-form button[type="submit"] {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 16px;
+.card p {
+    font-size: 18px;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.3s ease;
+    font-size: 16px;
 }
 
-#add-more:hover, #show-service-form:hover, #services-form button[type="submit"]:hover {
-    background-color: #0056b3;
+.btn-primary {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #45A049;
+}
+
+.btn-secondary {
+    background-color: #008CBA;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #007BB5;
+}
+
+.service-input {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px 15px;
+    margin: 8px auto;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+.service-input:focus {
+    border-color: #4CAF50;
+    outline: none;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+}
+
+#service-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

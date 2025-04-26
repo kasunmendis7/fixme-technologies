@@ -142,6 +142,8 @@ $app->router->post('/remove-from-serv-cen-cart', [ServiceCentreController::class
 $app->router->get('/service-center-check-out-page', [ServiceCentreController::class, 'servCenCheckOutPage']);
 $app->router->get('/service-center-appointments', [AppoinmentController::class, 'loadAppointmentDetailsForTab']);
 $app->router->get('/customer-order-details', [CustomerController::class, 'customerOrdersList']);
+$app->router->post('/add-services', [ServiceCentreController::class, 'addServices']);
+$app->router->get('/get-services', [ServiceCentreController::class, 'getServicesByServiceCenter']);
 // $app->router->get('/customer-order-details/{id}', [CustomerController::class, 'customerOrders']);
 // $app->router->get('/service-centre-dashboard', [AppoinmentController::class, 'recentCustomers']);
 

@@ -4,11 +4,12 @@ namespace app\models;
 
 use app\core\DbModel;
 
-
 class ServiceCenterServices extends DbModel
 {
-    public int $service_center_id;
-    public string $name;
+    public int $ser_cen_id = 0;
+    public string $name = '';
+    public string $created_at; 
+
 
     public function tableName(): string
     {
@@ -27,7 +28,7 @@ class ServiceCenterServices extends DbModel
 
     public function attributes(): array
     {
-        return ['service_center_id', 'name'];
+        return ['ser_cen_id', 'name', 'created_at'];
     }
 
     public function rules(): array
@@ -38,15 +39,19 @@ class ServiceCenterServices extends DbModel
         ];
     }
 
-    //function to get all services for a specific service center
+    public function create($data)
+    {
+        $this->loadData($data);
+        $this->created_at = date('Y-m-d H:i:s');
+        return $this->save();
+    }
+
     public function getServicesByServiceCenter($service_center_id)
     {
-        $sql = "SELECT * FROM " . $this->tableName() . " WHERE service_center_id = :service_center_id";
+        $sql = "SELECT * FROM " . $this->tableName() . " WHERE ser_cen_id = :service_center_id";
         $stmt = $this->prepare($sql);
         $stmt->bindValue(':service_center_id', $service_center_id);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
-
-    
 }
