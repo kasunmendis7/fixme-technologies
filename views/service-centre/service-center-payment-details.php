@@ -92,7 +92,7 @@ include_once 'components/header.php';
 <!--    Icons-->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-<script src="/js/technician/overlay.js"></script>
+<script src="/js/service-center/overlay.js"></script>
 
 </body>
 </html>
