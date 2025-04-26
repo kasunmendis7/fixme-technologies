@@ -35,3 +35,7 @@ async function getAdvancePayments(cusId) {
     window.location.href = `/customer-advance-payments`;
 }
 
+function viewTechProfile(techId) {
+    window.location.href = `/technician-profile/${techId}`;
+}
+
