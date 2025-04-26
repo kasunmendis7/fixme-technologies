@@ -1,0 +1,82 @@
+.service-management-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+}
+
+.title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.service-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f9f9f9;
+    margin-bottom: 15px;
+    padding: 15px 20px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.service-card:hover {
+    background: #eef6ff;
+}
+
+.service-name {
+    font-size: 18px;
+    font-weight: 500;
+    color: #444;
+}
+
+.service-actions button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    margin-left: 10px;
+    cursor: pointer;
+    color: #4CAF50;
+    transition: 0.3s;
+}
+
+.service-actions button.delete {
+    color: #e53935;
+}
+
+.service-actions button:hover {
+    text-decoration: underline;
+}
+
+.no-services-text {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.add-service-button {
+    display: inline-block;
+    margin-top: 20px;
+    background: #4CAF50;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.add-service-button:hover {
+    background: #43a047;
+}
+
+.update-input {
+    width: 60%;
+    padding: 8px;
+    font-size: 16px;
+    margin-right: 10px;
+}
