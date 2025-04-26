@@ -38,6 +38,15 @@ class ServiceCenterServices extends DbModel
         ];
     }
 
-    //function to save the services
+    //function to get all services for a specific service center
+    public function getServicesByServiceCenter($service_center_id)
+    {
+        $sql = "SELECT * FROM " . $this->tableName() . " WHERE service_center_id = :service_center_id";
+        $stmt = $this->prepare($sql);
+        $stmt->bindValue(':service_center_id', $service_center_id);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
     
 }
