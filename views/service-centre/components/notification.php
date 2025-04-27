@@ -5,7 +5,8 @@
     </div>
 
     <div class="notification-dropdown" id="notificationDropdown">
-        <button id="clearAllBtn" style="margin: 5px 10px; padding: 5px 10px; background: #ff4d4d; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        <button id="clearAllBtn"
+            style="margin: 5px 10px; padding: 5px 10px; background: #ff4d4d; color: white; border: none; border-radius: 5px; cursor: pointer;">
             Clear All
         </button>
         <ul id="notificationList">
@@ -74,6 +75,8 @@
                 dropdown.style.display = 'none';
             }, 300);
         });
+        fetchNotifications();
+        setInterval(fetchNotifications, 10000);
     });
 </script>
 
@@ -85,7 +88,10 @@
         // Mutation observer to dynamically add mark-as-seen buttons
         const observer = new MutationObserver(() => {
             document.querySelectorAll('#notificationList li').forEach(li => {
-                if (!li.querySelector('.mark-btn') && !li.classList.contains('no-action')) {
+                const isUnseen = li.classList.contains('unseen');
+
+                // Only add button if unseen and button not already added
+                if (isUnseen && !li.querySelector('.mark-btn') && !li.classList.contains('no-action')) {
                     const btn = document.createElement('button');
                     btn.textContent = 'Mark as Seen';
                     btn.className = 'mark-btn';
@@ -94,8 +100,8 @@
                         fetch(`/mark-notification-as-seen/${id}`, { method: 'POST' })
                             .then(res => {
                                 if (res.ok) {
-                                    li.classList.remove('unseen');
-                                    btn.remove();
+                                    li.classList.remove('unseen'); // Mark as seen
+                                    btn.remove(); // Remove the button completely
                                 }
                             });
                     };
@@ -105,7 +111,6 @@
         });
 
         observer.observe(list, { childList: true, subtree: true });
-
         // Clear all notifications
         if (clearBtn) {
             clearBtn.addEventListener('click', () => {
