@@ -246,7 +246,7 @@ include_once 'components/header.php';
                         "merchant_id": data.merchant_id,   // Ideally dynamic
                         "return_url": "http://localhost:8080/",
                         "cancel_url": "http://localhost:8080/",
-                        "notify_url": "https://3bc8-112-134-150-236.ngrok-free.app/marketplace-payment-response",
+                        "notify_url": "https://83b7-2a09-bac5-4864-18d2-00-279-83.ngrok-free.app/marketplace-payment-response",
                         "order_id": data.order_id,
                         "items": data.items,
                         "amount": data.amount,
