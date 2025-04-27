@@ -31,6 +31,9 @@ use app\core\Application;
     include_once 'components/sidebar.php';
     include_once 'components/header.php';
     ?>
+
+
+
     <!--https://via.placeholder.com/100-->
     <header class="header">
         <!--    <div class="banner"></div>-->
@@ -50,8 +53,8 @@ use app\core\Application;
                 </div> -->
                 <button class="message-btn"
                     onclick="getDirections( <?php echo $serviceCenter['ser_cen_id'] . ', ' . Application::$app->session->get('customer') ?> )">
-                Directions
-            </button>
+                    Directions
+                </button>
                 <!-- <button class="message-btn">Message</button>
                 <button class="message-btn">Call</button>
                 <button class="message-btn"
@@ -78,7 +81,31 @@ use app\core\Application;
         <button class="tab" onclick="scrollToSection('ratings-reviews-section');">Ratings & Reviews</button>
     </nav>
 
-   
+    <!-- service center services cards -->
+    <div class="service-center-services"
+        style="padding: 40px 20px; background: linear-gradient(135deg, #e0eafc, #cfdef3); border-radius: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); max-width: 1200px; margin: 40px auto; font-family: 'Poppins', sans-serif;">
+        <h2
+            style="text-align: center; margin-bottom: 40px; font-size: 36px; color: #222; font-weight: 700; letter-spacing: 1px;">
+            Our Services</h2>
+
+        <div class="services-list"
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+            <?php
+            foreach ($services as $service) {
+                echo '<div class="service-card" style="background: white; padding: 30px 20px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center; transition: all 0.4s ease; cursor: pointer; position: relative; overflow: hidden;" 
+            onmouseover="this.style.transform=\'translateY(-10px)\'; this.style.boxShadow=\'0 8px 20px rgba(0,0,0,0.2)\';" 
+            onmouseout="this.style.transform=\'translateY(0)\'; this.style.boxShadow=\'0 4px 12px rgba(0,0,0,0.1)\';">';
+
+                echo '<div style="width: 70px; height: 70px; background: linear-gradient(135deg, #74ebd5, #acb6e5); border-radius: 50%; margin: 0 auto 20px auto; display: flex; align-items: center; justify-content: center; font-size: 30px; color: white;">🔧</div>';
+                echo '<h3 style="margin: 0; font-size: 22px; color: #444; font-weight: 600;">' . htmlspecialchars($service['name']) . '</h3>';
+
+                echo '</div>';
+            }
+            ?>
+        </div>
+    </div>
+
+
 
     <!-- Feedback Section -->
     <?php
