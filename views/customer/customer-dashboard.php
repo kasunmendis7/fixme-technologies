@@ -55,12 +55,11 @@ use app\models\CusTechAdvPayment;
             <div class="iconBx">
                 <ion-icon name="cog-outline"></ion-icon>
             </div>
+        </div>
 
-    </div>
-
-    <div class="card">
-        <div>
-            <div class="numbers"><?php
+        <div class="card">
+            <div>
+                <div class="numbers"><?php
                 $level = 0;
                 if ($finishedContractsCount >= 15) {
                     $level = 5;
@@ -74,13 +73,7 @@ use app\models\CusTechAdvPayment;
                     $level = 1;
                 }
                 echo $level
-                ?></div>
-            <div class="cardName">Level</div>
-        </div>
-
-        <div class="card">
-            <div>
-                <div class="numbers">2</div>
+                    ?></div>
                 <div class="cardName">Level</div>
             </div>
 
@@ -88,30 +81,22 @@ use app\models\CusTechAdvPayment;
                 <ion-icon name="trophy-outline"></ion-icon>
 
             </div>
-    <div class="card">
-        <div>
-            <div class="numbers"><?php echo $reviewCount ?></div>
-            <div class="cardName">Total Reviews</div>
         </div>
 
         <div class="card">
             <div>
-                <div class="numbers">20</div>
+                <div class="numbers"><?php echo $reviewCount ?></div>
                 <div class="cardName">Total Reviews</div>
             </div>
 
             <div class="iconBx">
                 <ion-icon name="star-outline"></ion-icon>
             </div>
-    <div class="card">
-        <div>
-            <div class="numbers">Rs.<?php echo number_format($revenue, 0) ?></div>
-            <div class="cardName">Payments</div>
         </div>
 
         <div class="card">
             <div>
-                <div class="numbers">Rs. 7,842</div>
+                <div class="numbers">Rs.<?php echo number_format($revenue, 0) ?></div>
                 <div class="cardName">Payments</div>
             </div>
 
@@ -125,43 +110,6 @@ use app\models\CusTechAdvPayment;
     <!--
 include_once '../service-centre/appointment-details.php';
 ?> -->
-
-    <!-- <h2 class="appointment-header">Appointments</h2>
-
-    <div class="customer-appointments-section">
-
-
-        <?php if (isset($appointments) && is_array($appointments) && count($appointments) > 0): ?>
-            <table class="customer-appointments-table">
-                <thead>
-                    <tr>
-                        <th>Service Center Name</th>
-                        <th>Phone no</th>
-                        <th>Vehicle</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Status</th>
-                        <th>OTP</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($appointments as $appointment): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($appointment['service_center_name']) ?></td>
-                            <td><?= htmlspecialchars($appointment['service_center_phone_no']) ?></td>
-                            <td><?= htmlspecialchars($appointment['vehicle_details']) ?></td>
-                            <td><?= htmlspecialchars($appointment['appointment_date']) ?></td>
-                            <td><?= htmlspecialchars($appointment['appointment_time']) ?></td>
-                            <td><?= htmlspecialchars($appointment['status']) ?></td>
-                            <td><?= htmlspecialchars($appointment['otp']) ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        <?php else: ?>
-            <p>No appointments found.</p>
-        <?php endif; ?>
-    </div> -->
 
 
     <!-- ================ Request Details List ================= -->
@@ -243,9 +191,6 @@ include_once '../service-centre/appointment-details.php';
                 foreach ($recentTechnicians as $recentTechnician) {
                     echo
                         '
-                        
-        
-                    
                         <tr onclick="viewTechProfile(' . $recentTechnician['tech_id'] . ')">
                             <td>
                                 <div class="imgBx"><img src="' . $recentTechnician['profile_picture'] . '" alt="Technician profile-pic"></div>
