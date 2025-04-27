@@ -37,6 +37,10 @@ use app\core\Application;
             </a>
         </div>
 
+        <button class="hamburger-menu" id="hamburgerButton">
+            <ion-icon name="menu-outline"></ion-icon>
+        </button>
+
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
             <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
             <li><a href="/home-map" class="nav-link px-2">Map</a></li>
@@ -150,6 +154,15 @@ use app\core\Application;
     echo 'src="https://maps.googleapis.com/maps/api/js?key=' . $API_KEY . '&callback=loadMap&loading=async&libraries=marker&v=beta"';
     ?>
 >
+</script>
+<script>
+    const hamburgerButton = document.getElementById('hamburgerButton');
+    const navLinks = document.querySelector('.nav');
+
+    hamburgerButton.addEventListener('click', () => {
+        navLinks.classList.toggle('show-nav');
+    });
+
 </script>
 </body>
 
