@@ -53,7 +53,8 @@ async function paymentGateWay(cusId, techId) {
             //alert("Payment successful!");
             //updatePaymentStatus(orderId);
             // Reload the page to update the payment status display
-            window.location.reload();
+            //window.location.reload();
+            window.location.href = '/customer-active-contracts';
         };
 
         payhere.onDismissed = () => {
