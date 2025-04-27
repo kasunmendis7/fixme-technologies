@@ -149,7 +149,7 @@ function locateTechnician(techId) {
 }
 
 function locateServiceCentre(serviceCentreId) {
-    window.location.href = `#`;
+    window.location.href = `/service-center-profile/${serviceCentreId}`;
 }
 
 window.onload = loadMap;
