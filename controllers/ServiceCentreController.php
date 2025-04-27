@@ -9,6 +9,7 @@ use app\core\Request;
 use app\core\Response;
 use app\models\cart;
 use app\models\Customer;
+use app\models\Notification;
 use app\models\Post;
 use app\models\ServiceCenter;
 use app\models\ServiceCenterServices;
@@ -68,10 +69,18 @@ class ServiceCentreController extends Controller
     {
         $serviceCenter = new ServiceCenter();
 
+        $ser_cen_id = Application::$app->session->get('serviceCenter');
+
         if ($request->isPost()) {
             $serviceCenter->loadData($request->getBody());
             if ($serviceCenter->updateValidate()) {
                 $serviceCenter->updateServiceCenter();
+                $notification = new Notification();
+                $notification->createNotification([
+                    'customer_id' => null,
+                    'service_center_id' => $ser_cen_id,
+                    'message' => 'Service center details updated successfully',
+                ]);
                 Application::$app->session->setFlash('update-success', 'Update is successful');
                 Application::$app->response->redirect('/service-centre-profile');
             } else {
@@ -157,9 +166,8 @@ class ServiceCentreController extends Controller
 
     public function viewServiceCenterProfile($id)
     {
-
-        // echo json_encode($id);
-        // $id is an array, we need only the first element of that array
+        $serviceModel = new ServiceCenterServices();
+        $services = $serviceModel->getServicesByServiceCenter($id[0]);
         $serviceCenter = (new ServiceCenter())->findById(intval($id[0]));
         $this->setLayout('auth');
         if (!$serviceCenter) {
@@ -169,6 +177,7 @@ class ServiceCentreController extends Controller
 
         return $this->render('/customer/service-center-profile', [
             'serviceCenter' => $serviceCenter,
+            'services' => $services,
         ]);
     }
 
@@ -308,6 +317,13 @@ class ServiceCentreController extends Controller
             ]);
         }
 
+        $notification = new Notification();
+        $notification->createNotification([
+            'customer_id' => null,
+            'service_center_id' => $serviceCenterId,
+            'message' => 'Services added successfully',
+        ]);
+
         echo json_encode(['success' => true, 'message' => 'Services added successfully']);
         Application::$app->response->redirect('/service-centre-dashboard');
     }
@@ -323,6 +339,8 @@ class ServiceCentreController extends Controller
             exit;
         }
 
+
+
         $data = json_decode(file_get_contents("php://input"), true);
         $name = $data['name'] ?? null;
 
@@ -333,8 +351,18 @@ class ServiceCentreController extends Controller
                 'name' => htmlspecialchars($name)  // escaping input
             ]);
 
+
+
             header('Content-Type: application/json');
             echo json_encode(['success' => true]);
+
+            // $notifi = new Notification();
+            // $notifi->createNotification([
+            //     'customer_id' => null,
+            //     'service_center_id' => $serviceCenterId,
+            //     'message' => 'New service added to your service center'
+            // ]);
+
         } else {
             header('Content-Type: application/json');
             echo json_encode(['success' => false]);

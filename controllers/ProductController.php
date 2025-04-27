@@ -7,6 +7,7 @@ use app\core\Controller;
 use app\core\middlewares\AuthMiddleware;
 use app\core\Request;
 use app\core\Response;
+use app\models\Notification;
 use app\models\Product;
 
 class ProductController extends Controller
@@ -48,6 +49,12 @@ class ProductController extends Controller
             if ($productModel->validate() && $productModel->save()) {
                 Application::$app->session->setFlash('success', 'Product created successfully.');
                 Application::$app->response->redirect('/service-center-create-product');
+                $notifi = new Notification();
+                $notifi->createNotification([
+                    'customer_id' => null,
+                    'service_center_id' => $ser_cen_id,
+                    'message' => 'New product created: ' . $productModel->description,
+                ]);
                 return;
             }
         }
@@ -119,6 +126,12 @@ class ProductController extends Controller
                 move_uploaded_file($_FILES['media']['tmp_name'], 'assets/uploads/' . $productModel->media);
             }
             if ($productModel->editProduct()) {
+                $notifi = new Notification();
+                $notifi->createNotification([
+                    'customer_id' => null,
+                    'service_center_id' => $ser_cen_id,
+                    'message' => 'Product updated: ' . $productModel->description . 'at'. date('Y-m-d H:i:s'),
+                ]);
                 Application::$app->session->setFlash('success', 'Product updated successfully.');
                 Application::$app->response->redirect('/service-center-create-product');
                 return;
@@ -134,6 +147,12 @@ class ProductController extends Controller
 
         if ((new Product())->deleteProduct($product_id, $ser_cen_id)) {
             Application::$app->session->setFlash('success', 'Product deleted successfully.');
+            $notifi = new Notification();
+            $notifi->createNotification([
+                'customer_id' => null,
+                'service_center_id' => $ser_cen_id,
+                'message' => 'Product deleted: ' . $product_id . 'at'. date('Y-m-d H:i:s'),
+            ]);
         } else {
             Application::$app->session->setFlash('error', 'Failed to delete product.');
         }

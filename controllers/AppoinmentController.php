@@ -170,12 +170,16 @@ class AppoinmentController extends Controller
         $appointmentId = $body['appointment_id'] ?? null;
         $status = $body['status'] ?? null;
 
+
         if (!$appointmentId || !$status) {
             Application::$app->session->setFlash('error', 'Invalid appointment Id or status.');
             return;
         }
 
         $appointment = new Appointment();
+        $appointmentDetails = $appointment->getAppointmentDetails($appointmentId);
+
+
 
         if ($status === 'confirmed') {
             $enteredOtp = $request->getBody()['otp'] ?? '';
@@ -191,6 +195,12 @@ class AppoinmentController extends Controller
         $result = $appointment->changeStatus($appointmentId, $status);
         if ($result) {
             Application::$app->session->setFlash('success', 'Appointment status updated successfully.');
+            $notifi = new Notification();
+            $notifi->createNotification([
+                'customer_id' => $appointmentDetails['customer_id'],
+                'service_center_id' => $appointmentDetails['service_center_id'],
+                'message' => 'appointment with ID: ' . $appointmentId . ' has been updated to ' . $status
+            ]);
         } else {
             Application::$app->session->setFlash('error', 'Failed to update appointment status.');
         }
@@ -211,8 +221,18 @@ class AppoinmentController extends Controller
 
         $appointment = new Appointment();
         $result = $appointment->deleteAppointment($appointmentId);
+        $appointmentDetails = $appointment->getAppointmentDetails($appointmentId);
+        // error_log('appointmentDetails: ' . print_r($appointmentDetails, true));
+
+
         if ($result) {
             Application::$app->session->setFlash('success', 'Appointment deleted successfully.');
+            // $notifi = new Notification();
+            // $notifi->createNotification([
+            //     'customer_id' => $appointmentDetails['customer_id'],
+            //     'service_center_id' => $appointmentDetails['service_center_id'],
+            //     'message' => 'Appointment with ID: ' . $appointmentId . ' has been deleted.'
+            // ]);
             $response->redirect('/service-center-appointments');
         } else {
             Application::$app->session->setFlash('error', 'Failed to delete appointment.');
