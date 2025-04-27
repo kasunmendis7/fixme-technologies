@@ -243,14 +243,9 @@ include_once '../service-centre/appointment-details.php';
                 foreach ($recentTechnicians as $recentTechnician) {
                     echo
                         '
-                        <tr>
-        <table>
-            <?php
-            $ctr = new CusTechReq();
-            $recentTechnicians = $ctr->getRecentTechnicians(Application::$app->session->get('customer'));
-            foreach ($recentTechnicians as $recentTechnician) {
-                echo
-                    '
+                        
+        
+                    
                         <tr onclick="viewTechProfile(' . $recentTechnician['tech_id'] . ')">
                             <td>
                                 <div class="imgBx"><img src="' . $recentTechnician['profile_picture'] . '" alt="Technician profile-pic"></div>
