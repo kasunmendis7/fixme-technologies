@@ -12,6 +12,7 @@ use app\models\Customer;
 use app\models\Promotion;
 use app\models\Technician;
 use app\models\Vehicle;
+use app\models\Issue;
 
 class AdminController extends Controller
 {
@@ -274,5 +275,76 @@ class AdminController extends Controller
         $vehicleModel->removeVehicleType($vehicle_id);
         Application::$app->response->redirect('/admin-add-vehicle-type');
     }
+
+    public function adminGetVehicleTypeIssue()
+    {
+        $issueModel = new Issue();
+        $issueTypes = $issueModel->fetchIssueTypes();
+
+        $this->setLayout('auth');
+        return $this->render('/admin/admin-add-vehicle-type-issue',
+            ['issueTypes' => $issueTypes]
+        );
+    }
+
+    public function adminAddVehicleTypeIssue(Request $request)
+    {
+        $body = $request->getBody();
+        $issue_type = $body['issue_type'];
+
+        $issueModel = new Issue();
+        $issueTypes = $issueModel->addIssueType($issue_type);
+        Application::$app->response->redirect('/admin-add-vehicle-type-issue');
+    }
+
+    public function adminRemoveVehicleTypeIssue(Request $request)
+    {
+        $body = $request->getBody();
+        $issue_id = $body['issue_id'];
+
+        $issueModel = new Issue();
+        $issueModel->removeVehicleIssue($issue_id);
+        Application::$app->response->redirect('/admin-add-vehicle-type-issue');
+    }
+
+    // Show the Edit Form
+    public function adminGetEditVehicleTypeIssue(Request $request)
+    {
+        $issueId = $request->getBody()['issue_id'] ?? null;
+
+        if (!$issueId) {
+            Application::$app->response->redirect('/admin-add-vehicle-type-issue');
+            return;
+        }
+
+        $issueModel = new Issue();
+        $issueType = $issueModel->getIssueById($issueId);
+
+        if (!$issueType) {
+            Application::$app->response->redirect('/admin-add-vehicle-type-issue');
+            return;
+        }
+
+        $this->setLayout('auth');
+        return $this->render('/admin/admin-edit-vehicle-type-issue', [
+            'issueType' => $issueType
+        ]);
+    }
+
+    // Handle Form Submission
+    public function adminPostEditVehicleTypeIssue(Request $request)
+    {
+        $body = $request->getBody();
+        $issueId = $body['issue_id'] ?? null;
+        $issueType = $body['issue_type'] ?? null;
+
+        if ($issueId && $issueType) {
+            $issueModel = new Issue();
+            $issueModel->updateIssueType($issueId, $issueType);
+        }
+
+        Application::$app->response->redirect('/admin-add-vehicle-type-issue');
+    }
+
 }
 
