@@ -220,6 +220,9 @@ $app->router->get('/admin-settings', [AdminController::class, 'adminSettings']);
 $app->router->get('/admin-profile', [AdminController::class, 'adminProfile']);
 $app->router->post('/update-admin-profile', [AdminController::class, 'updateAdminProfile']);
 $app->router->get('/technician-bank-accounts', [AdminController::class, 'technicianBankAccounts']);
+$app->router->get('/admin-add-vehicle-type', [AdminController::class, 'adminGetVehicleTypes']);
+$app->router->post('/admin-add-vehicle-type', [AdminController::class, 'adminAddVehicleTypes']);
+$app->router->post('/admin-remove-vehicle-type', [AdminController::class, 'adminRemoveVehicleType']);
 
 /* Admin Routes */
 $app->router->get('/admin-services', [AdminController::class, 'manageServices']);
