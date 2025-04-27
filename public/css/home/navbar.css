@@ -2,13 +2,15 @@
 .container {
     max-width: 1140px;
     margin: 0 auto;
-    padding: 0 ;
-    background-color: #010336; 
+    padding: 0;
+    background-color: #010336;
     min-width: 100%;
 }
+
 a {
     color: #ffffff;
 }
+
 /* Header styling */
 .d-flex {
     display: flex;
@@ -133,6 +135,7 @@ a {
 .btn-outline-primary {
     color: #0d6efd;
     border-color: #0d6efd;
+    margin-top: .5rem;
 }
 
 .btn-outline-primary:hover {
@@ -145,6 +148,7 @@ a {
     color: #fff;
     background-color: #0d6efd;
     border-color: #0d6efd;
+    margin-top: .5rem;
 }
 
 .btn-primary:hover {
@@ -156,3 +160,40 @@ a {
 .me-2 {
     margin-right: 0.5rem;
 }
+
+.hamburger-menu {
+    display: none; /* Hidden by default */
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+/* Show hamburger only on small screens */
+@media screen and (max-width: 768px) {
+    .hamburger-menu {
+        display: block;
+    }
+
+    .nav {
+        display: none; /* Hide nav links when hamburger appears */
+    }
+}
+
+/* On large screens */
+@media screen and (min-width: 769px) {
+    .hamburger-menu {
+        display: none; /* Hide hamburger on large screens */
+    }
+
+    .nav {
+        display: flex; /* Make sure nav links are shown */
+    }
+}
+
+.show-nav {
+    display: flex;
+    flex-direction: column;
+}
+

@@ -166,9 +166,8 @@ class ServiceCentreController extends Controller
 
     public function viewServiceCenterProfile($id)
     {
-
-        // echo json_encode($id);
-        // $id is an array, we need only the first element of that array
+        $serviceModel = new ServiceCenterServices();
+        $services = $serviceModel->getServicesByServiceCenter($id[0]);
         $serviceCenter = (new ServiceCenter())->findById(intval($id[0]));
         $this->setLayout('auth');
         if (!$serviceCenter) {
@@ -178,6 +177,7 @@ class ServiceCentreController extends Controller
 
         return $this->render('/customer/service-center-profile', [
             'serviceCenter' => $serviceCenter,
+            'services' => $services,
         ]);
     }
 
