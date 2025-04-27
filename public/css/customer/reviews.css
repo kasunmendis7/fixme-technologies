@@ -57,7 +57,7 @@
     padding: 0.75rem 1.25rem;
     border-bottom: 1px solid #ddd;
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1rem;
 }
 
 .card-body {
@@ -211,9 +211,158 @@ label {
 }
 
 .review-text {
-    font-size: 20px;
+    font-size: 16px;
     font-family: "Ubuntu", sans-serif;
     color: #333;
     padding-top: 10px;
     border-radius: 5px;
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+    /* Grid system adjustments */
+    .col-sm-4, .col-sm-1, .col-sm-11 {
+        width: 100%;
+        padding: 0.5rem;
+    }
+
+    /* Center rating summary on mobile */
+    .col-sm-4.text-center {
+        margin-bottom: 2rem;
+    }
+
+    /* Adjust star sizing for smaller screens */
+    .fa-star {
+        font-size: 0.9rem;
+    }
+
+    /* Adjust review layout */
+    .row.mb-3 {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    /* Fix user initial avatar sizing */
+    .col-sm-1 div {
+        padding: 15px;
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+
+    /* Adjust modal size and position */
+    .modal-dialog {
+        margin: 5% auto;
+        width: 95%;
+        max-width: none;
+    }
+
+    /* Make buttons more mobile-friendly */
+    .btn {
+        display: block;
+        width: 100%;
+        padding: 0.75rem;
+    }
+
+    #add_review {
+        margin-left: 0 !important;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    /* Adjust progress bar labels for smaller screens */
+    .progress-label-left, .progress-label-right {
+        font-size: 0.8rem;
+    }
+
+    /* Adjust form elements */
+    .form-control {
+        padding: 0.75rem;
+    }
+
+    /* Adjust text sizes */
+    .card-header {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    .card-footer {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+    }
+
+    /* Fix container padding */
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    /* Adjust review-text for better readability on mobile */
+    .review-text {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    /* Make the header more concise on mobile */
+    h1.text-warning {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1rem;
+    }
+
+    .write-a-review {
+        margin: 0 auto;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* Additional breakpoint for very small screens */
+@media (max-width: 480px) {
+    /* Further reduce size of ratings */
+    h1.text-warning {
+        font-size: 1.3rem;
+        margin: 1rem 0;
+    }
+
+    /* Adjust user initial avatar */
+    .col-sm-1 div {
+        padding: 10px;
+    }
+
+    .col-sm-1 div h2 {
+        font-size: 1rem;
+    }
+
+    /* Simplify spacing */
+    .mt-5 {
+        margin-top: 1.5rem;
+    }
+
+    .mb-5 {
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Hide user initial circles on mobile */
+    .col-sm-1 {
+        display: none;
+    }
+
+    /* Make review content take full width when avatar is hidden */
+    .col-sm-11 {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .user-name-letters {
+        display: none;
+    }
 }

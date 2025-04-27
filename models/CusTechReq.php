@@ -106,7 +106,7 @@ class CusTechReq extends DbModel
 
     public function getRecentTechnicians($cusId)
     {
-        $sql = "SELECT DISTINCT tech.fname AS fname, tech.lname AS lname, tech.profile_picture AS profile_picture FROM technician AS tech, cus_tech_req AS ctr WHERE tech.tech_id = ctr.tech_id AND ctr.cus_id = :cus_id AND ctr.status = 'completed'";
+        $sql = "SELECT DISTINCT tech.tech_id AS tech_id, tech.fname AS fname, tech.lname AS lname, tech.profile_picture AS profile_picture FROM technician AS tech, cus_tech_req AS ctr WHERE tech.tech_id = ctr.tech_id AND ctr.cus_id = :cus_id AND ctr.status = 'completed'";
         $stmt = self::prepare($sql);
         $stmt->bindValue(':cus_id', $cusId);
         $stmt->execute();
