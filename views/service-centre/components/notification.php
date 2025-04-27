@@ -96,6 +96,10 @@
                                 if (res.ok) {
                                     li.classList.remove('unseen');
                                     btn.remove();
+                                    btn.disabled = true;
+                                    btn.textContent = 'Seen';
+                                    btn.style.backgroundColor = '#ccc';
+                                    btn.style.cursor = 'not-allowed';
                                 }
                             });
                     };
