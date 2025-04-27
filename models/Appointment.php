@@ -28,7 +28,7 @@ class Appointment extends DbModel
     public function updateRules(): array
     {
         return [
-            'vehicle_info' => [self::RULE_REQUIRED],
+            'vehicle_details' => [self::RULE_REQUIRED],
             'appointment_date' => [self::RULE_REQUIRED],
             'appointment_time' => [self::RULE_REQUIRED],
         ];
@@ -190,7 +190,7 @@ class Appointment extends DbModel
         $statement->bindValue(':appointment_id', $appointmentId);
         $statement->execute();
 
-        return $statement->fetchColumn(); 
+        return $statement->fetchColumn();
     }
 
     //save function
@@ -245,7 +245,6 @@ class Appointment extends DbModel
 
         return empty($this->errors);
     }
-
 
 
 }
