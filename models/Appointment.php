@@ -219,6 +219,20 @@ class Appointment extends DbModel
         }
     }
 
+    //function to get appointment details by appointment id
+    public function getAppointmentDetails($appointment_id)
+    {
+        $sql = "SELECT a.*, c.fname, c.lname, c.phone_no
+                FROM appointments a
+                JOIN customer c ON a.customer_id = c.cus_id
+                WHERE a.appointment_id = :appointment_id";
+        $stmt = self::prepare($sql);
+        $stmt->bindValue(':appointment_id', $appointment_id);
+        $stmt->execute();
+        $appointmentDetails = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $appointmentDetails;
+    }
+
     public function validate()
     {
         $this->errors = [];
