@@ -73,6 +73,15 @@
             </li>
 
             <li>
+                <a href="/admin-add-vehicle-type-issue">
+                        <span class="icon">
+                            <ion-icon name="hammer-outline"></ion-icon>
+                        </span>
+                    <span class="title">Add Issue Types</span>
+                </a>
+            </li>
+
+            <li>
                 <a href="/admin-settings">
                         <span class="icon">
                             <ion-icon name="settings-outline"></ion-icon>
