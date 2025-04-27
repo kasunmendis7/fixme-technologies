@@ -4,6 +4,7 @@ namespace app\core;
 
 use app\core\exception\NotFoundException;
 
+// Router class directs the request to the appropriate controller.
 class  Router
 {
     protected array $routes = [];
