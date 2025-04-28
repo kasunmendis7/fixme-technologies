@@ -536,7 +536,7 @@ class TechnicianController extends Controller
             $req = $contractModal->getReqIdFromContract($contract_id);
             $req_id = $req['req_id'];
             (new CusTechReq())->updateStatusToComplete($req_id);
-            Application::$app->response->redirect("/technician-active-contract-details/$contract_id");
+            Application::$app->response->redirect("/technician-finished-contracts");
             return json_encode(['success' => true, 'message' => 'Contract is now finished']);
         } else {
             Application::$app->response->redirect("/technician-active-contract-details/$contract_id");

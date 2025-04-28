@@ -246,7 +246,7 @@ include_once 'components/header.php';
                         "merchant_id": data.merchant_id,   // Ideally dynamic
                         "return_url": "http://localhost:8080/",
                         "cancel_url": "http://localhost:8080/",
-                        "notify_url": "https://83b7-2a09-bac5-4864-18d2-00-279-83.ngrok-free.app/marketplace-payment-response",
+                        "notify_url": "https://64bc-2a09-bac5-4863-18be-00-277-5.ngrok-free.app/marketplace-payment-response",
                         "order_id": data.order_id,
                         "items": data.items,
                         "amount": data.amount,
@@ -262,7 +262,7 @@ include_once 'components/header.php';
                         "delivery_address": data.address,
                         "delivery_city": data.city,
                         "delivery_country": "Sri Lanka",
-                        "custom_1": data.custom_1, // Confirm the backend field name
+                        "custom_1": data.customer_1, // Confirm the backend field name
                         "custom_2": ""
                     };
 

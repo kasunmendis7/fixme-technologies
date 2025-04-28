@@ -10,7 +10,7 @@ use app\models\ServiceCenterReview;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Service Center Dashboard</title>
     <link rel="stylesheet" href="/css/technician/technician-dashboard.css">
@@ -23,122 +23,122 @@ use app\models\ServiceCenterReview;
 </head>
 
 <body>
-    <?php
-    include_once 'components/sidebar.php';
-    include_once 'components/header.php';
-    ?>
-    <!-- JavaScript Files -->
-    <script src="/js/technician/technician-home.js"></script>
-    <!-- ======================= Cards ================== -->
+<?php
+include_once 'components/sidebar.php';
+include_once 'components/header.php';
+?>
+<!-- JavaScript Files -->
+<script src="/js/technician/technician-home.js"></script>
+<!-- ======================= Cards ================== -->
 
-    <?php if (Application::$app->session->getFlash('success')): ?>
-        <div class="alert alert-success">
-            <?php echo Application::$app->session->getFlash('success') ?>
-        </div>
-    <?php endif; ?>
-    <div class="cardBox">
-        <div class="card">
-            <div>
-                <div class="numbers"><?php echo htmlspecialchars($totalCompleted); ?></div>
-                <div class="cardName">Total Repairs</div>
-            </div>
-
-            <div class="iconBx">
-                <ion-icon name="cog-outline"></ion-icon>
-            </div>
+<?php if (Application::$app->session->getFlash('success')): ?>
+    <div class="alert alert-success">
+        <?php echo Application::$app->session->getFlash('success') ?>
+    </div>
+<?php endif; ?>
+<div class="cardBox">
+    <div class="card">
+        <div>
+            <div class="numbers"><?php echo htmlspecialchars($totalCompleted); ?></div>
+            <div class="cardName">Total Repairs</div>
         </div>
 
-        <?php
-        $level = 0;
-        if ($totalCompleted >= 10 && $totalCompleted < 20) {
-            $level = 1;
-        } elseif ($totalCompleted >= 20 && $totalCompleted < 30) {
-            $level = 2;
-        } elseif ($totalCompleted >= 30 && $totalCompleted < 40) {
-            $level = 3;
-        } elseif ($totalCompleted >= 40 && $totalCompleted < 50) {
-            $level = 4;
-        } elseif ($totalCompleted >= 50) {
-            $level = 5;
-        }
-        ?>
-
-        <div class="card">
-            <div>
-                <div class="numbers"><?= $level ?></div>
-                <div class="cardName">Level</div>
-            </div>
-
-            <div class="iconBx">
-                <ion-icon name="trophy-outline"></ion-icon>
-
-            </div>
-        </div>
-
-        <div class="card">
-            <div>
-                <?php
-                $serviceCenterReviews = new ServiceCenterReview();
-                $totalReviews = $serviceCenterReviews->countTotalReviewsByServiceCenterId(Application::$app->session->get('serviceCenter'));
-                ?>
-                <div class="numbers" id="total_review"><?php echo $totalReviews ?></div>
-                <div class="cardName">Total Reviews</div>
-
-            </div>
-
-            <div class="iconBx">
-                <ion-icon name="star-outline"></ion-icon>
-            </div>
-        </div>
-
-        <div class="card">
-            <div>
-                <div class="numbers"><?php echo 'Rs. ' . number_format($totalEarning); ?></div>
-                <div class="cardName">Earning</div>
-            </div>
-
-            <div class="iconBx">
-                <ion-icon name="cash-outline"></ion-icon>
-            </div>
+        <div class="iconBx">
+            <ion-icon name="cog-outline"></ion-icon>
         </div>
     </div>
 
-
-    <!-- appointment details -->
-    <!-- <div class="appointments-section">
-    <h2>Appointments</h2> -->
-
     <?php
-    include_once 'components/service-center-services.php';
-    ?>
-
-    <?php
-    function getStatusStyle($status)
-    {
-        $style = "padding: 4px 10px; border-radius: 12px; font-size: 14px; font-weight: bold;";
-
-        switch (strtolower($status)) {
-            case 'confirmed':
-                $style .= " background-color: #d4edda; color: #155724;"; // green
-                break;
-            case 'pending':
-                $style .= " background-color: #fff3cd; color: #856404;"; // yellow
-                break;
-            case 'cancel':
-                $style .= " background-color: #f8d7da; color: #721c24;"; // red
-                break;
-            default:
-                $style .= " background-color: #d1ecf1; color: #0c5460;"; // blue for unknown status
-        }
-
-        return $style;
+    $level = 0;
+    if ($totalCompleted >= 10 && $totalCompleted < 20) {
+        $level = 1;
+    } elseif ($totalCompleted >= 20 && $totalCompleted < 30) {
+        $level = 2;
+    } elseif ($totalCompleted >= 30 && $totalCompleted < 40) {
+        $level = 3;
+    } elseif ($totalCompleted >= 40 && $totalCompleted < 50) {
+        $level = 4;
+    } elseif ($totalCompleted >= 50) {
+        $level = 5;
     }
     ?>
 
+    <div class="card">
+        <div>
+            <div class="numbers"><?= $level ?></div>
+            <div class="cardName">Level</div>
+        </div>
+
+        <div class="iconBx">
+            <ion-icon name="trophy-outline"></ion-icon>
+
+        </div>
+    </div>
+
+    <div class="card">
+        <div>
+            <?php
+            $serviceCenterReviews = new ServiceCenterReview();
+            $totalReviews = $serviceCenterReviews->countTotalReviewsByServiceCenterId(Application::$app->session->get('serviceCenter'));
+            ?>
+            <div class="numbers" id="total_review"><?php echo $totalReviews ?></div>
+            <div class="cardName">Total Reviews</div>
+
+        </div>
+
+        <div class="iconBx">
+            <ion-icon name="star-outline"></ion-icon>
+        </div>
+    </div>
+
+    <div class="card">
+        <div>
+            <div class="numbers"><?php echo 'Rs. ' . number_format($totalEarning, 0); ?></div>
+            <div class="cardName">Earning</div>
+        </div>
+
+        <div class="iconBx">
+            <ion-icon name="cash-outline"></ion-icon>
+        </div>
+    </div>
+</div>
 
 
-    <div class="details">
-        <!-- <div class="recentOrders">
+<!-- appointment details -->
+<!-- <div class="appointments-section">
+<h2>Appointments</h2> -->
+
+<?php
+include_once 'components/service-center-services.php';
+?>
+
+<?php
+function getStatusStyle($status)
+{
+    $style = "padding: 4px 10px; border-radius: 12px; font-size: 14px; font-weight: bold;";
+
+    switch (strtolower($status)) {
+        case 'confirmed':
+            $style .= " background-color: #d4edda; color: #155724;"; // green
+            break;
+        case 'pending':
+            $style .= " background-color: #fff3cd; color: #856404;"; // yellow
+            break;
+        case 'cancel':
+            $style .= " background-color: #f8d7da; color: #721c24;"; // red
+            break;
+        default:
+            $style .= " background-color: #d1ecf1; color: #0c5460;"; // blue for unknown status
+    }
+
+    return $style;
+}
+
+?>
+
+
+<div class="details">
+    <!-- <div class="recentOrders">
         <div class="cardHeader">
             <h2>Recent Orders</h2>
         </div>
@@ -214,93 +214,93 @@ use app\models\ServiceCenterReview;
     </div> -->
 
 
+    <div class="details">
+        <div class="recentOrders">
+            <div class="cardHeader">
+                <h2>Recent Appointments</h2>
+            </div>
+            <?php if ($completedAppointments): ?>
+                <table>
+                    <thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>Date</td>
+                        <td>Time</td>
+                        <td>Status</td>
+                    </tr>
+                    </thead>
 
-        <div class="details">
-            <div class="recentOrders">
-                <div class="cardHeader">
-                    <h2>Recent Appointments</h2>
-                </div>
-                <?php if ($completedAppointments): ?>
-                    <table>
-                        <thead>
-                            <tr>
-                                <td>Name</td>
-                                <td>Date</td>
-                                <td>Time</td>
-                                <td>Status</td>
-                            </tr>
-                        </thead>
+                    <?php foreach ($completedAppointments as $compeletedAppointment): ?>
 
-                        <?php foreach ($completedAppointments as $compeletedAppointment): ?>
+                        <tbody>
 
-                            <tbody>
-
-                                <tr>
-                                    <td><?= htmlspecialchars($compeletedAppointment['fname']) ?>
-                                        <?= htmlspecialchars($compeletedAppointment['lname']) ?>
-                                    </td>
-                                    <td><?= htmlspecialchars($compeletedAppointment['appointment_date']) ?></td>
-                                    <td><?= htmlspecialchars($compeletedAppointment['appointment_time']) ?></td>
-                                    <td>
-                                        <span class="status" style="<?= getStatusStyle($compeletedAppointment['status']) ?>">
+                        <tr>
+                            <td><?= htmlspecialchars($compeletedAppointment['fname']) ?>
+                                <?= htmlspecialchars($compeletedAppointment['lname']) ?>
+                            </td>
+                            <td><?= htmlspecialchars($compeletedAppointment['appointment_date']) ?></td>
+                            <td><?= htmlspecialchars($compeletedAppointment['appointment_time']) ?></td>
+                            <td>
+                                        <span class="status"
+                                              style="<?= getStatusStyle($compeletedAppointment['status']) ?>">
                                             <?= htmlspecialchars($compeletedAppointment['status']) ?>
                                         </span>
-                                    </td>
-                                </tr>
+                            </td>
+                        </tr>
 
 
-                            </tbody>
-                        <?php endforeach; ?>
-                    </table>
-                <?php else: ?>
-                    <div class="no-orders">
-                        <p>No completed appointments found.</p>
-                    </div>
-                <?php endif; ?>
-            </div>
-
-
+                        </tbody>
+                    <?php endforeach; ?>
+                </table>
+            <?php else: ?>
+                <div class="no-orders">
+                    <p>No completed appointments found.</p>
+                </div>
+            <?php endif; ?>
         </div>
 
-        <?php
-        include_once 'components/recent-customers.php'
-            ?>
+
+    </div>
+
+    <?php
+    include_once 'components/recent-customers.php'
+    ?>
 
 
-        <div id="signOutOverlay" class="overlay">
-            <div class="overlay-content">
-                <p>Are you sure you want to sign out?</p>
-                <button id="confirmSignOut" class="btn"><a href="/service-center-logout"></a> Yes</button>
-                <button id="cancelSignOut" class="btn">No</button>
-            </div>
+    <div id="signOutOverlay" class="overlay">
+        <div class="overlay-content">
+            <p>Are you sure you want to sign out?</p>
+            <button id="confirmSignOut" class="btn"><a href="/service-center-logout"></a> Yes</button>
+            <button id="cancelSignOut" class="btn">No</button>
         </div>
-        <!--    Icons-->
-        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-        <script src="/js/service-center/overlay.js"></script>
+    </div>
+    <!--    Icons-->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="/js/service-center/overlay.js"></script>
 
-        <script>
-            document.querySelectorAll('.status-select').forEach(select => {
-                const otpInputId = select.dataset.otpId;
-                const otpInput = document.getElementById(otpInputId);
+    <script>
+        document.querySelectorAll('.status-select').forEach(select => {
+            const otpInputId = select.dataset.otpId;
+            const otpInput = document.getElementById(otpInputId);
 
-                function toggleOtpField() {
-                    if (select.value === 'confirmed') {
-                        otpInput.style.display = 'block';
-                        otpInput.setAttribute('required', 'required');
-                    } else {
-                        otpInput.style.display = 'none';
-                        otpInput.removeAttribute('required');
-                    }
+            function toggleOtpField() {
+                if (select.value === 'confirmed') {
+                    otpInput.style.display = 'block';
+                    otpInput.setAttribute('required', 'required');
+                } else {
+                    otpInput.style.display = 'none';
+                    otpInput.removeAttribute('required');
                 }
+            }
 
-                // Initial check
-                toggleOtpField();
+            // Initial check
+            toggleOtpField();
 
-                // On change event
-                select.addEventListener('change', toggleOtpField);
-            });
-        </script>
+            // On change event
+            select.addEventListener('change', toggleOtpField);
+        });
+    </script>
 
 
 </body>

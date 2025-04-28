@@ -3,12 +3,12 @@ async function loadMap() {
     const {AdvancedMarkerElement, PinElement} = await google.maps.importLibrary("marker");
     const infoWindow = new InfoWindow();
 
-    let centerLat = 7.873054;
-    let centerLng = 80.771797;
+    let centerLat = 6.9271;
+    let centerLng = 79.8612;
 
     /* Make the map focus into Sri Lanka */
     const map = new Map(document.getElementById("map"), {
-        zoom: 10,
+        zoom: 12,
         center: {lat: centerLat, lng: centerLng},
         mapId: "DEMO_MAP_ID",
     });

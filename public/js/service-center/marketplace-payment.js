@@ -51,7 +51,7 @@ async function paymenteGateway() {
             country: paymentDetails.country,
             return_url: "http://localhost:8080/",
             cancel_url: "http://localhost:8080/",
-            notify_url: "https://f41e-2407-c00-e006-f174-d115-ac2f-702c-543f.ngrok-free.app/payhere-payment-response",
+            notify_url: "https://64bc-2a09-bac5-4863-18be-00-277-5.ngrok-free.app/payhere-payment-response",
             delivery_address: "",
             delivery_city: "",
             delivery_country: "",
