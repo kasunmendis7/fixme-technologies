@@ -1,12 +1,7 @@
 <?php
 
-/* Includes Composer's autoloader, which automatically loads classes from the vendor directory */
-/* This enables you to use classes via use statements instead of manually including every file */
 require_once __DIR__ . '/../vendor/autoload.php';
 
-/* Import the classes that will be used later without writing their full namespaces */
-
-/* Import the classes that will be used later without writing their full namespaces */
 
 use app\controllers\AppoinmentController;
 use app\controllers\AuthController;
@@ -29,8 +24,6 @@ use app\controllers\ServiceCenterReviewController;
 use app\controllers\ContactUsController;
 use app\controllers\VehicleIssueController;
 
-/* Load environment variables */
-/* Using vulcas/phpdotenv package to load sensitive data from .env file */
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
@@ -47,8 +40,6 @@ $config = [
     ]
 ];
 
-/* dirname(__DIR__) passes the root directory of your project(one level above /public) as the base path */
-/* $config passes all environment and class configuration data to Application class */
 $app = new Application(dirname(__DIR__), $config);
 
 /* Home Route */
@@ -150,8 +141,6 @@ $app->router->post('/delete-service', [ServiceCentreController::class, 'deleteSe
 $app->router->post('/update-service', [ServiceCentreController::class, 'updateService']);
 $app->router->post('/add-service-from-manage-console', [ServiceCentreController::class, 'addServiceFromManageConsole']);
 $app->router->get('/customer-appointments', [AppoinmentController::class, 'loadAppointmentDetailsForAppointmentTab']);
-// $app->router->get('/customer-order-details/{id}', [CustomerController::class, 'customerOrders']);
-// $app->router->get('/service-centre-dashboard', [AppoinmentController::class, 'recentCustomers']);
 
 
 /* Routes related to the product (service center) */
@@ -338,10 +327,8 @@ $app->router->post('/technician-update-vehicle', [TechnicianController::class, '
 $app->router->get('/technician-vehicle-issue', [TechnicianController::class, 'getSpecializedIssue']);
 $app->router->post('/technician-update-vehicle-issue', [TechnicianController::class, 'updateSpecializedIssue']);
 
-/* Run the application */
 $app->run();
 
-/* Debugging function */
 function show($data)
 {
     echo '<pre>';

@@ -150,9 +150,6 @@ class AuthController extends Controller
         ]);
     }
 
-    /* service centre login method */
-//    public function serviceCentreLogin(Request $request)
-    // service centre login method
     public function serviceCentreLogin(Request $request, Response $response)
     {
         $serviceCenterLogin = new ServiceCenterLogin();

@@ -1,26 +1,23 @@
 <?php
 
-/* Set namespace so that classes in this file are part of app\core, which helps in autoloading and avoid class name conflicts */
 
 namespace app\core;
-
-/* Main application class that controls overall app behavior: routing, session management, authentication, database access... */
 
 class Application
 {
 
-    public string $layout = 'auth'; /* Default layout for views */
-    public static string $ROOT_DIR; /* Root directory of the application */
+    public string $layout = 'auth';
+    public static string $ROOT_DIR;
     public string $technicianClass;
     public string $serviceCenterClass;
-    public static Application $app; /* Singleton(static) instance of the Application class */
+    public static Application $app;
     public string $customerClass;
     public string $adminClass;
-    public Router $router; /* Router handles requests to the correct controller */
-    public Request $request; /* Request class handles HTTP requests */
-    public Response $response; /* Response class handles HTTP responses */
-    public Session $session; /* Session class handles session management(session data) */
-    public Database $db; /* Custom class for DB connection and queries */
+    public Router $router;
+    public Request $request;
+    public Response $response;
+    public Session $session;
+    public Database $db;
     public ?DbModel $technician;
     public ?Controller $controller = null;
     public ?DbModel $customer;
@@ -63,9 +60,7 @@ class Application
             $this->customer = null;
         }
 
-        /* Retrieve service center data from the session */
         $primaryValueServiceCentre = $this->session->get('serviceCenter');
-        /* If the service center is logged in, retrieve their data from the database */
         if ($primaryValueServiceCentre) {
             $serviceCenterInstance = new $this->serviceCenterClass;
             $primaryKey = $serviceCenterInstance->primaryKey();
@@ -74,9 +69,7 @@ class Application
             $this->serviceCenter = null;
         }
 
-        /* Retrieve admin data from the session */
         $primaryValueAdmin = $this->session->get('admin');
-        /* If the admin is logged in, retrieve their data from the database */
         if ($primaryValueAdmin) {
             $adminInstance = new $this->adminClass;
             $primaryKey = $adminInstance->primaryKey();
@@ -100,22 +93,17 @@ class Application
     /* Logout customer */
     public function logoutCustomer()
     {
-        /* Unset the customer ID from the session */
         $this->customer = null;
         $this->session->remove('customer');
     }
 
-    /* Check if the customer is logged in */
     public static function isGuestCustomer()
     {
-        /* If the customer is not logged in, return true */
         return !(self::$app->session->get('customer'));
     }
 
-    /* Run the application */
     public function run()
     {
-        /* Resolve the request and return the response */
         try {
             echo $this->router->resolve();
         } catch (\Exception $e) {
