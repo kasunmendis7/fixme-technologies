@@ -56,7 +56,7 @@ class Appointment extends DbModel
             WHERE service_center_id = :sc_id 
             AND appointment_date = :date 
             AND (
-                TIME(appointment_time) BETWEEN SUBTIME(:time, '00:30:00') AND ADDTIME(:time, '00:30:00')
+                TIME(appointment_time) BETWEEN SUBTIME(:time, '00:29:00') AND ADDTIME(:time, '00:29:00')
             )";
 
         $stmt = self::prepare($sql);
@@ -190,7 +190,7 @@ class Appointment extends DbModel
         $statement->bindValue(':appointment_id', $appointmentId);
         $statement->execute();
 
-        return $statement->fetchColumn(); 
+        return $statement->fetchColumn();
     }
 
     //save function
@@ -259,7 +259,6 @@ class Appointment extends DbModel
 
         return empty($this->errors);
     }
-
 
 
 }

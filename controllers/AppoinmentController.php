@@ -47,11 +47,11 @@ class AppoinmentController extends Controller
                             ' and name ' . $customerData['fname'] .
                             '. Phone: ' . $customerData['phone_no'] .
                             '. Date: ' . $appointment->appointment_date .
-                            ' at ' . $appointment->appointment_time .
-                            '. OTP: ' . $otp
+                            ' at ' . $appointment->appointment_time
+//                            '. OTP: ' . $otp
                     ]);
                     Application::$app->session->setFlash('success', 'Appointment booked successfully.');
-                    Application::$app->response->redirect('/customer-dashboard');
+                    Application::$app->response->redirect('/customer-appointments');
                 } else {
                     Application::$app->session->setFlash('error', 'Failed to book appointment.');
                 }
@@ -123,10 +123,9 @@ class AppoinmentController extends Controller
         $market = new MarketplaceOrderServiceCenter();
         $sellerEarning = $market->SellerEarnings($ser_cen_id);
 
-        
 
         $totalEarning = 0;
-        foreach($sellerEarning as $seller) {
+        foreach ($sellerEarning as $seller) {
             $totalEarning += $seller['seller_earning'];
         }
 
@@ -145,7 +144,7 @@ class AppoinmentController extends Controller
     public function loadAppointmentDetailsForTab()
     {
         $ser_cen_id = Application::$app->session->get('serviceCenter');
-        if(!$ser_cen_id) {
+        if (!$ser_cen_id) {
             Application::$app->session->setFlash('error', "Please log in to view your appointments");
             Application::$app->response->redirect('/service-centre-login');
             return;
@@ -160,10 +159,7 @@ class AppoinmentController extends Controller
     }
 
 
-
-    
-
-    //function to controll status of the appointment 
+    //function to controll status of the appointment
     public function updateAppointmentStatus(Request $request, Response $response)
     {
         $body = $request->getBody();
@@ -178,7 +174,6 @@ class AppoinmentController extends Controller
 
         $appointment = new Appointment();
         $appointmentDetails = $appointment->getAppointmentDetails($appointmentId);
-
 
 
         if ($status === 'confirmed') {
