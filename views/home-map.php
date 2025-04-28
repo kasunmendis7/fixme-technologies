@@ -13,6 +13,7 @@ if (Application::isGuestCustomer() && Application::isGuestTechnician() && Applic
 <script>
     const isGuest = <?php echo $isGuest ? 'true' : 'false'; ?>;
 </script>
+<?php show($isGuest); ?>
 
 <div class="container-map">
     <center>

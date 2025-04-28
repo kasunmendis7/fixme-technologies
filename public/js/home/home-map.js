@@ -113,7 +113,8 @@ async function loadMap() {
 }
 
 function locateTechnician(techId) {
-    if (isGuest == 'true') {
+    console.log(isGuest);
+    if (isGuest == true) {
         window.location.href = `/select-user-login`;
         return;
     }
@@ -121,7 +122,7 @@ function locateTechnician(techId) {
 }
 
 function locateServiceCentre(serviceCentreId) {
-    if (isGuest == 'true') {
+    if (isGuest == true) {
         window.location.href = `/select-user-login`;
         return;
     }
