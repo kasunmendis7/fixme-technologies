@@ -67,8 +67,6 @@ The system follows the MVC design pattern, ensuring:
 - High maintainability
 - Scalable feature integration
 
-![System Architecture](https://www.bing.com/images/search?view=detailV2&ccid=ow0q%2fP7H&id=9BF39B8864345AE3306B0F187CDF66F178B690BA&thid=OIP.ow0q_P7HMTxNjhecaUy4ZgHaEK&mediaurl=https%3a%2f%2fmiro.medium.com%2fv2%2fresize%3afit%3a1200%2f1*c6o9uQC1gUou3FFlq4lk2Q.png&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.a30d2afcfec7313c4d8e179c694cb866%3frik%3dupC2ePFm33wYDw%26pid%3dImgRaw%26r%3d0&exph=675&expw=1200&q=mvc+architecture&simid=608026151743549391&FORM=IRPRST&ck=0E492A4405567948A0D73E873B7C0C26&selectedIndex=12&itb=0)
-
 ---
 
 ## 🎨 UI/UX Design Overview
@@ -122,7 +120,7 @@ The system follows the MVC design pattern, ensuring:
 git clone https://github.com/fixmetech/fixme-technologies
 
 # Setup database
-Import the MySQL dump file from `/database/fixme.sql`
+Import the MySQL dump file from (fixme-dumb)[https://pastebin.com/GTL4CZZR]
 
 # Start the PHP development server
 php -S localhost:8000 -t public/
