@@ -115,12 +115,11 @@ The system follows the MVC design pattern, ensuring:
 
 ## 🧪 Developer Setup Instructions
 
+- Import Database [fixme-sql-dubm](https://pastebin.com/GTL4CZZR)
+
 ```bash
 # Clone the repo
 git clone https://github.com/fixmetech/fixme-technologies
-
-# Setup database
-Import the MySQL dump file from (fixme-dumb)[https://pastebin.com/GTL4CZZR]
 
 # Start the PHP development server
 php -S localhost:8000 -t public/
