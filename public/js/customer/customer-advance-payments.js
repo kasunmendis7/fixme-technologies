@@ -73,7 +73,7 @@ async function paymentGateWay(cusId, techId) {
             merchant_id: "1230101",
             return_url: "http://localhost:8080/customer-active-contracts",
             cancel_url: "http://localhost:8080/customer-dashboard",
-            notify_url: "https://64bc-2a09-bac5-4863-18be-00-277-5.ngrok-free.app/payhere-payment-response", // This needs to be updated accordingly
+            notify_url: "https://cedf-194-59-6-81.ngrok-free.app/payhere-payment-response", // This needs to be updated accordingly
             order_id: object["order_id"],
             items: object["items"],
             amount: object["amount"],
