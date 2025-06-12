@@ -124,5 +124,11 @@ The system follows the MVC design pattern, ensuring:
 # Clone the repo
 git clone https://github.com/fixmetech/fixme-technologies
 
+# Checkout to the develop branch
+git checkout -b develop
+
+# Change dir to public
+cd public
+
 # Start the PHP development server
-php -S localhost:8000 -t public/
+php -S localhost:8080
