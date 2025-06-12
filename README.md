@@ -17,7 +17,7 @@ Change branch to develop to look the code
 
 ## 🚀 Live Application
 
-🌐 Web App: [https://deployment-coming-soon.com](https://not-deployed-yet.com)
+🌐 Web App: [https://fixme-technologies.com](http://152.42.255.40/)
 
 ---
 
