@@ -111,8 +111,8 @@ The system follows the MVC design pattern, ensuring:
 
 ## 📄 Documentation
 
-- 📘 [Final Report PDF](https://link-to-final-report.pdf)
-- 🧾 [User Manual Coming Soon](https://link-to-user-manual.pdf)
+- 📘 [Final Report PDF](https://drive.google.com/file/d/1GlwHHq91FUGlTMtDAoKpPVKw6jDvJSDt/view?usp=sharing)
+- 🧾 [User Manual Coming Soon](https://drive.google.com/file/d/1GlwHHq91FUGlTMtDAoKpPVKw6jDvJSDt/view?usp=sharing)
 
 ---
 
