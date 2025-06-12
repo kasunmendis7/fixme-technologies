@@ -125,7 +125,7 @@ The system follows the MVC design pattern, ensuring:
 git clone https://github.com/fixmetech/fixme-technologies
 
 # Checkout to the develop branch
-git checkout -b develop
+git checkout develop
 
 # Change dir to public
 cd public
