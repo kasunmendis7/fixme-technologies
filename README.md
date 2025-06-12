@@ -119,14 +119,24 @@ The system follows the MVC design pattern, ensuring:
 ## ©️ Sample Login Info
 
 - Customer Login
+  
   email:- sheanemario7@gmail.com
+  
   pwd:- 12121212
+  
 - Technician Login
+  
   email:- sheanemario77@gmail.com
+  
   pwd:- 12345678
+  
 - Service Center Login
+  
   email:- centre4@gmail.com
+  
   pwd:- 12345678
+  
+---
 
 ## 🧪 Developer Setup Instructions
 
