@@ -212,6 +212,13 @@ $app->router->get('/technician-bank-accounts', [AdminController::class, 'technic
 $app->router->get('/admin-add-vehicle-type', [AdminController::class, 'adminGetVehicleTypes']);
 $app->router->post('/admin-add-vehicle-type', [AdminController::class, 'adminAddVehicleTypes']);
 $app->router->post('/admin-remove-vehicle-type', [AdminController::class, 'adminRemoveVehicleType']);
+$app->router->get('/admin-add-vehicle-type-issue', [AdminController::class, 'adminGetVehicleTypeIssue']);
+$app->router->post('/admin-add-vehicle-type-issue', [AdminController::class, 'adminAddVehicleTypeIssue']);
+$app->router->post('/admin-remove-vehicle-type-issue', [AdminController::class, 'adminRemoveVehicleTypeIssue']);
+// Show Edit Form
+$app->router->get('/admin-edit-vehicle-type-issue', [AdminController::class, 'adminGetEditVehicleTypeIssue']);
+// Handle Edit Submission
+$app->router->post('/admin-edit-vehicle-type-issue', [AdminController::class, 'adminPostEditVehicleTypeIssue']);
 
 /* Admin Routes */
 $app->router->get('/admin-services', [AdminController::class, 'manageServices']);
